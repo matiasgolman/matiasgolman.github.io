@@ -24,7 +24,7 @@ ninja.data = [{
             window.location.href = "/teaching/";
           },
         },{id: "nav-policy-papers",
-          title: "Policy papers",
+          title: "policy papers",
           description: "",
           section: "Navigation",
           handler: () => {
@@ -481,13 +481,6 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://github.com/matiasgolman", "_blank");
-        },
-      },{
-        id: 'social-rss',
-        title: 'RSS Feed',
-        section: 'Socials',
-        handler: () => {
-          window.open("/feed.xml", "_blank");
         },
       },{
         id: 'social-instagram',
