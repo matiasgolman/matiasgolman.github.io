@@ -14,7 +14,7 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/assets/pdf/CV_Matias_golman__2025.pdf";
+            window.location.href = "/assets/pdf/CV_Matias_Golman__2025.pdf";
           },
         },{id: "nav-projects",
           title: "projects",
