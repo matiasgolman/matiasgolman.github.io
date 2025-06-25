@@ -1,6 +1,6 @@
 ---
 layout: #cv
-permalink: /assets/pdf/CV_Matias_golman__2025.pdf
+permalink: /assets/pdf/CV_Matias_Golman__2025.pdf
 title: cv
 nav: true
 nav_order: 1
