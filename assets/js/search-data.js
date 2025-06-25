@@ -14,21 +14,21 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/assets/pdf/CV_Matias_Golman__2025.pdf";
-          },
-        },{id: "nav-projects",
-          title: "projects",
-          description: "A growing collection of your cool projects.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/projects/";
+            window.location.href = "/assets/pdf/CV_MatiasGolman_25.pdf";
           },
         },{id: "nav-teaching",
           title: "teaching",
           description: "x",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/_pages/teaching/";
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-policy-papers",
+          title: "policy papers",
+          description: "x",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/policywork/";
           },
         },{id: "post-a-post-with-plotly-js",
         
@@ -459,14 +459,28 @@ ninja.data = [{
         title: 'email',
         section: 'Socials',
         handler: () => {
-          window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D", "_blank");
+          window.open("mailto:%6D%61%74%69%61%73.%67%6F%6C%6D%61%6E@%6E%6F%74%74%69%6E%67%68%61%6D.%61%63.%75%6B", "_blank");
         },
       },{
-        id: 'social-inspire',
-        title: 'Inspire HEP',
+        id: 'social-linkedin',
+        title: 'LinkedIn',
         section: 'Socials',
         handler: () => {
-          window.open("https://inspirehep.net/authors/1010907", "_blank");
+          window.open("https://www.linkedin.com/in/matiasgolman", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=mcC8FQwAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/matiasgolman", "_blank");
         },
       },{
         id: 'social-rss',
@@ -476,18 +490,11 @@ ninja.data = [{
           window.open("/feed.xml", "_blank");
         },
       },{
-        id: 'social-scholar',
-        title: 'Google Scholar',
+        id: 'social-instagram',
+        title: 'Instagram',
         section: 'Socials',
         handler: () => {
-          window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ", "_blank");
-        },
-      },{
-        id: 'social-custom_social',
-        title: 'Custom_social',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://www.alberteinstein.com/", "_blank");
+          window.open("https://instagram.com/gol.mat", "_blank");
         },
       },{
       id: 'light-theme',
