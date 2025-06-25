@@ -1,12 +1,27 @@
 ---
-layout: page
-permalink: /teaching/
+layout: about
+permalink: 
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: x
 nav: true
-nav_order: 6
+nav_order: 3
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
 
-Organize your courses by years, topics, or universities, however you like!
+**University of Nottingham – United Kingdom**
+- UG Teaching Assistant, Economic Dissertations (2025)
+- UG Teaching Assistant, Econometric Theory. Prof. David Harvey (2024)
+- UG Teaching Assistant, Labour Economics (2023) 
+- UG Teaching Assistant, Applied Econometrics II (2023)
+- UG Teaching Assistant, Applied Econometrics I (2022,2024)
+- UG Teaching Assistant, Foundations of Economics (2022)
+- UG Teaching Assistant, Introduction to Economics (2021)
+
+    **Teaching awards**
+  - GTA Teaching Excellence Award, University of Nottingham, 2023-2024
+  - GTA Teaching Excellence Award, University of Nottingham, 2022-2023
+  - GTA Teaching Excellence Award, University of Nottingham, 2021-2022
+
+**University of Buenos Aires – Argentina**
+- UG Teaching Assistant, International Economy (2018)
+- UG Teaching Assistant, Labour Economics (2017,2018)
