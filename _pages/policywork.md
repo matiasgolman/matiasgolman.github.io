@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /policywork/
-title: Policy papers
+title: policy papers
 description:
 nav: true
 nav_order: 4
