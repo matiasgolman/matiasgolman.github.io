@@ -24,7 +24,7 @@ ninja.data = [{
             window.location.href = "/teaching/";
           },
         },{id: "nav-policy-papers",
-          title: "policy papers",
+          title: "Policy papers",
           description: "",
           section: "Navigation",
           handler: () => {
