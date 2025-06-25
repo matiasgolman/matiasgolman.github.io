@@ -34,5 +34,5 @@ I am an Economics PhD candidate at the University of Nottingham.
 
 I work on labour economics topics, specialising on skills demand, informal employment and economic development.
 
-I am available for interviews in the 2025/26 Job Market. You can reach me at matias dot golman at nottingham dot ak dot uk.
+I am available for interviews in the 2025/26 Job Market. You can reach me at matias.golman@nottingham.ak.uk.
 
