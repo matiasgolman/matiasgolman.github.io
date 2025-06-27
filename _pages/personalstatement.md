@@ -9,9 +9,9 @@ nav_order: 5
 
 I appreciate your interest in my work trajectory. 
 
-While a CV and a list of publications effectively capture standardised productivity and work experience, I believe they tell only part of the story when it comes to understanding a person's trajectory and potential.
+While a CV and a list of publications effectively capture the academic history, work experience and some standardised productivity-related outcomes, I believe they tell only part of the story when it comes to understanding a person's trajectory and potential.
 
-If I were on the hiring side of the equation, I would be interested in having on my team someone who is not only productive, original, passionate, and committed to their tasks, but also whom I could share values, interesting debates, and who is eager about learning and growing together. The upcoming paragraphs aim to be an informal but more comprehensive introduction of myself and my values.
+If I were on the hiring side of the equation, I would be interested in having on my team someone who is not only very good, original, passionate, and committed to their tasks, but also whom I could share values, interesting debates, and who is eager about learning and growing together. The upcoming paragraphs aim to be an informal but more comprehensive introduction of myself.
 
 I was born in Bariloche, in the Argentine Patagonia. That, alone, explains a substantial part of who I am and what motivates me. Let me explain.
 
