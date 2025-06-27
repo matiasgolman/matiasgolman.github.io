@@ -31,6 +31,6 @@ During my career, I have gained thorough econometric and programming skills. I a
 
 I think one of my core traits is that I love learning new things. I am curious and open-minded about both work-related abilities and general knowledge, be it different languages, hobbies, and basically different ways of doing things. I believe the same problem can have multiple solutions, and there is always a different perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt, and I work greatly in multi-cultural environments. I am passionate when teaching, whether in economics at university level, mathematics at high school level or languages in refugee-oriented NGOs.
 
-When looking at my CV and my publications, you will likely get a good impression of my research interest and my technical skills. What these cannot show by construction is the passion and commitment I will provide. 
+When looking at my CV and my publications, you will hopefully get a good impression of my research interest and my technical skills. What these cannot show by construction is the passion and commitment I will provide. 
 
 Thanks for reading!
