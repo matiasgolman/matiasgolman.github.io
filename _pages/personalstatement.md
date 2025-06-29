@@ -29,10 +29,10 @@ Studying at the University of Buenos Aires involves many learnings besides the p
 
 During my career, I have gained thorough econometric and programming skills. I am self-sufficient in processing large quantities of data from diverse sources, with different softwares, and developing empirically relevant and methodologically robust research questions. Certainly, I believe policy decisions should be data-driven. In my research, I aim to identify heterogeneous effects within population groups, particularly focusing on those with the most disadvantages.
 
-One of my core traits is that I love learning. I am curious and open-minded when it comes to both work-related abilities and personal interests, be it languages, sports, and basically different ways of doing things. I believe one problem can have multiple solutions and there is always a novel perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt and I work greatly in multi-cultural environments. I am passionate about teaching, whether it is Economics at the University, Mathematics in high school, or languages in NGOs supporting refugees.
+One of my core traits is that I love learning. I am curious and open-minded when it comes to both work-related abilities and personal interests, be it languages, sports, and basically different ways of doing things. I believe one problem can have multiple solutions and there is always a novel perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt and I work greatly in multi-cultural environments. I love teaching, whether it is Economics at the University, Mathematics in high school, or languages in NGOs supporting refugees.
 
-When looking at my CV and my papers, you will hopefully get a good impression of my research interest and my technical skills. 
+When looking at my CV and my papers, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment. 
 
 Thanks for reading!
 
-Matias
+Matías
