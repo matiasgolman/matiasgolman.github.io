@@ -1,5 +1,5 @@
 # Force LF line endings for shell scripts
 *.sh text eol=lf
 
-# Track large JSON files with Git LFS
+# Track large JSON files with Git LFS (binary, not text)
 assets/dashboards/*.json filter=lfs diff=lfs merge=lfs binary

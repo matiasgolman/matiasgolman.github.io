@@ -191,9 +191,12 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
+  - assets/dashboards/dashboard_data.json
+  - "*.json"
 keep_files:
   - CNAME
   - .nojekyll
+  - assets/dashboards/dashboard_data.json
 
 # Plug-ins
 plugins:
