@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Argentina Informality Dashboard"
+title: "informality dashboard"
 permalink: /dashboard/
 author_profile: false
 classes: wide
