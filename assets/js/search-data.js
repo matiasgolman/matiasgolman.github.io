@@ -37,8 +37,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/personalstatement/";
           },
-        },{id: "nav-argentina-informality-dashboard",
-          title: "Argentina Informality Dashboard",
+        },{id: "nav-informality-dashboard",
+          title: "informality dashboard",
           description: "",
           section: "Navigation",
           handler: () => {
