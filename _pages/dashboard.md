@@ -4,6 +4,8 @@ title: "Argentina Informality Dashboard"
 permalink: /dashboard/
 author_profile: false
 classes: wide
+nav: true
+nav_order: 6
 ---
 
 <style>
