@@ -2,6 +2,7 @@
  * Content
  ******************************************************************************/
 
+/*
 // Navigation spacing adjustments
 .navbar-nav {
   .nav-item {
@@ -14,6 +15,33 @@
     }
   }
 }
+*/
+
+
+// Navigation spacing to prevent wrapping
+.navbar-nav {
+  .nav-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    
+    .nav-link {
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+// Only widen the HEADER container, not the whole page
+header .container,
+nav .container,
+.navbar .container {
+  max-width: 1000px;  // Just slightly wider than default (usually 800px)
+  
+  @media (min-width: 1200px) {
+    max-width: 1100px;  // A bit more on larger screens
+  }
+}
+
 
 body {
   padding-bottom: 70px;
@@ -41,11 +69,12 @@ body.sticky-bottom-footer {
 }
 
 .container {
-  max-width: 1200px;  // Increased from $max-content-width
+  max-width: $max-content-width;
+/*  max-width: 1200px;  // Increased from $max-content-width
   
   @media (min-width: 1400px) {
     max-width: 1400px;
-  }
+  } */ 
 }
 // Profile
 .profile {
