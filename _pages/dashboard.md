@@ -1,11 +1,10 @@
 ---
 layout: single
-title: "informality dashboard"
+title: "Argentina Informality Dashboard"
 permalink: /dashboard/
 author_profile: false
 classes: wide
-nav: true
-nav_order: 6
+nav: false  # Changed from true - removes from main navigation
 ---
 
 <style>
