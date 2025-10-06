@@ -14,6 +14,4 @@ Interactive visualization of informal employment data in Argentina (2003-2025) u
 - Demographic tracking
 - Sector and Province-level mapping
 - Time series analysis with custom filters
-
-
 ---
