@@ -18,8 +18,9 @@ nav_order: 3
 - UG Teaching Assistant, Introduction to Economics (2021)
 
 **Teaching awards**
-- GTA Teaching Excellence Award, University of Nottingham, <a href="/assets/pdf/GTA_award_2324.pdf" target="_blank"> 2023-2024  </a>
-- GTA Teaching Excellence Award, University of Nottingham,  <a href="/assets/pdf/GTA_award_2223.pdf" target="_blank"> 2022-2023  </a>
+- GTA Teaching Excellence Award, University of Nottingham, <a href="/assets/pdf/GTA_award_2425.pdf" target="_blank"> 2024-2025  </a>
+- GTA Teaching Excellence Award, University of Nottingham,  <a href="/assets/pdf/GTA_award_2324.pdf" target="_blank"> 2023-2024  </a>
+- GTA Teaching Excellence Award, University of Nottingham,  <a href="/assets/pdf/GTA_award_2223.pdf" target="_blank"> 2022-2023   </a>
 - GTA Teaching Excellence Award, University of Nottingham,  <a href="/assets/pdf/GTA_award_2122.pdf" target="_blank"> 2021-2022   </a>
 
 **University of Buenos Aires – Argentina**
