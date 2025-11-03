@@ -14,7 +14,7 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/assets/pdf/CV_MatiasGolman_25.pdf";
+            window.location.href = "/assets/pdf/CV_MatiasGolman.pdf";
           },
         },{id: "nav-teaching",
           title: "teaching",
