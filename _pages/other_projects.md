@@ -15,4 +15,9 @@ Interactive visualization of informal employment data in Argentina (2003-2025) u
 - Sector and Province-level mapping
 - Time series analysis with custom filters
  
+
+ 
+### [Araucaria mapping app](/araucariaspotter/)
+A community map of Araucaria, the monkey puzzle tree, growing outside its native Andean range. 
+
 ---
