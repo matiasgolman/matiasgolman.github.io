@@ -135,4 +135,19 @@ Ecorys y gente que lo googlea 90 segundos antes de una reunión.
 
 *(Se anotan acá para no rediscutirlas. Cada una con fecha y de quién salió.)*
 
-- *(todavía ninguna — el cuestionario 1 las va a poblar)*
+**2026-10-13, respondidas por Matías en el chat (preguntas 1, 16, 3 y 19 del cuestionario):**
+
+- **D-01 · Público.** Los dos primeros son **organismos internacionales** (OIT, BM, OCDE, BID,
+  CEPAL) **e institutos holandeses de política** (CPB, SCP, SEO, Ecorys, DNB, TNO). Lo académico
+  queda presente pero **no manda**. Consecuencia directa: la home no abre con papers, abre con
+  posicionamiento y con productos; los dos proyectos (dashboard y Araucaria) suben; el JMP deja de
+  llamarse JMP.
+- **D-02 · Registro visual.** **Editorial + cálido**: serif de lectura, columna angosta, mucho
+  aire, un verde profundo sacado de sus propias fotos de montaña, proyectos como tarjetas con
+  imagen. Nada de azul institucional, nada de modo oscuro automático, tipografías autoalojadas.
+- **D-03 · Búsqueda de trabajo: implícita.** El sitio **no** dice que está buscando. CV al día,
+  perfil orientado a política, y la señal de disponibilidad va por el ajuste privado de LinkedIn.
+  Nada de «open to opportunities» en la web.
+- **D-04 · Stack: Jekyll propio y mínimo**, en el mismo repo y en GitHub Pages. Se borra la demo de
+  al-folio entera, se escriben ~5 layouts a medida, sin plugins salvo `jekyll-sitemap` y
+  `jekyll-feed`. Esto además es la mitad del arreglo de Google (ítem S1).

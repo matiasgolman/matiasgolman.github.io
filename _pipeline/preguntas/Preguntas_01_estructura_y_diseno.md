@@ -1,5 +1,8 @@
 # Cuestionario 1 — estructura, contenido y diseño del sitio
 
+> **AL 13/10 YA ESTÁN CONTESTADAS LAS PREGUNTAS 1, 3, 16 y 19** (en el chat). Están anotadas en
+> `ESTADO.md > DECISIONES TOMADAS` como D-01 a D-04. **Saltealas**: quedan 18.
+
 **Cómo contestar:** escribí debajo de cada pregunta, donde dice `→`. Sin formato, como te salga, en
 castellano o en inglés. **Si una no la sabés o no te importa, dejala en blanco**: cada pregunta
 trae mi recomendación, y lo que quede vacío lo decido yo por ahí y lo anoto en
