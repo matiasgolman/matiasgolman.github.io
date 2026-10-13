@@ -25,12 +25,16 @@ armó esta carpeta. El sitio vivo sigue siendo el de junio 2026.
    del tema. `scholar.last_name: [Einstein]`. Detalle en `ESTADO.md`.
 2. **El `about` está ocho meses desactualizado**: dice «PhD candidate en Nottingham, disponible para
    entrevistas en el job market 2025/26». Es lo primero que lee cualquiera que entre hoy.
-3. **El sitio SÍ está indexado en Google.** La hipótesis de Matías («no aparece») es cierta en lo
-   observable pero la causa no es la que parecía: no hay `noindex`, el `robots.txt` permite todo,
-   hay sitemap y hay canonical. El sitio aparece en resultados por su nombre, **noveno**, debajo de
-   uu.nl, research-portal.uu.nl, Scholar, LinkedIn, Nottingham y ResearchGate. Es un problema de
-   autoridad (casi cero links entrantes), de contenido de plantilla y de metadatos genéricos, más
-   el hecho de que nunca se verificó en Search Console. Ítem **S1** de la cola.
+3. **El sitio NO está indexado en Google — verificado en Google el mismo día.** Mi primera lectura
+   (basada en que el sitio aparecía en los resultados de otro buscador) era equivocada y quedó
+   corregida: `site:matiasgolman.github.io` devuelve **una sola página, `/dashboard/`**, y la frase
+   exacta de la home da **«No results found»**. Buscando su nombre con y sin tilde salen uu.nl,
+   LinkedIn, Scholar, ResearchGate, Facebook, X, Instagram y hasta su CV alojado en
+   economicas.uba.ar — el sitio propio, no. Lo técnico está bien (robots, sitemap, canonical, sin
+   `noindex`), así que es una decisión de calidad de Google: «Crawled – currently not indexed».
+   El dato que lo explica: **la única página indexada es la única que no es plantilla de al-folio**.
+   Detalle y plan de seis pasos en el ítem **S1** de `ESTADO.md`.
+
 4. **El repo pesa 1,5 GB**: 1,3 GB de `.git`, 73 MB en un solo HTML (el dashboard), 61 MB de PDFs
    con nueve versiones del JMP. Ítems **S2** y **S3**.
 5. **`/dashboard/` y `/araucariaspotter/` declaran `layout: single`, que no existe en al-folio.**
