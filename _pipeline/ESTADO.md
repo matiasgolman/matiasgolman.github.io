@@ -88,17 +88,19 @@ darle «Verificar».
 
 ### Abiertos
 
-- **S1 — Google todavía no indexa el sitio.** **La propiedad ya está verificada** (14/10, de
-  noche). El envío del sitemap quedó en «No se ha podido obtener», pero el archivo está sano:
-  comprobado desde fuera, 200, XML válido, 31 URLs, anunciado en `robots.txt`, sin `noindex` ni
-  `X-Robots-Tag` en ninguna página. La causa más probable es que se pegara la URL completa en un
-  campo que ya trae el prefijo, o que se enviara durante un despliegue. Falta: reenviar escribiendo
-  sólo `sitemap.xml`, y pedir la indexación de la home con «Inspeccionar URL». Bing ya lo tiene.
-- **S5 — Links entrantes.** Verificado el 14/10: **la ficha de uu.nl no enlaza al sitio**, sólo al
-  research portal, y es el enlace más valioso que falta. LinkedIn no cuenta (`nofollow` y muro de
-  login). ORCID sí enlaza. El CV del IIEP tiene un hipervínculo «personal website» cuyo destino no
-  se pudo leer. El «Homepage» de Scholar está sin verificar porque Scholar bloquea el acceso
-  automático.
+- **S1 — CERRADO: Google indexó el sitio.** La inspección de URL del 14/10 a la noche devuelve «La
+  URL está en Google» y «La página está indexada», con rastreo y canónica correctos. Google lo
+  descubrió desde el **repositorio de Nottingham** y desde el **CV del IIEP**, no desde el sitemap.
+  Queda sólo pedir la reindexación, porque el último rastreo (15:23) es anterior al castellano, a
+  «Some pictures» y a la intro nueva. El sitemap da «Error temporal de procesamiento», que es
+  pasajero: el archivo está sano, comprobado desde fuera.
+  **Lección para no repetir:** durante la corrida 4 concluí que el sitio no estaba indexado a
+  partir de la herramienta de búsqueda de la sesión, que no es Google. La conclusión fue
+  equivocada. Search Console es la única fuente válida para esto.
+- **S5 — Links entrantes.** Estado al 14/10 de noche: **enlazan** el repositorio de Nottingham
+  (lo reveló la inspección de URL), el CV del IIEP y su página, ORCID, y el «Homepage» de Scholar.
+  **Falta uu.nl**, que es el más valioso; Matías lo agrega el 15/10. LinkedIn no cuenta, sus
+  enlaces son `nofollow`.
 - **S6 — Alt text de las 246 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
   `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
   corrida. Si le importa la accesibilidad fina, hay que escribirlos a mano o recortar la selección.
