@@ -23,54 +23,47 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 ## En una pantalla
 
-**Qué es el sitio hoy.** `matiasgolman.github.io` es el tema **al-folio** (Jekyll), clonado casi
-entero, con cinco páginas propias encima: `about`, `teaching`, `policy papers`,
-`personal statement`, `other projects`, más `cv` (que es un link directo al PDF) y dos páginas
-sueltas (`/dashboard/` y `/araucariaspotter/`). Último deploy: **19 de junio de 2026**.
+**El sitio está reescrito entero y commiteado localmente. Falta pushear** (to-do 1), y en cuanto
+pushees se despliega solo. El de al-folio ya no existe en la carpeta.
 
-**El diagnóstico duro: el sitio es, en su mayor parte, la demo del tema.** Del contenido que
-Google ve, lo propio es minoría:
+**Qué hay ahora.** Jekyll propio y mínimo: 9 URLs reales, todas con contenido propio.
+`/` (posicionamiento + las dos herramientas + working papers + temas) · `/work/` (working papers,
+trabajo de política, publicados) · `/projects/` · `/teaching/` · `/about/` (el statement reescrito
+sin el marco de postulación) · `/cv/` (página HTML + PDF) · `/es/` · `/dashboard/` (misma URL de
+siempre, ahora con texto y links propios) · `/araucariaspotter/`. `/notes/` existe pero no está en
+la navegación ni en el sitemap hasta que haya tres textos. Redirecciones desde las seis URLs viejas.
 
-| En el sitio hoy | Cantidad | Qué es |
-|---|---|---|
-| Posts de blog | **31** | **Todos** demo de al-folio (`formatting-and-links`, `tikzjax`, `the_godfather`…) |
-| Proyectos | **9** | **Todos** demo (`project 1`, `project 2`… con fotos de Unsplash) |
-| Noticias | **3** | **Todas** demo (`announcement_1/2/3`) |
-| Páginas propias | 5 + 2 | about, teaching, policy papers, personal statement, other projects |
+**Qué desapareció.** Los 31 posts de demo, los 9 proyectos de demo, las 3 noticias, el
+`scholar.last_name: [Einstein]`, los veinte plugins de Ruby, purgecss, imagemagick, el workflow de
+90 líneas, 14 MB de fotos de Unsplash, y 15 PDFs viejos (nueve JMP y cuatro CV). `assets/` pasó de
+194 MB a **89 MB**, y de esos 73 MB son el dashboard.
 
-Además: `scholar.last_name` en `_config.yml` sigue diciendo **`[Einstein]`**; `keywords` son las
-del tema (`jekyll, jekyll-theme, academic-website…`); `external_sources` trae el feed de Medium de
-al-folio y una nota del blog de Google; la página `repositories` tiene como descripción el texto de
-instrucciones del tema. El `about` dice que es **PhD candidate en Nottingham** y que está
-**disponible para entrevistas en el job market 2025/26** — ocho meses desactualizado.
+**Diseño.** Editorial y cálido, como se decidió: **Literata** para leer y **IBM Plex Sans** para
+etiquetas y navegación, las dos **autoalojadas** (nada de Google Fonts, nada de GDPR). Papel verde
+muy pálido `#f6f8f4`, tinta `#16211b`, acento **verde conífera `#1f5d45`** — el mismo verde de tu
+campera en la foto de portada, que es de donde salió. **Modo oscuro: lo hice.** Sigue al sistema
+operativo y además hay un botón en la navegación. Tenías razón en que se ve serio; con tokens de
+color costaba una hora, así que lo discutí mal la primera vez.
 
-**Peso y salud del repo.** 1,5 GB en total: **1,3 GB de `.git`** y **194 MB de `assets/`**, de los
-cuales `assets/dashboards/argentina_informality_dashboard.html` es **un solo archivo de 73 MB** y
-`assets/pdf/` son 61 MB con **nueve versiones del JMP** (`jmp_june25` … `jmp_last_version`) y
-cuatro CV viejos. Las páginas `/dashboard/` y `/araucariaspotter/` declaran `layout: single`, que
-**no existe** en al-folio (es de minimal-mistakes): se renderizan sin layout.
-
-**Por qué no aparece en Google.** Porque **no está indexado**: de todo el sitio, Google tiene una
-sola página (`/dashboard/`), y es justamente la única que no es plantilla. Verificado en Google el
-13/10. Detalle y plan en el ítem **S1** de la cola.
-
-**A dónde va.** El objetivo del sitio cambia: dejar de ser una carpeta de job market académico y
-pasar a ser la tarjeta de presentación de un economista laboral que produce evidencia usable para
-política pública — el público que importa es quien contrata en OIT / BM / OCDE / CPB / SCP / SEO /
-Ecorys y gente que lo googlea 90 segundos antes de una reunión.
-
----
+**Lo que decide la portada.** Tu respuesta a la pregunta 2 — *que un ex colega te encuentre y te
+invite a una consultoría* — es el norte de todo el sitio. Por eso arriba va una frase que dice qué
+hacés, después **las dos cosas que construiste** (que para ese lector prueban más que los papers), y
+una línea que dice que estás abierto a consultorías y colaboraciones, sin decir en ningún lado que
+estás buscando trabajo.
 
 ## COLA DE TRABAJO
 
 *(Abiertos arriba. Un ítem que se cierra se reduce a una línea y el detalle se archiva.)*
 
-### Bloqueado por decisiones de Matías
+### Bloqueado por Matías
 
-- **D1 — Cuestionario 1 (estructura y diseño).** 22 preguntas en
-  `preguntas/Preguntas_01_estructura_y_diseno.md`. Bloquea todo lo demás.
-  Las cuatro de mayor impacto se preguntaron directo en el chat del 13/10: público principal,
-  registro visual, cuán explícito ser sobre la búsqueda de trabajo, y stack.
+- **B1 — Pushear** (to-do 1). Hasta que no pushees, el sitio nuevo vive sólo en tu disco.
+- **B2 — El token**, para que pueda desplegar y verificar yo (to-do 1).
+- **B3 — ¿El informe de Costa Rica es público?** (to-do 5). Hoy está descrito sin PDF.
+- **B4 — Las versiones finales de los tres papers** (to-do 4). Mientras tanto están las que había en
+  el repo (`jmp_last_version`, `second_chapter`, `third_chapter`), renombradas.
+- **B5 — El paper del GEP**: ¿número de serie y coautoría con María García-Vega? (to-do 6).
+- **B6 — ORCID**: decime que sí y lo actualizo (to-do 8).
 
 ### Abiertos
 
@@ -110,9 +103,19 @@ Ecorys y gente que lo googlea 90 segundos antes de una reunión.
     Matías controla: la ficha de uu.nl, el perfil de Scholar, GitHub, ORCID, LinkedIn, las firmas
     de los papers. Más, si se decide, dominio propio (to-do ítem 7).
 
-- **S2 — Decidir el destino del dashboard de 73 MB.** Hoy es un HTML monolítico dentro del repo.
-  Carga lentísimo, infla el repo y Jekyll lo tiene que excluir a mano. Opciones: dejarlo igual,
-  partirlo (datos en JSON + página liviana), o moverlo a su propio repo/host. Pregunta 9.
+- **S2 — El dashboard, más adelante (proyecto aparte, pedido explícito de Matías).** Se queda como
+  está. Cuando lo retomemos: separar datos de presentación (los 73 MB son datos embebidos en el
+  HTML, y eso se reduce muchísimo con JSON + carga por demanda, sin perder ni una serie),
+  rehacer la interfaz para que acompañe la paleta del sitio, sacar los emojis de los iconos de
+  sector, y evaluar sumar países. **Matías tiene el código y las bases.**
+
+- **S4 — Primera nota para `/notes/`.** El texto acordado: las conclusiones del meta-análisis de
+  formalización en castellano llano, 600-900 palabras. Material: `golman-formalisation-meta-analysis.pdf`.
+  Faltan otras dos para encender la sección.
+
+- **S5 — Links entrantes** (la mitad que falta del arreglo de Google, y la más lenta). Donde Matías
+  controla: la ficha de uu.nl, el perfil de Scholar («Homepage»), ORCID, GitHub, LinkedIn, el
+  research-portal de Utrecht, y la firma de los papers. Ninguno cuesta dinero.
 
 - **S3 — Limpieza del repo (1,3 GB de `.git`).** Decidir si se hace `git gc` agresivo, si se
   depuran los nueve JMP y los CV viejos, o si conviene empezar un repo nuevo y dejar el viejo como
@@ -151,3 +154,38 @@ Ecorys y gente que lo googlea 90 segundos antes de una reunión.
 - **D-04 · Stack: Jekyll propio y mínimo**, en el mismo repo y en GitHub Pages. Se borra la demo de
   al-folio entera, se escriben ~5 layouts a medida, sin plugins salvo `jekyll-sitemap` y
   `jekyll-feed`. Esto además es la mitad del arreglo de Google (ítem S1).
+
+**2026-10-14, del cuestionario contestado (preguntas 2 y 4-22):**
+
+- **D-05 · El objetivo del sitio, en una sola frase:** que un ex colega lo encuentre y lo invite a
+  una consultoría. Es el criterio con el que se resuelve cualquier duda de jerarquía.
+- **D-06 · Matiz sobre el público:** en los organismos internacionales el primer contacto no es
+  RRHH, es alguien que ya lo conoce. El sitio no tiene que convencer a un desconocido desde cero:
+  tiene que **recordarle a alguien que ya lo conoce qué sabe hacer**, y ser fácil de reenviar.
+- **D-07 · Dominio:** se queda en `matiasgolman.github.io` por ahora. Revisar cuando el sitio tenga
+  contenido propio acumulado y notas publicadas.
+- **D-08 · Idiomas:** inglés + una página `/es/`. No bilingüe completo.
+- **D-09 · Posicionamiento:** economista laboral con **amplitud explícita** — el sitio dice que el
+  método viaja a desigualdad, pobreza, migración, salario mínimo, educación, política industrial.
+- **D-10 · Papers:** fuera la etiqueta «job market paper». Los tres son working papers.
+- **D-11 · PDFs:** una sola versión estable de cada uno, con nombre que no cambia nunca más
+  (`golman-ai-personality-traits.pdf`, etc.). Las 15 versiones viejas, borradas.
+- **D-12 · Dashboard:** se queda como está (es la versión final, 73 MB). Mejorarlo —interfaz, datos,
+  más países— es un proyecto aparte, **no en esta conversación**. Anotado como ítem S2.
+- **D-13 · Araucaria:** URL buena `https://araucaria-spotter.vercel.app/`. *(La página vieja
+  apuntaba a `araucaria-spotter-eyna.vercel.app`, que quedó obsoleta.)*
+- **D-14 · Fotos:** sección propia, pero **apagada** hasta que haya fotos. No «fotógrafo»: viaje y
+  naturaleza. Instagram público queda linkeado en el pie.
+- **D-15 · Notas:** se llama «Notes», existe, y **no se linkea hasta que haya tres textos**.
+  Primer texto acordado: las conclusiones del meta-análisis en castellano llano.
+- **D-16 · Nada que ocultar**, pero el CV público pasa a ser el nuevo (sin teléfono, dirección
+  Utrecht).
+- **D-17 · «Personal statement» → «About»**, conservando casi todo el texto y sacando el marco de
+  postulación. Se agregó la línea de apertura a proyectos.
+- **D-18 · Docencia:** Utrecht arriba, Nottingham condensado, premios conservados.
+- **D-19 · CV:** página HTML + botón de descarga del PDF.
+- **D-20 · Foto:** la actual, chica, al costado del titular.
+- **D-21 · Modo oscuro: SÍ** (sigue al sistema + botón). Matías tenía razón; la objeción original
+  era de costo de mantenimiento y con tokens de color ese costo no existe.
+- **D-22 · Analítica:** GoatCounter, sólo si es gratis. Pendiente de que Matías cree la cuenta.
+- **D-23 · Ritmo:** aprobar antes de publicar durante el rediseño, con preview. Después, autónomo.

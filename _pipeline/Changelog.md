@@ -5,6 +5,61 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-14 (corrida 2) — el sitio nuevo, escrito entero
+
+**El rediseño está hecho y commiteado localmente.** Sin pushear todavía: la VM del puente sigue sin
+credenciales.
+
+### Lo que se leyó primero
+El bloque `COMENTARIO DE MATIAS` (archivado literal) y las 22 respuestas del cuestionario. Las
+decisiones quedaron como **D-05 a D-23** en `ESTADO.md`. La que manda sobre todo lo demás es la
+respuesta a la pregunta 2: *que un ex colega me encuentre y me invite a una consultoría*.
+
+### El sitio
+- **Borrado:** todo al-folio. 31 posts de demo, 9 proyectos, 3 noticias, `_sass` del tema, 20
+  plugins, purgecss, imagemagick, el workflow de 90 líneas, 14 MB de imágenes de Unsplash, 15 PDFs
+  viejos. `assets/` de 194 MB a 89 MB.
+- **Escrito:** Jekyll 4 con dos plugins (`jekyll-feed`, `jekyll-sitemap`), 4 layouts, 4 includes,
+  3 archivos de datos, 9 páginas reales y 6 redirecciones. Fuentes **autoalojadas** (Literata +
+  IBM Plex Sans, vía `@fontsource`, sólo los pesos usados: 7 archivos woff2).
+- **Diseño:** paleta verde-papel con acento `#1f5d45`, tokens en CSS custom properties, modo oscuro
+  automático **y** botón. Probado en 1180 px, 390 px y en oscuro con capturas reales.
+- **Capturas de los dos proyectos** tomadas del vivo (el dashboard desplegado y la app en Vercel) y
+  optimizadas; son las que ilustran las tarjetas.
+- **SEO estructural:** `<title>` y `description` propios por página, JSON-LD `Person` con `sameAs` a
+  Scholar, ORCID, LinkedIn, GitHub, uu.nl e Instagram, `alternateName` con y sin tilde, canonical,
+  Open Graph, sitemap de 9 URLs, y el código de Search Console puesto (también en el sitio viejo,
+  para que se pueda verificar apenas se pushee).
+
+### PDFs renombrados a nombres estables
+`jmp_last_version` → `golman-ai-personality-traits`, `second_chapter` → `golman-value-of-personality`,
+`third_chapter` → `golman-formalisation-meta-analysis`, `ilo-wp34` →
+`ilo-wp34-old-age-income-security`, `wcms_855420` → `ilo-future-of-work-formality`,
+`problemasdesarrollo` → `golman-bekerman-microfinance`, `neets` → `golman-neets`, los cuatro premios
+a `gta-award-XXXX`. El CV nuevo (sin teléfono) quedó como `cv-matias-golman.pdf` **y** con el nombre
+viejo `CV_MatiasGolman.pdf`, para no romper links ya enviados.
+
+### Lo que NO se hizo, y por qué
+- **El informe de Costa Rica no se subió.** Es un entregable a un cliente sobre política de un
+  gobierno; si la OIT no lo publicó, publicarlo primero puede caer mal. Descrito sin PDF hasta que
+  Matías confirme (to-do 5).
+- **La sección de fotos está construida pero apagada**: no hay fotos todavía. En el to-do quedó cómo
+  bajarlas de Instagram en bloque, que era lo que Matías no sabía hacer.
+- **`/notes/` existe pero no se linkea** hasta que haya tres textos.
+
+### Respondido en el to-do
+El permiso correcto del PAT (estaba mirando «Account permissions»; `Contents` está en «Repository
+permissions», y sólo aparece tras elegir el repo), cómo verificar en Bing importando desde Google,
+cómo bajar las fotos de Instagram, cómo mudar la carpeta sin romper nada — **con la advertencia de
+no poner el repo adentro de OneDrive**, que es la que más importa — y que la carpeta, chequeado, no
+está dentro de otro repo de git.
+
+**Ítems cerrados:** D1, y el rediseño completo. **Abiertos:** S1 (links entrantes y verificación),
+S2 (dashboard, más adelante), S3 (los 1,3 GB de `.git`), S4 (primera nota), S5 (links entrantes).
+**Bloqueados:** B1 a B6.
+
+---
+
 ## 2026-10-13 (corrida 1) — reconocimiento, backup y pipeline
 
 **Primera corrida del proyecto web.** No se tocó nada del sitio: sólo se leyó, se hizo backup y se
