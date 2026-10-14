@@ -88,11 +88,17 @@ darle «Verificar».
 
 ### Abiertos
 
-- **S1 — Google todavía no indexa el sitio.** La etiqueta de verificación **ya está servida en el
-  `<head>`**. Falta que Matías entre a Search Console y le dé «Verificar»; después yo mando el
-  sitemap y pido la indexación de la home. Bing ya lo tiene.
-- **S5 — Links entrantes.** ORCID está hecho. Faltan: la ficha de uu.nl, el «Homepage» del perfil de
-  Scholar, el research-portal de Utrecht y la firma de los papers.
+- **S1 — Google todavía no indexa el sitio.** **La propiedad ya está verificada** (14/10, de
+  noche). El envío del sitemap quedó en «No se ha podido obtener», pero el archivo está sano:
+  comprobado desde fuera, 200, XML válido, 31 URLs, anunciado en `robots.txt`, sin `noindex` ni
+  `X-Robots-Tag` en ninguna página. La causa más probable es que se pegara la URL completa en un
+  campo que ya trae el prefijo, o que se enviara durante un despliegue. Falta: reenviar escribiendo
+  sólo `sitemap.xml`, y pedir la indexación de la home con «Inspeccionar URL». Bing ya lo tiene.
+- **S5 — Links entrantes.** Verificado el 14/10: **la ficha de uu.nl no enlaza al sitio**, sólo al
+  research portal, y es el enlace más valioso que falta. LinkedIn no cuenta (`nofollow` y muro de
+  login). ORCID sí enlaza. El CV del IIEP tiene un hipervínculo «personal website» cuyo destino no
+  se pudo leer. El «Homepage» de Scholar está sin verificar porque Scholar bloquea el acceso
+  automático.
 - **S6 — Alt text de las 246 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
   `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
   corrida. Si le importa la accesibilidad fina, hay que escribirlos a mano o recortar la selección.

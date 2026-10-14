@@ -5,11 +5,45 @@
 
 ---
 
-**1. SEARCH CONSOLE: sólo tenés que darle «Verificar»** *(2 minutos)*. **El código nunca se perdió.**
-Es `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`, lo habías pasado el 14/10, está en `_config.yml`
-y el sitio ya lo sirve en el `<head>` de todas las páginas. Google no necesita que se lo pegues de
-nuevo: entrá a la propiedad en Search Console y dale **Verificar**. Avisame cuando esté y yo mando
-el sitemap y pido la indexación de la home.
+**1. SEARCH CONSOLE: el sitio YA ESTÁ VERIFICADO.** Lo dice el propio mensaje de bienvenida que te
+llegó («Ahora que has verificado tu sitio en Search Console»). Ese paso está hecho. Lo que falló es
+sólo el envío del sitemap, y no es culpa del sitio: comprobé desde fuera de tu red que
+`https://matiasgolman.github.io/sitemap.xml` responde 200, es XML válido, tiene las 31 URLs y el
+`robots.txt` lo anuncia.
+
+Quedan dos cosas, por orden de utilidad:
+
+*a) Pedir la indexación de la home a mano, que es lo más rápido.* En Search Console, arriba de
+todo, está la barra **«Inspeccionar URL»**. Pegá `https://matiasgolman.github.io/`, esperá el
+análisis y dale **«Solicitar indexación»**. Eso encola la página directamente y suele tardar días,
+no semanas. Repetilo con `/about/` y `/work/` si querés.
+
+*b) Reenviar el sitemap.* Borrá la fila que quedó en rojo y volvé a enviarlo. **El truco está en
+que el campo ya muestra el prefijo `https://matiasgolman.github.io/`**, así que en la caja hay que
+escribir únicamente `sitemap.xml`, no la URL completa. Si pegaste la URL entera, Google intentó
+buscar `https://matiasgolman.github.io/https://matiasgolman.github.io/sitemap.xml`, y de ahí el
+«No se ha podido obtener». La otra posibilidad es que lo enviaras justo mientras yo estaba
+desplegando (pusheé cuatro veces esa noche y el sitio devuelve 404 unos segundos en cada
+despliegue). En cualquiera de los dos casos, reenviarlo lo arregla.
+
+**1b. LOS ENLACES ENTRANTES: todavía faltan, y uno que dabas por hecho no existe.** Lo verifiqué:
+
+- **Tu ficha de uu.nl NO enlaza al sitio.** Lo único externo que tiene es el research portal de
+  Utrecht. Es el enlace que más te conviene de todos, porque `uu.nl` es un dominio que Google
+  rastrea todos los días. Pedí que te agreguen el sitio personal en tu perfil.
+- **LinkedIn no sirve para esto.** Sus enlaces son `nofollow` y están detrás de un muro de login:
+  Google no los usa para descubrir sitios. No los cuentes.
+- **ORCID sí enlaza** y sí cuenta, aunque su peso es modesto.
+- **El CV viejo del IIEP** (`economicas.uba.ar/iiep/.../CV_MatiasGolman.pdf`) tiene un hipervínculo
+  «personal website». Google sigue enlaces dentro de PDFs, así que cuenta, pero no pude leer a qué
+  URL apunta. Si apunta a un sitio viejo, no sirve: conviene pedirles que suban el CV nuevo.
+- **Google Scholar**: no pude verificarlo porque Scholar bloquea el acceso automático. Fijate vos
+  si el campo «Homepage» de tu perfil tiene la URL puesta.
+
+**1c. UNA EXPECTATIVA REALISTA.** La propiedad en Search Console se creó hoy y el contenido propio
+del sitio tiene horas. Aunque hagas todo perfecto, un subdominio nuevo de `github.io` sin enlaces
+tarda de varios días a algunas semanas en entrar al índice. El sitemap en rojo es molesto, pero no
+es la razón por la que todavía no aparecés: la razón es que es demasiado pronto.
 
 **2. LAS 82 FOTOS CON GENTE, POR SI QUERÉS RESCATAR ALGUNA** *(cuando tengas un rato)*. Están en
 `personal\_revisar_fotos\con-gente\`, en su tamaño original y fuera del repo. Son las que quedaron
