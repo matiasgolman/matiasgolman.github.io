@@ -43,4 +43,12 @@ verifiqué archivo por archivo. Borrá la carpeta vacía cuando quieras.
 están guardadas en GitHub. `git lfs prune` las borra del disco sin perder nada y deja la carpeta en
 ~400 MB. Decime si lo corro.
 
+**8. LOS SIETE MANUALES DE CURSO QUE DEJASTE EN `_pipeline/teaching manuals/`** *(una respuesta)*.
+Aparecieron mientras trabajaba: Applied Economics Research, Data Science Lab for Economists,
+Economics and Social Justice, Economics of the Public Sector, MSc Thesis Economic Policy,
+Philosophy Politics and Economics, y Public Choice & Welfare. **`/teaching/` hoy sólo menciona
+tres cosas de Utrecht**, así que hay un hueco. Decime **cuáles de esos siete dictás vos** —y en qué
+rol— y reescribo la página. No los subí al sitio ni los commiteé: son manuales de curso, y hasta
+que no me digas, no sé si son tuyos de dictar o material que juntaste.
+
 *(Al 14/10/2026.)*
