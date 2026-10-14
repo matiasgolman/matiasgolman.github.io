@@ -69,3 +69,5 @@ exclude:
 defaults:
   - scope: { path: "", type: "posts" }
     values: { layout: "post" }
+  - scope: { path: "assets/dashboards" }
+    values: { sitemap: false }
