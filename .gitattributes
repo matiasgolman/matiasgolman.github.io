@@ -1,5 +1,9 @@
-# Force LF line endings for shell scripts
+# Default: do not let git rewrite line endings on checkout or commit.
+* -text
+
+# Shell scripts always LF
 *.sh text eol=lf
 
-# Track large JSON files with Git LFS (binary, not text)
-assets/dashboards/*.json filter=lfs diff=lfs merge=lfs binary
+# The dashboard is a 73 MB single-file build. Treat it as binary so an editor
+# touching line endings never produces a 73 MB diff.
+assets/dashboards/*.html -text -diff

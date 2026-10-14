@@ -99,3 +99,38 @@ In that folder, you will find the instagram pictures and the paper with maria. S
 - Insisto en mover la carpeta al one drive. Hazlo. Te pase el link en el projecto te di acceso a la carpeta. No me molesta que igual hagas una copia de 100MB ahi, pero quiero que todo este ahi. Mueve todo ahi. SI quiero mostrar el dashboard como anexo a mi pagina. lo has borrado?
 
 ---
+
+## Archivado el 2026-10-14 ~17:50 CEST (corrida 4)
+
+- I have been inspecting the website, and there are many things I would like to change:
+1) I can see a lot of AI language. structures using a lot of em dashes, or sentences that use a lot of double points ":", that kind of anticipate something, double point, response. That is not how I write, and how anyone writes. I want you to revise all the text on the website and make sure it does not look so... AI. The about page was written by me, please learn my stile. 
+
+2) I think the profile picture should be a bit bigger. It does look super small now. I get the impressions that the margins of the website are too wide. Maybe its the style, but there is too much space on the margins and all the content is kind of compress in the center, and you really have to scroll down to get to places. I would not mind a bit of a wider formatting, so for instance the dashboard and the Araucaria Spotter map are on the same line. I dont know, what do you think?
+
+
+3) I dont fully like the big text in the main page. Maybe we can work more on this... the "someone can use" is so vague!. Can you get something a bit closer to what I have on the "about"?
+
+4) I dont like the "The policy work is where most of my time has gone", I am not sure I like that tone of talking, it seems a bit too commercial! the same about "I'd point a new client to first". Dont like talking about clients at all. That is really not my stile of work. I mostly work with people I trust, that know me, that know how hard I work and recommend me. I just want new people or people that read a paper to have a closer idea of who I am, but more natural, not that much of selling attitude. 
+
+5) make sure that all the working papers and policy work have a bit more text under the title, some are very skinny. Also the font sizes are not consistent. For the working paper, the title has a size, then the sort of subtitle another one, but for the policy work, some has the organization with that second font size and a sort of abstract with a different one. I dont know, try to make all a bit more consistent on sizes. Maybe moving published worked above? I dont know, I think it is still quite important, even though I kind of want to build a policy relate profile. I am still working to get the working papers published, and I am actually working in many more projects that I pretend to have some sort of academic impact. For instance I am currently working on a paper measuring tenure premia in latin America.
+
+6) Should we call the current Projects projects? it is something a bit out of research, or with a different approach. Maybe Data projects? I dont know. Projects seems to broad, and indeed the Informality Dashboard was some sort of Product out of an ILO Argentina consultancy, but the Araucaria Spotter is really just a game of spotting araucarias and mapping them on google street that I created an app to make it communitary. I think its fun, I dont know how to frame it! 
+
+7) Regarding the modules I am teaching in Utrecht, there is a variaety, not only those you are showing. I am lecturing and also providing tutorials in many. I saved in a folder all the course snapshots. Do not add the integrating Insights, I was there just veryh shortly, I do not contribute much, just grading the pseudo thesis. I have added all the relevant ones in the new folder teaching manuals. I am teaching public choice in period 1, philosophy politics and economics + Economics of Social Justice in period 2, Data Science lab + Msc thesis in period 3, and Msc thesi + Bsc thesis + Economics of the Public Sector on Period 4. 
+
+personal\matiasgolman.github.io\_pipeline\teaching manuals
+
+8) I would like the About as the first item on the list, before Work. 
+on the About. I would rather change the "It says very little about..." to "It may express just a part of". Dont me so harsh! Make sure there are not em dashes. I dont think the original had em dashes, and if it had, make sure not to have them!! I would like you to keep the original version as much as possible. I dont really like how it loks now, it lost my voice and got yours! You just needed to adapt a bit the part that spoke directly to a potential job employer, but just that, not all... you can change that part to make it a bit broader towards a broader audience, but please reuse the original version.!! 
+
+- I got into the Google Search Console, the webpage is there, when I try to do it again it tells me that its there, but I cannot get the <meta name="google-site-verification" code again. I dont know how to get it again. Didnt I save it in a previous version of the ESTADO before when you requested it when I got it? I am sure I did!! Otherwise you can get control of the chrome again and check the google search console yourself.
+
+-todos los papers ahora estan en sus versiones finales. Si en el futuro tengo nuevas, te las envio. Pero ya lo puedes sacar del to do.
+
+- En cuanto a las fotos. Elije Tu. Hay cientos, asi que quizas puedes priorizar las de Publicaciones, que son las que tengo fija en instagram, en vez de las stories. 
+
+- Borra la carpeta vieja y lo que necesites para dejar en 400MB. como recomendas.
+
+- En cuanto a los manuales, ya te dije que hacer en las primeras entradas de este comentario.
+
+---

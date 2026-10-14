@@ -5,6 +5,76 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-14 (corrida 4) — la voz, el ancho y el orden del repo
+
+Corrida de forma, no de contenido nuevo: Matías había recorrido el sitio y no se reconocía en él.
+
+### La voz
+- **Fuera los em dashes de todo el sitio.** Nueve páginas, dos archivos de datos, el footer y los
+  separadores de los `<title>`. Quedan sólo dentro de los abstracts largos donde no había, y en el
+  HTML del dashboard, que no se toca.
+- **Fuera las estructuras de dos puntos que anticipan.** «...something a policy officer can
+  actually use: informality from 2003» pasó a dos oraciones. Lo mismo en el dashboard, en Araucaria,
+  en los tres abstracts y en `/es/`.
+- **Fuera el tono comercial.** El standfirst de `/work/` decía que la política era «where most of my
+  time has gone» y «the part I'd point a new client to first». No queda ninguna mención a clientes
+  en el sitio.
+- **Titular nuevo**, sacado del About y no de un folleto: «I am a labour economist. I work on how to
+  create jobs that allow people to have a decent and fulfilling life.»
+- **El About volvió al original literal.** Primero se hizo una restauración con el párrafo de
+  empleador adaptado; a mitad de corrida Matías pidió el original crudo para trabajarlo él, y así
+  quedó. Ver S10 en el ESTADO.
+
+### La forma
+- `.page` estaba clavado en **53rem** y `.prose` encima en 68ch: ése era el «todo comprimido en el
+  centro». Ahora `.page` son 64rem, el marco global pasó de 62rem a 74rem, los márgenes de 2,5rem a
+  2rem, y las páginas declaran su ancho (`page_class: "page--wide"` para las de tarjetas e iframe).
+- **La foto pasó de 10rem a 15rem** y el titular respira hasta 24ch.
+- **El dashboard y Araucaria quedaron lado a lado**, con las tarjetas apiladas (imagen arriba) en
+  una grilla `auto-fit` que vuelve a una columna por debajo de 46rem.
+- Verificado con build local de Jekyll 4.4.1 y capturas a 1440px y 390px.
+
+### El contenido
+- **`/work/` quedó pareja.** Las tres secciones usan la misma jerarquía: título, línea de contexto
+  en sans chica, párrafo en serif. Se escribió un párrafo para cada uno de los cuatro publicados,
+  que antes eran una línea suelta. **Published subió por encima de Policy** para que la
+  investigación quede junta y no partida al medio. Se sumó *Tenure premia in Latin America* como
+  work in progress.
+- **`/teaching/` rehecha** con los siete módulos ordenados por período, con descripciones sacadas de
+  los manuales de OSIRIS que dejó en `_pipeline/teaching manuals/`. Integrating Insights quedó
+  afuera, como pidió.
+- **About primero en el nav**, y «Projects» pasó a «Things I've built».
+
+### El repo
+- **De 1,4 GB a 375 MB.** `git lfs` no existe en la VM del puente, así que se borró
+  `.git/lfs/objects` a mano: cinco objetos, 1.022 MB, versiones viejas de los JSON del dashboard.
+  Se verificó antes que **ningún archivo del árbol usa LFS hoy** (`assets/dashboards/*.json` ya no
+  existe) y que no hay punteros LFS en HEAD.
+- **Fuera los restos de al-folio en `.github/`**: plantillas de issues, `release.yml` y `stale.yml`,
+  que apuntaban al repo de `alshedivat`. Queda sólo `workflows/deploy.yml`.
+- **`.gitattributes` nuevo** con `* -text`, que frena el churn de CRLF. Los siete archivos que
+  figuraban como modificados tenían **cero cambios reales** (`git diff --ignore-cr-at-eol` vacío).
+  El dashboard, que amenazaba con un diff de 73 MB, quedó marcado como binario.
+- Borrados de `personal/`: `_speedtest.tmp` (8,8 MB) y una copia suelta de
+  `golman-ai-personality-traits.pdf` idéntica por md5 a la publicada. También
+  `assets/img/matias_profile.jpeg`, que no la referenciaba nadie y es el mismo retrato con un
+  recorte más abierto que el que usa el sitio.
+
+### El código de Search Console
+Estaba desde el principio. `git log -S` sobre `_pipeline/` lo encontró en el comentario archivado
+del 14/10: `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`, ya en `_config.yml` y servido en el
+`<head>`. No hay que pedirlo de nuevo.
+
+### Lo que no se pudo
+- **Las fotos.** El zip de Instagram está deshidratado en OneDrive: cualquier lectura devuelve
+  `Errno 22 Invalid argument`, y con 1,4 GB supera el límite de 400 MB por archivo del puente.
+  Tampoco sirve computer use: el Explorador de Windows sólo se concede en modo «click» y
+  «Mantener siempre en este dispositivo» está en el menú contextual.
+- **La carpeta vieja de `Documents\GitHub\...`.** El pedido de acceso lo denegó el clasificador de
+  la sesión.
+
+---
+
 ## 2026-10-14 (corrida 3) — la mudanza, ORCID entero, y el sitio en vivo
 
 ### La mudanza de la carpeta

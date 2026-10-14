@@ -14,5 +14,6 @@ vendor
 # token local, nunca se sube
 _pipeline/.github_token*
 
-# Manuales de curso dejados por Matías, sin decidir si van al sitio
+# Manuales de curso (fichas de OSIRIS). Son insumo para escribir /teaching/, no
+# contenido del sitio: se quedan en el disco y no se versionan.
 _pipeline/teaching manuals/

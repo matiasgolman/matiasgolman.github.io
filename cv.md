@@ -5,7 +5,7 @@ permalink: /cv/
 standfirst: >-
   Micro-econometrician and applied labour economist, with research experience at the ILO, the OECD
   and the World Bank. Argentinian and Polish citizenship, based in Utrecht.
-body_class: ""
+body_class: "listing"
 description: >-
   Curriculum vitae of Matías Golman: Lecturer in Applied Economics at Utrecht University, consultant
   for the ILO, previously OECD and World Bank. PhD in Economics, University of Nottingham.

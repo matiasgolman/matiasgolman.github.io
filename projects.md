@@ -1,13 +1,16 @@
 ---
 layout: page
-title: "Projects"
+title: "Things I've built"
 permalink: /projects/
 standfirst: >-
-  Two things I built because the analysis wasn't much use until someone else could open it.
-body_class: ""
+  Two things I made and put online. One came out of a consultancy, the other out of a habit of
+  looking up at trees.
+body_class: "listing"
+page_class: "page--wide"
 description: >-
   The Argentina Informality Dashboard, built for the ILO from two decades of household survey
-  microdata, and Araucaria Spotter, a community map of monkey puzzle trees outside their native range.
+  microdata, and Araucaria Spotter, a community map of monkey puzzle trees growing outside their
+  native range.
 ---
 
 <div class="tools">
@@ -24,6 +27,6 @@ description: >-
 </div>
 
 <div class="prose" style="margin-top:3rem">
-  <p>The dashboard is a large page — it carries the full series rather than calling a server for
-  them — so give it a moment to load on a slow connection.</p>
+  <p>The dashboard is a large page, because it carries the full series rather than calling a
+  server for them. Give it a moment to load on a slow connection.</p>
 </div>

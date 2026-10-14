@@ -2,67 +2,37 @@
 layout: page
 title: "About"
 permalink: /about/
-standfirst: >-
-  A CV records the history and a few standardised outputs. It says very little about how someone
-  thinks, or why they picked the questions they picked. This is the longer answer.
 description: >-
-  Matías Golman — labour economist, born in Bariloche in Argentine Patagonia, now at Utrecht
-  University. On how he came to economics, how he works, and what he is looking for.
+  Matías Golman, labour economist, born in Bariloche in Argentine Patagonia, now at Utrecht
+  University. On how he came to economics, how he works, and what moves him.
 ---
 
-I was born in Bariloche, in Argentine Patagonia. That alone explains a good part of who I am and
-what moves me.
+I appreciate your interest in my work trajectory. 
 
-I grew up attached to the outdoors — hiking, camping, anything that involves fresh air. I refill
-there. I like the surprise of working something out rather than the certainty of a guidebook with
-perfect instructions; I don't go looking for *the most scenic view*. I'd rather learn by exploring
-and taking some risk. I'm objective-oriented, but I enjoy the path.
+While a CV and a list of papers effectively capture the academic history, work experience, and some standardised productivity-related outcomes, I believe they tell only part of the story when it comes to understanding someone's trajectory and potential.
 
-Economics started early. To visit my grandparents I used to take a 21-hour bus ride, 1,600 km, from
-Patagonia to Buenos Aires, crossing a long sequence of landscapes and social realities. My mind
-would get lost for hours — and still does — in how you raise prosperity across settings that
-different, and how you create jobs that let people live a decent and fulfilling life.
+If I were on the hiring side of the equation, I would be interested in having in my team someone who is not only hardworking, creative, passionate, and committed to their tasks, but also whom I could share values and debates with, and who is eager about learning and growing together. The upcoming paragraphs aim to be an informal but more comprehensive introduction of myself.
 
-Argentina, like the rest of Latin America, is deeply unequal. Its contradictions run from Nobel
-laureates to half its children in poverty. Economic argument — mostly about inflation — happens
-everywhere, every day: in the grocery shop, in the taxi, at every dinner. I genuinely enjoy hearing
-how other people see it, and I'm comfortable saying what I think and arguing it properly.
+I was born in Bariloche, in the Argentine Patagonia. That alone explains a substantial part of who I am and what motivates me. Let me explain.
 
-I've always been alert to those disparities and, from early on, wanted to understand where they come
-from and do something about them. Specialising in labour economics gave me a way in: informality,
-unemployment, wage gaps, skills mismatch. My approach to knowledge is a problem-solving one — I'm
-not satisfied with naming a market failure or an injustice, I start looking for what would fix it.
+Since I was very young, I have developed a strong attachment to nature. I love hiking, camping, and pretty much any activity that involves being in contact with fresh air. I refill my energy and spirit when in nature. I value the amazement of the discovery process and the thrill of dealing with the unexpected rather than the certainty of a travel book with perfect instructions on where to go. I don't follow blog recommendations on *the most scenic views*. I like the learning of exploring and taking risks. I am objective-oriented, but enjoy the path.
 
-My approach to research is empirical. The spark usually comes from a conversation or from something
-happening in the world, not from a literature gap. I value theory, but my curiosity is driven by
-reality. Major change happens at the macro level, through transformative policy — but that policy
-should be informed by micro-level experience. Following Simone Weil's example of combining
-intellectual work with direct experience, I think understanding poverty asks for more than reading
-and writing about it. So I've also spent years in the places the data describes: coordinating an
-education centre for 70 young people in Villa 21-24 in Buenos Aires, and teaching English to adults
-seeking asylum in Nottingham. I don't think of research as a way to advance professionally. I think
-of it as scientific support for change.
+My passion for Economics and Development started in my early teenage years. To visit my grandparents, I used to take a 21-hour-long bus ride (1,600 km) to Buenos Aires, crossing a variety of landscapes and social realities. My mind would just get lost for hours on end (and still does) into thinking about how to improve prosperity in such diverse settings and how to create jobs that would allow people to have a decent and fulfilling life.
 
-Studying at the University of Buenos Aires taught me things beyond the academic ones, which were
-excellent in their own right. The most important: because the university is *free*, no one leaves
-with private debt. Free, of course, means paid for out of general taxes — so instead of a private
-debt, every graduate leaves with a social one. Any success afterwards is never purely individual;
-it already contains a social investment. In a country with that much poverty, receiving good public
-higher education carries real opportunity cost for everyone else. Whatever I manage to do carries
-the responsibility to narrow the access gap to the opportunities I was lucky enough to have.
+Argentina, like the other Latin American countries, is highly unequal. Its dualities go from Nobel Prize winners to half of the children living in poverty. Economics discussions, mostly inflation, happen everyday. Socratic exchanges are held in every grocery shop, in every taxi ride, in every meeting with friends. I really enjoy listening to other people's perspectives and feel very comfortable expressing my thoughts and having a thorough debate of ideas.
 
-Along the way I've built solid econometric and programming skills. I'm self-sufficient with large
-quantities of data from awkward sources, across different software, and with building research
-questions that are both empirically answerable and methodologically defensible. I believe policy
-decisions should be evidence-led, and in my own work I look hard for heterogeneous effects — what a
-policy does for the people with the least room to absorb a shock.
+I have always been receptive to the disparities of the region and, since a very early age, I have wanted to better understand their roots and contribute to reducing them in some way. By specialising in Labour Economics, I have gained thorough knowledge on informality, unemployment, wage gaps, and skill mismatches. I have a problem-solving approach to knowledge: I am not satisfied with just recognising a market inefficiency or social injustice. I immediately try to come up with solutions to it. I have an active and collaborative way of behaving. 
 
-The trait I'd most want you to know is that I love learning: languages, sports, other people's ways
-of doing things. One problem usually has several solutions, and there's almost always a perspective
-nobody has tried yet. I'm an optimist, I adapt quickly, and I work well in multicultural teams.
-And I love teaching — economics at university, maths in secondary school, languages for NGOs
-supporting refugees.
+My approach towards research and science is empirical: my interests are triggered by an initial spark, conversation, and learning from what is happening in the real world. I value abstract theory, but my inner curiosity is driven by reality. While I reckon that major changes happen at the macro level, with transformative policies, I believe these should be inspired by micro-level experiences. Following Simone Weil's example of combining intellectual work with direct experience, I believe understanding and fighting poverty ask for more than reading and writing about it. It requires genuine involvement in activities that seek to reduce it. I both actively participate in volunteering roles that expose me to the reality of what I am trying to understand, and engage in community activities that entail interactions with those who actually experience these problems firsthand. I think of research not as a means to advance professionally, but as a means of scientific support to change.
 
-I'm open to consultancy, research collaborations and policy projects, including on topics I haven't
-published on yet. If something here is useful to you,
-[write to me](mailto:matias.golman@gmail.com).
+Studying at the University of Buenos Aires involves many learnings besides the purely academic ones (which were fantastic). One of the most important realisations is that, since the University is *free*, students don't end up with private debts. Of course, *free* means it is sustained with general taxes. So, rather than a private debt, every graduate finishes with a social debt. Any subsequent personal success is never just an individual success as it already entails a social investment. Moreover, in a country with extended poverty and inequality, receiving quality public higher education becomes specially meaningful due to the missed opportunity costs of other poverty-alleviating investments. Any form of success I can achieve, I am aware, carries the responsibility to reduce the access gap to opportunities like the ones I was privileged to have.
+
+During my career, I have gained thorough econometric and programming skills. I am self-sufficient in processing large quantities of data from diverse sources, with different softwares, and developing empirically relevant and methodologically robust research questions. Certainly, I believe policy decisions should be data-driven. In my research, I aim to identify heterogeneous effects within population groups, particularly focusing on those with the most disadvantages.
+
+One of my core traits is that I love learning. I am curious and open-minded when it comes to both work-related abilities and personal interests, be it languages, sports, and basically different ways of doing things. I believe one problem can have multiple solutions and there is always a novel perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt and I work greatly in multi-cultural environments. I love teaching, whether it is Economics at the University, Mathematics in high school, or languages in NGOs that support refugees integration.
+
+When looking at my CV and my papers, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment. 
+
+Thanks for reading!
+
+Matías

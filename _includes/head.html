@@ -3,9 +3,9 @@
 
 {%- assign page_title = page.seo_title | default: page.title -%}
 {%- if page.url == "/" -%}
-  {%- assign full_title = "Matías Golman — labour economist, Utrecht University" -%}
+  {%- assign full_title = "Matías Golman · Labour economist, Utrecht University" -%}
 {%- else -%}
-  {%- assign full_title = page_title | append: " — Matías Golman" -%}
+  {%- assign full_title = page_title | append: " · Matías Golman" -%}
 {%- endif -%}
 {%- assign desc = page.description | default: site.description | strip_newlines | strip -%}
 {%- assign canonical = page.url | replace: 'index.html','' | absolute_url -%}

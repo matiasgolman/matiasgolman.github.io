@@ -5,50 +5,47 @@
 
 ---
 
-**1. SEARCH CONSOLE** *(10 minutos, y es lo único grande que queda para Google)*. El sitio nuevo ya
-está vivo, pero Google todavía no lo tiene en el índice. Bing sí.
+**1. SEARCH CONSOLE: sólo tenés que darle «Verificar»** *(2 minutos)*. **El código nunca se perdió.**
+Es `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`, lo habías pasado el 14/10, está en `_config.yml`
+y el sitio ya lo sirve en el `<head>` de todas las páginas. Google no necesita que se lo pegues de
+nuevo: entrá a la propiedad en Search Console y dale **Verificar**. Avisame cuando esté y yo mando
+el sitemap y pido la indexación de la home.
 
-*Entrá a `https://search.google.com/search-console` → **Agregar propiedad** → **Prefijo de URL** →
-`https://matiasgolman.github.io/` → verificá con el método de **etiqueta HTML** y pasame la línea
-`<meta name="google-site-verification" ...>`* — la pongo en el `<head>` y pusheo. Después mando el
-sitemap y pido la indexación de la home a mano.
+**2. EL ZIP DE INSTAGRAM, PARA QUE PUEDA ELEGIR LAS FOTOS** *(10 segundos y después esperar la
+bajada)*. OneDrive lo tiene en la nube, no en el disco, así que no lo puedo abrir. En el Explorador,
+botón derecho sobre `instagram-gol.mat-2026-10-14-v5z8c0Dj.zip` → **«Mantener siempre en este
+dispositivo»**. Son 1,4 GB, así que tarda. Cuando el ícono quede como círculo verde lleno, avisame
+y elijo diez o doce de viaje y naturaleza, priorizando publicaciones por sobre stories, como
+pediste. La sección ya está construida y apagada.
 
-**2. COSTA RICA** *(esperando la respuesta de la OIT)*. El PDF está guardado en `_pipeline/` y **no**
-publicado. El trabajo sí está descrito en `/work/`, sin enlace al archivo.
+**3. BORRAR LA CARPETA VIEJA** *(30 segundos)*. `C:\Users\matia\Documents\GitHub\skills_vacancies\
+Skills identification - Coding resources\matiasgolman.github.io` está **vacía**. Pedí permiso para
+borrarla y la sesión me lo denegó, así que te toca. Ojo: borrá **sólo esa subcarpeta**, no
+`skills_vacancies`, que es otro proyecto tuyo con cosas adentro.
 
-**3. LAS VERSIONES FINALES DE LOS OTROS DOS PAPERS** *(sin apuro)*. El del GEP ya quedó al día con la
-versión de junio que dejaste en `personal/`. Si tenés versiones nuevas de *The value of personality*
-o del meta-análisis, dejámelas en `_pipeline/papers/` y las pongo. Los tres siguen con botón de
-descarga en `/work/`.
+**4. EL ABOUT ES EL ORIGINAL, TAL CUAL LO PEDISTE** *(cuando quieras)*. Está verbatim, con
+«I appreciate your interest in my work trajectory» y el párrafo de «If I were on the hiring side of
+the equation». Lo único que toqué son los tres `---` que se convertían en em dash.
+**Lo que te dejo para pensar cuando lo trabajes:** ese párrafo le habla a alguien que te está por
+contratar, y en D-03 decidimos que el sitio no dice que estás buscando. Hoy es la única parte del
+sitio que lo dice. No lo toco hasta que me avises.
 
-**4. LAS FOTOS** *(ya tengo el zip)*. Está en `personal/instagram-gol.mat-2026-10-14-...zip`, 1,4 GB.
-Decime si querés que elija yo diez o doce de viaje y naturaleza, o si preferís marcarme cuáles. La
-sección está construida y apagada; se enciende el día que estén.
+**5. ¿«Things I've built» te cierra?** Era tu duda del punto 6. Descarté «Data projects» porque
+Araucaria no es un proyecto de datos en el sentido en que lo es el dashboard, y porque suena a
+categoría de portfolio más que a algo tuyo. Si preferís otra cosa, es una línea en
+`_includes/header.html` y otra en `projects.md`.
 
-**5. BORRAR LA CARPETA VIEJA** *(30 segundos)*. `C:\Users\matia\Documents\GitHub\skills_vacancies\
-Skills identification - Coding resources\matiasgolman.github.io` quedó **vacía**: moví todo y lo
-verifiqué archivo por archivo. Borrá la carpeta vacía cuando quieras.
+**6. ¿QUERÉS EL ROL POR MÓDULO EN `/teaching/`?** Me dijiste que das clase y tutoriales «en muchos»
+pero no cuál en cuál. Hoy la página lo dice en general, arriba. Si me pasás el detalle, lo pongo
+módulo por módulo.
 
-**6. GOATCOUNTER: qué hacer con él** *(nada, salvo mirarlo)*. Ya está puesto y activo. Tu panel es
-`https://matiasgolman.goatcounter.com`. Lo útil de mirar, una vez por mes y no más:
-- **Referrers** — de dónde llega la gente. Es el único número que importa para tu objetivo: te dice
-  si alguien llegó desde LinkedIn, desde Scholar o desde una búsqueda.
-- **Pages** — qué páginas se leen. Si `/work/` y `/projects/` no se leen nunca, el problema está en
-  la portada.
-- No mires las visitas totales esperando que suban: un sitio personal con tráfico correcto son
-  decenas de visitas al mes, no miles. Lo que buscás es **una** visita de la persona indicada.
+**7. COSTA RICA: ¿el informe es público?** *(esperando la respuesta de la OIT)*. El PDF está en
+`_pipeline/` y **no** publicado. El trabajo sí está descrito en `/work/`, sin enlace al archivo.
 
-**7. UNA DECISIÓN QUE TE TOCA A VOS: el `.git` de 1,4 GB en OneDrive.** Mudé todo como pediste, pero
-**1 GB de esos son caché de Git LFS** de versiones viejas de los JSON del dashboard, que también
-están guardadas en GitHub. `git lfs prune` las borra del disco sin perder nada y deja la carpeta en
-~400 MB. Decime si lo corro.
+**8. GOATCOUNTER: nada que hacer, salvo mirarlo** una vez por mes. Tu panel es
+`https://matiasgolman.goatcounter.com`. Lo único que importa para tu objetivo es **Referrers**: te
+dice si alguien llegó desde LinkedIn, desde Scholar o desde una búsqueda. No mires las visitas
+totales esperando que suban; lo que buscás es **una** visita de la persona indicada.
 
-**8. LOS SIETE MANUALES DE CURSO QUE DEJASTE EN `_pipeline/teaching manuals/`** *(una respuesta)*.
-Aparecieron mientras trabajaba: Applied Economics Research, Data Science Lab for Economists,
-Economics and Social Justice, Economics of the Public Sector, MSc Thesis Economic Policy,
-Philosophy Politics and Economics, y Public Choice & Welfare. **`/teaching/` hoy sólo menciona
-tres cosas de Utrecht**, así que hay un hueco. Decime **cuáles de esos siete dictás vos** —y en qué
-rol— y reescribo la página. No los subí al sitio ni los commiteé: son manuales de curso, y hasta
-que no me digas, no sé si son tuyos de dictar o material que juntaste.
-
-*(Al 14/10/2026.)*
+*(Al 14/10/2026. Se cerraron: las versiones finales de los papers, los siete manuales de curso, y
+la decisión sobre el `.git` de 1,4 GB, que ya quedó en 375 MB.)*

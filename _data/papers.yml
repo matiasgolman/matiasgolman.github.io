@@ -1,9 +1,15 @@
 working:
   - title: "Artificial intelligence and personality traits"
     sub: "Evidence from online job vacancies"
-    authors: "with María García-Vega. GEP Research Paper 2026/06, University of Nottingham"
+    authors: "with María García-Vega"
+    where: "GEP Research Paper 2026/06, University of Nottingham"
     year: 2026
     pdf: "/assets/pdf/golman-ai-personality-traits.pdf"
+    text: >-
+      When a firm starts hiring for AI skills, does it also start asking for a different kind of
+      person? We read 11.7 million UK job adverts to find out, and the answer is yes. Firms moving
+      into AI ask for openness to experience across all their vacancies, not only the technical
+      ones.
     abstract: >-
       Using text analysis of 11.7 million UK online job postings from 2017 to 2022, drawn from a
       near-universe dataset of online vacancies, we construct measures of Big Five personality
@@ -21,33 +27,50 @@ working:
 
   - title: "The value of personality"
     sub: "The wage penalty paradox in the UK"
+    where: "University of Nottingham"
     year: 2026
     pdf: "/assets/pdf/golman-value-of-personality.pdf"
+    text: >-
+      Job adverts that ask for personality traits pay 4.6% less on average. If those traits are
+      penalised, why advertise for them at all? I test four candidate explanations against 11.7
+      million UK postings, and none of them accounts for the whole gap on its own.
     abstract: >-
       Jobs that mention personality traits offer 4.6% lower wages on average, which raises a
-      paradox: why advertise for traits that are penalised? Using 11.7 million UK job postings
-      (2017–2022), I test four explanations — correlation with low-pay job characteristics,
-      compensating differentials, linguistic intensity, and demographic targeting. Occupation fixed
-      effects absorb the most, but significant penalties remain. Penalties are larger in high-skill
-      occupations, smaller in female-dominated roles, and rise sharply with the intensity of the
-      language used. Employers appear to use trait language for several purposes at once rather
-      than one.
+      paradox. Why advertise for traits that are penalised? Using 11.7 million UK job postings
+      (2017 to 2022), I test four explanations, namely correlation with low-pay job
+      characteristics, compensating differentials, linguistic intensity, and demographic
+      targeting. Occupation fixed effects absorb the most, but significant penalties remain.
+      Penalties are larger in high-skill occupations, smaller in female-dominated roles, and rise
+      sharply with the intensity of the language used. Employers appear to use trait language for
+      several purposes at once rather than one.
 
   - title: "The effectiveness of formalisation policies in Latin America"
     sub: "A meta-analysis of 79 impact evaluations"
     year: 2026
-    authors: "with Verónica Escudero and Elva López-Mourelo (ILO)"
+    authors: "with Verónica Escudero and Elva López-Mourelo"
+    where: "International Labour Organization"
     pdf: "/assets/pdf/golman-formalisation-meta-analysis.pdf"
+    text: >-
+      Thirty years of attempts to pull Latin American workers into formal employment, gathered in
+      one place and weighed against each other. Most of them work. Which ones work best, and for
+      how long, turns out to depend on what you are trying to move.
     abstract: >-
-      The first comprehensive meta-analysis of formalisation policies in Latin America: 79 impact
-      evaluations, 527 estimates, interventions from 1990 to 2020, including Spanish-language
-      studies and unpublished government reports that earlier reviews missed. Formalisation
-      policies mostly work, and adverse effects are rare (5.1% of estimates) — but publication bias
-      substantially reduces effect sizes once corrected. Active labour market policies, information
-      campaigns and labour inspections raise formality; social protection programmes with
-      activation components produce the largest earnings effects but barely move formality at all.
-      Benefits strengthen over time, and multi-component interventions outperform single-component
-      ones.
+      The first comprehensive meta-analysis of formalisation policies in Latin America, covering
+      79 impact evaluations, 527 estimates and interventions from 1990 to 2020, including
+      Spanish-language studies and unpublished government reports that earlier reviews missed.
+      Formalisation policies mostly work, and adverse effects are rare (5.1% of estimates),
+      although publication bias substantially reduces effect sizes once corrected. Active labour
+      market policies, information campaigns and labour inspections raise formality. Social
+      protection programmes with activation components produce the largest earnings effects but
+      barely move formality at all. Benefits strengthen over time, and multi-component
+      interventions outperform single-component ones.
+
+inprogress:
+  - title: "Tenure premia in Latin America"
+    year: "in progress"
+    text: >-
+      How much a worker gains from staying in the same job, measured across Latin American labour
+      markets where job tenure is short and informality is common.
 
 published:
   - title: "What drives debt defaults in microfinance? The case of Asociación Civil Avanzar"
@@ -56,35 +79,47 @@ published:
     where: "Problemas del Desarrollo, 49(195), 127–151"
     url: "https://doi.org/10.22201/iiec.20078951e.2018.195.62527"
     pdf: "/assets/pdf/golman-bekerman-microfinance.pdf"
+    text: >-
+      Why borrowers of an Argentine microfinance NGO fall behind on repayment, using the lender's
+      own client records rather than a survey.
   - title: "NEETs' labour market transitions: a survey for Argentina"
     year: 2020
     where: "Revista de Economía Política de Buenos Aires, 21"
     pdf: "/assets/pdf/golman-neets.pdf"
+    text: >-
+      What happens next to young Argentines who are neither in employment nor in education or
+      training, and how long that situation tends to last.
   - title: "Unemployment duration in Argentina: a dynamic analysis, 2003–2018"
     year: 2020
     where: "Asociación Argentina de Economía Política, annual meeting"
+    text: >-
+      How long spells of unemployment last in Argentina, and whether the chance of leaving one
+      falls the longer a person has been out of work.
   - title: "Asymmetric impacts of the economic cycle on unemployment in Argentina"
     year: 2018
     where: "Asociación Argentina de Economía Política, annual meeting, UNLP"
+    text: >-
+      Unemployment rises faster in a downturn than it falls in a recovery. This paper measures
+      that asymmetry for Argentina.
 
 policy:
   - title: "Labour market informality in Costa Rica"
     year: "2025–26"
     org: "International Labour Organization"
     text: >-
-      A diagnostic of informal employment for the national formalisation framework: a review of a
-      decade of studies and legal instruments, an analysis of how informal employment has moved
-      across demographic and territorial lines using household survey microdata, and econometric
-      models of its structural determinants. Recommendations aligned with ILO Recommendation 204
-      and the FORLAC 2.0 strategy.
+      A diagnostic of informal employment, written to feed the national formalisation framework.
+      It reviews a decade of studies and legal instruments, tracks how informal employment has
+      moved across demographic and territorial lines using household survey microdata, and models
+      its structural determinants. The recommendations follow ILO Recommendation 204 and the
+      FORLAC 2.0 strategy.
   - title: "Future of work, emerging sectors and the potential for transition to formality"
     authors: "with Christoph Ernst"
     year: 2022
     org: "International Labour Organization"
     pdf: "/assets/pdf/ilo-future-of-work-formality.pdf"
     text: >-
-      Where new formal jobs could come from in the green economy, the platform economy and the care
-      economy — and what it would take for them to be decent ones.
+      Where new formal jobs could come from in the green economy, the platform economy and the
+      care economy, and what it would take for them to be decent ones.
   - title: "Old age work and income security in middle income countries"
     authors: "with Carla Henry"
     year: 2021
@@ -92,26 +127,27 @@ policy:
     url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases"
     pdf: "/assets/pdf/ilo-wp34-old-age-income-security.pdf"
     text: >-
-      How prepared people are for the move from work to retirement in middle-income countries, built
-      on a new comparative database and a work-to-retirement preparedness index.
+      How prepared people are for the move from work to retirement in middle-income countries,
+      built on a new comparative database and a work-to-retirement preparedness index.
   - title: "Unleashing SMEs' potential to scale up"
     year: 2024
     org: "OECD"
     url: "https://www.oecd.org/en/publications/unleashing-smes-potential-to-scale-up_b1150a27-en.html"
     text: >-
-      Co-authored report on what holds small firms back from growing: econometric analysis, and an
-      assessment of machine learning methods for predicting firm growth from firms' own websites.
+      A co-authored report on what holds small firms back from growing. My part was the
+      econometric analysis and an assessment of whether machine learning can predict firm growth
+      from the firms' own websites.
   - title: "Argentina labour market outlook bulletin"
     year: 2023
     org: "ILO and ECLAC"
     text: >-
       Analysis and writing on productivity, employment trajectories and income conditions, for the
-      joint ILO–ECLAC bulletin on the Argentine labour market.
+      joint bulletin on the Argentine labour market.
   - title: "World Employment and Social Outlook 2021: the role of digital labour platforms"
     year: 2021
     org: "International Labour Organization"
     url: "https://www.ilo.org/publications/flagship-reports/world-employment-and-social-outlook-2021-role-digital-labour-platforms"
     text: >-
-      Contributor to the flagship report: survey data and comparative wage analysis for platform
-      workers in Chile, Mexico, Argentina, India and the United States, and a dataset on online
-      platforms.
+      A contribution to the flagship report, covering survey data and comparative wage analysis
+      for platform workers in Chile, Mexico, Argentina, India and the United States, plus a
+      dataset on online platforms.

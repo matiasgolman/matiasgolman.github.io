@@ -4,10 +4,10 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-10-14 (corrida 3)
+**Última actualización:** 2026-10-14 (corrida 4)
 **Actualizado por:** Claude
-**Fase actual:** Fase 2 — **EL SITIO NUEVO ESTÁ VIVO Y PUSHEADO.** Queda la difusión: Search
-Console, links entrantes y las notas. El repo vive ahora en OneDrive.
+**Fase actual:** Fase 2 — el sitio está vivo. Esta corrida fue de **voz y forma**: se sacó el
+lenguaje de IA, se restauró el About original, se ensanchó el layout y se ordenó el repo.
 
 ---
 
@@ -16,40 +16,46 @@ Console, links entrantes y las notas. El repo vive ahora en OneDrive.
 *(vacío — dejame acá lo que quieras que haga la próxima corrida. La corrida lo lee primero, lo
 archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.)*
 
-> **Nunca pegues acá un token, una contraseña ni una clave.** Este archivo se sube a GitHub. Si
-> tenés que pasarme una credencial, escribila en `_pipeline/.github_token`, que git ignora.
-
 ---
 
 ## En una pantalla
 
-**El sitio nuevo está vivo y todo está pusheado.** `matiasgolman.github.io` ya sirve la versión
-reescrita: el titular es la frase de posicionamiento, la navegación es Work · Projects · Teaching ·
-About · CV, y no queda nada del marco de job market. El token quedó con permiso de escritura y el
-push funciona desde acá (con `--no-verify`, porque el hook de Git LFS no corre en la VM del puente).
+**Esta corrida atacó los ocho puntos del comentario del 14/10.** El sitio estaba bien armado pero
+sonaba a máquina, y ése era el problema de fondo: Matías no se reconocía en su propio sitio.
 
-**La carpeta se mudó a OneDrive.** El repo entero vive ahora en
-`C:\Users\matia\OneDrive - Universiteit Utrecht\Documents\personal\matiasgolman.github.io`:
-1,4 GB, copia idéntica archivo por archivo, `git fsck` limpio, ramas y tags intactos. La carpeta
-vieja de `Documents\GitHub\...` quedó vacía y la podés borrar a mano. **Cuidado conocido:** el
-`.git` pesa 1,4 GB (1 GB es caché de Git LFS) y OneDrive lo sincroniza archivo por archivo mientras
-git escribe adentro. Si algún día aparece un `.lock` fantasma o un objeto corrupto, la salida es
-`git lfs prune` y, si hace falta, clonar de nuevo desde GitHub.
+- **El About es otra vez el personal statement original, literal.** A mitad de la corrida Matías
+  pidió el original crudo para trabajarlo él. Se recuperó `_pages/personalstatement.md` del tag
+  `v1-academic-jmp-2025` y se pegó **verbatim**, incluidos «I appreciate your interest in my work
+  trajectory» y el párrafo de «If I were on the hiring side». Lo único que se tocó son los tres
+  `---` que kramdown convertía en em dash. **Queda pendiente de su mano**: el texto todavía le
+  habla a un empleador, que es justo lo que el sitio no quiere decir (D-03).
+- **Cero em dashes en todo el sitio**, y fuera las estructuras de dos puntos que anticipan. Se
+  revisaron las nueve páginas, los dos archivos de datos, el footer y los títulos.
+- **Fuera el tono comercial.** No queda ninguna mención a clientes. El standfirst de `/work/` ya no
+  dice que la política es «donde fue la mayor parte de mi tiempo» ni a qué apuntaría primero.
+- **El titular de la home sale del About:** «I am a labour economist. I work on how to create jobs
+  that allow people to have a decent and fulfilling life.» Es su frase del viaje en micro de 21
+  horas, no una promesa de valor.
+- **Layout más ancho y foto más grande.** El marco pasó de 62rem a 74rem, los márgenes de 2,5rem a
+  2rem, y la foto de 10rem a 15rem. El dashboard y Araucaria quedaron lado a lado.
+- **`/work/` quedó pareja:** las tres secciones usan la misma jerarquía (título, línea de contexto
+  en sans chica, párrafo en serif). Se escribió un párrafo para cada paper publicado, que antes
+  quedaban en una línea. **Published subió por encima de Policy**, para que la investigación quede
+  junta. Se sumó el paper de tenure premia como *work in progress*.
+- **`/teaching/` rehecha con los siete módulos**, ordenada por período lectivo, con descripciones
+  sacadas de los manuales de OSIRIS. Integrating Insights quedó afuera.
+- **About es el primer ítem del nav**, y «Projects» pasó a llamarse «Things I've built».
 
-**El paper con María es el de la serie GEP.** El PDF que dejaste en `personal/` es la versión del
-5 de junio de 2026, **GEP Research Paper 2026/06** (216 páginas con apéndices). Reemplazó al de
-enero en el sitio, y la ficha de `/work/` ahora lleva el título y el abstract oficiales. Eso cierra
-de una vez el pendiente del PDF y la pregunta del número de serie.
+**El repo bajó de 1,4 GB a 375 MB.** `git lfs` no está instalado en la VM del puente, así que en vez
+de `git lfs prune` se borró `.git/lfs/objects` a mano: eran 1.022 MB de versiones viejas de los JSON
+del dashboard, que ya no existen en el árbol de trabajo (ningún archivo usa LFS hoy) y que están en
+GitHub igual. También se borraron los restos de al-folio en `.github/` (plantillas de issues,
+`release.yml`, `stale.yml`, que apuntaban al repo de otra gente) y el `.gitattributes` nuevo frena
+el churn de CRLF que amenazaba con meter un diff de 73 MB.
 
-**ORCID quedó completo, sección por sección.** Nombre de publicación «Matías Golman» más tres
-variantes · 11 keywords (estaba vacío) · tres países · seis enlaces, con GitHub y el dashboard ·
-**8 empleos** (se sumaron OIT consultor, OIT Research Department, OCDE, Banco Mundial y Nottingham;
-se cerró el «to present» del IIEP) · **4 titulaciones** (se sumaron el doctorado de Nottingham y la
-maestría de Turín; se cerró el «to present» de la maestría de la UBA) · **5 actividades
-profesionales** (los cuatro Teaching Excellence Awards y el cargo de representante de posgrado y
-EDI) · los nueve trabajos, con el del GEP corregido y enlaces a los PDFs del sitio · **5 trabajos
-destacados**. El dashboard **no se borró nunca**: sigue en `/dashboard/`, con sus 71 MB; lo único
-que se hizo fue sacarlo del sitemap, porque un HTML de 73 MB en el sitemap perjudica el rastreo.
+**El código de Search Console estaba desde el principio.** `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`,
+ya puesto en `_config.yml` y servido en el `<head>`. No hace falta pedirlo de nuevo: sólo entrar y
+darle «Verificar».
 
 ## COLA DE TRABAJO
 
@@ -58,36 +64,44 @@ que se hizo fue sacarlo del sitemap, porque un HTML de 73 MB en el sitemap perju
 ### Bloqueado por Matías
 
 - **B3 — ¿El informe de Costa Rica es público?** (to-do 2). Hoy está descrito sin PDF.
-- **B4 — Las versiones finales del segundo y el tercer paper** (to-do 3). El del GEP ya está al día.
+- **B7 — El zip de Instagram está sólo en la nube.** OneDrive no lo tiene bajado y pesa 1,4 GB, más
+  de lo que el puente puede traer. Hasta que Matías le dé «Mantener siempre en este dispositivo»,
+  no se pueden elegir las fotos (to-do 3).
+- **B8 — La carpeta vieja de `Documents\GitHub\...`.** Pedí permiso para borrarla y me lo denegó el
+  clasificador de la sesión. Son 30 segundos a mano (to-do 4).
 
 ### Abiertos
 
-- **S1 — Google todavía no indexa el sitio.** El diagnóstico de la corrida 1 sigue en pie, pero la
-  causa principal —que el sitio era la demo de al-folio— ya no existe: hay contenido propio en las
-  nueve URLs. Falta la otra mitad: **Search Console** (verificar y mandar el sitemap, pedir
-  indexación de la home a mano) y los **links entrantes** (S5). Bing ya lo tiene.
-- **S5 — Links entrantes.** **ORCID ya está hecho** y apunta al sitio, a Scholar, a LinkedIn, a
-  uu.nl, a GitHub y al dashboard. Faltan: la ficha de uu.nl, el «Homepage» del perfil de Scholar,
-  el research-portal de Utrecht y la firma de los papers.
-- **S6 — Las fotos.** El zip de Instagram (1,4 GB) ya está en `personal/`. La sección está
-  construida y apagada; se enciende cuando se elijan las fotos. Siguiente paso: abrir el zip,
-  elegir diez o doce de viaje y naturaleza, y reducirlas.
+- **S1 — Google todavía no indexa el sitio.** La etiqueta de verificación **ya está servida en el
+  `<head>`**. Falta que Matías entre a Search Console y le dé «Verificar»; después yo mando el
+  sitemap y pido la indexación de la home. Bing ya lo tiene.
+- **S5 — Links entrantes.** ORCID está hecho. Faltan: la ficha de uu.nl, el «Homepage» del perfil de
+  Scholar, el research-portal de Utrecht y la firma de los papers.
+- **S6 — Las fotos.** La sección está construida y apagada. Bloqueada por B7.
+- **S8 — ¿«Things I've built» es el nombre bueno?** Es la decisión que tomé esta corrida sobre la
+  duda del punto 6. Descarté «Data projects» porque Araucaria no es un proyecto de datos en el
+  sentido en que lo es el dashboard, y porque suena a categoría de portfolio. Si no le cierra, el
+  cambio es una línea en `_includes/header.html` y otra en `projects.md`.
+- **S10 — El About le habla a un empleador.** Es la versión original, tal como la pidió, y la va a
+  trabajar él. Mientras tanto el sitio tiene un texto que dice «If I were on the hiring side of the
+  equation», lo que choca con D-03 (la búsqueda es implícita). No tocarlo sin que él avise.
+- **S9 — Roles de docencia.** Matías dijo que da clase y tutoriales «en muchos» pero no cuál en
+  cuál. La página hoy lo dice en general, en el standfirst. Si quiere el rol por módulo, hay que
+  preguntárselo.
 - **S2 — El dashboard, más adelante (proyecto aparte).** Se queda como está. Cuando se retome:
   separar datos de presentación (los 71 MB son datos embebidos en el HTML), rehacer la interfaz con
   la paleta del sitio, sacar los emojis de los iconos de sector, y evaluar sumar países.
 - **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
-- **S3 — Limpieza del repo.** El `.git` pesa 1,4 GB y **1 GB es caché de Git LFS** de versiones
-  viejas de los JSON del dashboard, que también están en GitHub. `git lfs prune` lo baja a ~400 MB
-  sin perder nada. Es la forma barata de resolver el problema de espacio que motivó la mudanza.
-- **S7 — Líneas CRLF en `.github/` y en el dashboard.** `git status` marca siete archivos como
-  modificados y el diff es sólo fin de línea. Es anterior a la mudanza y es inofensivo, pero si se
-  commitea por error mete un diff de 73 MB. No tocar sin decidir qué hacer con `.gitattributes`.
 
 ### Cerrados
 
-- **B1/B2 — Pushear y el token.** Cerrado 14/10: el token quedó con permiso de escritura y el sitio
-  nuevo está desplegado. Desde la VM del puente hay que usar `git push --no-verify`.
+- **S3 — Limpieza del repo.** Cerrado 14/10: 1,4 GB → 375 MB, borrando la caché muerta de Git LFS.
+- **S7 — Líneas CRLF.** Cerrado 14/10: `.gitattributes` nuevo y restos de al-folio eliminados.
+- **B4 — Versiones finales de los papers.** Cerrado 14/10: Matías confirmó que las tres son finales.
+- **B9 — Los siete manuales de curso.** Cerrado 14/10: contestó cuáles dicta y en qué período.
+- **B1/B2 — Pushear y el token.** Cerrado 14/10. Desde la VM del puente hay que usar
+  `git push --no-verify`.
 - **B5 — El paper del GEP.** Cerrado 14/10: GEP Research Paper 2026/06, con María García-Vega.
 - **B6 — ORCID.** Cerrado 14/10: perfil completo, sección por sección.
 - **La mudanza de la carpeta.** Cerrada 14/10: el repo vive en OneDrive, verificado con `git fsck`.

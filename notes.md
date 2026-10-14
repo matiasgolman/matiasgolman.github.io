@@ -3,9 +3,9 @@ layout: page
 title: "Notes"
 permalink: /notes/
 standfirst: >-
-  Short pieces on labour markets, data and the things I run into while working. Occasional rather
+  Short pieces on labour markets, data, and whatever I run into while working. Occasional rather
   than regular.
-body_class: ""
+body_class: "listing"
 description: >-
   Notes by Matías Golman on labour markets, informal employment, skills and working with data.
 sitemap: false
