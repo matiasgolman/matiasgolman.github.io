@@ -5,6 +5,9 @@
 <meta name="color-scheme" content="dark light"><title>Things I've built · Matías Golman</title>
 <meta name="description" content="The Argentina Informality Dashboard, built for the ILO from two decades of household survey microdata, and Araucaria Spotter, a community map of monkey puzzle trees growing outside their native range.">
 <link rel="canonical" href="https://matiasgolman.github.io/projects/">
+<link rel="alternate" hreflang="en" href="https://matiasgolman.github.io/projects/">
+<link rel="alternate" hreflang="es" href="https://matiasgolman.github.io/es/proyectos/">
+<link rel="alternate" hreflang="x-default" href="https://matiasgolman.github.io/">
 <meta name="author" content="Matías Golman">
 
 <meta property="og:type" content="profile">
@@ -68,19 +71,22 @@
 </script>
 
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
+<body><a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
   <div class="frame masthead__in">
     <a class="wordmark" href="/">Matías Golman</a>
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" aria-label="EN">
       <a href="/about/">About</a>
       <a href="/work/">Work</a>
-      <a href="/projects/" aria-current="page">Things I&rsquo;ve built</a>
       <a href="/teaching/">Teaching</a>
-      <a href="/photography/">Photography</a>
       <a href="/cv/">CV</a>
-      <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
+      <a href="/projects/" aria-current="page">Things I&rsquo;ve built</a>
+      <a href="/photography/">Photography</a>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="nav__lang" href="/es/proyectos/" hreflang="es" lang="es">Castellano</a>
+      <button class="themer" type="button" data-theme-toggle
+              data-label-dark="Dark" data-label-light="Light"
+              aria-label="Switch between light and dark">Light</button>
     </nav>
   </div>
 </header>
@@ -115,10 +121,8 @@
 </div>
 </main>
   <footer class="foot">
-  <div class="frame">
-    <ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
+  <div class="frame"><ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
       <li><a href="mailto:matias.golman@gmail.com">Email</a></li>
-      <li><a href="/es/" hreflang="es">Español</a></li>
     </ul>
     <p>Matías Golman. Lecturer in Applied Economics, Utrecht University. Built with Jekyll, hosted on GitHub Pages.</p>
   </div>
@@ -133,7 +137,10 @@
     function current() {
       return root.getAttribute('data-theme') || 'dark';
     }
-    function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+    function paint() {
+      btn.textContent = current() === 'dark'
+        ? (btn.dataset.labelLight || 'Light') : (btn.dataset.labelDark || 'Dark');
+    }
     paint();
     btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';

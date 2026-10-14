@@ -5,6 +5,9 @@
 <meta name="color-scheme" content="dark light"><title>Matías Golman · Labour economist, Utrecht University</title>
 <meta name="description" content="Matías Golman is a labour economist at Utrecht University and a consultant for the ILO, the OECD and the World Bank. He works on informal employment, skills and labour market policy in Latin America and Europe.">
 <link rel="canonical" href="https://matiasgolman.github.io/">
+<link rel="alternate" hreflang="en" href="https://matiasgolman.github.io/">
+<link rel="alternate" hreflang="es" href="https://matiasgolman.github.io/es/">
+<link rel="alternate" hreflang="x-default" href="https://matiasgolman.github.io/">
 <meta name="author" content="Matías Golman">
 
 <meta property="og:type" content="profile">
@@ -68,19 +71,22 @@
 </script>
 
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
+<body><a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
   <div class="frame masthead__in">
     <a class="wordmark" href="/">Matías Golman</a>
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" aria-label="EN">
       <a href="/about/">About</a>
       <a href="/work/">Work</a>
-      <a href="/projects/">Things I&rsquo;ve built</a>
       <a href="/teaching/">Teaching</a>
-      <a href="/photography/">Photography</a>
       <a href="/cv/">CV</a>
-      <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
+      <a href="/projects/">Things I&rsquo;ve built</a>
+      <a href="/photography/">Photography</a>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="nav__lang" href="/es/" hreflang="es" lang="es">Castellano</a>
+      <button class="themer" type="button" data-theme-toggle
+              data-label-dark="Dark" data-label-light="Light"
+              aria-label="Switch between light and dark">Light</button>
     </nav>
   </div>
 </header>
@@ -96,9 +102,13 @@
         <p>I teach applied economics at Utrecht University and I consult for the International
         Labour Organization. Before that I worked at the OECD and the World Bank. Most of what I
         have done is about informal employment, skills, and what firms ask of workers, mainly in
-        Latin America and in Europe. The method travels, though, and so do I. Inequality, poverty,
-        migration, minimum wages, education and industrial policy are all the same craft of getting
-        a messy dataset to answer a question honestly.</p>
+        Latin America and in Europe.</p>
+
+        <p>What I bring to a question is the method. Applied econometrics for causal work, and text
+        as data and machine learning for the questions where the evidence sits in millions of job
+        adverts rather than in a survey. Those tools travel, and so do I. I am as interested in
+        turning them on poverty, inequality, migration, minimum wages, education or industrial
+        policy as on the topics I have already published on.</p>
 
         <p>I am open to consultancy, research collaborations and policy projects.
         <a href="mailto:matias.golman@gmail.com">Write to me</a> if something here is useful to you.</p>
@@ -192,10 +202,8 @@
 </section>
 </main>
   <footer class="foot">
-  <div class="frame">
-    <ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
+  <div class="frame"><ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
       <li><a href="mailto:matias.golman@gmail.com">Email</a></li>
-      <li><a href="/es/" hreflang="es">Español</a></li>
     </ul>
     <p>Matías Golman. Lecturer in Applied Economics, Utrecht University. Built with Jekyll, hosted on GitHub Pages.</p>
   </div>
@@ -210,7 +218,10 @@
     function current() {
       return root.getAttribute('data-theme') || 'dark';
     }
-    function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+    function paint() {
+      btn.textContent = current() === 'dark'
+        ? (btn.dataset.labelLight || 'Light') : (btn.dataset.labelDark || 'Dark');
+    }
     paint();
     btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';

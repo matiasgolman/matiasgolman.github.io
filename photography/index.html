@@ -5,6 +5,9 @@
 <meta name="color-scheme" content="dark light"><title>Photography · Matías Golman</title>
 <meta name="description" content="Landscape and nature photographs by Matías Golman, from Patagonia, the Alps, Scotland, Greece, Norway and the Netherlands.">
 <link rel="canonical" href="https://matiasgolman.github.io/photography/">
+<link rel="alternate" hreflang="en" href="https://matiasgolman.github.io/photography/">
+<link rel="alternate" hreflang="es" href="https://matiasgolman.github.io/es/fotografia/">
+<link rel="alternate" hreflang="x-default" href="https://matiasgolman.github.io/">
 <meta name="author" content="Matías Golman">
 
 <meta property="og:type" content="profile">
@@ -68,26 +71,29 @@
 </script>
 
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
+<body><a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
   <div class="frame masthead__in">
     <a class="wordmark" href="/">Matías Golman</a>
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" aria-label="EN">
       <a href="/about/">About</a>
       <a href="/work/">Work</a>
-      <a href="/projects/">Things I&rsquo;ve built</a>
       <a href="/teaching/">Teaching</a>
-      <a href="/photography/" aria-current="page">Photography</a>
       <a href="/cv/">CV</a>
-      <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
+      <a href="/projects/">Things I&rsquo;ve built</a>
+      <a href="/photography/" aria-current="page">Photography</a>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="nav__lang" href="/es/fotografia/" hreflang="es" lang="es">Castellano</a>
+      <button class="themer" type="button" data-theme-toggle
+              data-label-dark="Dark" data-label-light="Light"
+              aria-label="Switch between light and dark">Light</button>
     </nav>
   </div>
 </header>
 
   <main id="main"><div class="frame page page--wide">
   <h1 class="page__title">Photography</h1>
-  <p class="page__standfirst">Mountains, forests, water and the odd bird, from Patagonia, the Alps, Scotland, Greece, Norway and the flat country I live in now. I refill my energy and spirit when I am in nature, and the camera tends to come out while I am at it.</p>
+  <p class="page__standfirst">I love being in nature, and I take photographs when I travel. These are some of them.</p>
   <div class="listing"><div class="gallery" role="img" aria-label="A gallery of 246 landscape and nature photographs: mountains, lakes, glaciers, forests, coastlines, flowers and birds.">
   <img class="shot" src="/assets/img/photos/ig-17901674670555633.jpg" alt="" width="720" height="960" loading="lazy" decoding="async" />
   <img class="shot" src="/assets/img/photos/ig-18020697794884605.jpg" alt="" width="720" height="960" loading="lazy" decoding="async" />
@@ -337,16 +343,14 @@
   <img class="shot" src="/assets/img/photos/ig-18356574061106857.jpg" alt="" width="720" height="900" loading="lazy" decoding="async" />
 </div>
 
-<p class="gallery__note">246 photographs, taken on whatever I had in my
-pocket at the time. More of them on <a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>
+<p class="gallery__note">246 photographs. More on
+<a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>
 </div>
 </div>
 </main>
   <footer class="foot">
-  <div class="frame">
-    <ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
+  <div class="frame"><ul><li><a href="https://scholar.google.com/citations?user=mcC8FQwAAAAJ" rel="me">Google Scholar</a></li><li><a href="https://orcid.org/0000-0001-6557-963X" rel="me">ORCID</a></li><li><a href="https://www.linkedin.com/in/matiasgolman/" rel="me">LinkedIn</a></li><li><a href="https://github.com/matiasgolman" rel="me">GitHub</a></li><li><a href="https://www.uu.nl/staff/MAGolman" rel="me">Utrecht University</a></li><li><a href="https://www.instagram.com/gol.mat/" rel="me">Instagram</a></li>
       <li><a href="mailto:matias.golman@gmail.com">Email</a></li>
-      <li><a href="/es/" hreflang="es">Español</a></li>
     </ul>
     <p>Matías Golman. Lecturer in Applied Economics, Utrecht University. Built with Jekyll, hosted on GitHub Pages.</p>
   </div>
@@ -361,7 +365,10 @@ pocket at the time. More of them on <a href="https://www.instagram.com/gol.mat/"
     function current() {
       return root.getAttribute('data-theme') || 'dark';
     }
-    function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+    function paint() {
+      btn.textContent = current() === 'dark'
+        ? (btn.dataset.labelLight || 'Light') : (btn.dataset.labelDark || 'Dark');
+    }
     paint();
     btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';
