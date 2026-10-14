@@ -1,97 +1,67 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+positions:
+  - when: "2026–"
+    what: "Lecturer in Applied Economics"
+    where: "Utrecht University, Netherlands"
+    note: "Teaching the Data Science Lab for Economists and the Welfare State track of Integrating Insights (PPE). Supervising Bachelor's and Master's theses in applied economics and economic policy."
+  - when: "2020–26"
+    what: "Economist consultant"
+    where: "International Labour Organization"
+    note: "Informality in Costa Rica; a meta-database of 150 formalisation evaluations in Latin America; the Argentina informality dashboard; the ILO–ECLAC Argentine labour market bulletin; the WESO 2021 chapter on digital labour platforms."
+  - when: "2024"
+    what: "Junior economist, Centre for Entrepreneurship, SMEs, Regions and Cities"
+    where: "OECD, Paris"
+    note: "Co-authored \"Unleashing SMEs' Potential to Scale Up\": econometric analysis, and an assessment of machine learning methods for predicting firm growth."
+  - when: "2019"
+    what: "Junior technical officer, Research Department"
+    where: "International Labour Organization, Geneva"
+    note: "Co-authored ILO Working Paper 34 on old-age work and income security in middle-income countries."
+  - when: "2018"
+    what: "Junior economist consultant"
+    where: "The World Bank, Buenos Aires"
+    note: "Statistical analysis for a working paper on Ecuador's income protection system for older people."
+  - when: "2017–19"
+    what: "Research assistant, IIEP-Baires"
+    where: "University of Buenos Aires"
+    note: "Distributive effects of the minimum wage, formalisation policy, and social protection for children; occupational skill indicators for studies of AI in Latin America."
+  - when: "2014–17"
+    what: "Coordinator of educational programmes"
+    where: "Fundación Uniendo Caminos, Buenos Aires"
+    note: "Ran an education centre for 70 young people in Villa 21-24, leading a team of 30 volunteers."
 
-- title: Education
-  type: time_table
-  contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+education:
+  - when: "2021–25"
+    what: "PhD in Economics"
+    where: "University of Nottingham"
+    note: "Three essays on skills, personality demand and formalisation policy, using text as data on 11.7 million job vacancies and a meta-analysis of Latin American evaluations."
+  - when: "2018–19"
+    what: "MA in Applied Labour Economics for Development"
+    where: "University of Turin and ITC-ILO"
+    note: "110/110. Thesis on NEET labour market transitions."
+  - when: "2017–18"
+    what: "MA in Economics"
+    where: "University of Buenos Aires"
+    note: "9.07/10. Thesis on unemployment duration using survival models."
+  - when: "2012–16"
+    what: "Licentiate in Economics"
+    where: "University of Buenos Aires"
+    note: "Cum laude. Thesis on microfinance default, third prize in the 2017 thesis competition of the Buenos Aires Council of Economic Sciences, later published in Problemas del Desarrollo."
 
-- title: Experience
-  type: time_table
-  contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+skills:
+  - what: "Econometrics"
+    note: "Panel data, causal inference, difference-in-differences, survival analysis, impact evaluation, meta-analysis."
+  - what: "Data"
+    note: "Natural language processing and text as data, machine learning, large survey microdata. Advanced Stata; working Python and R. DataCamp Associate Data Scientist (2024)."
+  - what: "Communication"
+    note: "Writing for academic, policy and general audiences. Data visualisation and interactive tools."
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+languages:
+  - what: "Spanish"
+    note: "Native"
+  - what: "English"
+    note: "Advanced (TOEFL iBT 100, C1)"
+  - what: "Italian"
+    note: "Intermediate (B2)"
+  - what: "Dutch"
+    note: "B1 in progress (A2 certified)"
+  - what: "French"
+    note: "A2"

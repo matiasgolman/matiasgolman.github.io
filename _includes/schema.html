@@ -1,0 +1,33 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Matías Golman",
+  "alternateName": ["Matias Golman", "Matías Alejandro Golman"],
+  "givenName": "Matías",
+  "familyName": "Golman",
+  "jobTitle": "{{ site.author.job_title }}",
+  "email": "mailto:{{ site.author.email }}",
+  "url": "{{ site.url }}/",
+  "image": "{{ '/assets/img/matias_golman.jpg' | absolute_url }}",
+  "description": "{{ site.description | strip_newlines | strip | escape }}",
+  "worksFor": {
+    "@type": "CollegeOrUniversity",
+    "name": "Utrecht University",
+    "url": "https://www.uu.nl/"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of Nottingham", "url": "https://www.nottingham.ac.uk/" },
+    { "@type": "CollegeOrUniversity", "name": "University of Turin", "url": "https://www.unito.it/" },
+    { "@type": "CollegeOrUniversity", "name": "University of Buenos Aires", "url": "https://www.uba.ar/" }
+  ],
+  "knowsAbout": [
+    "Labour economics", "Informal employment", "Skills and skills mismatch",
+    "Impact evaluation", "Applied econometrics", "Development economics",
+    "Social protection", "Latin America"
+  ],
+  "knowsLanguage": ["Spanish", "English", "Italian", "Dutch", "French"],
+  "homeLocation": { "@type": "Place", "name": "{{ site.author.location }}" },
+  "sameAs": [{% for p in site.profiles %}"{{ p.url }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]
+}
+</script>

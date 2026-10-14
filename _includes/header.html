@@ -1,0 +1,13 @@
+<header class="masthead">
+  <div class="frame masthead__in">
+    <a class="wordmark" href="{{ '/' | relative_url }}">Matías Golman</a>
+    <nav class="nav" aria-label="Main">
+      <a href="{{ '/work/' | relative_url }}"{% if page.url contains '/work' %} aria-current="page"{% endif %}>Work</a>
+      <a href="{{ '/projects/' | relative_url }}"{% if page.url contains '/projects' %} aria-current="page"{% endif %}>Projects</a>
+      <a href="{{ '/teaching/' | relative_url }}"{% if page.url contains '/teaching' %} aria-current="page"{% endif %}>Teaching</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>About</a>
+      <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} aria-current="page"{% endif %}>CV</a>
+      <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
+    </nav>
+  </div>
+</header>

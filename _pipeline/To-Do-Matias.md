@@ -1,80 +1,119 @@
 # To-do para Matías — SÓLO acciones que tenés que hacer vos
 
-> Este archivo no lleva historia ni confirmaciones: sólo lo que está esperando algo tuyo. Todo lo
-> demás va a `ESTADO.md` (dónde estamos) o al `Changelog.md` (qué pasó).
+> Este archivo no lleva historia ni confirmaciones: sólo lo que está esperando algo tuyo.
 > **Dónde dejarme instrucciones:** el bloque `COMENTARIO DE MATIAS`, arriba de todo en `ESTADO.md`.
 
 ---
 
-**1. CONTESTAR EL CUESTIONARIO** *(y es lo primero: bloquea todo el resto)*.
-`preguntas/Preguntas_01_estructura_y_diseno.md`, 22 preguntas. Escribí debajo de cada una, en
-castellano o inglés, sin formato. Las que no sepas, dejalas en blanco y pongo yo mi recomendación.
-Cuatro ya te las pregunté en el chat del 13/10 (público, registro visual, visibilidad de la
-búsqueda, stack); si las contestaste ahí, salteá la 1, la 13, la 3 y la 19.
+**1. EL TOKEN DE GITHUB: estabas mirando la lista equivocada** *(2 minutos)*.
+En la pantalla de *fine-grained PAT* hay **dos** bloques de permisos y vos viste el de abajo:
 
-**2. PUSHEAR EL BACKUP A GITHUB** *(dos comandos, 10 segundos)*. Hice el tag y la rama localmente,
-pero **la VM del puente no tiene tus credenciales de GitHub**, así que no puedo pushear yo. Desde
-tu terminal, en la carpeta del repo:
+- **«Account permissions»** — ahí están `Block another user`, `Codespaces user secrets`,
+  `Copilot Chat`, `Gists`, `Git SSH keys`, `Models`… **No es ninguno de esos.**
+- **«Repository permissions»** — está *arriba*, y sólo aparece **después** de elegir
+  «Only select repositories» → `matiasgolman/matiasgolman.github.io`. Ahí sí está **`Contents`**.
+
+Entonces: *Settings → Developer settings → Personal access tokens → Fine-grained tokens →
+Generate new token* → **Resource owner:** tu usuario → **Repository access:** «Only select
+repositories» → elegí `matiasgolman.github.io` → en **Repository permissions** poné
+**`Contents: Read and write`** (y dejá `Metadata: Read-only`, que se marca solo y es obligatorio).
+**Nada más.** Expiración: 90 días está bien.
+
+**Dónde ponerlo:** creá el archivo `_pipeline/.github_token` (una sola línea, el token pelado).
+Ya lo agregué al `.gitignore`, así que **no se sube a GitHub**. Avisame cuando esté y a partir de
+ahí pusheo yo. Mientras tanto, pusheá vos:
 
 ```
+git push origin main
 git push origin v1-academic-jmp-2025
 git push origin backup/v1-academic-jmp-2025
 ```
 
-Con eso la versión de job market queda guardada también en el servidor, no sólo en tu disco.
+> **Lo que el token puede hacer, para que lo sepas:** leer y escribir el contenido de **ese único
+> repo**. No puede tocar tus otros repos, ni tu cuenta, ni borrar el repositorio. Si algo te
+> incomoda, lo revocás desde la misma pantalla y listo.
 
-**3. DECIDIR SI ME DAS PERMISO DE PUSH** *(o si pusheás vos cada vez)*. Hoy puedo leer el repo pero
-no escribir en GitHub. Dos caminos:
-- **(a) Pusheás vos.** Yo dejo todo commiteado localmente y te aviso; vos corrés `git push`. Cero
-  riesgo, un paso manual por deploy.
-- **(b) Me das un token.** Un *fine-grained PAT* de GitHub, con acceso **sólo a este repositorio** y
-  permiso de `Contents: read and write`, guardado en un archivo que el repo ignora. Con eso puedo
-  desplegar sola la web y verificar que el deploy salió bien. Es tu llamada: un token, aunque esté
-  limitado a un repo, es una credencial que queda escrita en tu disco.
-**Mi recomendación: (a) mientras rediseñamos** (vas a querer mirar antes de publicar cada cambio
-grande) **y (b) más adelante**, si el sitio pasa a tener un blog que se actualiza seguido.
+**2. VERIFICAR EN GOOGLE SEARCH CONSOLE** *(después del primer push, 1 minuto)*. Ya puse tu código
+`4v_RtVj-...` en el sitio. En cuanto pushees y GitHub Pages termine de desplegar (2-3 minutos),
+entrá a Search Console y dale **«Verificar»**. Después, en el menú de la izquierda, **«Sitemaps»** →
+pegá `https://matiasgolman.github.io/sitemap.xml` → «Enviar».
 
-**4. CREAR LA PROPIEDAD EN GOOGLE SEARCH CONSOLE** *(5 minutos, gratis, y es la pieza que falta)*.
-Esto no lo puedo hacer yo: necesita tu cuenta de Google. Pasos:
-1. Entrá a `https://search.google.com/search-console` con tu cuenta.
-2. «Añadir propiedad» → **Prefijo de URL** → `https://matiasgolman.github.io/`.
-3. Elegí el método **«Etiqueta HTML»** y copiame el código que te da (es un
-   `<meta name="google-site-verification" content="...">`). Pegalo en el `COMENTARIO DE MATIAS`.
-4. Yo lo pongo en `_config.yml`, desplegamos, y vos le das «Verificar».
-5. Después mando el sitemap y ya tenemos informe de cobertura: qué páginas indexó, cuáles no, y por
-   qué. Hoy estamos adivinando; con esto dejamos de adivinar.
+**3. BING: la vía corta es importar desde Google** *(2 minutos, y conviene hacerlo)*. Bing alimenta
+a Copilot y a varios asistentes, así que ya no es secundario.
+1. `https://www.bing.com/webmasters` → entrá con Microsoft, Google o Facebook.
+2. En «Add your site» elegí **«Import from Google Search Console»** y autorizá. Te trae el sitio,
+   la verificación y el sitemap de una, sin tocar código. *(Por eso conviene hacer el punto 2
+   primero.)*
+3. Si preferís no conectar las cuentas, elegí «Add site manually», copiame la etiqueta
+   `<meta name="msvalidate.01" ...>` y la pongo yo.
 
-*(Si querés, lo mismo con Bing Webmaster Tools. Bing alimenta a ChatGPT y a Copilot, así que
-cada vez importa más, pero es secundario.)*
+**4. LAS TRES ÚLTIMAS VERSIONES DE LOS PAPERS** *(dijiste que me las pasabas)*. Dejámelas en
+`_pipeline/papers/` con cualquier nombre. Las voy a renombrar a nombres estables
+(`golman-ai-personality-traits.pdf`, etc.) para que el link no se rompa nunca más. **Hasta que
+estén, las tres páginas de working paper muestran título y abstract pero el botón de PDF no
+aparece.**
 
-**5. MANDARME LAS FOTOS DE NATURALEZA** *(las que quieras que estén en el sitio)*.
-**No puedo bajarlas de tu Instagram**: la API de Instagram exige cuenta de empresa y un token que
-caduca cada 60 días, y los widgets de terceros se rompen o te meten rastreadores. Y hay un motivo
-mejor para no hacerlo: una galería con tus archivos carga más rápido, Google la puede leer, y vos
-elegís qué se ve. Dejame los archivos originales en una carpeta (por ejemplo
-`C:\Users\matia\Pictures\web_fotos\`) y avisame; yo las optimizo (WebP, varios tamaños), armo la
-galería y les pongo texto alternativo. **Ideal: 12 a 20 fotos**, de las que más te gusten, con el
-lugar y el año si te acordás. Menos de 10 se ve flaco; más de 30, nadie las mira.
+**5. ¿EL INFORME DE COSTA RICA ES PÚBLICO?** *(bloquea una decisión, y es la única con riesgo real)*
+Me lo dejaste en el pipeline y lo puedo publicar, pero **no lo voy a subir hasta que me confirmes**.
+Es un entregable a un cliente (OIT) sobre política de un gobierno: si la OIT todavía no lo publicó,
+subirlo vos primero puede caer muy mal, por más que no tenga nada confidencial adentro. Tres
+opciones: **(a)** la OIT ya lo publicó → me pasás el link y linkeamos al sitio de la OIT, que además
+es mejor para Google; **(b)** no está publicado → lo describo en el sitio sin PDF (así quedó ahora);
+**(c)** pedís luz verde a tu contraparte en la OIT. **Mi recomendación: (b) hasta tener (a).**
 
-**6. DATOS Y ARCHIVOS QUE ME FALTAN** *(los que puedas; los que no, los marco como pendientes)*:
-- **Foto tuya** para la home, si no te gusta la actual (`assets/img/matias_profile.jpeg`). Horizontal
-  o cuadrada, cara visible, luz natural. Si tenés una en contexto de trabajo (dando clase, en un
-  panel), mejor todavía: dice más que un retrato.
-- **La app Araucaria**: ¿cuál es la URL que funciona hoy, y dónde vive el código?
-- **El dashboard de informalidad**: ¿el HTML de 73 MB es la versión final, o hay una fuente (script,
-  datos) de la que se genera? Si hay fuente, mandámela: cambia el plan del ítem S2.
-- **ORCID**, si tenés. Si no, armalo (`https://orcid.org/register`, 2 minutos): es gratis, y es uno
-  de los pocos perfiles que Google asocia fuerte con un nombre de investigador.
-- **El informe de Costa Rica** y cualquier producto de OIT/OCDE/BM que ya sea público y no esté en
-  `assets/pdf/` — o el link, si está publicado en el sitio del organismo (mejor linkear que alojar).
-- **¿Hay algo que NO quieras que esté en el sitio?** (temas, opiniones, datos personales, ubicación
-  exacta, familia). Es la pregunta 12 del cuestionario, pero la repito acá porque es la única del
-  cuestionario cuya respuesta equivocada es difícil de deshacer.
+**6. EL PAPER DEL GEP** *(30 segundos)*. Google muestra un *GEP discussion paper 26/06* de Nottingham,
+«Artificial Intelligence and Personality Traits», **firmado por vos y María García-Vega**. No lo
+pude abrir para confirmarlo. ¿Es la versión publicada de tu primer capítulo? ¿Va con coautora? Si
+sí, es una ficha citable y linkeable — vale la pena ponerla en el sitio con su número de serie.
 
-**7. DECIDIR EL DOMINIO** *(pregunta 4 del cuestionario; la separo porque cuesta plata y tiempo)*.
-`matiasgolman.github.io` funciona, pero un dominio propio (`matiasgolman.com`, `.nl`, `.eco`…)
-cuesta ~10-15 €/año y es, después de los links entrantes, lo que más te va a mover en Google a
-mediano plazo: es tu nombre en la URL y la señal no se la queda GitHub. **Si decís que sí, lo
-compro yo no puedo** — tenés que comprarlo vos (Namecheap, Gandi, TransIP si lo querés holandés).
-Después yo configuro el `CNAME` y los DNS. **Importante: si lo hacemos, hay que hacerlo ANTES de
-empezar a juntar links entrantes**, no después, para no mudar el sitio dos veces.
+**7. LAS FOTOS: así se bajan de Instagram** *(5 minutos de trabajo tuyo, el resto lo hace Meta)*.
+Dijiste que no sabías cómo. No hace falta ir trip por trip: **Instagram te las da todas juntas**.
+En la app: *Perfil → ☰ → Tu actividad → Descargar tu información → Descargar o transferir
+información → Parte de tu información → **Contenido** → Publicaciones → Descargar en el dispositivo
+→ Formato **JPEG** / Calidad **Alta** → Crear archivos*. Te llega un mail con un `.zip` en unas
+horas. Me pasás el zip o la carpeta y yo elijo una preselección, la optimizo y te la muestro para
+que la apruebes. **No hace falta que lo hagas ahora**: la sección de fotos queda construida y
+apagada hasta que aparezcan.
+
+**8. ORCID: decime que sí y lo actualizo yo** *(necesito que estés logueado)*. Tu ORCID
+(`0000-0001-6557-963X`) está sin tocar desde 2018 y hoy ya está enlazado desde el sitio nuevo.
+**Sí, lo puedo actualizar por el navegador** con los datos del CV: empleos, educación, los cinco
+trabajos publicados y los tres working papers. Lo que necesito de vos:
+- Que inicies sesión en ORCID vos mismo, en el navegador que usemos. **Yo no voy a escribir tu
+  contraseña** — no manejo credenciales, es una regla que no rompo ni con permiso.
+- Que me digas «dale» acá o en el chat. Después te muestro el perfil terminado antes de guardar los
+  cambios grandes.
+
+**9. ANALÍTICA GRATUITA** *(opcional, 3 minutos)*. Dijiste «si es gratis, sí». **GoatCounter** es
+gratis para uso personal, no usa cookies y no necesita cartel de consentimiento:
+`https://www.goatcounter.com/signup`, elegí un código de sitio (por ejemplo `matiasgolman`) y
+pasame ese código. Son dos líneas en el sitio. *(Plausible es más lindo pero cuesta ~9 €/mes; no lo
+vale para este tamaño de sitio.)*
+
+**10. LA MUDANZA DE LA CARPETA — leé esto antes de mover nada** *(importante, y una advertencia)*.
+Buenas noticias primero: **la carpeta NO está dentro de otro repo de git**. Chequeé los tres niveles
+de arriba y no hay ningún `.git`, así que está sólo *visualmente* mal ubicada. Nada está roto y
+mover la carpeta **no rompe nada**: el remoto, las ramas y los tags viven adentro de `.git`, y
+viajan con ella. Tres cosas, en orden de importancia:
+
+- **No la pongas adentro de OneDrive.** Es la advertencia principal. OneDrive sincroniza archivo por
+  archivo mientras git escribe decenas de archivos chicos a la vez dentro de `.git`; el resultado
+  conocido son `.lock` fantasma, objetos a medio escribir y repos corruptos. Con 1,3 GB de `.git`,
+  además, le vas a dar a OneDrive un trabajo enorme para nada. **El backup de un repo de git es
+  GitHub**, para eso existe el remoto. Ponelo en una carpeta local común, por ejemplo
+  `C:\Users\matia\GitHub\matiasgolman.github.io`.
+- **Cómo mudarlo, en la computadora nueva:** no copies la carpeta. Clonala de cero, que es más
+  limpio y te deja un repo sano:
+  ```
+  cd C:\Users\<vos>\GitHub
+  git clone https://github.com/matiasgolman/matiasgolman.github.io.git
+  ```
+  Eso ya queda enlazado a GitHub y podés pushear desde ahí sin configurar nada. **Hacelo después de
+  pushear lo que hay acá** (punto 1), si no perdés los commits que todavía no subiste.
+- **El disco externo:** copiá la carpeta entera con `.git` adentro, o mejor, hacé
+  `git clone --mirror https://github.com/matiasgolman/matiasgolman.github.io.git` en el disco: queda
+  un espejo completo, con todas las ramas y tags, en una fracción del espacio.
+- Cuando la carpeta nueva exista, **dame acceso a ella** (el botón de agregar carpeta en la app de
+  escritorio) y seguimos ahí sin perder nada.
+
+*(Al 14/10/2026.)*

@@ -1,0 +1,29 @@
+<footer class="foot">
+  <div class="frame">
+    <ul>
+      {%- for p in site.profiles %}<li><a href="{{ p.url }}" rel="me">{{ p.name }}</a></li>{% endfor %}
+      <li><a href="mailto:{{ site.author.email }}">Email</a></li>
+      <li><a href="{{ '/es/' | relative_url }}" hreflang="es">Español</a></li>
+    </ul>
+    <p>Matías Golman — {{ site.author.job_title }}, {{ site.author.affiliation }}. Built with Jekyll, hosted on GitHub Pages.</p>
+  </div>
+</footer>
+<script>
+  (function () {
+    var btn = document.querySelector('[data-theme-toggle]');
+    if (!btn) return;
+    var root = document.documentElement;
+    function current() {
+      return root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+    function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>

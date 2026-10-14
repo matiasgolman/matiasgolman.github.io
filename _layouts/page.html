@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<div class="frame page">
+  <h1 class="page__title">{{ page.title }}</h1>
+  {% if page.standfirst %}<p class="page__standfirst">{{ page.standfirst }}</p>{% endif %}
+  <div class="{{ page.body_class | default: 'prose' }}">{{ content }}</div>
+</div>

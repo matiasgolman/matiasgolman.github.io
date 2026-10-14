@@ -1,0 +1,22 @@
+- name: "Argentina Informality Dashboard"
+  url: "/dashboard/"
+  shot: "/assets/img/shot-dashboard.jpg"
+  shot_alt: "Screenshot of the Argentina informality dashboard showing charts and a provincial map"
+  blurb: >-
+    An interactive tool, built for the ILO and Argentina's labour ministry, that turns two decades
+    of household survey microdata into something a policy officer can actually use: informal
+    employment from 2003 onwards, broken down by sector, province, sex and age, with the time series
+    coded so they can be reproduced each quarter rather than rebuilt by hand.
+  note: "Built for the ILO. Data from INDEC's Permanent Household Survey (EPH), 2003 onwards."
+
+- name: "Araucaria Spotter"
+  url: "https://araucaria-spotter.vercel.app/"
+  external: true
+  shot: "/assets/img/shot-araucaria.jpg"
+  shot_alt: "Screenshot of the Araucaria Spotter app showing a map with recorded trees"
+  blurb: >-
+    A community map of the Araucaria araucana — the monkey puzzle tree — growing outside its native
+    range in the Andes. People record the trees they find; the map shows where the species has
+    travelled. A side project, and the one that taught me the most about building something other
+    people have to be able to use.
+  note: "Web app, with an Android version on the way."

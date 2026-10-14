@@ -31,7 +31,7 @@ Elegí **dos** y ordenalos. Todo lo demás (qué va arriba, cuánto texto, qué 
 - (e) Clientes potenciales de consultoría
 - (f) Estudiantes de Utrecht
 
-→
+→ b, e - Aunque pueden ser tambien colegas academicos y que ya trabajan en institutos, que no necesariamente me vayan a contratar, pero se acordaron de mi y me pueden recomendar para trabajos. Tambien publico en general, estudiantes. En OIT o esos organismos, no busca mi perfil directo alguien de RRHH, posiblemente sea un contacto inicial con alguien que ya conozco. Es distinto.
 
 **Mi recomendación:** (a) y (b) primero, (c) tercero y presente pero no al mando. La diferencia
 práctica es grande: un referee quiere el paper y el abstract; alguien de RRHH de la OIT o del CPB
@@ -42,7 +42,7 @@ escribir para un ministro**. Son dos sitios distintos. El que tenés hoy es para
 Una sola respuesta: ¿que te escriban para una entrevista? ¿que te inviten a consultorías? ¿que te
 citen? ¿que te inviten a hablar o a escribir en prensa? ¿que un ex colega te encuentre?
 
-→
+→ Que un Ex colega me encuentre y potencialmente me invite a una consultoria
 
 **Mi recomendación:** definir una. Un sitio que quiere lograr cinco cosas no logra ninguna, porque
 la jerarquía visual no se puede repartir en cinco.
@@ -54,7 +54,7 @@ Esto es delicado: la web es pública y tus colegas y jefes de Utrecht la pueden 
 - (b) **Implícito**: el CV al día, el perfil orientado a política, y nada que diga que buscás.
 - (c) **Nada**: puramente un sitio de portafolio.
 
-→
+→ por el momento, b) Implicito
 
 **Mi recomendación:** (b). Con un sitio bien posicionado, quien recluta no necesita que le avises
 que estás disponible: te escribe igual. Y (a) tiene un costo asimétrico — no te suma nada con
@@ -69,7 +69,7 @@ Después de los links entrantes, es la palanca más grande de Google a mediano p
 - (b) Comprar `matiasgolman.nl` (señal local holandesa, útil si el objetivo es (b) de la pregunta 1)
 - (c) Quedarnos en `matiasgolman.github.io` (gratis)
 
-→
+→ Por el momento, matiasgolman.github.io. No estoy pensando en cambiar de trabajo en al menos un año. Quiero usar esta experiencia como modelo de prueba, ir llenandola de contenido, como excusa para escribir notas y subirlas, refinarlo, y mas adelante ver si tiene sentido tener un matiasgolman.com
 
 **Mi recomendación:** (a), y lo antes posible. Razones: tu nombre queda en la URL; dejás de
 depender de que GitHub siga regalando el subdominio; si algún día te mudás de Jekyll a otra cosa,
@@ -86,7 +86,7 @@ te podría contratar para eso lee en castellano.
 - (b) Inglés + una página «Español» con el perfil y los trabajos en castellano
 - (c) Sitio bilingüe completo (cada página en los dos idiomas)
 
-→
+→ Ahora no esta en ambos? hagamosla b entonces.
 
 **Mi recomendación:** (b). (c) duplica para siempre el trabajo de mantenimiento y, en un sitio
 personal, casi nadie lee las dos versiones. (b) te da lo que importa (que alguien de la OIT en
@@ -98,7 +98,10 @@ Escribila vos, como se la dirías a alguien en un ascensor que no es economista.
 para el `<title>`, la metadescripción, el JSON-LD y el primer párrafo de la home — los cuatro
 lugares donde Google y una persona apurada deciden quién sos.
 
-→
+→ Soy un Economista Laboral, experto en temas de informalidad, habilidades laborales y desarrollo economico. Tengo un rol docente activo, una fuerte capacidad de lectura critica y manejo de bases de datos y progracion.
+
+
+Me gusta tu version, aunque lo haria un poquito mas generico; soy un experto en economia laboral. Tengo la capacidad y el conocimiento para trabajar en temas que no son exactamente los que ya trabaje (informalidad, habilidades, desempleo), sino que puedo trabajar multiples temas (desigualdad, pobreza, migracion, salario minimo, educacion, politica industrial, instituciones). Tengo una rapida capacidad de adaptacion y aprendizaje.
 
 **Mi versión, para que la corrijas:** «Economista laboral. Mido cómo funciona el empleo informal,
 qué políticas lo reducen y qué habilidades piden las empresas — y convierto esos datos en evidencia
@@ -114,7 +117,7 @@ y el meta-análisis de formalización. **Todos están marcados como de 2026 y si
 uno: ¿PDF público, o sólo título y abstract? ¿Está enviado a alguna revista, en R&R, publicado?
 ¿Alguno tiene restricciones de coautores (Escudero, López-Mourelo)?
 
-→
+→ Si, sacar la etiqueta de JMP y dejar todo como working paper, luego te paso las ultimas versiones
 
 **Mi recomendación:** sacar la etiqueta «job market paper» de los tres. Fuera del mercado académico
 no significa nada, y en el mercado de política suena a que todavía estás buscando el primer
@@ -125,7 +128,7 @@ Hay `jmp_june25`, `jmp_aug25`, `jmp_sep25`, `jmp_oct25`, `jmp_nov25`, `jmp_dec25
 `jmp_last_version`, más cuatro CVs viejos. ¿Los borro, o alguno lo mandaste por mail y querés que
 el link siga vivo?
 
-→
+→ Borra las versiones viejas, dejar solo una version estable.
 
 **Mi recomendación:** dejar una sola versión de cada paper, con el nombre estable
 (`golman_2026_personality_ai.pdf`), y archivar el resto fuera del repo. Pero **no borrar nada hasta
@@ -138,7 +141,9 @@ funcionando.
   lado (si sí, mejor linkear al sitio de la OIT y además tenerlo acá)?
 - **App Araucaria**: ¿cuál es la URL que funciona? ¿Dónde vive el código? ¿Cuánta gente la usa?
 
-→
+→ El dashbord esta estable, tengo el codigo y las bases que lo genera, todo esta accesible. Lo quiero actualizar y mejorar la interfaz y algunas cuestiones de los datos, quizas agregar neuvos paises. Tu me vas a ayudar mas adelante. pero no en esta conversacion. La OIT no lo publico. El dashbord es pesado porque son muchisimos datos, es lo mas reducido que pude lograr!
+
+La app de la araucaria esta en proceso de ser publicada por Google Play, el codigo vive en esta computadora, por ahora solo la usan 10 personas al mes. Es una app de telefono, pero peudes acceder por aca https://araucaria-spotter.vercel.app/ 
 
 **Mi recomendación:** estos dos proyectos son, para el público que te importa, **más persuasivos
 que los tres papers**. Un dashboard que un gobierno usa y una app que mapea árboles prueban tres
@@ -167,7 +172,7 @@ ejemplo, una foto tuya de paisaje de fondo en la portada)? Mi recomendación es 
 la navegación pero al final, y **nunca** mezcladas con el trabajo: a quien te está evaluando
 profesionalmente, las fotos le suman como señal de persona completa, pero sólo si están ordenadas.
 
-→
+→ link a Instagram: https://www.instagram.com/gol.mat/ . No se como ver la version de fotos. Solo me gusta subir fotos de naturaleza cuando viajo, cuando exploro. suelo tener mi instagram abierto porque no solo no tengo nada que esconder, sino que creo que suma si un desconocido ve mis fotos y ve que soy aventurero, que disfruto la naturaleza. No se como mostrar eso, si en una seccion propia o solo un link a instagram o. Quizas como seccion propia, pero tampoco quiero ser "fotografo", no lo soy, solo me gusta viajar y documentar la naturaleza que veo.
 
 ### 11. El blog
 Me dijiste que en el futuro querés notas, reflexiones, borradores de piezas de prensa. **Te lo voy
@@ -178,7 +183,7 @@ Entonces: **¿cuáles son las primeras tres cosas que escribirías?** Título ap
 Si no te salen tres, decímelo y armamos la sección sin publicarla (lista para encender el día que
 tengas el primer texto).
 
-→
+→ Tengo muchos datos descargados sobre cosas de bariloche (te puedo dar acceso si queres), que van desde informacion geografica, educacional, de hospedajes de booking y demanda, y en algun momento me gustaria tener reflexiones etc. Quizas me gustaria crear la seccion, y a medida que la vaya llenando, la "abrimos" al publico. Te parece? es tu recomendacion. Notes me parece bien de nombre. OK con lo de "qué funciona para formalizar empleo en América Latina, según 150 evaluaciones". Ve las conclusiones de mi paper sobre meta analisis.
 
 **Mi recomendación:** armarla pero **no linkearla** hasta que haya tres textos. Y que no se llame
 «Blog»: que se llame **«Notes»** o **«Writing»**, que no promete frecuencia. Lo que sí publicaría
@@ -192,7 +197,7 @@ Temas, opiniones (políticas, Argentina), datos personales, ubicación exacta, f
 fotos de otras personas, tu teléfono. **Es la única pregunta cuya respuesta equivocada es difícil
 de deshacer** (una vez que Google lo indexa, queda en el caché un tiempo).
 
-→
+→ I have saved a new CV withouth the phone, and change the Adress to Utrecht (which is where the university is). I think having the address is fine, becouse people may not know if I am still in Utrecht, in Nottingham in ARgentina.
 
 **Nota:** hoy el CV que está público en el sitio tiene **tu teléfono** y **la ciudad donde vivís
 (Zeist)**. Eso es decisión tuya, pero decímelo explícitamente. Lo normal en un CV público es dejar
@@ -208,7 +213,7 @@ equation…»), y eso se nota.
 - (b) Dejarla como está
 - (c) Partirla: dos párrafos en la home, el texto largo en su propia página
 
-→
+→Reescribirla como About me. Sin el hiring, pero mantieniendo la gran mayoria del texto y la parte personal. Solo recorta/modifica la parte del hiring. O quizas poner algo con que estoy abierto a sumarme a proyectos de investigacion, politica o coordinacion?
 
 ### 14. Docencia
 Hoy la página lista siete puestos de asistente en Nottingham y cuatro premios. Para un público de
@@ -219,7 +224,7 @@ política, una lista larga de asistencias de doctorado se lee como «junior».
 - (b) Dejar la lista completa
 - (c) Sacar la página y que la docencia viva sólo dentro del CV
 
-→
+→ a) tu recomendacion. Son muchos los cursos que estoy enseniando en Utrecht, no se si condensarlos o mostrarlos todos.
 
 ### 15. ¿CV como PDF suelto, o también una página HTML?
 Hoy el ítem «cv» del menú es un link directo al PDF. Google lee los PDFs, pero mucho peor que una
@@ -229,7 +234,7 @@ página; y un PDF no se puede actualizar sin romper el link.
   ayudar a aparecer cuando alguien busca «Matias Golman labour economist»)
 - (b) Sólo el PDF, como ahora
 
-→
+→ OK, pagina HTML de CV. No se como generar eso.
 
 ---
 
@@ -249,7 +254,7 @@ Cuatro direcciones posibles. No es sólo gusto: cada una le habla a un lector di
 - (d) **Técnico / de datos.** Oscuro o gris, algún detalle monoespaciado, gráficos como decoración
   funcional. Dice: «hago esto con código». Riesgo: frío, y envejece rápido.
 
-→
+→ Si, me quedo con tu recomendacion.
 
 **Mi recomendación:** **(b) con el calor de (c)**: serif para leer, una paleta neutra con un acento
 verde profundo sacado de tus propias fotos, y los proyectos como tarjetas con imagen. Es el único
@@ -262,7 +267,7 @@ que es un error sutil pero real: no te distingue.
 - (b) Chica, de perfil, al costado (como ahora)
 - (c) Sin foto
 
-→
+→ b. La foto que esta ahora me gusta, es al aire libre, y sino tengo una foto mas formal, con camisa, sonriendo, pero en un espacio cerrado. Pero es retrato de estudio, no tengo fotos lindas dando clase / panel / presentando.
 
 **Mi recomendación:** (a) o (b), nunca (c). Un sitio personal sin cara se lee como un CV, y el 80%
 de la gente que lo abra ya sabe tu nombre y quiere ponerle cara. Si tenés una foto trabajando
@@ -272,7 +277,7 @@ de la gente que lo abra ya sabe tu nombre y quiere ponerle cara. Si tenés una f
 Un color que uses siempre, uno que no quieras ver, alguna web que te guste cómo se ve (pasame el
 link, es la información más útil que me podés dar acá).
 
-→
+→ Me gusta el verde. Me gusta asociarme al verde. OK con tus descartes. Seguro que el modo oscuro automatico no va? me da la impresion de seriedad, de algo gourmet.
 
 **Dos cosas que yo descartaría de entrada:** el azul institucional de la OIT o de la ONU (parece
 que te hacés pasar por el organismo) y el modo oscuro automático, que hoy el sitio tiene prendido
@@ -295,7 +300,7 @@ workflow de GitHub Actions de 90 líneas que se puede romper en cualquier actual
   **Mi recomendación.**
 - (c) **Dejar al-folio casi como está** y sólo cambiar los textos.
 
-→
+→ OK con tu recomendacion (b).
 
 **Por qué (b):** lo que querés hacer —portada con posicionamiento, tarjetas de proyecto, galería de
 fotos, notas, una página de CV en HTML, datos estructurados bien hechos— es más fácil de escribir
@@ -310,7 +315,7 @@ Cada página es una promesa de mantenimiento.
 - (b) **Siete u ocho**: lo de arriba separando CV, Teaching y Photography
 - (c) **Una sola página larga** con todo y anclas
 
-→
+→ vamos con la opcion (a)
 
 **Mi recomendación:** (a) al lanzar, con Photography y Writing como sexta y séptima cuando haya
 material. (c) se ve moderno pero rankea peor (una sola URL compite por todo) y envejece mal.
@@ -328,7 +333,7 @@ material. (c) se ve moderno pero rankea peor (una sola URL compite por todo) y e
   (**mi recomendación**)
 - (c) Google Analytics
 
-→
+→ Si es gratuita, si. Sino, no. 
 
 **Nota:** Google **Search Console** (el del to-do, ítem 4) es otra cosa y hay que tenerlo igual:
 no mide visitas, te dice qué ve Google de tu sitio. Eso no es opcional si queremos resolver el
@@ -341,7 +346,7 @@ problema de las búsquedas.
 - (b) Querés aprobar cada cambio antes de que se publique
 - (c) Una corrida agendada (por ejemplo, semanal) que avanza la cola sola y te deja el resumen
 
-→
+→ Si, hagamos tu recomendacion. incluido el preview.
 
 **Mi recomendación:** (b) **para el rediseño** (vas a querer ver la portada antes de que exista en
 internet) y (a) o (c) después, para el mantenimiento. Y una cosa concreta: puedo armar una **rama

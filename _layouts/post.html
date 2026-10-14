@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<div class="frame page">
+  <article class="prose">
+    <h1 class="page__title">{{ page.title }}</h1>
+    <p class="note__meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+    </p>
+    {{ content }}
+  </article>
+</div>
