@@ -60,6 +60,25 @@ Corrida de forma, no de contenido nuevo: Matías había recorrido el sitio y no 
   `assets/img/matias_profile.jpeg`, que no la referenciaba nadie y es el mismo retrato con un
   recorte más abierto que el que usa el sitio.
 
+### Cuarta tanda: la presentación, el nombre de las fotos y Araucaria
+- **La presentación de la portada se rehizo otra vez.** La versión anterior abría con «What I bring
+  to a question is the method», y Matías objetó, con razón, que eso lo cierra en vez de abrirlo:
+  él no aplica herramientas a temas, elige la herramienta que cada pregunta pide y a veces no usa
+  ninguna cuantitativa. La versión nueva arranca por la pregunta, nombra econometría aplicada,
+  texto como dato y aprendizaje automático **sobre millones de observaciones** (ya no sólo avisos
+  de empleo, ya no comparado con una encuesta), suma el cuidado por el detalle y cierra con su
+  propia línea del About sobre que siempre hay una perspectiva que nadie probó. Fuera política
+  industrial. El tono salió de la intro de su CV.
+- **«What I work on» pasó a «What I am curious about»** («Lo que me da curiosidad»), para que se
+  lea como algo abierto y no como un catálogo cerrado.
+- **Araucaria Spotter** ahora dice que lleva más de 500 árboles registrados en el mundo, que entran
+  más todos los días, y que la versión Android llega pronto a Google Play.
+- **«Photography» pasó a «Some pictures»** («Algunas fotos»), con las URLs `/pictures/` y
+  `/es/fotos/` y redirecciones desde las viejas. El texto dice lo que es: las saca con el teléfono
+  cuando está en algún lugar lindo, sin edición. No se considera fotógrafo y el sitio ya no lo
+  sugiere.
+- Matías decidió **dejar el About como está** por ahora.
+
 ### Tercera tanda: el sitio entero en castellano
 Matías pidió que no quedara sólo la portada traducida, y que el selector de idioma estuviera
 arriba y no escondido en el pie.

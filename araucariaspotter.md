@@ -25,6 +25,7 @@ they find, and the map shows how far the species has travelled.</p>
         alt="The Araucaria Spotter map, showing recorded trees clustered across western Europe"
         loading="lazy" width="864" height="648" style="border:1px solid var(--rule);margin-top:1.6rem"></p>
 
-<p class="tool__note">Web app, with an Android version on the way. I grew up in Bariloche, where
-the tree is native, and this started as a game of spotting them on the street and seeing how far
-they had got.</p>
+<p class="tool__note">More than 500 trees recorded around the world so far, and more coming in
+every day. It is a web app today, and an Android version is on Google Play soon. I grew up in
+Bariloche, where the tree is native, and this started as a game of spotting them on the street and
+seeing how far they had got.</p>

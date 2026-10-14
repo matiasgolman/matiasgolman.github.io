@@ -7,7 +7,7 @@ en:
     - { label: "Teaching",                url: "/teaching/",    match: "/teaching" }
     - { label: "CV",                      url: "/cv/",          match: "/cv" }
     - { label: "Things I&rsquo;ve built", url: "/projects/",    match: "/projects" }
-    - { label: "Photography",             url: "/photography/", match: "/photograph" }
+    - { label: "Some pictures",           url: "/pictures/",    match: "/pictures" }
   other_label: "Castellano"
   other_code: "es"
   other_home: "/es/"
@@ -33,7 +33,7 @@ es:
     - { label: "Docencia",       url: "/es/docencia/",     match: "/es/docencia" }
     - { label: "CV",             url: "/es/cv/",           match: "/es/cv" }
     - { label: "Lo que construí", url: "/es/proyectos/",   match: "/es/proyectos" }
-    - { label: "Fotografía",     url: "/es/fotografia/",   match: "/es/fotografia" }
+    - { label: "Algunas fotos",  url: "/es/fotos/",        match: "/es/fotos" }
   other_label: "English"
   other_code: "en"
   other_home: "/"

@@ -25,6 +25,7 @@ gente registra los árboles que encuentra, y el mapa muestra hasta dónde viajó
         alt="El mapa de Araucaria Spotter, con árboles registrados repartidos por Europa occidental"
         loading="lazy" width="864" height="648" style="border:1px solid var(--rule);margin-top:1.6rem"></p>
 
-<p class="tool__note">App web, con una versión para Android en camino. Crecí en Bariloche, donde el
+<p class="tool__note">Más de 500 árboles registrados en el mundo hasta ahora, y entran más todos
+los días. Hoy es una app web, y pronto va a estar en Google Play. Crecí en Bariloche, donde el
 árbol es nativo, y esto empezó como un juego de buscarlos por la calle y ver hasta dónde habían
 llegado.</p>
