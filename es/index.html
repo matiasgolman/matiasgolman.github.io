@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="es">
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Español · Matías Golman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light"><title>Español · Matías Golman</title>
 <meta name="description" content="Matías Golman, economista laboral. Informalidad, habilidades, evaluación de políticas de formalización y protección social en América Latina. Docente en la Universidad de Utrecht y consultor de la OIT, con experiencia previa en la OCDE y el Banco Mundial.">
 <link rel="canonical" href="https://matiasgolman.github.io/es/">
 <meta name="author" content="Matías Golman">
@@ -77,6 +78,7 @@
       <a href="/work/">Work</a>
       <a href="/projects/">Things I&rsquo;ve built</a>
       <a href="/teaching/">Teaching</a>
+      <a href="/photography/">Photography</a>
       <a href="/cv/">CV</a>
       <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
     </nav>
@@ -148,8 +150,7 @@ Escribime a <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>
     if (!btn) return;
     var root = document.documentElement;
     function current() {
-      return root.getAttribute('data-theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      return root.getAttribute('data-theme') || 'dark';
     }
     function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
     paint();

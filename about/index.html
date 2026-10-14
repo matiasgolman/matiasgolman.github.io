@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>About · Matías Golman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light"><title>About · Matías Golman</title>
 <meta name="description" content="Matías Golman, labour economist, born in Bariloche in Argentine Patagonia, now at Utrecht University. On how he came to economics, how he works, and what moves him.">
 <link rel="canonical" href="https://matiasgolman.github.io/about/">
 <meta name="author" content="Matías Golman">
@@ -77,6 +78,7 @@
       <a href="/work/">Work</a>
       <a href="/projects/">Things I&rsquo;ve built</a>
       <a href="/teaching/">Teaching</a>
+      <a href="/photography/">Photography</a>
       <a href="/cv/">CV</a>
       <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
     </nav>
@@ -86,7 +88,7 @@
   <main id="main"><div class="frame page ">
   <h1 class="page__title">About</h1>
   
-  <div class="prose"><p>I appreciate your interest in my work trajectory.</p>
+  <div class="prose"><p>I appreciate your interest in my trajectory.</p>
 
 <p>While a CV and a list of papers effectively capture the academic history, work experience, and some standardised productivity-related outcomes, I believe they tell only part of the story when it comes to understanding someone's trajectory and potential.</p>
 
@@ -110,7 +112,7 @@
 
 <p>One of my core traits is that I love learning. I am curious and open-minded when it comes to both work-related abilities and personal interests, be it languages, sports, and basically different ways of doing things. I believe one problem can have multiple solutions and there is always a novel perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt and I work greatly in multi-cultural environments. I love teaching, whether it is Economics at the University, Mathematics in high school, or languages in NGOs that support refugees integration.</p>
 
-<p>When looking at my CV and my papers, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment.</p>
+<p>When looking at my CV, my papers and my projects, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment.</p>
 
 <p>Thanks for reading!</p>
 
@@ -135,8 +137,7 @@
     if (!btn) return;
     var root = document.documentElement;
     function current() {
-      return root.getAttribute('data-theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      return root.getAttribute('data-theme') || 'dark';
     }
     function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
     paint();

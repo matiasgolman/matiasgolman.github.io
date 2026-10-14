@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Teaching · Matías Golman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light"><title>Teaching · Matías Golman</title>
 <meta name="description" content="Matías Golman teaches Public Choice and Welfare, Philosophy Politics and Economics, Economics and Social Justice, the Data Science Lab for Economists and Economics of the Public Sector at Utrecht University, and supervises Bachelor&#39;s and Master&#39;s theses.">
 <link rel="canonical" href="https://matiasgolman.github.io/teaching/">
 <meta name="author" content="Matías Golman">
@@ -77,6 +78,7 @@
       <a href="/work/">Work</a>
       <a href="/projects/">Things I&rsquo;ve built</a>
       <a href="/teaching/" aria-current="page">Teaching</a>
+      <a href="/photography/">Photography</a>
       <a href="/cv/">CV</a>
       <button class="themer" type="button" data-theme-toggle aria-label="Switch between light and dark">Dark</button>
     </nav>
@@ -193,8 +195,7 @@
     if (!btn) return;
     var root = document.documentElement;
     function current() {
-      return root.getAttribute('data-theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      return root.getAttribute('data-theme') || 'dark';
     }
     function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
     paint();
