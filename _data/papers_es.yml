@@ -1,0 +1,152 @@
+working:
+  - title: "Inteligencia artificial y rasgos de personalidad"
+    sub: "Evidencia de avisos de empleo online"
+    authors: "con María García-Vega"
+    where: "GEP Research Paper 2026/06, Universidad de Nottingham"
+    year: 2026
+    pdf: "/assets/pdf/golman-ai-personality-traits.pdf"
+    text: >-
+      Cuando una empresa empieza a contratar perfiles de IA, ¿también empieza a buscar otro tipo de
+      persona? Leímos 11,7 millones de avisos británicos para averiguarlo, y la respuesta es que
+      sí. Las empresas que se meten en IA piden apertura a la experiencia en todas sus búsquedas,
+      no sólo en las técnicas.
+    abstract: >-
+      A partir del análisis de texto de 11,7 millones de avisos de empleo online publicados en el
+      Reino Unido entre 2017 y 2022, construimos medidas de los cinco grandes rasgos de
+      personalidad y de los requisitos de habilidades vinculadas a la IA. A nivel de aviso, los
+      puestos que piden habilidades de IA tienen una probabilidad significativamente mayor de
+      demandar apertura a la experiencia, y menor de demandar los otros cuatro rasgos, una vez
+      controlados los efectos fijos de empresa, ocupación, localidad y tiempo. El patrón se
+      distingue del de los avisos que piden habilidades informáticas generales, lo que sugiere que
+      la asociación con la apertura es propia del conocimiento de IA y no de los requisitos
+      digitales en sentido amplio. A nivel de empresa, estimaciones de diferencias en diferencias
+      escalonadas muestran que cuando una empresa amplía su contratación en IA, su demanda de
+      apertura sube en todos sus avisos, incluidos los que no son de IA dentro del mismo grupo
+      ocupacional.
+
+  - title: "El valor de la personalidad"
+    sub: "La paradoja de la penalización salarial en el Reino Unido"
+    where: "Universidad de Nottingham"
+    year: 2026
+    pdf: "/assets/pdf/golman-value-of-personality.pdf"
+    text: >-
+      Los avisos que piden rasgos de personalidad pagan en promedio 4,6% menos. Si esos rasgos
+      están penalizados, ¿por qué pedirlos? Pongo a prueba cuatro explicaciones contra 11,7
+      millones de avisos británicos, y ninguna da cuenta de toda la brecha por sí sola.
+    abstract: >-
+      Los puestos que mencionan rasgos de personalidad ofrecen salarios 4,6% más bajos en promedio,
+      lo que plantea una paradoja. ¿Por qué buscar rasgos que se penalizan? Con 11,7 millones de
+      avisos británicos (2017 a 2022) pongo a prueba cuatro explicaciones: correlación con
+      características de puestos mal pagos, diferencias compensatorias, intensidad del lenguaje y
+      segmentación demográfica. Los efectos fijos de ocupación absorben la mayor parte, pero quedan
+      penalizaciones significativas. Son mayores en ocupaciones de alta calificación, menores en
+      roles feminizados, y crecen con fuerza según la intensidad del lenguaje empleado.
+
+  - title: "La efectividad de las políticas de formalización en América Latina"
+    sub: "Un meta-análisis de 79 evaluaciones de impacto"
+    year: 2026
+    authors: "con Verónica Escudero y Elva López-Mourelo"
+    where: "Organización Internacional del Trabajo"
+    pdf: "/assets/pdf/golman-formalisation-meta-analysis.pdf"
+    text: >-
+      Treinta años de intentos de llevar trabajadores latinoamericanos al empleo formal, reunidos
+      en un mismo lugar y comparados entre sí. La mayoría funciona. Cuáles funcionan mejor, y por
+      cuánto tiempo, depende de qué es lo que uno quiere mover.
+    abstract: >-
+      El primer meta-análisis integral de políticas de formalización en América Latina, con 79
+      evaluaciones de impacto, 527 estimaciones e intervenciones entre 1990 y 2020, incluyendo
+      estudios en castellano e informes de gobierno no publicados que las revisiones anteriores no
+      habían recogido. Las políticas de formalización funcionan en su mayoría y los efectos
+      adversos son raros (5,1% de las estimaciones), aunque el sesgo de publicación reduce
+      sustancialmente los tamaños de efecto una vez corregido. Las políticas activas de empleo, las
+      campañas de información y la inspección laboral aumentan la formalidad. Los programas de
+      protección social con componentes de activación producen los mayores efectos sobre ingresos
+      pero casi no mueven la formalidad. Los beneficios se fortalecen con el tiempo y las
+      intervenciones de componentes múltiples superan a las de componente único.
+
+inprogress:
+  - title: "Primas por antigüedad en América Latina"
+    year: "en curso"
+    text: >-
+      Cuánto gana un trabajador por permanecer en el mismo empleo, medido en mercados laborales
+      latinoamericanos donde la antigüedad es corta y la informalidad es alta.
+
+published:
+  - title: "¿Qué determina la mora en microfinanzas? El caso de la Asociación Civil Avanzar"
+    authors: "con Marta Bekerman"
+    year: 2018
+    where: "Problemas del Desarrollo, 49(195), 127–151"
+    url: "https://doi.org/10.22201/iiec.20078951e.2018.195.62527"
+    pdf: "/assets/pdf/golman-bekerman-microfinance.pdf"
+    text: >-
+      Por qué los prestatarios de una ONG argentina de microfinanzas se atrasan en los pagos,
+      usando los registros de clientes de la propia entidad y no una encuesta.
+  - title: "Las transiciones laborales de los jóvenes NiNi. Una encuesta para Argentina"
+    year: 2020
+    where: "Revista de Economía Política de Buenos Aires, 21"
+    pdf: "/assets/pdf/golman-neets.pdf"
+    text: >-
+      Qué pasa después con los jóvenes argentinos que no estudian ni trabajan, y cuánto suele durar
+      esa situación.
+  - title: "Duración del desempleo en Argentina: un análisis dinámico, 2003–2018"
+    year: 2020
+    where: "Asociación Argentina de Economía Política, reunión anual"
+    text: >-
+      Cuánto duran los episodios de desempleo en Argentina, y si la probabilidad de salir de uno
+      cae a medida que la persona lleva más tiempo sin trabajo.
+  - title: "Impactos asimétricos del ciclo económico sobre el desempleo en Argentina"
+    year: 2018
+    where: "Asociación Argentina de Economía Política, reunión anual, UNLP"
+    text: >-
+      El desempleo sube más rápido en una recesión de lo que baja en una recuperación. Este trabajo
+      mide esa asimetría para Argentina.
+
+policy:
+  - title: "Informalidad laboral en Costa Rica"
+    year: "2025–26"
+    org: "Organización Internacional del Trabajo"
+    text: >-
+      Un diagnóstico del empleo informal, escrito para alimentar el marco nacional de
+      formalización. Sistematiza una década de estudios y normativa, sigue cómo se movió el empleo
+      informal por dimensiones demográficas y territoriales con microdatos de encuestas de hogares,
+      y modela sus determinantes estructurales. Las recomendaciones siguen la Recomendación 204 de
+      la OIT y la estrategia FORLAC 2.0.
+  - title: "Futuro del trabajo, sectores emergentes y potencial de transición a la formalidad"
+    authors: "con Christoph Ernst"
+    year: 2022
+    org: "Organización Internacional del Trabajo"
+    pdf: "/assets/pdf/ilo-future-of-work-formality.pdf"
+    text: >-
+      De dónde podrían salir nuevos empleos formales en la economía verde, la economía de
+      plataformas y la economía del cuidado, y qué haría falta para que además fueran decentes.
+  - title: "Trabajo e ingresos en la vejez en países de ingreso medio"
+    authors: "con Carla Henry"
+    year: 2021
+    org: "OIT, Documento de Trabajo 34"
+    url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases"
+    pdf: "/assets/pdf/ilo-wp34-old-age-income-security.pdf"
+    text: >-
+      Qué tan preparada está la gente para el paso del trabajo al retiro en países de ingreso
+      medio, a partir de una base comparativa nueva y un índice de preparación.
+  - title: "Liberar el potencial de crecimiento de las pymes"
+    year: 2024
+    org: "OCDE"
+    url: "https://www.oecd.org/en/publications/unleashing-smes-potential-to-scale-up_b1150a27-en.html"
+    text: >-
+      Informe en coautoría sobre qué frena el crecimiento de las empresas chicas. Mi parte fue el
+      análisis econométrico y una evaluación de si el aprendizaje automático puede predecir el
+      crecimiento de una empresa a partir de su propio sitio web.
+  - title: "Boletín del mercado laboral argentino"
+    year: 2023
+    org: "OIT y CEPAL"
+    text: >-
+      Análisis y redacción sobre productividad, trayectorias laborales y condiciones de ingreso,
+      para el boletín conjunto sobre el mercado de trabajo argentino.
+  - title: "Perspectivas Sociales y del Empleo en el Mundo 2021: el papel de las plataformas digitales"
+    year: 2021
+    org: "Organización Internacional del Trabajo"
+    url: "https://www.ilo.org/publications/flagship-reports/world-employment-and-social-outlook-2021-role-digital-labour-platforms"
+    text: >-
+      Contribución al informe insignia, con datos de encuesta y análisis salarial comparado de
+      trabajadores de plataformas en Chile, México, Argentina, India y Estados Unidos, además de
+      una base de datos sobre plataformas online.

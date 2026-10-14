@@ -1,0 +1,102 @@
+---
+layout: default
+permalink: /es/
+lang: "es"
+alt_url: "/"
+description: >-
+  Matías Golman es economista laboral en la Universidad de Utrecht y consultor de la OIT, la OCDE y
+  el Banco Mundial. Trabaja sobre empleo informal, habilidades y política laboral en América Latina
+  y Europa.
+---
+
+<section class="hero">
+  <div class="frame">
+    <div class="hero__top">
+      <h1 class="hero__lede">Soy economista laboral. Trabajo sobre cómo crear empleos que le permitan a la gente tener una vida digna y plena.</h1>
+      <img class="portrait" src="{{ '/assets/img/matias_golman.jpg' | relative_url }}"
+           alt="Matías Golman" width="608" height="608">
+    </div>
+    <div class="hero__body">
+        <p>Enseño economía aplicada en la Universidad de Utrecht y trabajo como consultor para la
+        Organización Internacional del Trabajo. Antes pasé por la OCDE y el Banco Mundial. Buena
+        parte de lo que hice es sobre empleo informal, habilidades y qué les piden las empresas a
+        los trabajadores, sobre todo en América Latina y en Europa.</p>
+
+        <p>Lo que traigo a una pregunta es el método. Econometría aplicada para el trabajo causal, y
+        texto como dato y aprendizaje automático para las preguntas donde la evidencia está en
+        millones de avisos de empleo y no en una encuesta. Esas herramientas viajan, y yo también.
+        Me interesa igual aplicarlas a pobreza, desigualdad, migración, salario mínimo, educación o
+        política industrial que a los temas sobre los que ya publiqué.</p>
+
+        <p>Estoy abierto a consultorías, colaboraciones de investigación y proyectos de política
+        pública. <a href="mailto:matias.golman@gmail.com">Escribime</a> si algo de acá te sirve.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="frame">
+    <h2 class="band__title">Sobre qué trabajo</h2>
+    <div class="themes">
+      <div class="theme">
+        <h3>Empleo informal</h3>
+        <p>Quién trabaja en la informalidad, por qué, y qué políticas sacan gente de ahí de verdad.
+        Diagnósticos para Costa Rica y Argentina, y un meta-análisis de 79 evaluaciones en América
+        Latina.</p>
+      </div>
+      <div class="theme">
+        <h3>Habilidades y qué piden las empresas</h3>
+        <p>Qué revelan millones de avisos de empleo sobre las habilidades y cualidades personales
+        que buscan los empleadores, cómo cambia eso cuando las empresas adoptan IA, y qué les
+        cuesta a los trabajadores.</p>
+      </div>
+      <div class="theme">
+        <h3>Transiciones y protección social</h3>
+        <p>Cómo se mueve la gente entre empleo, desempleo e inactividad, y qué tan bien aguanta la
+        protección de ingresos en los puntos donde está más expuesta.</p>
+      </div>
+      <div class="theme">
+        <h3>Hacer que los datos sirvan</h3>
+        <p>Microdatos de encuestas, texto como dato, y el trabajo más lento de convertir un
+        resultado en algo sobre lo que un ministerio o un organismo pueda actuar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="frame">
+    <h2 class="band__title">Trabajo en curso</h2>
+    <ul class="entries">
+      {%- for p in site.data.papers_es.working %}
+      <li class="entry">
+        <div class="entry__when">{{ p.year }}</div>
+        <div>
+          <h3 class="entry__title">{{ p.title }}</h3>
+          <p class="entry__meta">{{ p.sub }}{% if p.authors %}. {{ p.authors }}{% endif %}</p>
+          <details class="abstract"><summary>Resumen</summary><p>{{ p.abstract }}</p></details>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+    <p style="margin-top:2rem"><a href="{{ '/es/investigacion/' | relative_url }}">Toda la investigación y el trabajo de política pública</a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="frame">
+    <h2 class="band__title">Lo que construí</h2>
+    <div class="tools">
+      {%- for t in site.data.projects_es %}
+      <article class="tool">
+        <img class="tool__shot" src="{{ t.shot | relative_url }}" alt="{{ t.shot_alt }}" loading="lazy" width="432" height="324">
+        <div>
+          <h3 class="tool__name"><a href="{% if t.external %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}">{{ t.name }}</a></h3>
+          <p>{{ t.blurb }}</p>
+          <p class="tool__note">{{ t.note }}</p>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

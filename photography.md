@@ -5,12 +5,12 @@ permalink: /photography/
 body_class: "listing"
 page_class: "page--wide"
 standfirst: >-
-  Mountains, forests, water and the odd bird, from Patagonia, the Alps, Scotland, Greece, Norway
-  and the flat country I live in now. I refill my energy and spirit when I am in nature, and the
-  camera tends to come out while I am at it.
+  I love being in nature, and I take photographs when I travel. These are some of them.
 description: >-
   Landscape and nature photographs by Matías Golman, from Patagonia, the Alps, Scotland, Greece,
   Norway and the Netherlands.
+lang: "en"
+alt_url: "/es/fotografia/"
 ---
 
 <div class="gallery" role="img" aria-label="A gallery of {{ site.data.photos | size }} landscape and nature photographs: mountains, lakes, glaciers, forests, coastlines, flowers and birds.">
@@ -20,5 +20,5 @@ description: >-
   {%- endfor %}
 </div>
 
-<p class="gallery__note">{{ site.data.photos | size }} photographs, taken on whatever I had in my
-pocket at the time. More of them on <a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>
+<p class="gallery__note">{{ site.data.photos | size }} photographs. More on
+<a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>

@@ -11,6 +11,8 @@ description: >-
   Matías Golman teaches Public Choice and Welfare, Philosophy Politics and Economics, Economics and
   Social Justice, the Data Science Lab for Economists and Economics of the Public Sector at Utrecht
   University, and supervises Bachelor's and Master's theses.
+lang: "en"
+alt_url: "/es/docencia/"
 ---
 
 <h2>Utrecht University</h2>
@@ -21,8 +23,8 @@ description: >-
       <h3 class="entry__title">Public Choice and Welfare</h3>
       <p class="entry__text">Two ways of looking at what governments actually do. The welfare
       economics view, where the state steps in when markets fail, and the public choice view, which
-      asks what happens once you stop assuming a benevolent planner and start modelling politicians,
-      civil servants and voters as the self-interested people they are.</p>
+      asks what happens once you stop assuming a benevolent planner and start modelling the
+      interests of the actors involved, politicians, civil servants and voters included.</p>
     </div>
   </li>
   <li class="entry">
@@ -41,27 +43,29 @@ description: >-
       <h3 class="entry__title">Economics and Social Justice</h3>
       <p class="entry__text">How theories of justice get turned into economic models, and what they
       imply for actual social and economic policy. Students pick a book, read what other people made
-      of it, and argue it out in front of the class. Basic income is the case we use to pull the
-      whole course together.</p>
+      of it, and argue it out in front of the class.</p>
     </div>
   </li>
   <li class="entry">
     <div class="entry__when">Period 3</div>
     <div>
       <h3 class="entry__title">Data Science Lab for Economists</h3>
-      <p class="entry__text">Student teams run a full data science project of their own, from
-      framing the question to presenting the result to people who were not in the room. Most of the
-      teaching goes on the parts that are not the regression, which is to say finding the data,
-      cleaning it, and being honest about what it does and does not show.</p>
+      <p class="entry__text">Student teams take a project of their own through the whole arc of a
+      piece of research. They build a question worth asking, check that the data can actually
+      answer it, and then answer it, either forecasting with machine learning or explaining with
+      econometrics. They present the result and write it up as a paper. That process, rather than
+      the answer they land on, is what they are marked on.</p>
     </div>
   </li>
   <li class="entry">
     <div class="entry__when">Period 4</div>
     <div>
       <h3 class="entry__title">Economics of the Public Sector</h3>
-      <p class="entry__text">Micro and macro applied to the public sector, which in most developed
-      countries accounts for between 40 and 60 per cent of GDP. What governments should provide and
-      how much of it, how they should tax for it, and who ends up carrying the burden.</p>
+      <p class="entry__text">Micro and macro applied to what governments actually do. Which tasks
+      belong with the public sector and which are better left to the market, when intervention
+      improves on the alternative, and how spending and taxation are designed once you take the
+      political nature of the questions seriously. The course runs on argument as much as on the
+      theoretical framework.</p>
     </div>
   </li>
   <li class="entry">

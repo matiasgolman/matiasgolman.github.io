@@ -6,9 +6,9 @@
 
 **Última actualización:** 2026-10-14 (corrida 4)
 **Actualizado por:** Claude
-**Fase actual:** Fase 2 — el sitio está vivo. Corrida de **voz, forma y fotos**: se sacó el
-lenguaje de IA, volvió el About original, se ensanchó el layout, se ordenó el repo y se encendió
-`/photography/` con 246 fotos.
+**Fase actual:** Fase 2 — el sitio está vivo y ahora es **bilingüe completo**. Esta corrida sacó
+el lenguaje de IA, devolvió el About original, ensanchó el layout, ordenó el repo, encendió
+`/photography/` con 246 fotos y tradujo las diez páginas al castellano.
 
 ---
 
@@ -49,6 +49,14 @@ sonaba a máquina, y ése era el problema de fondo: Matías no se reconocía en 
 - **Segunda tanda, pedida sobre la marcha:** la home quedó ordenada *What I work on → Current work
   → Things I've built*; el **tema oscuro pasó a ser el de fábrica** (el claro sigue a un clic, y la
   elección se recuerda); y en el About cambiaron las dos líneas que pidió.
+
+**El sitio es bilingüe de verdad, no sólo la portada.** Las diez páginas existen en los dos
+idiomas y el selector de idioma está **arriba, en la barra de navegación**, separado del menú por
+una línea. Cada página conoce a su par (`alt_url` en el front matter), así que el selector lleva a
+la página equivalente y no a la portada, y los `hreflang` lo declaran para Google. Los textos de
+interfaz viven en `_data/i18n.yml` y los contenidos en `papers_es.yml`, `projects_es.yml` y
+`cv_es.yml`. El orden del menú pasó a ser *About · Work · Teaching · CV · Things I've built ·
+Photography*: primero lo de trabajo, después lo demás.
 
 **`/photography/` está encendida, con 246 fotos.** El zip de Instagram se pudo abrir recién cuando
 Matías lo bajó de OneDrive. De las 379 fotos de publicaciones se clasificaron las tres categorías a
@@ -94,6 +102,9 @@ darle «Verificar».
   duda del punto 6. Descarté «Data projects» porque Araucaria no es un proyecto de datos en el
   sentido en que lo es el dashboard, y porque suena a categoría de portfolio. Si no le cierra, el
   cambio es una línea en `_includes/header.html` y otra en `projects.md`.
+- **S12 — El About en castellano es una traducción, no un original.** Matías escribió el personal
+  statement en inglés y lo va a reescribir él. Cuando lo haga, hay que volver a traducir
+  `es/sobre-mi.md`, que hoy sigue al inglés párrafo por párrafo.
 - **S10 — El About le habla a un empleador.** Es la versión original, tal como la pidió, y la va a
   trabajar él. Mientras tanto el sitio tiene un texto que dice «If I were on the hiring side of the
   equation», lo que choca con D-03 (la búsqueda es implícita). No tocarlo sin que él avise.

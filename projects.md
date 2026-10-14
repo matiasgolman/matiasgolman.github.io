@@ -11,6 +11,8 @@ description: >-
   The Argentina Informality Dashboard, built for the ILO from two decades of household survey
   microdata, and Araucaria Spotter, a community map of monkey puzzle trees growing outside their
   native range.
+lang: "en"
+alt_url: "/es/proyectos/"
 ---
 
 <div class="tools">

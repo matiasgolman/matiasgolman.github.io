@@ -79,6 +79,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;back
 .nav a{color:var(--ink-soft);text-decoration:none}
 .nav a:hover{color:var(--green)}
 .nav a[aria-current="page"]{color:var(--ink);box-shadow:0 1px 0 var(--green)}
+.nav__sep{width:1px;align-self:stretch;background:var(--rule);margin:0 .1rem}
+.nav__lang{font-weight:500}
+.nav a.nav__lang{color:var(--green)}
+.nav a.nav__lang:hover{color:var(--green-deep)}
+@media (max-width:46rem){.nav__sep{display:none}}
 .themer{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);background:none;border:0;padding:0;cursor:pointer}
 .themer:hover{color:var(--green)}
 

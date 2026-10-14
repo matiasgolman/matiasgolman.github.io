@@ -11,6 +11,8 @@ description: >-
   Interactive dashboard of informal employment in Argentina, 2003 onwards, from INDEC's Permanent
   Household Survey (EPH), with rates by sector, province, sex and age. Built for the ILO by Matías
   Golman.
+lang: "en"
+alt_url: "/es/panel/"
 ---
 
 <p>Informal employment is the central fact of the Argentine labour market, and it is measured

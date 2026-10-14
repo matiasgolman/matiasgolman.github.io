@@ -9,6 +9,8 @@ page_class: "page--wide"
 description: >-
   Araucaria Spotter is a free community map of Araucaria araucana, the monkey puzzle tree, growing
   outside its native Andean range. Built by Matías Golman.
+lang: "en"
+alt_url: "/es/araucaria/"
 ---
 
 <p>Araucaria araucana is a living fossil, a tree whose ancestors stood among dinosaurs, with

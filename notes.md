@@ -9,6 +9,8 @@ body_class: "listing"
 description: >-
   Notes by Matías Golman on labour markets, informal employment, skills and working with data.
 sitemap: false
+lang: "en"
+alt_url: "/es/notas/"
 ---
 
 {%- if site.posts.size > 0 %}

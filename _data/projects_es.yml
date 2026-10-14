@@ -1,0 +1,22 @@
+- name: "Panel de informalidad en Argentina"
+  url: "/es/panel/"
+  shot: "/assets/img/shot-dashboard.jpg"
+  shot_alt: "Captura del panel de informalidad argentina, con gráficos y un mapa provincial"
+  blurb: >-
+    Una herramienta interactiva, hecha para la OIT y el Ministerio de Trabajo, que convierte dos
+    décadas de microdatos de encuestas de hogares en algo que un equipo de política pública puede
+    usar de verdad. Cubre el empleo informal desde 2003, abierto por sector, provincia, sexo y
+    edad, y las series están programadas para poder reproducirse cada trimestre en vez de
+    rehacerse a mano.
+  note: "Hecho para la OIT. Datos de la Encuesta Permanente de Hogares del INDEC, desde 2003."
+
+- name: "Araucaria Spotter"
+  url: "https://araucaria-spotter.vercel.app/"
+  external: true
+  shot: "/assets/img/shot-araucaria.jpg"
+  shot_alt: "Captura de la app Araucaria Spotter, con un mapa de árboles registrados"
+  blurb: >-
+    Un mapa comunitario de la Araucaria araucana, el pehuén, creciendo fuera de su rango nativo en
+    los Andes. Empezó como un juego de buscarlas por la calle y terminó en una app para que otros
+    puedan sumar las que encuentran. El mapa muestra hasta dónde viajó la especie.
+  note: "App web, con una versión para Android en camino."

@@ -5,6 +5,8 @@ permalink: /about/
 description: >-
   Matías Golman, labour economist, born in Bariloche in Argentine Patagonia, now at Utrecht
   University. On how he came to economics, how he works, and what moves him.
+lang: "en"
+alt_url: "/es/sobre-mi/"
 ---
 
 I appreciate your interest in my trajectory. 

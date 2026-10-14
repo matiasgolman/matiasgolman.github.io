@@ -60,6 +60,39 @@ Corrida de forma, no de contenido nuevo: Matías había recorrido el sitio y no 
   `assets/img/matias_profile.jpeg`, que no la referenciaba nadie y es el mismo retrato con un
   recorte más abierto que el que usa el sitio.
 
+### Tercera tanda: el sitio entero en castellano
+Matías pidió que no quedara sólo la portada traducida, y que el selector de idioma estuviera
+arriba y no escondido en el pie.
+
+- **Diez páginas nuevas bajo `es/`**: portada, Sobre mí, Investigación, Docencia, CV, Lo que
+  construí, Fotografía, Panel, Araucaria y Notas. La vieja `es.md`, que era una sola página
+  resumen, se eliminó; su URL `/es/` ahora es la portada en castellano, así que no se rompe nada.
+- **`_data/i18n.yml`** guarda los textos de interfaz y el menú de cada idioma; `papers_es.yml`,
+  `projects_es.yml` y `cv_es.yml` los contenidos. El `header`, el `head`, el `footer` y el layout
+  `default` leen el idioma de la página.
+- **Cada página conoce a su par.** Un `alt_url` en el front matter hace que el selector lleve a la
+  página equivalente, no a la portada, y alimenta los `<link rel="alternate" hreflang>` junto con
+  un `x-default`. Tropezón del camino: Liquid no acepta un filtro dentro de un corchete de
+  búsqueda, así que `site.data.i18n[page.lang | default: site.lang]` hay que partirlo en dos
+  `assign`.
+- **El orden del menú cambió** a *About · Work · Teaching · CV · Things I've built · Photography*,
+  con lo de trabajo primero, como pidió.
+
+### Retoques de texto de la misma tanda
+- **La presentación de la portada** ya no termina en «the same craft of getting a messy dataset to
+  answer a question honestly». Ahora dice qué maneja: econometría aplicada para lo causal, y texto
+  como dato y aprendizaje automático cuando la evidencia está en millones de avisos; y que esas
+  herramientas viajan a pobreza, desigualdad, migración, salario mínimo, educación o política
+  industrial.
+- **Docencia**, cuatro cambios suyos: Public Choice termina en «incorporar los intereses de los
+  actores involucrados» en vez de «the self-interested people they are»; se borró la frase del
+  ingreso básico; el Data Science Lab se reescribió alrededor del proceso de investigación
+  completo, con ML para predecir y econometría para explicar, que es sobre lo que se evalúa; y
+  Economics of the Public Sector perdió el 40-60% del PBI y el «who ends up carrying the burden».
+- **Fotografía** perdió el standfirst pretencioso. Ahora dice lo que es: le gusta la naturaleza y
+  saca fotos cuando viaja.
+- El CV todavía nombraba Integrating Insights, que había quedado afuera de `/teaching/`. Corregido.
+
 ### Segunda tanda del día, pedida sobre la marcha
 - **La home se reordenó**: *What I work on* subió justo debajo de la descripción, después *Current
   work*, y al final *Things I've built*.

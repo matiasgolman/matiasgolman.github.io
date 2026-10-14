@@ -10,6 +10,8 @@ body_class: "listing"
 description: >-
   Working papers, peer-reviewed articles and policy reports by Matías Golman on informal employment,
   skills demand, formalisation policy and social protection, for the ILO, the OECD and the World Bank.
+lang: "en"
+alt_url: "/es/investigacion/"
 ---
 
 <h2>Working papers</h2>

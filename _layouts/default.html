@@ -2,7 +2,8 @@
 <html lang="{{ page.lang | default: site.lang }}">
 <head>{% include head.html %}</head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  {%- assign lang = page.lang | default: site.lang -%}{%- assign L = site.data.i18n[lang] -%}
+  <a class="skip" href="#main">{{ L.skip }}</a>
   {% include header.html %}
   <main id="main">{{ content }}</main>
   {% include footer.html %}

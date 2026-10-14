@@ -9,6 +9,8 @@ body_class: "listing"
 description: >-
   Curriculum vitae of Matías Golman: Lecturer in Applied Economics at Utrecht University, consultant
   for the ILO, previously OECD and World Bank. PhD in Economics, University of Nottingham.
+lang: "en"
+alt_url: "/es/cv/"
 ---
 
 <p><a class="btn" href="{{ '/assets/pdf/cv-matias-golman.pdf' | relative_url }}">Download the PDF</a></p>

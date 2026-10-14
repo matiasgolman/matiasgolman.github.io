@@ -1,11 +1,11 @@
 <footer class="foot">
   <div class="frame">
+    {%- assign lang = page.lang | default: site.lang -%}{%- assign L = site.data.i18n[lang] -%}
     <ul>
       {%- for p in site.profiles %}<li><a href="{{ p.url }}" rel="me">{{ p.name }}</a></li>{% endfor %}
-      <li><a href="mailto:{{ site.author.email }}">Email</a></li>
-      <li><a href="{{ '/es/' | relative_url }}" hreflang="es">Español</a></li>
+      <li><a href="mailto:{{ site.author.email }}">{{ L.email }}</a></li>
     </ul>
-    <p>Matías Golman. {{ site.author.job_title }}, {{ site.author.affiliation }}. Built with Jekyll, hosted on GitHub Pages.</p>
+    <p>Matías Golman. {{ site.author.job_title }}, {{ site.author.affiliation }}. {{ L.foot }}</p>
   </div>
 </footer>
 {%- if jekyll.environment == "production" %}
@@ -20,7 +20,10 @@
     function current() {
       return root.getAttribute('data-theme') || 'dark';
     }
-    function paint() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+    function paint() {
+      btn.textContent = current() === 'dark'
+        ? (btn.dataset.labelLight || 'Light') : (btn.dataset.labelDark || 'Dark');
+    }
     paint();
     btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';

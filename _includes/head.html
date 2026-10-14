@@ -2,9 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 
+{%- assign lang = page.lang | default: site.lang -%}{%- assign L = site.data.i18n[lang] -%}
+{%- assign alt_url = page.alt_url | default: L.other_home -%}
 {%- assign page_title = page.seo_title | default: page.title -%}
 {%- if page.url == "/" -%}
   {%- assign full_title = "Matías Golman · Labour economist, Utrecht University" -%}
+{%- elsif page.url == "/es/" -%}
+  {%- assign full_title = "Matías Golman · Economista laboral, Universidad de Utrecht" -%}
 {%- else -%}
   {%- assign full_title = page_title | append: " · Matías Golman" -%}
 {%- endif -%}
@@ -14,6 +18,9 @@
 <title>{{ full_title }}</title>
 <meta name="description" content="{{ desc | escape }}">
 <link rel="canonical" href="{{ canonical }}">
+<link rel="alternate" hreflang="{{ L.code }}" href="{{ canonical }}">
+<link rel="alternate" hreflang="{{ L.other_code }}" href="{{ alt_url | absolute_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
 <meta name="author" content="Matías Golman">
 
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}profile{% endif %}">
@@ -21,7 +28,7 @@
 <meta property="og:title" content="{{ full_title | escape }}">
 <meta property="og:description" content="{{ desc | escape }}">
 <meta property="og:url" content="{{ canonical }}">
-<meta property="og:locale" content="{{ page.lang | default: 'en_GB' }}">
+<meta property="og:locale" content="{% if L.code == 'es' %}es_ES{% else %}en_GB{% endif %}">
 <meta property="og:image" content="{{ '/assets/img/matias_golman.jpg' | absolute_url }}">
 <meta name="twitter:card" content="summary">
 
