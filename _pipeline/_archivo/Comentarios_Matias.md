@@ -82,3 +82,20 @@ Regarding the new folder, I just dont want the data on my personal computer anym
 
 Ya tienes accesso a ella. Luego, cuando este terminado, la copio al disco externo.
 ---
+
+
+## 2026-10-14 (corrida 3)
+
+- I want you to copy the folder here. you have access to it!
+C:\Users\matia\OneDrive - Universiteit Utrecht\Documents\personal
+
+In that folder, you will find the instagram pictures and the paper with maria. Still I think the version is the same GEP version you have.
+
+
+- I have updated to read and write the token.
+
+- Ya subi el bibitex a ORCID. Sin emgargo no hiciste lo que yo queria. Yo queria que revises CADA segmento de ORCID (Website and social links, keywords, countries, Employment, Education and Qualifications, PRofessional Activites, etc.) I want you to take control and fill EVERYWHERE on my ORCID profile with my data. I find it very annoying to do it myself, so I want you to do it. You just need to click in every "edit" button and fill the information! You have my CV and my Linkedin Profile, so you can do this. 
+
+- Insisto en mover la carpeta al one drive. Hazlo. Te pase el link en el projecto te di acceso a la carpeta. No me molesta que igual hagas una copia de 100MB ahi, pero quiero que todo este ahi. Mueve todo ahi. SI quiero mostrar el dashboard como anexo a mi pagina. lo has borrado?
+
+---
