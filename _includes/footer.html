@@ -8,6 +8,10 @@
     <p>Matías Golman — {{ site.author.job_title }}, {{ site.author.affiliation }}. Built with Jekyll, hosted on GitHub Pages.</p>
   </div>
 </footer>
+{%- if jekyll.environment == "production" %}
+<script data-goatcounter="https://matiasgolman.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{%- endif %}
 <script>
   (function () {
     var btn = document.querySelector('[data-theme-toggle]');

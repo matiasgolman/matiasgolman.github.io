@@ -12,4 +12,4 @@ node_modules/
 vendor
 .idea
 # token local, nunca se sube
-_pipeline/.github_token
+_pipeline/.github_token*

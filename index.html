@@ -54,7 +54,7 @@ description: >-
         <div class="entry__when">{{ p.year }}</div>
         <div>
           <h3 class="entry__title">{{ p.title }}</h3>
-          <p class="entry__meta">{{ p.sub }}</p>
+          <p class="entry__meta">{{ p.sub }}{% if p.authors %}. {{ p.authors }}{% endif %}</p>
           <details class="abstract"><summary>Abstract</summary><p>{{ p.abstract }}</p></details>
         </div>
       </li>
