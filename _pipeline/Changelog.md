@@ -60,6 +60,33 @@ Corrida de forma, no de contenido nuevo: Matías había recorrido el sitio y no 
   `assets/img/matias_profile.jpeg`, que no la referenciaba nadie y es el mismo retrato con un
   recorte más abierto que el que usa el sitio.
 
+### Segunda tanda del día, pedida sobre la marcha
+- **La home se reordenó**: *What I work on* subió justo debajo de la descripción, después *Current
+  work*, y al final *Things I've built*.
+- **El tema oscuro pasó a ser el de fábrica.** La paleta oscura vive ahora en `:root` y la clara
+  bajo `:root[data-theme="light"]`. Se sacó el `@media (prefers-color-scheme: dark)`, que ya no
+  tiene sentido, y se corrigió el botón, que adivinaba el tema por la preferencia del sistema. El
+  `<head>` ya aplicaba lo guardado en `localStorage` antes de pintar, así que no hay parpadeo. Se
+  sumó `<meta name="color-scheme" content="dark light">`.
+- **El About volvió a tocarse en dos líneas**, las que pidió: «my work trajectory» → «my
+  trajectory», y «my CV and my papers» → «my CV, my papers and my projects».
+- **«What I work on» pasó de 3+1 a 2×2** (`minmax` de 19rem a 26rem), que es como se lee bien a
+  1440 px.
+
+### Las fotos, por fin
+El zip se pudo abrir cuando Matías lo bajó de OneDrive. 379 fotos de publicaciones, clasificadas a
+ojo en ocho hojas de contacto con la regla que dio él: **naturaleza sin gente, o él solo y lejos**;
+nada con más de una persona ni nada de cerca o en modo selfie.
+
+- **246 al sitio**, a 720 px y calidad 70: 25 MB, ~100 KB cada una, `loading="lazy"` y
+  `width`/`height` para que no salte el layout. Ordenadas por fecha, la más nueva primero.
+- **82 con gente** y **51 que no son naturaleza** quedaron en `personal/_revisar_fotos/`, en su
+  tamaño original y **fuera del repo**, para que él las mire.
+- Después de una primera pasada se movieron seis más a `con-gente` (96, 225, 247, 320, 321, 338):
+  eran de él solo pero de frente o demasiado cerca.
+- Se verificó mirando las 246 ya generadas, no la selección, que es donde se cuelan los errores.
+- `/photography/` es una grilla de columnas CSS, 3 / 2 / 1 según el ancho. El repo quedó en 401 MB.
+
 ### El código de Search Console
 Estaba desde el principio. `git log -S` sobre `_pipeline/` lo encontró en el comentario archivado
 del 14/10: `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`, ya en `_config.yml` y servido en el

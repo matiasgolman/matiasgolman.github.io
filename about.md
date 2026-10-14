@@ -7,7 +7,7 @@ description: >-
   University. On how he came to economics, how he works, and what moves him.
 ---
 
-I appreciate your interest in my work trajectory. 
+I appreciate your interest in my trajectory. 
 
 While a CV and a list of papers effectively capture the academic history, work experience, and some standardised productivity-related outcomes, I believe they tell only part of the story when it comes to understanding someone's trajectory and potential.
 
@@ -31,7 +31,7 @@ During my career, I have gained thorough econometric and programming skills. I a
 
 One of my core traits is that I love learning. I am curious and open-minded when it comes to both work-related abilities and personal interests, be it languages, sports, and basically different ways of doing things. I believe one problem can have multiple solutions and there is always a novel perspective to understand it and solve it. I am intrinsically optimistic. I have a strong capacity to adapt and I work greatly in multi-cultural environments. I love teaching, whether it is Economics at the University, Mathematics in high school, or languages in NGOs that support refugees integration.
 
-When looking at my CV and my papers, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment. 
+When looking at my CV, my papers and my projects, you will hopefully get a good impression of my research interest and my technical skills. I wish that, with this personal statement, you have gained an insight into my strong passion and commitment. 
 
 Thanks for reading!
 

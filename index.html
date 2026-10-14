@@ -29,18 +29,28 @@ description: >-
 
 <section class="band">
   <div class="frame">
-    <h2 class="band__title">Things I have built</h2>
-    <div class="tools">
-      {%- for t in site.data.projects %}
-      <article class="tool">
-        <img class="tool__shot" src="{{ t.shot | relative_url }}" alt="{{ t.shot_alt }}" loading="lazy" width="432" height="324">
-        <div>
-          <h3 class="tool__name"><a href="{% if t.external %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}">{{ t.name }}</a></h3>
-          <p>{{ t.blurb }}</p>
-          <p class="tool__note">{{ t.note }}</p>
-        </div>
-      </article>
-      {%- endfor %}
+    <h2 class="band__title">What I work on</h2>
+    <div class="themes">
+      <div class="theme">
+        <h3>Informal employment</h3>
+        <p>Who works informally, why, and which policies actually move people out of it. Diagnostics
+        for Costa Rica and Argentina, and a meta-analysis of 79 evaluations across Latin America.</p>
+      </div>
+      <div class="theme">
+        <h3>Skills and what firms ask for</h3>
+        <p>What millions of job vacancies reveal about the skills and personal qualities employers
+        want, how that changes when firms adopt AI, and what it costs workers.</p>
+      </div>
+      <div class="theme">
+        <h3>Transitions and social protection</h3>
+        <p>How people move between jobs, unemployment and inactivity, and how well income
+        protection holds up at the points where they are most exposed.</p>
+      </div>
+      <div class="theme">
+        <h3>Making data usable</h3>
+        <p>Survey microdata, text as data, and the slower work of turning a result into something
+        a ministry or an agency can act on.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -66,28 +76,18 @@ description: >-
 
 <section class="band">
   <div class="frame">
-    <h2 class="band__title">What I work on</h2>
-    <div class="themes">
-      <div class="theme">
-        <h3>Informal employment</h3>
-        <p>Who works informally, why, and which policies actually move people out of it. Diagnostics
-        for Costa Rica and Argentina, and a meta-analysis of 79 evaluations across Latin America.</p>
-      </div>
-      <div class="theme">
-        <h3>Skills and what firms ask for</h3>
-        <p>What millions of job vacancies reveal about the skills and personal qualities employers
-        want, how that changes when firms adopt AI, and what it costs workers.</p>
-      </div>
-      <div class="theme">
-        <h3>Transitions and social protection</h3>
-        <p>How people move between jobs, unemployment and inactivity, and how well income
-        protection holds up at the points where they are most exposed.</p>
-      </div>
-      <div class="theme">
-        <h3>Making data usable</h3>
-        <p>Survey microdata, text as data, and the slower work of turning a result into something
-        a ministry or an agency can act on.</p>
-      </div>
+    <h2 class="band__title">Things I have built</h2>
+    <div class="tools">
+      {%- for t in site.data.projects %}
+      <article class="tool">
+        <img class="tool__shot" src="{{ t.shot | relative_url }}" alt="{{ t.shot_alt }}" loading="lazy" width="432" height="324">
+        <div>
+          <h3 class="tool__name"><a href="{% if t.external %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}">{{ t.name }}</a></h3>
+          <p>{{ t.blurb }}</p>
+          <p class="tool__note">{{ t.note }}</p>
+        </div>
+      </article>
+      {%- endfor %}
     </div>
   </div>
 </section>

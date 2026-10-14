@@ -6,8 +6,9 @@
 
 **Última actualización:** 2026-10-14 (corrida 4)
 **Actualizado por:** Claude
-**Fase actual:** Fase 2 — el sitio está vivo. Esta corrida fue de **voz y forma**: se sacó el
-lenguaje de IA, se restauró el About original, se ensanchó el layout y se ordenó el repo.
+**Fase actual:** Fase 2 — el sitio está vivo. Corrida de **voz, forma y fotos**: se sacó el
+lenguaje de IA, volvió el About original, se ensanchó el layout, se ordenó el repo y se encendió
+`/photography/` con 246 fotos.
 
 ---
 
@@ -45,6 +46,16 @@ sonaba a máquina, y ése era el problema de fondo: Matías no se reconocía en 
 - **`/teaching/` rehecha con los siete módulos**, ordenada por período lectivo, con descripciones
   sacadas de los manuales de OSIRIS. Integrating Insights quedó afuera.
 - **About es el primer ítem del nav**, y «Projects» pasó a llamarse «Things I've built».
+- **Segunda tanda, pedida sobre la marcha:** la home quedó ordenada *What I work on → Current work
+  → Things I've built*; el **tema oscuro pasó a ser el de fábrica** (el claro sigue a un clic, y la
+  elección se recuerda); y en el About cambiaron las dos líneas que pidió.
+
+**`/photography/` está encendida, con 246 fotos.** El zip de Instagram se pudo abrir recién cuando
+Matías lo bajó de OneDrive. De las 379 fotos de publicaciones se clasificaron las tres categorías a
+ojo, hoja de contacto por hoja de contacto: **246 de naturaleza** (sin gente, o con él solo y
+lejos) van al sitio; **82 con gente** y **51 que no son naturaleza** quedaron en
+`personal/_revisar_fotos/`, fuera del repo, para que él las mire. Las del sitio están a 720 px y
+calidad 70, que son 25 MB en total y ~100 KB cada una, con `loading="lazy"`.
 
 **El repo bajó de 1,4 GB a 375 MB.** `git lfs` no está instalado en la VM del puente, así que en vez
 de `git lfs prune` se borró `.git/lfs/objects` a mano: eran 1.022 MB de versiones viejas de los JSON
@@ -64,9 +75,6 @@ darle «Verificar».
 ### Bloqueado por Matías
 
 - **B3 — ¿El informe de Costa Rica es público?** (to-do 2). Hoy está descrito sin PDF.
-- **B7 — El zip de Instagram está sólo en la nube.** OneDrive no lo tiene bajado y pesa 1,4 GB, más
-  de lo que el puente puede traer. Hasta que Matías le dé «Mantener siempre en este dispositivo»,
-  no se pueden elegir las fotos (to-do 3).
 - **B8 — La carpeta vieja de `Documents\GitHub\...`.** Pedí permiso para borrarla y me lo denegó el
   clasificador de la sesión. Son 30 segundos a mano (to-do 4).
 
@@ -77,7 +85,11 @@ darle «Verificar».
   sitemap y pido la indexación de la home. Bing ya lo tiene.
 - **S5 — Links entrantes.** ORCID está hecho. Faltan: la ficha de uu.nl, el «Homepage» del perfil de
   Scholar, el research-portal de Utrecht y la firma de los papers.
-- **S6 — Las fotos.** La sección está construida y apagada. Bloqueada por B7.
+- **S6 — Alt text de las 246 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
+  `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
+  corrida. Si le importa la accesibilidad fina, hay que escribirlos a mano o recortar la selección.
+- **S11 — Las 82 fotos con gente.** Están en `personal/_revisar_fotos/con-gente/`. Él dijo que iba
+  a mirar si hay alguna que sí quiere. Cuando la haya, se agrega al manifiesto y listo.
 - **S8 — ¿«Things I've built» es el nombre bueno?** Es la decisión que tomé esta corrida sobre la
   duda del punto 6. Descarté «Data projects» porque Araucaria no es un proyecto de datos en el
   sentido en que lo es el dashboard, y porque suena a categoría de portfolio. Si no le cierra, el
@@ -96,6 +108,7 @@ darle «Verificar».
 
 ### Cerrados
 
+- **B7 — El zip de Instagram.** Cerrado 14/10: Matías lo bajó y se procesaron las 379 fotos.
 - **S3 — Limpieza del repo.** Cerrado 14/10: 1,4 GB → 375 MB, borrando la caché muerta de Git LFS.
 - **S7 — Líneas CRLF.** Cerrado 14/10: `.gitattributes` nuevo y restos de al-folio eliminados.
 - **B4 — Versiones finales de los papers.** Cerrado 14/10: Matías confirmó que las tres son finales.

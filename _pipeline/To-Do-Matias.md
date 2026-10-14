@@ -11,12 +11,14 @@ y el sitio ya lo sirve en el `<head>` de todas las páginas. Google no necesita 
 nuevo: entrá a la propiedad en Search Console y dale **Verificar**. Avisame cuando esté y yo mando
 el sitemap y pido la indexación de la home.
 
-**2. EL ZIP DE INSTAGRAM, PARA QUE PUEDA ELEGIR LAS FOTOS** *(10 segundos y después esperar la
-bajada)*. OneDrive lo tiene en la nube, no en el disco, así que no lo puedo abrir. En el Explorador,
-botón derecho sobre `instagram-gol.mat-2026-10-14-v5z8c0Dj.zip` → **«Mantener siempre en este
-dispositivo»**. Son 1,4 GB, así que tarda. Cuando el ícono quede como círculo verde lleno, avisame
-y elijo diez o doce de viaje y naturaleza, priorizando publicaciones por sobre stories, como
-pediste. La sección ya está construida y apagada.
+**2. LAS 82 FOTOS CON GENTE, POR SI QUERÉS RESCATAR ALGUNA** *(cuando tengas un rato)*. Están en
+`personal\_revisar_fotos\con-gente\`, en su tamaño original y fuera del repo. Son las que quedaron
+afuera por la regla que me diste: más de una persona, o vos de cerca. Al lado, en `otras\`, hay 51
+que descarté por no ser naturaleza (ciudades, comida, documentos). Marcame los números que querés y
+los agrego.
+
+**2b. EL ZIP DE INSTAGRAM YA NO HACE FALTA** *(1,4 GB que podés borrar)*. Ya extraje todo lo que
+necesitaba. Si lo querés conservar, bien; si no, se puede ir.
 
 **3. BORRAR LA CARPETA VIEJA** *(30 segundos)*. `C:\Users\matia\Documents\GitHub\skills_vacancies\
 Skills identification - Coding resources\matiasgolman.github.io` está **vacía**. Pedí permiso para
@@ -47,5 +49,11 @@ módulo por módulo.
 dice si alguien llegó desde LinkedIn, desde Scholar o desde una búsqueda. No mires las visitas
 totales esperando que suban; lo que buscás es **una** visita de la persona indicada.
 
-*(Al 14/10/2026. Se cerraron: las versiones finales de los papers, los siete manuales de curso, y
-la decisión sobre el `.git` de 1,4 GB, que ya quedó en 375 MB.)*
+**9. UN HUECO QUE TE DEJO ANOTADO: el texto alternativo de las fotos.** Las 246 van con `alt=""` y
+una descripción del conjunto en la galería. Describir 246 imágenes una por una no es algo que pueda
+hacer de taquito, y 246 veces «fotografía de paisaje» le molesta más que le sirve a quien usa un
+lector de pantalla. Si querés accesibilidad fina, la salida es recortar la selección a unas pocas
+decenas y escribirles el texto a mano. Decime si te interesa.
+
+*(Al 14/10/2026. Se cerraron: las versiones finales de los papers, los siete manuales de curso, la
+decisión sobre el `.git` de 1,4 GB, y la selección de fotos.)*
