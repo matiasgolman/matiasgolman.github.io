@@ -1,119 +1,84 @@
 # To-do para Matías — SÓLO acciones que tenés que hacer vos
 
-> Este archivo no lleva historia ni confirmaciones: sólo lo que está esperando algo tuyo.
-> **Dónde dejarme instrucciones:** el bloque `COMENTARIO DE MATIAS`, arriba de todo en `ESTADO.md`.
+> **Nunca pegues un token ni una contraseña en `ESTADO.md`**: ese archivo se sube a GitHub. Las
+> credenciales van en `_pipeline/.github_token`, que git ignora. (El token del 14/10 ya lo moví yo;
+> no llegó a subirse.)
 
 ---
 
-**1. EL TOKEN DE GITHUB: estabas mirando la lista equivocada** *(2 minutos)*.
-En la pantalla de *fine-grained PAT* hay **dos** bloques de permisos y vos viste el de abajo:
+**1. EL TOKEN QUEDÓ DE SÓLO LECTURA** *(1 minuto, y es lo único que me bloquea)*. Lo probé: el token
+**autentica bien** como vos y **puede leer** el repo, pero GitHub rechaza el `push` con
+`403 Permission denied`. Eso es exactamente lo que pasa cuando en **Repository permissions** quedó
+**`Contents: Read-only`** en vez de **`Read and write`**.
 
-- **«Account permissions»** — ahí están `Block another user`, `Codespaces user secrets`,
-  `Copilot Chat`, `Gists`, `Git SSH keys`, `Models`… **No es ninguno de esos.**
-- **«Repository permissions»** — está *arriba*, y sólo aparece **después** de elegir
-  «Only select repositories» → `matiasgolman/matiasgolman.github.io`. Ahí sí está **`Contents`**.
+*Settings → Developer settings → Personal access tokens → Fine-grained tokens →* abrí el token →
+**Repository permissions → Contents → Read and write** → *Update token*. No hace falta generar uno
+nuevo ni volver a pegármelo. Avisame y pusheo.
 
-Entonces: *Settings → Developer settings → Personal access tokens → Fine-grained tokens →
-Generate new token* → **Resource owner:** tu usuario → **Repository access:** «Only select
-repositories» → elegí `matiasgolman.github.io` → en **Repository permissions** poné
-**`Contents: Read and write`** (y dejá `Metadata: Read-only`, que se marca solo y es obligatorio).
-**Nada más.** Expiración: 90 días está bien.
-
-**Dónde ponerlo:** creá el archivo `_pipeline/.github_token` (una sola línea, el token pelado).
-Ya lo agregué al `.gitignore`, así que **no se sube a GitHub**. Avisame cuando esté y a partir de
-ahí pusheo yo. Mientras tanto, pusheá vos:
+**Mientras tanto hay dos commits míos sin subir** (el crédito a María García-Vega y la serie del GEP,
+GoatCounter, el `<h1>` de la portada, y sacar el dashboard de 73 MB del sitemap). Si querés verlos ya:
 
 ```
 git push origin main
-git push origin v1-academic-jmp-2025
-git push origin backup/v1-academic-jmp-2025
 ```
 
-> **Lo que el token puede hacer, para que lo sepas:** leer y escribir el contenido de **ese único
-> repo**. No puede tocar tus otros repos, ni tu cuenta, ni borrar el repositorio. Si algo te
-> incomoda, lo revocás desde la misma pantalla y listo.
+**2. ORCID: te falta un clic para los trabajos** *(30 segundos)*. Hice los enlaces (sitio, Scholar,
+LinkedIn, uu.nl), la biografía y el puesto de Utrecht — todo público y guardado. **Los trabajos no
+los pude subir yo**: el navegador no me deja cargar archivos en tu nombre. Te dejé el archivo listo:
 
-**2. VERIFICAR EN GOOGLE SEARCH CONSOLE** *(después del primer push, 1 minuto)*. Ya puse tu código
-`4v_RtVj-...` en el sitio. En cuanto pushees y GitHub Pages termine de desplegar (2-3 minutos),
-entrá a Search Console y dale **«Verificar»**. Después, en el menú de la izquierda, **«Sitemaps»** →
-pegá `https://matiasgolman.github.io/sitemap.xml` → «Enviar».
+*ORCID → Works → Add → **Import works from a BibTeX file** → elegí
+`_pipeline\orcid-works.bib`* → revisá la lista y guardá. Son los **nueve** trabajos (5 publicados,
+1 ILO Working Paper, el del GEP con María, y los otros dos working papers).
 
-**3. BING: la vía corta es importar desde Google** *(2 minutos, y conviene hacerlo)*. Bing alimenta
-a Copilot y a varios asistentes, así que ya no es secundario.
-1. `https://www.bing.com/webmasters` → entrá con Microsoft, Google o Facebook.
-2. En «Add your site» elegí **«Import from Google Search Console»** y autorizá. Te trae el sitio,
-   la verificación y el sitemap de una, sin tocar código. *(Por eso conviene hacer el punto 2
-   primero.)*
-3. Si preferís no conectar las cuentas, elegí «Add site manually», copiame la etiqueta
-   `<meta name="msvalidate.01" ...>` y la pongo yo.
+Ya que estás ahí, dos cosas que yo no hice y te llevan dos minutos:
+- **Agregá el doctorado de Nottingham** en *Education and qualifications* (2021–2025, PhD in
+  Economics). Es el hueco más visible que queda.
+- **Corregí el «to present»** de la Maestría en Economía de la UBA, que figura como si siguiera en
+  curso, y el del IIEP-Baires (terminó en 2019).
 
-**4. LAS TRES ÚLTIMAS VERSIONES DE LOS PAPERS** *(dijiste que me las pasabas)*. Dejámelas en
-`_pipeline/papers/` con cualquier nombre. Las voy a renombrar a nombres estables
-(`golman-ai-personality-traits.pdf`, etc.) para que el link no se rompa nunca más. **Hasta que
-estén, las tres páginas de working paper muestran título y abstract pero el botón de PDF no
-aparece.**
+**3. ¿DÓNDE ESTÁ LA ÚLTIMA VERSIÓN DEL PAPER DE AI?** Dijiste que la agregaste, pero en el repo no
+hay ningún PDF nuevo: `golman-ai-personality-traits.pdf` sigue siendo el de enero de 2026. Si la
+guardaste en otra carpeta, dejámela en `_pipeline/papers/` y la pongo. *(Los otros dos papers y el CV
+sí están al día, y **todos** tienen botón de descarga en `/work/` — sí, la respuesta a tu pregunta
+es que siguen descargables.)*
 
-**5. ¿EL INFORME DE COSTA RICA ES PÚBLICO?** *(bloquea una decisión, y es la única con riesgo real)*
-Me lo dejaste en el pipeline y lo puedo publicar, pero **no lo voy a subir hasta que me confirmes**.
-Es un entregable a un cliente (OIT) sobre política de un gobierno: si la OIT todavía no lo publicó,
-subirlo vos primero puede caer muy mal, por más que no tenga nada confidencial adentro. Tres
-opciones: **(a)** la OIT ya lo publicó → me pasás el link y linkeamos al sitio de la OIT, que además
-es mejor para Google; **(b)** no está publicado → lo describo en el sitio sin PDF (así quedó ahora);
-**(c)** pedís luz verde a tu contraparte en la OIT. **Mi recomendación: (b) hasta tener (a).**
+**4. LAS FOTOS** *(sigue pendiente, sin apuro)*. Cuando tengas el zip de Instagram, dejámelo donde
+quieras y avisame. La sección está construida y apagada; se enciende el día que haya fotos.
 
-**6. EL PAPER DEL GEP** *(30 segundos)*. Google muestra un *GEP discussion paper 26/06* de Nottingham,
-«Artificial Intelligence and Personality Traits», **firmado por vos y María García-Vega**. No lo
-pude abrir para confirmarlo. ¿Es la versión publicada de tu primer capítulo? ¿Va con coautora? Si
-sí, es una ficha citable y linkeable — vale la pena ponerla en el sitio con su número de serie.
+**5. COSTA RICA** *(esperando la respuesta de la OIT)*. El PDF está guardado en `_pipeline/` y **no**
+publicado. El trabajo sí está descrito en `/work/`, sin enlace al archivo.
 
-**7. LAS FOTOS: así se bajan de Instagram** *(5 minutos de trabajo tuyo, el resto lo hace Meta)*.
-Dijiste que no sabías cómo. No hace falta ir trip por trip: **Instagram te las da todas juntas**.
-En la app: *Perfil → ☰ → Tu actividad → Descargar tu información → Descargar o transferir
-información → Parte de tu información → **Contenido** → Publicaciones → Descargar en el dispositivo
-→ Formato **JPEG** / Calidad **Alta** → Crear archivos*. Te llega un mail con un `.zip` en unas
-horas. Me pasás el zip o la carpeta y yo elijo una preselección, la optimizo y te la muestro para
-que la apruebes. **No hace falta que lo hagas ahora**: la sección de fotos queda construida y
-apagada hasta que aparezcan.
+**6. LA MUDANZA DE LA CARPETA — leé esto antes de borrar nada**.
 
-**8. ORCID: decime que sí y lo actualizo yo** *(necesito que estés logueado)*. Tu ORCID
-(`0000-0001-6557-963X`) está sin tocar desde 2018 y hoy ya está enlazado desde el sitio nuevo.
-**Sí, lo puedo actualizar por el navegador** con los datos del CV: empleos, educación, los cinco
-trabajos publicados y los tres working papers. Lo que necesito de vos:
-- Que inicies sesión en ORCID vos mismo, en el navegador que usemos. **Yo no voy a escribir tu
-  contraseña** — no manejo credenciales, es una regla que no rompo ni con permiso.
-- Que me digas «dale» acá o en el chat. Después te muestro el perfil terminado antes de guardar los
-  cambios grandes.
-
-**9. ANALÍTICA GRATUITA** *(opcional, 3 minutos)*. Dijiste «si es gratis, sí». **GoatCounter** es
-gratis para uso personal, no usa cookies y no necesita cartel de consentimiento:
-`https://www.goatcounter.com/signup`, elegí un código de sitio (por ejemplo `matiasgolman`) y
-pasame ese código. Son dos líneas en el sitio. *(Plausible es más lindo pero cuesta ~9 €/mes; no lo
-vale para este tamaño de sitio.)*
-
-**10. LA MUDANZA DE LA CARPETA — leé esto antes de mover nada** *(importante, y una advertencia)*.
-Buenas noticias primero: **la carpeta NO está dentro de otro repo de git**. Chequeé los tres niveles
-de arriba y no hay ningún `.git`, así que está sólo *visualmente* mal ubicada. Nada está roto y
-mover la carpeta **no rompe nada**: el remoto, las ramas y los tags viven adentro de `.git`, y
-viajan con ella. Tres cosas, en orden de importancia:
-
-- **No la pongas adentro de OneDrive.** Es la advertencia principal. OneDrive sincroniza archivo por
-  archivo mientras git escribe decenas de archivos chicos a la vez dentro de `.git`; el resultado
-  conocido son `.lock` fantasma, objetos a medio escribir y repos corruptos. Con 1,3 GB de `.git`,
-  además, le vas a dar a OneDrive un trabajo enorme para nada. **El backup de un repo de git es
-  GitHub**, para eso existe el remoto. Ponelo en una carpeta local común, por ejemplo
-  `C:\Users\matia\GitHub\matiasgolman.github.io`.
-- **Cómo mudarlo, en la computadora nueva:** no copies la carpeta. Clonala de cero, que es más
-  limpio y te deja un repo sano:
+- **No borres nada hasta que estén pusheados los dos commits del punto 1.** Hoy sólo existen en tu
+  disco.
+- **La ruta que me diste no la puedo ver**: `C:\Users\Golma001\...` es otro usuario de Windows, y
+  esta computadora (`matipc`) está logueada como `matia`. O es tu computadora del trabajo, o hace
+  falta conectarla con el botón de agregar carpeta. Decime cuál es y la configuro.
+- **Sigo sin recomendarte OneDrive para el repo**, y ahora con un número: tu `.git` pesa **1,3 GB**.
+  OneDrive lo va a sincronizar archivo por archivo mientras git escribe adentro, que es la receta
+  conocida de `.lock` fantasma y objetos corruptos.
+- **La forma que resuelve tu problema de espacio de verdad** es no copiar la carpeta, sino clonarla
+  superficial en la máquina nueva:
   ```
-  cd C:\Users\<vos>\GitHub
-  git clone https://github.com/matiasgolman/matiasgolman.github.io.git
+  git clone --depth 1 https://github.com/matiasgolman/matiasgolman.github.io.git
   ```
-  Eso ya queda enlazado a GitHub y podés pushear desde ahí sin configurar nada. **Hacelo después de
-  pushear lo que hay acá** (punto 1), si no perdés los commits que todavía no subiste.
-- **El disco externo:** copiá la carpeta entera con `.git` adentro, o mejor, hacé
-  `git clone --mirror https://github.com/matiasgolman/matiasgolman.github.io.git` en el disco: queda
-  un espejo completo, con todas las ramas y tags, en una fracción del espacio.
-- Cuando la carpeta nueva exista, **dame acceso a ella** (el botón de agregar carpeta en la app de
-  escritorio) y seguimos ahí sin perder nada.
+  Eso te deja una copia de trabajo de **~100 MB en vez de 1,5 GB**, y podés pushear igual. La
+  historia completa queda a salvo en GitHub, que es para lo que existe el remoto.
+- **Para el disco externo**, un espejo completo y compacto:
+  ```
+  git clone --mirror https://github.com/matiasgolman/matiasgolman.github.io.git
+  ```
+- Después de eso, podés borrar la carpeta vieja sin perder nada.
+
+**7. GOATCOUNTER: qué hacer con él** *(nada, salvo mirarlo)*. Ya está puesto en el sitio y se activa
+en el próximo deploy. Tu panel es `https://matiasgolman.goatcounter.com`, con el usuario que creaste.
+Lo útil de mirar, una vez por mes y no más:
+- **Referrers** — de dónde llega la gente. Es el único número que importa para tu objetivo: te dice
+  si alguien llegó desde LinkedIn, desde Scholar o desde una búsqueda.
+- **Pages** — qué páginas se leen. Si `/work/` y `/projects/` no se leen nunca, el problema está en
+  la portada.
+- No mires las visitas totales esperando que suban: un sitio personal con tráfico correcto son
+  decenas de visitas al mes, no miles. Lo que buscás es **una** visita de la persona indicada.
 
 *(Al 14/10/2026.)*

@@ -17,29 +17,11 @@ respuestas del cuestionario `preguntas/Preguntas_01_estructura_y_diseno.md` para
 *(vacío — dejame acá lo que quieras que haga la próxima corrida. La corrida lo lee primero, lo
 archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.)*
 
+> **Nunca pegues acá un token, una contraseña ni una clave.** Este archivo se sube a GitHub. Si
+> tenés que pasarme una credencial, escribila en `_pipeline/.github_token`, que git ignora.
 
 
 
-- I verified the google search console alright.Should I do something similar with the Araucaria app or the google play console already does it? also, should I patent it somehow?
-
-- All good with bing webmasters, I think. I can see it there on the webmaster page.
-
-- I have added the last version of the AI and Personality traits working paper. It is a Research Paper Series from the University of Nottingham with Maria, my coauthor. We are on the process of getting it published. In fact, we just got it rejected from the Journal of Labour Economics but with very encouraging comments, so we will work on it and send it somewhere else. The rest of the papers are up to date. Thisis the GEP paper, so yes, better to do it citable and linkable. Still the rest of the papers will have an option to download, right?
-
-- I will ask to the OIT people if I can having on my personal webpage. keep it there but do not publish it.
-
-- I am downloading the pictures, it may be ready for the next interaction. Keep it on the to do list.
-
-- Te doy el OK para actualizar el ORCID. Estoy loggueado en la computadora, solo tienes que tomar control del chrome. Quedo a la espera de tu invitacion en el chat. Has esto al iniciar la proxima corrida, antes que lo demas.
-
-- this is the code of goatcounter <script data-goatcounter="https://matiasgolman.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-
-        Please also let me know how to keep a track of this or what to do with this.
-
-Regarding the new folder, I just dont want the data on my personal computer anymore, since I want to reduce the space. Can you clone it to the new folder and just delete this one after? the new folder is in "C:\Users\Golma001\OneDrive - Universiteit Utrecht\Documents\personal"
-
-Ya tienes accesso a ella. Luego, cuando este terminado, la copio al disco externo.
 ---
 
 ## En una pantalla
