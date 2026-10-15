@@ -101,13 +101,40 @@ de política pública, un periodista o un investigador sindical puede usar de ve
 informalidad desde 2003, abierta por sector, provincia, sexo y edad, y las series están programadas
 para que cada trimestre nuevo se sume en vez de rehacerse a mano.</p>
 
-<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. La página de
-abajo lleva adentro la serie completa, así que tarda un momento en cargar si tenés poca
-conexión.</p>
+<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. Todos los
+números de abajo se calculan en el navegador a partir de las series de la encuesta, así que el
+mapa, el ranking por sector y el gráfico siempre coinciden entre sí.</p>
 
-<div class="embed">
-  <iframe src="/assets/dashboards/argentina_informality_dashboard.html" title="Panel de informalidad en Argentina" loading="lazy"></iframe>
+<div class="embed embed--auto">
+  <iframe id="dashFrame" src="/assets/dashboards/argentina_informality_dashboard.html?lang=es" title="Panel de informalidad en Argentina" loading="lazy"></iframe>
 </div>
+<p class="tool__note" style="margin-top:.7rem">
+  <a href="/assets/dashboards/argentina_informality_dashboard.html?lang=es" target="_blank" rel="noopener">Abrir el panel en una pestaña aparte</a>
+</p>
+<script>
+(function () {
+  var f = document.getElementById('dashFrame');
+  if (!f) return;
+  var root = document.documentElement;
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'dashboard:height') return;
+    if (e.source !== f.contentWindow) return;          // ignore anything else on the bus
+    var h = Math.max(400, Math.min(20000, +d.height || 0));
+    if (h) f.style.height = h + 'px';
+  });
+
+  function sendTheme() {
+    try {
+      f.contentWindow.postMessage(
+        { type: 'dashboard:theme', theme: root.getAttribute('data-theme') || 'dark' }, '*');
+    } catch (err) {}
+  }
+  f.addEventListener('load', sendTheme);
+  new MutationObserver(sendTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
 
 <p style="margin-top:1.4rem"><a href="/es/proyectos/">Otras cosas que
 construí</a>, o <a href="/es/investigacion/">la investigación detrás de
