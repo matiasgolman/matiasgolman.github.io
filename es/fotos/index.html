@@ -94,7 +94,7 @@
   <main id="main"><div class="frame page page--wide">
   <h1 class="page__title">Algunas fotos</h1>
   <p class="page__standfirst">Las saco con el teléfono cada vez que estoy en algún lugar con naturaleza linda. Sin edición de por medio.</p>
-  <div class="listing"><div class="gallery" role="img" aria-label="Una galería de 246 fotos de naturaleza: montañas, lagos, glaciares, bosques, costas, flores y aves.">
+  <div class="listing"><div class="gallery" role="img" aria-label="Una galería de 259 fotos de naturaleza: montañas, lagos, glaciares, bosques, costas, flores y aves.">
   <img class="shot" src="/assets/img/photos/ig-17901674670555633.jpg" alt="" width="720" height="960" loading="lazy" decoding="async" />
   <img class="shot" src="/assets/img/photos/ig-18020697794884605.jpg" alt="" width="720" height="960" loading="lazy" decoding="async" />
   <img class="shot" src="/assets/img/photos/ig-18065250122760294.jpg" alt="" width="720" height="960" loading="lazy" decoding="async" />
@@ -341,9 +341,37 @@
   <img class="shot" src="/assets/img/photos/ig-18241207039039516.jpg" alt="" width="720" height="900" loading="lazy" decoding="async" />
   <img class="shot" src="/assets/img/photos/ig-18315314665071846.jpg" alt="" width="720" height="768" loading="lazy" decoding="async" />
   <img class="shot" src="/assets/img/photos/ig-18356574061106857.jpg" alt="" width="720" height="900" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17844398759042737.jpg" alt="" width="720" height="900" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17845912837242977.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17865847597626289.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17871443500389574.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17884435909483326.jpg" alt="" width="720" height="479" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17907946354365294.jpg" alt="" width="720" height="900" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17866554571309534.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-18039719317052428.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17957739757273186.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-18066653629192877.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-18100841251050113.jpg" alt="" width="720" height="720" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17845060264693179.jpg" alt="" width="720" height="640" loading="lazy" decoding="async" />
+  <img class="shot" src="/assets/img/photos/ig-17939360243084421.jpg" alt="" width="720" height="776" loading="lazy" decoding="async" />
 </div>
 
-<p class="gallery__note">246 fotos. Hay más en
+<script>
+  // Baraja la galería en cada visita, así no se ve siempre el mismo arriba.
+  // Corre antes de pintar, de modo que loading="lazy" pide sólo las que quedan a la vista.
+  (function () {
+    var g = document.querySelector('.gallery');
+    if (!g) return;
+    var shots = Array.prototype.slice.call(g.children);
+    for (var i = shots.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      g.appendChild(shots[j]);
+      shots.splice(j, 1);
+    }
+  })();
+</script>
+
+<p class="gallery__note">259 fotos. Hay más en
 <a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>
 </div>
 </div>
