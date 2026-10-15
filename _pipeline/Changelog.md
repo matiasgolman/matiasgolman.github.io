@@ -17,8 +17,21 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
   `ig-<id>`. El sitio quedó en **259 fotos y 25,9 MB**.
 - **Se borraron `personal/_revisar_fotos/` y el zip de Instagram.** La carpeta `personal/` ahora
   tiene sólo el repo.
-- **Texto para la ficha de UU**, en inglés y neerlandés, con más peso en docencia por ser un
-  perfil de Lecturer. Entregado en el chat. Lo pega él.
+- **La ficha de UU quedó hecha, no sólo escrita.** Matías pidió que la completara yo, así que se
+  hizo desde su Chrome, que es donde tenía la sesión de Solis abierta; el navegador propio habría
+  exigido pasar por el login con segundo factor. En el editor
+  `uu.nl/medewerkers/bewerken/nl/MAGolman` se reemplazó el **texto de perfil en neerlandés y en
+  inglés** y se completó el **texto libre de docencia** en los dos idiomas, con los cinco módulos
+  por período, la dirección de tesis y la etapa de Nottingham.
+  Se usó la vista **Source** de cada editor en vez de escribir en el área rica, para poder meter el
+  enlace como `<a href>` de verdad: una URL escrita como texto plano no cuenta como enlace entrante
+  para Google, que era el punto de todo el ejercicio. Verificado después en las dos versiones
+  públicas, `/medewerkers/MAGolman` y `/staff/MAGolman`.
+  Confirmado de paso que su título formal en neerlandés es **Docent**, que era la duda de la
+  traducción.
+  **No se tocaron** dos cosas: la lista «Betrokken bij de opleiding(en)», que exige elegir carreras
+  de un desplegable por facultad, y los botones «PROFIELTEKST NAAR PURE», que escriben en el
+  research portal. Anotados en el to-do.
 - **`To-Do-Matias.md` podado**: se fueron la carpeta vieja, el zip, las fotos con gente, el nombre
   «Things I've built» y los roles por módulo, que ya están resueltos.
 

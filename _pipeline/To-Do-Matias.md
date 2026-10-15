@@ -44,11 +44,16 @@ depende de los enlaces entrantes y del tiempo. Ahí el estado real es:
 
 Con uu.nl sumado quedan cinco fuentes buenas. Volvé a buscar tu nombre en una semana.
 
-**2. UU: EL ENLACE AL SITIO** *(lo estás haciendo)*. El texto en inglés y neerlandés te lo dejé
-en el chat del 15/10. **Lo importante para Google**: el enlace tiene que ser un enlace de verdad
-(`<a href>`), no la URL escrita como texto plano. Si el editor de perfiles de UU tiene un campo
-propio de enlaces o «personal website», usá ése; el cuerpo del texto es el plan B. Cuando esté,
-avisame y lo doy por cerrado.
+**2. UU: DOS COSAS CHICAS QUE TE DEJÉ A VOS** *(el perfil ya está hecho y publicado)*. El 15/10
+completé el perfil de uu.nl en los dos idiomas, con el enlace al sitio como enlace de verdad.
+Quedan dos cosas que no decidí yo:
+
+- **«Betrokken bij de opleiding(en)»**, en la pestaña Onderwijs, está vacío. Hay que elegir las
+  carreras de una lista por facultad y vos sabés cuáles corresponden mejor que yo.
+- **Los botones «PROFIELTEKST NL/EN NAAR PURE»**, abajo de los campos de perfil, empujan el texto
+  al research portal de Utrecht. Eso te daría **un segundo enlace desde un dominio de UU**, que
+  para Google es valioso. No los toqué porque escriben en otro sistema. Decime y lo hago, o
+  apretalos vos.
 
 **3. COSTA RICA: ¿el informe es público?** *(esperando la respuesta de la OIT)*. El PDF está en
 `_pipeline/` y **no** publicado. El trabajo sí está descrito en `/work/`, sin enlace al archivo.

@@ -99,7 +99,8 @@ darle «Verificar».
   equivocada. Search Console es la única fuente válida para esto.
 - **S5 — Links entrantes.** Estado al 14/10 de noche: **enlazan** el repositorio de Nottingham
   (lo reveló la inspección de URL), el CV del IIEP y su página, ORCID, y el «Homepage» de Scholar.
-  **Falta uu.nl**, que es el más valioso; Matías lo agrega el 15/10. LinkedIn no cuenta, sus
+  **uu.nl quedó hecho el 15/10**: perfil completado en neerlandés e inglés desde el editor de
+  Solis, con el enlace al sitio como `<a href>` real, verificado en las dos versiones públicas. LinkedIn no cuenta, sus
   enlaces son `nofollow`.
 - **S6 — Alt text de las 259 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
   `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
