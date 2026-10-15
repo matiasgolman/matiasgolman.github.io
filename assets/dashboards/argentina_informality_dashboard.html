@@ -537,6 +537,17 @@ function load(name){
     .catch(err=>{ delete shards[name]; throw err; });   // a failed load must stay retryable
   return shards[name];
 }
+let snap = null;
+/* The sector ranking and the map only ever show the latest year at the
+   all-filters level: 36 numbers. Reading them from a 400-byte snapshot keeps
+   the 1.3 MB sector shard and the 1.1 MB province shard off the first paint —
+   they load only if the reader actually asks for that breakdown. */
+function loadSnap(){
+  if(!snap) snap = fetch(DATA_DIR+"snapshot.json")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for snapshot"); return r.json(); })
+    .catch(err=>{ snap = null; throw err; });
+  return snap;
+}
 function loadGeo(){
   if(!geo) geo = fetch(DATA_DIR+"provinces.geo.json")
     .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for geo"); return r.json(); })
@@ -919,13 +930,9 @@ function downloadCsv(){
 async function renderSector(){
   $("#sectorLoad").hidden = false;
   try{
-    const sh = await load("rama_actividad");
-    const c = sh.cols;
-    const idx = select(sh,{g:99,r:99,e:99,c:99}).filter(i=>c.a[i]!==99);
-    let year = -Infinity; idx.forEach(i=>year=Math.max(year,c.y[i]));
-    const rows = idx.filter(i=>c.y[i]===year)
-      .map(i=>({k:c.a[i], v:c.t[i]}))
-      .sort((a,b)=>a.v-b.v);
+    const sn = (await loadSnap()).sector;
+    const year = sn.year;
+    const rows = sn.rows.map(r=>({k:r[0], v:r[1]})).sort((a,b)=>a.v-b.v);
     const labs = L.a[lang];
     const accent = css("--green"), soft = css("--ink-soft"), rule = css("--grid");
     const names = rows.map(r=>labs[r.k]||r.k), vals = rows.map(r=>r.v);
@@ -968,12 +975,9 @@ function ringsOf(geom){
 async function renderMap(){
   $("#mapLoad").hidden = false;
   try{
-    const [sh, gj] = await Promise.all([load("provincia"), loadGeo()]);
-    const c = sh.cols;
-    const idx = select(sh,{g:99,r:99,e:99,c:99}).filter(i=>c.p[i]!==99);
-    let year = -Infinity; idx.forEach(i=>year=Math.max(year,c.y[i]));
+    const [sn, gj] = await Promise.all([loadSnap(), loadGeo()]);
     const byCode = {};
-    idx.filter(i=>c.y[i]===year).forEach(i=>{ byCode[c.p[i]] = c.t[i]; });
+    sn.province.rows.forEach(r=>{ byCode[r[0]] = r[1]; });
 
     // province code -> feature, matched on a de-accented name
     const featBy = {};
