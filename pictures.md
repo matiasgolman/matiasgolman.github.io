@@ -20,5 +20,20 @@ alt_url: "/es/fotos/"
   {%- endfor %}
 </div>
 
+<script>
+  // Baraja la galería en cada visita, así no se ve siempre el mismo arriba.
+  // Corre antes de pintar, de modo que loading="lazy" pide sólo las que quedan a la vista.
+  (function () {
+    var g = document.querySelector('.gallery');
+    if (!g) return;
+    var shots = Array.prototype.slice.call(g.children);
+    for (var i = shots.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      g.appendChild(shots[j]);
+      shots.splice(j, 1);
+    }
+  })();
+</script>
+
 <p class="gallery__note">{{ site.data.photos | size }} pictures. More on
 <a href="https://www.instagram.com/gol.mat/">Instagram</a>.</p>

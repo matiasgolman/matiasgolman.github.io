@@ -5,6 +5,25 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-15 (corrida 5) — las fotos barajadas y la ficha de UU
+
+- **La galería se baraja en cada visita.** Matías quería que no se viera siempre el mismo set
+  arriba. Un Fisher-Yates de diez líneas reordena los nodos antes de pintar, así que
+  `loading="lazy"` sigue pidiendo sólo las que quedan a la vista y no se descarga de más.
+  Verificado con cuatro cargas seguidas: cuatro órdenes distintos. Sin JavaScript la galería
+  igual se ve, en el orden del manifiesto.
+- **Trece fotos más, elegidas por él** de entre las descartadas. Venían en tamaño original, así
+  que se procesaron igual que el resto (720 px, calidad 70) y se renombraron a la convención
+  `ig-<id>`. El sitio quedó en **259 fotos y 25,9 MB**.
+- **Se borraron `personal/_revisar_fotos/` y el zip de Instagram.** La carpeta `personal/` ahora
+  tiene sólo el repo.
+- **Texto para la ficha de UU**, en inglés y neerlandés, con más peso en docencia por ser un
+  perfil de Lecturer. Entregado en el chat. Lo pega él.
+- **`To-Do-Matias.md` podado**: se fueron la carpeta vieja, el zip, las fotos con gente, el nombre
+  «Things I've built» y los roles por módulo, que ya están resueltos.
+
+---
+
 ## 2026-10-14 (corrida 4) — la voz, el ancho y el orden del repo
 
 Corrida de forma, no de contenido nuevo: Matías había recorrido el sitio y no se reconocía en él.

@@ -8,7 +8,7 @@
 **Actualizado por:** Claude
 **Fase actual:** Fase 2 — el sitio está vivo y ahora es **bilingüe completo**. Esta corrida sacó
 el lenguaje de IA, devolvió el About original, ensanchó el layout, ordenó el repo, encendió
-`/photography/` con 246 fotos y tradujo las diez páginas al castellano.
+`/photography/` con 259 fotos y tradujo las diez páginas al castellano.
 
 ---
 
@@ -58,7 +58,7 @@ interfaz viven en `_data/i18n.yml` y los contenidos en `papers_es.yml`, `project
 `cv_es.yml`. El orden del menú pasó a ser *About · Work · Teaching · CV · Things I've built ·
 Photography*: primero lo de trabajo, después lo demás.
 
-**`/photography/` está encendida, con 246 fotos.** El zip de Instagram se pudo abrir recién cuando
+**`/photography/` está encendida, con 259 fotos.** El zip de Instagram se pudo abrir recién cuando
 Matías lo bajó de OneDrive. De las 379 fotos de publicaciones se clasificaron las tres categorías a
 ojo, hoja de contacto por hoja de contacto: **246 de naturaleza** (sin gente, o con él solo y
 lejos) van al sitio; **82 con gente** y **51 que no son naturaleza** quedaron en
@@ -101,11 +101,11 @@ darle «Verificar».
   (lo reveló la inspección de URL), el CV del IIEP y su página, ORCID, y el «Homepage» de Scholar.
   **Falta uu.nl**, que es el más valioso; Matías lo agrega el 15/10. LinkedIn no cuenta, sus
   enlaces son `nofollow`.
-- **S6 — Alt text de las 246 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
+- **S6 — Alt text de las 259 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
   `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
   corrida. Si le importa la accesibilidad fina, hay que escribirlos a mano o recortar la selección.
-- **S11 — Las 82 fotos con gente.** Están en `personal/_revisar_fotos/con-gente/`. Él dijo que iba
-  a mirar si hay alguna que sí quiere. Cuando la haya, se agrega al manifiesto y listo.
+- **S11 — CERRADO.** Matías revisó las descartadas y sumó 13 al sitio (quedaron 259). Las carpetas
+  de `personal/_revisar_fotos/` se borraron y el zip de Instagram también.
 - **S8 — ¿«Things I've built» es el nombre bueno?** Es la decisión que tomé esta corrida sobre la
   duda del punto 6. Descarté «Data projects» porque Araucaria no es un proyecto de datos en el
   sentido en que lo es el dashboard, y porque suena a categoría de portfolio. Si no le cierra, el
