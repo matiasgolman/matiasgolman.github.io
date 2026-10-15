@@ -134,3 +134,19 @@ on the About. I would rather change the "It says very little about..." to "It ma
 - En cuanto a los manuales, ya te dije que hacer en las primeras entradas de este comentario.
 
 ---
+
+---
+
+## 2026-10-15 (corrida 5) — por chat, no por el bloque de ESTADO
+
+> Great. the webpage looks amazing. A few comments on the things on ESTADO:
+>
+> * I still see the sitemap error, even though I have already resent a new one. I dont know hot to fix that.
+> * I have pressed the button Profieltekst EN naar pure. done. you can eliminate that from the to do.
+> * Still no responses from costa rica. will let you know when I do, no worries, remove it from the to do.
+> * I am happy with the about. ITs fine that is a bit more job seeker, I do not mind atm
+> * No quiero describir las fotos. me gusta asi como esta.
+>
+> So I think we can pretty much lean the To do, no? I will revise pictures manually at some point to eliminate those that I may not like that much, but there is no rush. Same with goatcounter. No rush, I will check in like 6 months.
+>
+> So I would rather start with the next part of the project, which is updating the Informality map. As you know, that map is outdated, and I think that the visuals now do not look very beautiful to be honest. So the first task will be updating the aesthetic of the dashboard. I want it to look even more professional. For instance, if I select by sector, it looks quite werid. I am not sure if this is because how the dasbhoard is placed now on the website, as a fixed window. I kind of like that is embeded on the webpage itself, but I also liked it before that I could just scroll down on the webpage and see all the content. that scrolling window now is restricted by the size of the dashboard framing within the site. Not sure if its worth enlarging that, or having the dashboard as an extra thing, or what. Think what its best. Besides that, I would like to improve the visuals of the dashboard. Do you think it can look better? assess it and if you can improve it, do it.

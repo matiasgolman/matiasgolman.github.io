@@ -5,75 +5,45 @@
 
 ---
 
-**1. GOOGLE YA TE TIENE INDEXADO.** La inspección de URL del 14/10 a la noche dice **«La URL está
-en Google»** y **«La página está indexada»**. Rastreo permitido, obtención correcta, indexación
-permitida, y la canónica que elige Google es la que declaramos. No hay nada roto.
+**1. EL SITEMAP: no hay nada roto, y no hay nada que arreglar en el repo.** Lo verifiqué otra vez
+el 15/10 desde fuera de tu red: `https://matiasgolman.github.io/sitemap.xml` responde **200**, es
+XML válido, lista las **18 páginas** (diez en inglés, ocho en castellano) y el `robots.txt` lo
+anuncia. O sea: el archivo está sano.
 
-Lo que Google usó para descubrir el sitio, según la propia inspección, fueron dos páginas de
-referencia:
+La fila roja que ves en Search Console es **estado viejo que Google todavía no refrescó**. Cuando
+un sitemap falla una vez, la consola deja la fila en rojo hasta que vuelve a leerlo por su cuenta,
+y eso tarda entre varios días y un par de semanas. Reenviarlo otra vez no acelera nada y es lo que
+ya hiciste.
 
-- `https://repository.nottingham.ac.uk/entities/publication/74a864c9-...` — el repositorio de
-  Nottingham. Ninguno de los dos lo tenía en la lista y es un enlace muy bueno, porque `ac.uk` es
-  un dominio de alta autoridad.
-- `https://economicas.uba.ar/iiep/wp-content/uploads/CV_MatiasGolman.pdf` — el CV del IIEP. Queda
-  confirmado que ese hipervínculo apunta al sitio nuevo.
+Lo único que conviene hacer:
 
-**1a. PEDÍ LA INDEXACIÓN DE NUEVO, PORQUE LO QUE TIENE GOOGLE ES VIEJO.** El último rastreo fue a
-las 15:23 del 14/10, o sea **antes** de todo el trabajo de esa noche: el castellano completo, el
-cambio de «Photography» a «Some pictures», la intro nueva, las fotos. Google tiene una versión
-anterior. Volvé a «Inspeccionar URL» → «Solicitar indexación» para:
+- **Dejá una sola fila.** Si hay más de una entrada de `/sitemap.xml`, borrá las repetidas y dejá
+  una. Reenviar la misma URL varias veces no ayuda.
+- **Mirá la fecha de «Última lectura», no el estado.** Cuando esa fecha pase a ser posterior al
+  15/10, el estado se pone en verde solo.
+- **Si en dos semanas sigue rojo con una lectura nueva**, ahí sí avisame y lo miro de nuevo.
 
-`/` · `/es/` · `/work/` · `/about/` · `/pictures/`
+*(Dato para que no te preocupe: Google ya tiene el sitio indexado y no lo descubrió por el sitemap
+sino por el repositorio de Nottingham y el CV del IIEP. El sitemap ayuda, no es imprescindible.)*
 
-**1b. EL SITEMAP: reenvialo y listo.** La inspección dice «Error temporal de procesamiento», que es
-un problema pasajero del lado de Google, no del archivo. Lo verifiqué desde fuera de tu red:
-responde 200, es XML válido, tiene las 31 URLs y el `robots.txt` lo anuncia. Borrá la fila roja y
-reenvialo. Si el campo ya muestra el prefijo `https://matiasgolman.github.io/`, escribí sólo
-`sitemap.xml`.
+---
 
-**1c. ESTAR INDEXADO NO ES LO MISMO QUE APARECER AL BUSCAR TU NOMBRE.** Son dos cosas distintas.
-Estar en el índice es el requisito; rankear por encima de tu ficha de uu.nl y del CV de la UBA
-depende de los enlaces entrantes y del tiempo. Ahí el estado real es:
+**2. PEDÍ LA INDEXACIÓN DE LAS DOS PÁGINAS DEL PANEL.** Esta corrida rehízo el panel de
+informalidad entero, así que `/dashboard/` y `/es/panel/` cambiaron de arriba abajo. En Search
+Console: «Inspeccionar URL» → «Solicitar indexación» para:
 
-- **uu.nl**: no enlaza todavía. Lo agregás mañana. Es el que más vale de todos.
-- **Repositorio de Nottingham**: enlaza (descubierto por la inspección).
-- **CV del IIEP, la página y el PDF**: enlazan.
-- **ORCID**: enlaza.
-- **Google Scholar**: el campo «Homepage» tiene la URL correcta.
-- **LinkedIn**: no cuenta, sus enlaces son `nofollow`.
+`/dashboard/` · `/es/panel/`
 
-Con uu.nl sumado quedan cinco fuentes buenas. Volvé a buscar tu nombre en una semana.
+Si querés, sumá también `/` y `/es/`, que siguen con el rastreo del 14/10 a las 15:23, anterior al
+castellano completo.
 
-**2. UU: DOS COSAS CHICAS QUE TE DEJÉ A VOS** *(el perfil ya está hecho y publicado)*. El 15/10
-completé el perfil de uu.nl en los dos idiomas, con el enlace al sitio como enlace de verdad.
-Quedan dos cosas que no decidí yo:
+---
 
-- **«Betrokken bij de opleiding(en)»**, en la pestaña Onderwijs, está vacío. Hay que elegir las
-  carreras de una lista por facultad y vos sabés cuáles corresponden mejor que yo.
-- **Los botones «PROFIELTEKST NL/EN NAAR PURE»**, abajo de los campos de perfil, empujan el texto
-  al research portal de Utrecht. Eso te daría **un segundo enlace desde un dominio de UU**, que
-  para Google es valioso. No los toqué porque escriben en otro sistema. Decime y lo hago, o
-  apretalos vos.
+**3. GOATCOUNTER: nada que hacer, salvo mirarlo cuando tengas ganas.** Tu panel es
+`https://matiasgolman.goatcounter.com`. Quedamos en que lo mirás en unos seis meses.
 
-**3. COSTA RICA: ¿el informe es público?** *(esperando la respuesta de la OIT)*. El PDF está en
-`_pipeline/` y **no** publicado. El trabajo sí está descrito en `/work/`, sin enlace al archivo.
+---
 
-**4. GOATCOUNTER: nada que hacer, salvo mirarlo** una vez por mes. Tu panel es
-`https://matiasgolman.goatcounter.com`. Lo único que importa para tu objetivo es **Referrers**: te
-dice si alguien llegó desde LinkedIn, desde Scholar o desde una búsqueda. No mires las visitas
-totales esperando que suban; lo que buscás es **una** visita de la persona indicada.
-
-**5. EL TEXTO ALTERNATIVO DE LAS FOTOS** *(sólo si te importa la accesibilidad fina)*. Las 259 van
-con `alt=""` y una descripción del conjunto en la galería. Describir 259 imágenes una por una no es
-algo que se pueda hacer con criterio, y 259 veces «fotografía de paisaje» le estorba a quien usa un
-lector de pantalla más de lo que le sirve. Si lo querés resolver, la salida es recortar la
-selección a unas pocas decenas y escribirles el texto a mano.
-
-**6. EL ABOUT, CUANDO LO REESCRIBAS.** Está el original verbatim, como pediste. Dos cosas para
-tener en cuenta cuando le metas mano: el párrafo de «If I were on the hiring side of the equation»
-le habla a alguien que te está por contratar, que es lo único del sitio que dice que estás
-buscando (D-03 decía lo contrario); y la versión en castellano de `/es/sobre-mi/` es una traducción
-del inglés, así que cuando cambies uno hay que pasar el otro.
-
-*(Al 15/10/2026. Cerrados: la carpeta vieja, el zip de Instagram, las fotos con gente, el nombre
-«Things I've built», y los roles por módulo en docencia.)*
+**4. LAS FOTOS, CUANDO QUIERAS.** Dijiste que en algún momento vas a sacar las que te gusten
+menos. No corre prisa y no depende de mí: borrás el archivo de `assets/img/photos/` y la galería
+se reacomoda sola. El texto alternativo **queda como está**, por decisión tuya del 15/10.

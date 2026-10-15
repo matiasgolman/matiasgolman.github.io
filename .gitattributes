@@ -4,6 +4,5 @@
 # Shell scripts always LF
 *.sh text eol=lf
 
-# The dashboard is a 73 MB single-file build. Treat it as binary so an editor
-# touching line endings never produces a 73 MB diff.
-assets/dashboards/*.html -text -diff
+# Vendored minified libraries are machine output: never diff them.
+assets/js/*.min.js -text -diff

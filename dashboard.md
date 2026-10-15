@@ -22,13 +22,13 @@ officer, a journalist or a union researcher can actually use. It covers informal
 onwards, broken down by sector, province, sex and age, and the series are coded so that each new
 quarter can be added rather than rebuilt by hand.</p>
 
-<p class="tool__note">Source: INDEC, Encuesta Permanente de Hogares. Built for the ILO. The page
-below carries the full series, so it takes a moment to load on a slow connection.</p>
+<p class="tool__note">Source: INDEC, Encuesta Permanente de Hogares. Built for the ILO. Every
+figure below is computed from the survey series in your browser, so the numbers in the map, the
+sector ranking and the chart always agree with one another.</p>
 
-<div class="embed">
-  <iframe src="{{ '/assets/dashboards/argentina_informality_dashboard.html' | relative_url }}"
-          title="Argentina Informality Dashboard" loading="lazy"></iframe>
-</div>
+{% include dashboard-embed.html
+   title="Argentina Informality Dashboard"
+   fullscreen="Open the dashboard in its own tab" %}
 
 <p style="margin-top:1.4rem"><a href="{{ '/projects/' | relative_url }}">Other things I've
 built</a>, or <a href="{{ '/work/' | relative_url }}">the research behind this one</a>.</p>

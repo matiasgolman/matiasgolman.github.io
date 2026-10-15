@@ -198,3 +198,9 @@ details.abstract p{font-size:var(--step-s);line-height:1.6;color:var(--ink-soft)
 /* --- embedded tool ---------------------------------------------------------- */
 .embed{margin:2rem 0 0;border:1px solid var(--rule);background:var(--paper-2)}
 .embed iframe{display:block;width:100%;height:min(82vh,46rem);border:0}
+/* An embed that sizes itself to its content: the iframe posts its height back
+   and the page scrolls normally, instead of trapping the reader in a small
+   scrolling window. The height here is only the pre-script fallback. */
+.embed--auto{background:transparent;border:0}
+.embed--auto iframe{height:1600px}
+@media (prefers-reduced-motion:no-preference){.embed--auto iframe{transition:height .15s ease}}

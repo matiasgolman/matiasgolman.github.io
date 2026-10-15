@@ -23,14 +23,13 @@ de política pública, un periodista o un investigador sindical puede usar de ve
 informalidad desde 2003, abierta por sector, provincia, sexo y edad, y las series están programadas
 para que cada trimestre nuevo se sume en vez de rehacerse a mano.</p>
 
-<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. La página de
-abajo lleva adentro la serie completa, así que tarda un momento en cargar si tenés poca
-conexión.</p>
+<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. Todos los
+números de abajo se calculan en el navegador a partir de las series de la encuesta, así que el
+mapa, el ranking por sector y el gráfico siempre coinciden entre sí.</p>
 
-<div class="embed">
-  <iframe src="{{ '/assets/dashboards/argentina_informality_dashboard.html' | relative_url }}"
-          title="Panel de informalidad en Argentina" loading="lazy"></iframe>
-</div>
+{% include dashboard-embed.html
+   title="Panel de informalidad en Argentina"
+   fullscreen="Abrir el panel en una pestaña aparte" %}
 
 <p style="margin-top:1.4rem"><a href="{{ '/es/proyectos/' | relative_url }}">Otras cosas que
 construí</a>, o <a href="{{ '/es/investigacion/' | relative_url }}">la investigación detrás de

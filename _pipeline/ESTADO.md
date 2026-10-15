@@ -4,11 +4,12 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-10-14 (corrida 4)
+**Última actualización:** 2026-10-15 (corrida 5)
 **Actualizado por:** Claude
-**Fase actual:** Fase 2 — el sitio está vivo y ahora es **bilingüe completo**. Esta corrida sacó
-el lenguaje de IA, devolvió el About original, ensanchó el layout, ordenó el repo, encendió
-`/photography/` con 259 fotos y tradujo las diez páginas al castellano.
+**Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
+herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
+del HTML, interfaz con la tipografía y la paleta del sitio, y el embebido que ya no atrapa el
+scroll.
 
 ---
 
@@ -21,60 +22,55 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 ## En una pantalla
 
-**Esta corrida atacó los ocho puntos del comentario del 14/10.** El sitio estaba bien armado pero
-sonaba a máquina, y ése era el problema de fondo: Matías no se reconocía en su propio sitio.
+**El panel de informalidad se rehízo entero.** Matías pidió dos cosas: que se vea más profesional
+y que el embebido deje de encerrar el scroll. Las dos están hechas, y de paso aparecieron tres
+errores que el panel venía publicando sin que nadie los viera.
 
-- **El About es otra vez el personal statement original, literal.** A mitad de la corrida Matías
-  pidió el original crudo para trabajarlo él. Se recuperó `_pages/personalstatement.md` del tag
-  `v1-academic-jmp-2025` y se pegó **verbatim**, incluidos «I appreciate your interest in my work
-  trajectory» y el párrafo de «If I were on the hiring side». Lo único que se tocó son los tres
-  `---` que kramdown convertía en em dash. **Queda pendiente de su mano**: el texto todavía le
-  habla a un empleador, que es justo lo que el sitio no quiere decir (D-03).
-- **Cero em dashes en todo el sitio**, y fuera las estructuras de dos puntos que anticipan. Se
-  revisaron las nueve páginas, los dos archivos de datos, el footer y los títulos.
-- **Fuera el tono comercial.** No queda ninguna mención a clientes. El standfirst de `/work/` ya no
-  dice que la política es «donde fue la mayor parte de mi tiempo» ni a qué apuntaría primero.
-- **El titular de la home sale del About:** «I am a labour economist. I work on how to create jobs
-  that allow people to have a decent and fulfilling life.» Es su frase del viaje en micro de 21
-  horas, no una promesa de valor.
-- **Layout más ancho y foto más grande.** El marco pasó de 62rem a 74rem, los márgenes de 2,5rem a
-  2rem, y la foto de 10rem a 15rem. El dashboard y Araucaria quedaron lado a lado.
-- **`/work/` quedó pareja:** las tres secciones usan la misma jerarquía (título, línea de contexto
-  en sans chica, párrafo en serif). Se escribió un párrafo para cada paper publicado, que antes
-  quedaban en una línea. **Published subió por encima de Policy**, para que la investigación quede
-  junta. Se sumó el paper de tenure premia como *work in progress*.
-- **`/teaching/` rehecha con los siete módulos**, ordenada por período lectivo, con descripciones
-  sacadas de los manuales de OSIRIS. Integrating Insights quedó afuera.
-- **About es el primer ítem del nav**, y «Projects» pasó a llamarse «Things I've built».
-- **Segunda tanda, pedida sobre la marcha:** la home quedó ordenada *What I work on → Current work
-  → Things I've built*; el **tema oscuro pasó a ser el de fábrica** (el claro sigue a un clic, y la
-  elección se recuerda); y en el About cambiaron las dos líneas que pidió.
+- **Los números del encabezado estaban mal, y eran fijos.** Los cinco indicadores (total, varones,
+  mujeres, jóvenes, adultos) estaban **escritos a mano en el HTML** y nunca se calculaban. Decían
+  51,1 % de informalidad total con una variación de ▲ 5,1 %; el cubo de datos dice **46,9 %** y
+  **+0,5 pp**. Lo mismo el mapa: tenía las tasas provinciales congeladas de otra versión (Tucumán
+  65,4 % cuando el dato es 57,8 %). **Eso era «el mapa desactualizado»**: no era el mapa, era que
+  todo lo precalculado venía de una cosecha anterior a los datos del gráfico interactivo. Ahora
+  **todo se calcula del mismo cubo en el navegador**, así que el mapa, el ranking por sector y el
+  gráfico no pueden volver a contradecirse.
+- **Los colores del desglose por sector se repetían.** La paleta tenía ocho colores y el desglose
+  por sector tiene doce series: el código hacía `colores[i % 8]`, así que «Actividades primarias» y
+  «Transporte» salían del mismo azul, y «Servicios de salud» y «Servicios financieros» del mismo
+  naranja. La leyenda era ambigua. **Ése era el «se ve raro» del comentario.**
+- **De 73 MB a 58 KB.** El HTML llevaba adentro 377.386 filas en JSON con los nombres de los veinte
+  campos repetidos en cada fila y ruido de coma flotante (`30.299999237060547` por `30,3`). Los
+  datos se pasaron a **ocho archivos columnares** en `assets/data/informality/`, uno por dimensión
+  de desglose, que se cargan sólo cuando hacen falta. **La primera carga pasó de 10,7 MB a 0,17 MB
+  comprimidos**, unas setenta veces menos.
+- **El scroll ya no se atrapa.** El `iframe` informa su altura a la página por `postMessage` y la
+  página lo estira hasta que entra entero, así que se baja con el scroll normal. Decidí **no**
+  sacar el panel a una página aparte: embebido se lee como una sección más del sitio, hereda el
+  tema claro/oscuro y sigue siendo un archivo portátil que se puede mandar suelto a la OIT. Queda
+  además un enlace «abrir en una pestaña aparte».
+- **La interfaz usa el sistema del sitio.** Literata y IBM Plex, el verde conífera, el papel
+  oscuro, y los filtros **arriba del gráfico en vez de a los costados**: antes el gráfico quedaba
+  espachurrado entre dos columnas y el eje de años era una mancha negra de etiquetas superpuestas.
+  Fuera los emojis de sector, las sombras, los bordes redondeados y el selector de seis paletas.
+- **Con más de ocho series el gráfico se parte en paneles.** Doce sectores o veinticuatro
+  provincias en una sola grilla son ilegibles con cualquier paleta. Ahora cada serie tiene su
+  panel con la misma escala. Los colores quedaron **atados a la entidad**, no a su posición: si
+  sacás una serie, las demás no cambian de color.
+- **Plotly pasó a estar alojado en el repo y con versión fija.** Antes era `plotly-latest.min.js`
+  desde el CDN, que puede cambiar sin aviso y le filtra la IP del visitante a un tercero. Ahora es
+  `plotly-basic-2.35.2` en `assets/js/` (0,36 MB comprimido).
+- **El sitemap no tiene nada roto.** Verificado desde fuera: 200, XML válido, las 18 páginas,
+  anunciado en `robots.txt`. La fila roja de Search Console es estado viejo que Google todavía no
+  refrescó. Está explicado en el To-Do.
 
-**El sitio es bilingüe de verdad, no sólo la portada.** Las diez páginas existen en los dos
-idiomas y el selector de idioma está **arriba, en la barra de navegación**, separado del menú por
-una línea. Cada página conoce a su par (`alt_url` en el front matter), así que el selector lleva a
-la página equivalente y no a la portada, y los `hreflang` lo declaran para Google. Los textos de
-interfaz viven en `_data/i18n.yml` y los contenidos en `papers_es.yml`, `projects_es.yml` y
-`cv_es.yml`. El orden del menú pasó a ser *About · Work · Teaching · CV · Things I've built ·
-Photography*: primero lo de trabajo, después lo demás.
+**Trampa nueva, que costó una hora:** el paquete `plotly-geo` **no trae el módulo `bar`**, y Plotly
+no avisa: acepta `type:"bar"`, lo guarda en `data`, y dibuja una línea igual (`_fullData` dice
+`scatter`). Se cambió a `plotly-basic` y **el mapa se dibuja a mano en SVG**, con proyección
+Mercator sobre el geojson de provincias, que además bajó de 461 KB a 194 KB. Segunda trampa de la
+misma familia: **`Plotly.react` no convierte una traza de `scatter` a `bar`** ni un gráfico plano
+en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráfico.
 
-**`/photography/` está encendida, con 259 fotos.** El zip de Instagram se pudo abrir recién cuando
-Matías lo bajó de OneDrive. De las 379 fotos de publicaciones se clasificaron las tres categorías a
-ojo, hoja de contacto por hoja de contacto: **246 de naturaleza** (sin gente, o con él solo y
-lejos) van al sitio; **82 con gente** y **51 que no son naturaleza** quedaron en
-`personal/_revisar_fotos/`, fuera del repo, para que él las mire. Las del sitio están a 720 px y
-calidad 70, que son 25 MB en total y ~100 KB cada una, con `loading="lazy"`.
-
-**El repo bajó de 1,4 GB a 375 MB.** `git lfs` no está instalado en la VM del puente, así que en vez
-de `git lfs prune` se borró `.git/lfs/objects` a mano: eran 1.022 MB de versiones viejas de los JSON
-del dashboard, que ya no existen en el árbol de trabajo (ningún archivo usa LFS hoy) y que están en
-GitHub igual. También se borraron los restos de al-folio en `.github/` (plantillas de issues,
-`release.yml`, `stale.yml`, que apuntaban al repo de otra gente) y el `.gitattributes` nuevo frena
-el churn de CRLF que amenazaba con meter un diff de 73 MB.
-
-**El código de Search Console estaba desde el principio.** `4v_RtVj-MRC238cDUQl3VPdihKXF3uZXfXrp2WzUf_k`,
-ya puesto en `_config.yml` y servido en el `<head>`. No hace falta pedirlo de nuevo: sólo entrar y
-darle «Verificar».
+---
 
 ## COLA DE TRABAJO
 
@@ -102,9 +98,7 @@ darle «Verificar».
   **uu.nl quedó hecho el 15/10**: perfil completado en neerlandés e inglés desde el editor de
   Solis, con el enlace al sitio como `<a href>` real, verificado en las dos versiones públicas. LinkedIn no cuenta, sus
   enlaces son `nofollow`.
-- **S6 — Alt text de las 259 fotos.** Hoy van con `alt=""` y una descripción del conjunto en el
-  `aria-label` de la galería, porque no hay forma de describir 246 imágenes una por una en una
-  corrida. Si le importa la accesibilidad fina, hay que escribirlos a mano o recortar la selección.
+
 - **S11 — CERRADO.** Matías revisó las descartadas y sumó 13 al sitio (quedaron 259). Las carpetas
   de `personal/_revisar_fotos/` se borraron y el zip de Instagram también.
 - **S8 — ¿«Things I've built» es el nombre bueno?** Es la decisión que tomé esta corrida sobre la
@@ -120,13 +114,21 @@ darle «Verificar».
 - **S9 — Roles de docencia.** Matías dijo que da clase y tutoriales «en muchos» pero no cuál en
   cuál. La página hoy lo dice en general, en el standfirst. Si quiere el rol por módulo, hay que
   preguntárselo.
-- **S2 — El dashboard, más adelante (proyecto aparte).** Se queda como está. Cuando se retome:
-  separar datos de presentación (los 71 MB son datos embebidos en el HTML), rehacer la interfaz con
-  la paleta del sitio, sacar los emojis de los iconos de sector, y evaluar sumar países.
+- **S13 — Sumar países al panel.** Es lo único que quedó del S2 original. El cubo y la interfaz
+  ya están preparados para una dimensión más, pero hace falta decidir qué países y de qué encuesta,
+  y que las definiciones de informalidad sean comparables. No empezado.
 - **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
 
 ### Cerrados
+
+- **S2 — El panel de informalidad.** Cerrado 15/10, corrida 5: datos separados del HTML en ocho
+  archivos columnares, interfaz con el sistema del sitio, embebido que no atrapa el scroll, y los
+  tres errores de datos corregidos. Lo que quedaba de «sumar países» pasó a S13.
+- **S6 — Alt text de las fotos.** Cerrado 15/10 por decisión de Matías: las quiere como están.
+- **B10 — El perfil de uu.nl.** Cerrado 15/10: Matías apretó «Profieltekst EN naar puur».
+- **B11 — Costa Rica.** Fuera de la lista por pedido de Matías el 15/10: avisa él cuando la OIT
+  conteste.
 
 - **B7 — El zip de Instagram.** Cerrado 14/10: Matías lo bajó y se procesaron las 379 fotos.
 - **S3 — Limpieza del repo.** Cerrado 14/10: 1,4 GB → 375 MB, borrando la caché muerta de Git LFS.

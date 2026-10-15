@@ -1,0 +1,43 @@
+{%- comment -%}
+  Auto-sizing embed for the informality dashboard.
+
+  The iframe reports its own content height back to this page, so the panel
+  grows to fit and the visitor scrolls the page normally instead of being
+  trapped in a small scrolling window. Theme changes are forwarded in, so the
+  panel follows the site's dark/light toggle. If scripting is off the iframe
+  keeps the fallback height below and scrolls internally, as it used to.
+{%- endcomment -%}
+{%- assign lang = page.lang | default: site.lang -%}
+<div class="embed embed--auto">
+  <iframe id="dashFrame"
+          src="{{ '/assets/dashboards/argentina_informality_dashboard.html' | relative_url }}?lang={{ lang }}"
+          title="{{ include.title }}" loading="lazy"></iframe>
+</div>
+<p class="tool__note" style="margin-top:.7rem">
+  <a href="{{ '/assets/dashboards/argentina_informality_dashboard.html' | relative_url }}?lang={{ lang }}"
+     target="_blank" rel="noopener">{{ include.fullscreen }}</a>
+</p>
+<script>
+(function () {
+  var f = document.getElementById('dashFrame');
+  if (!f) return;
+  var root = document.documentElement;
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'dashboard:height') return;
+    if (e.source !== f.contentWindow) return;          // ignore anything else on the bus
+    var h = Math.max(400, Math.min(20000, +d.height || 0));
+    if (h) f.style.height = h + 'px';
+  });
+
+  function sendTheme() {
+    try {
+      f.contentWindow.postMessage(
+        { type: 'dashboard:theme', theme: root.getAttribute('data-theme') || 'dark' }, '*');
+    } catch (err) {}
+  }
+  f.addEventListener('load', sendTheme);
+  new MutationObserver(sendTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
