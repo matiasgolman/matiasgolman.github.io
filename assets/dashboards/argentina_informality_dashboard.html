@@ -81,6 +81,15 @@ body.is-embedded .bar{display:none}
 .sect__note{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:0}
 
 /* --- KPI strip --- */
+.ovbtn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:var(--fs-s);
+  font-weight:500;color:var(--green);background:var(--paper);border:1.5px solid var(--green);
+  padding:.38rem .8rem;cursor:pointer;line-height:1.3;white-space:nowrap}
+.ovbtn:hover{background:var(--paper-3)}
+.ovbtn__sw{width:1.4rem;border-top:2px dotted currentColor}
+.ovbtn[aria-pressed="true"]{background:var(--green);color:var(--paper)}
+.ovbtn[aria-pressed="true"] .ovbtn__sw{border-top-style:dotted}
+.ovbtn:disabled{opacity:.45;cursor:not-allowed}
+.meth{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:-.4rem 0 .9rem}
 .meas{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;padding:.2rem 0 1rem;
   font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft)}
 .meas__lab{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.055em}
@@ -266,14 +275,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       <h2 class="sect__title" id="kpiH" data-t="kpi_title">Indicadores principales</h2>
       <p class="sect__note" data-t="kpi_note" id="kpiNote"></p>
     </div>
-    <div class="meas">
-      <span class="meas__lab" data-t="measure">Medida</span>
-      <div class="seg" role="group" aria-label="Measure" id="measSeg">
-        <button type="button" data-meas="1" aria-pressed="true" data-t="meas_1">Metodología nueva INDEC</button>
-        <button type="button" data-meas="2" aria-pressed="false" data-t="meas_2">Serie larga</button>
-      </div>
-      <p class="meas__note" id="measNote"></p>
-    </div>
+    <p class="meth" data-t="kpi_meth"></p>
     <div class="kpis" id="kpis"></div>
   </section>
 
@@ -331,6 +333,8 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
           <h3 class="plot-title" id="plotTitle"></h3>
           <p class="plot-sub" id="plotSub"></p>
         </div>
+        <button type="button" class="ovbtn" id="btnOver" aria-pressed="false">
+          <span class="ovbtn__sw" aria-hidden="true"></span><span id="btnOverTxt"></span></button>
       </div>
       <p class="warn" id="warnBox" hidden></p>
       <p class="plotmsg" id="mainMsg" hidden></p>
@@ -427,6 +431,14 @@ const T = {
   overlay_name:{es:"metodología nueva INDEC",en:"new INDEC methodology"},
   overlay_note:{es:"Línea punteada: metodología nueva de INDEC, desde el primer año completo en que existe (2024). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
                 en:"Dotted line: INDEC's new methodology, from the first full year it exists (2024). The gap to the long series reflects measurement, not a change in informality."},
+  kpi_meth:{es:"Con la metodología nueva de INDEC (vigente desde el 4.º trimestre de 2023), la misma de sus informes.",
+            en:"Using INDEC's new methodology (in force since Q4 2023), the one in its own reports."},
+  geo_meth:{es:"Metodología nueva INDEC · ",en:"New INDEC methodology · "},
+  over_on:{es:"Superponer metodología nueva INDEC",en:"Overlay new INDEC methodology"},
+  over_off:{es:"Quitar metodología nueva INDEC",en:"Remove new INDEC methodology"},
+  over_na:{es:"La superposición está disponible para la tasa de informalidad en líneas o paneles.",
+           en:"The overlay is available for the informality rate as lines or panels."},
+  chart_meth:{es:"Serie larga (2003–)",en:"Long series (2003–)"},
   meas_note_1:{es:"La metodología que INDEC usa desde el 4.º trimestre de 2023: coincide con sus informes. Para ver la evolución desde 2003, elegí la serie larga.",
                en:"The methodology INDEC has used since Q4 2023: it matches INDEC's reports. For the trend since 2003, switch to the long series."},
   meas_note_2:{es:"Mismo criterio que la metodología nueva, calculado con preguntas que están en la encuesta desde 2003. Queda unos 3 puntos por encima; en el gráfico se superponen las dos desde que existe la nueva, en vez de empalmarlas.",
@@ -481,8 +493,8 @@ const T = {
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
   informality_definition:{
-    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Metodología nueva INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la metodología nueva (unos 11 entre los independientes; casi nada entre los asalariados, donde las dos usan la misma pregunta). Por eso no se empalman: en la serie larga el gráfico muestra las dos superpuestas desde 2024.",
-    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced: in the long series the chart overlays both from 2024."},
+    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Metodología nueva INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la metodología nueva (unos 11 entre los independientes; casi nada entre los asalariados, donde las dos usan la misma pregunta). Por eso no se empalman. Los indicadores principales, el ranking por sector y el mapa usan la metodología nueva; el análisis interactivo usa la serie larga y permite superponer la nueva desde 2024.",
+    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced. Headline indicators, the sector ranking and the map use the new methodology; the interactive analysis uses the long series and can overlay the new one from 2024."},
   availability_body:{
     es:"Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos: el año en curso entra cuando sale su 4.º trimestre. En la serie larga, 2003 (sólo el 2.º semestre), 2007, 2015 y 2016 promedian menos trimestres porque esas bases no existen. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Las celdas con menos de 30 observaciones se marcan como imprecisas y las de menos de 10 no se muestran.",
     en:"Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
@@ -557,7 +569,12 @@ let geo = null;
 let picked = {};              // param -> Set of selected values
 let lastRows = null;          // for CSV / table
 let lastForm = "";            // chart-form signature; see reactOrRedraw()
-let meas = 1;                 // 1 = official INDEC, 2 = long series
+/* Headline indicators, sector ranking and map use the new INDEC methodology
+   (v=1); the interactive chart uses the long series (v=2), with the new
+   methodology as an optional overlay. */
+const meas = 1;               // measure for KPIs, sector and map
+const CHART_V = 2;            // measure for the interactive chart
+let showOver = false;         // overlay of v=1 on the chart
 let geoView = "level";        // "level" | "change"
 let meta = null;
 const embedded = (function(){ try { return window.self !== window.top; } catch(e){ return true; } })();
@@ -723,7 +740,7 @@ function currentSel(){
   };
 }
 async function rowsForSelection(s, m){
-  if(m===undefined) m = meas;
+  if(m===undefined) m = CHART_V;
   const cols = METRIC_COLS[s.metric];
   if(s.param==="all"){
     const sh = await load("base");
@@ -824,7 +841,7 @@ function subTitle(s){
   if(s.r!==99) bits.push(L.r[lang][s.r]);
   if(s.c!==99) bits.push(L.c[lang][s.c]);
   const who = bits.length ? bits.join(" · ") : (lang==="es"?"Todas las personas ocupadas":"All employed people");
-  return who + " · " + s.from + "–" + s.to;
+  return t("chart_meth") + " · " + who + " · " + s.from + "–" + s.to;
 }
 
 function showMsg(text){
@@ -842,7 +859,12 @@ async function render(){
     /* Long series + rate: overlay the new INDEC methodology wherever it exists,
        as a dotted line in the same colour, instead of splicing the two. */
     let over = null;
-    if(meas===2 && s.metric==="tasa_informalidad" && s.type!=="bar"){
+    const canOver = s.metric==="tasa_informalidad" && s.type!=="bar";
+    const bo = $("#btnOver");
+    bo.disabled = !canOver; bo.title = canOver ? "" : t("over_na");
+    bo.setAttribute("aria-pressed", String(showOver && canOver));
+    $("#btnOverTxt").textContent = (showOver && canOver) ? t("over_off") : t("over_on");
+    if(showOver && canOver){
       const o = await rowsForSelection(s, 1);
       over = pivot(o.sh, o.idx, o.brkCol, o.cols, s.from, s.to).groups;
       if(!Array.from(over.values()).some(g=>Object.keys(g).length)) over = null;
@@ -1042,7 +1064,7 @@ async function snapRows(kind){
   return {year:y1, rows, hasPrev:Object.keys(prev).length>0};
 }
 function geoSub(year){
-  return (geoView==="level" ? t("rate_year")+year : t("change_year")+(year-1)+"–"+year);
+  return t("geo_meth") + (geoView==="level" ? t("rate_year").toLowerCase()+year : t("change_year").toLowerCase()+(year-1)+"–"+year);
 }
 /* ---------- sector dot plot ---------- */
 async function renderSector(){
@@ -1209,7 +1231,6 @@ function applyI18n(){
     if(/<[a-z]/i.test(v)) el.innerHTML = v; else el.textContent = v;
   });
   $("#attrib").innerHTML = t("attrib");
-  $("#measNote").textContent = t("meas_note_"+meas);
   setSubtitle();
   $("#btnTable").textContent = $("#tableWrap").hidden ? t("show_table") : t("hide_table");
   $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
@@ -1231,7 +1252,7 @@ function yearsFor(m){
   return out;
 }
 function fillYears(reset){
-  const ys = yearsFor(meas);
+  const ys = yearsFor(CHART_V);
   const keepF = +$("#fFrom").value, keepT = +$("#fTo").value;
   fillSelect($("#fFrom"), ys.map(y=>[y,y]), ys[0]);
   fillSelect($("#fTo"),   ys.map(y=>[y,y]), ys[ys.length-1]);
@@ -1239,12 +1260,6 @@ function fillYears(reset){
   if(!reset && ys.includes(keepT)) $("#fTo").value = keepT;
   // two or three annual points read better as bars than as a line
   if(reset) $("#fType").value = ys.length<=3 ? "bar" : "line";
-}
-function setMeas(m){
-  meas = m;
-  $$("[data-meas]").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.meas===meas)));
-  $("#measNote").textContent = t("meas_note_"+meas);
-  fillYears(true); picked = {}; redrawAll();
 }
 function setSubtitle(){
   const md = window._meta; if(!md) return;
@@ -1320,7 +1335,7 @@ function relang(){
   window.addEventListener("resize", postHeight);
   if(window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
 
-  $$("[data-meas]").forEach(b=>b.addEventListener("click", ()=>setMeas(+b.dataset.meas)));
+  $("#btnOver").addEventListener("click", ()=>{ showOver = !showOver; render(); });
   $$("[data-view]").forEach(b=>b.addEventListener("click", ()=>{
     geoView = b.dataset.view;
     $$("[data-view]").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.view===geoView)));
