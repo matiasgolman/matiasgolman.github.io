@@ -28,8 +28,9 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 > corre solo `master_construccion.do` al final y, si el contraste con INDEC pasa, hace commit + push
 > con `publicar_mapa.ps1`. Dos medidas con selector: **metodología nueva INDEC** (desde 2023T4, reproduce los
 > informes: total, sexo, edad, educación y asalariados a ≤0,2 pp en 2023T4–2026T1) y **serie larga**
-> (2003–); en la serie larga el gráfico superpone la nueva, punteada, desde 2024 (decisión de
-> Matías del 18/10: superponer, no empalmar). Indicadores trimestrales; resto en promedios anuales de años completos (hasta 2025);
+> (2003–). Decisión de Matías del 18/10: indicadores, sector y mapa con la metodología nueva;
+> el análisis interactivo con la serie larga por default y un botón destacado para superponer la
+> nueva (punteada, desde 2024); nunca empalmar. Miniatura: el gráfico por grupo de edad. Indicadores trimestrales; resto en promedios anuales de años completos (hasta 2025);
 > mapa y sector con nivel o cambio interanual. Corregidas las etiquetas cruzadas de las ramas 11
 > (otros servicios) y 12 (servicio doméstico). Miniatura nueva. Para cada trimestre nuevo, Matías
 > sólo carga las cifras de INDEC en `validacion\indec_publicado.csv`.
