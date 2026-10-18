@@ -150,3 +150,18 @@ on the About. I would rather change the "It says very little about..." to "It ma
 > So I think we can pretty much lean the To do, no? I will revise pictures manually at some point to eliminate those that I may not like that much, but there is no rush. Same with goatcounter. No rush, I will check in like 6 months.
 >
 > So I would rather start with the next part of the project, which is updating the Informality map. As you know, that map is outdated, and I think that the visuals now do not look very beautiful to be honest. So the first task will be updating the aesthetic of the dashboard. I want it to look even more professional. For instance, if I select by sector, it looks quite werid. I am not sure if this is because how the dasbhoard is placed now on the website, as a fixed window. I kind of like that is embeded on the webpage itself, but I also liked it before that I could just scroll down on the webpage and see all the content. that scrolling window now is restricted by the size of the dashboard framing within the site. Not sure if its worth enlarging that, or having the dashboard as an extra thing, or what. Think what its best. Besides that, I would like to improve the visuals of the dashboard. Do you think it can look better? assess it and if you can improve it, do it.
+
+
+## 2026-10-18 (corrida 6)
+
+- La imagen en "lo que construi": del panel es aun la imagen vieja, con la paleta de colores vieja. Revisa esa miniatura.
+
+remuve del texto "y las series están programadas para poder reproducirse cada trimestre en vez de rehacerse a mano.". Alguien que ve el panel no tiene por que saber eso...
+
+tambien "Informal employment is the central fact of the Argentine labour market, "... no se si es un "fact", es una problematica!
+
+- Quiero ahora que actualicemos los datos. Eso implica actualizar los do files! Actualmente la carpeta se encuentra en ...\mercado_trabajo_latam\proyectos\Herramienta interactiva informalidad.
+
+Sin embargo, a partir de otro proyecto, genere la limpieza de la EHP mas sitematizada, para que pueda servir para multiples proyectos.  Esta se encuentra directamente en ....mercado_trabajo_latam\codigos_limpieza\Argentina . Dado que una vez limpios los datos, solo cambia la creacion de las tabulaciones por informalidad super desagregadas, me gustaria que el proyecto de herramienta interactiva (se podria llamar mapa_informalidad, directamente), haga uso de las bases ya limpias y genere el input para el mapa, que luego llame la pagina web. Es decir que, cada vez que yo actualice los datos (por ejemplo, en dos semanas sale el proximo trimestre), cuando yo corra la base que actualice la descarga, limpieza y creacion de paneles ahoraen codigos_limpieza, el mapa automaticamente tome los ultimos datos y se actualice. Es esto posible? 
+
+Hasta ahora los datos que tenemos son hasta 2024, creo que podemos sumar todo 2025 o inclusive con los que tengamos disponible de 2016. Han habido cambios en la metodologia de medicion de informalidad, asi como en los algoritmos que se utilizan en la base de datos. quiero que utilices para el nuevo mapa el codigo nuevo. Toda la informacion vieja puedes guardarlo en un _archivo dentro de la carpeta que se renombre mapa_informalidad, dentro de proyectos/ . Y luego veo que elimino o no, una vez que este seguro que todo corre correctamente. Por supuesto, una vez que corras los datos nuevos, el do file que genera los datos para el mapa, quiero que corrobores si los datos son los que muestra el INDEC en sus informes, sobre todo los genericos, por edad, por genero, etc, que son facilmente contrastables!

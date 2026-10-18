@@ -6,8 +6,7 @@
     Una herramienta interactiva, hecha para la OIT y el Ministerio de Trabajo, que convierte dos
     décadas de microdatos de encuestas de hogares en algo que un equipo de política pública puede
     usar de verdad. Cubre el empleo informal desde 2003, abierto por sector, provincia, sexo y
-    edad, y las series están programadas para poder reproducirse cada trimestre en vez de
-    rehacerse a mano.
+    edad.
   note: "Hecho para la OIT. Datos de la Encuesta Permanente de Hogares del INDEC, desde 2003."
 
 - name: "Araucaria Spotter"

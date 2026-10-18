@@ -16,16 +16,15 @@ description: >-
   Golman.
 ---
 
-<p>El empleo informal es el hecho central del mercado de trabajo argentino, y se mide todos los
-trimestres. El problema es que esa medición vive en archivos de encuesta crudos que casi nadie
-fuera de una oficina de estadística abre. Este panel convierte esos archivos en algo que un equipo
-de política pública, un periodista o un investigador sindical puede usar de verdad. Cubre la
-informalidad desde 2003, abierta por sector, provincia, sexo y edad, y las series están programadas
-para que cada trimestre nuevo se sume en vez de rehacerse a mano.</p>
+<p>El empleo informal es uno de los problemas más persistentes del mercado de trabajo argentino,
+y se mide todos los trimestres. La dificultad es que esa medición vive en archivos de encuesta crudos
+que casi nadie fuera de una oficina de estadística abre. Este panel convierte esos archivos en algo
+que un equipo de política pública, un periodista o un investigador sindical puede usar de verdad.
+Cubre la informalidad desde 2003, abierta por sector, provincia, sexo y edad.</p>
 
-<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. Todos los
-números de abajo se calculan en el navegador a partir de las series de la encuesta, así que el
-mapa, el ranking por sector y el gráfico siempre coinciden entre sí.</p>
+<p class="tool__note">Fuente: INDEC, Encuesta Permanente de Hogares. Hecho para la OIT. La medida
+oficial reproduce las tasas de informalidad que publica INDEC; una serie larga con el mismo
+criterio llega hasta 2003.</p>
 
 {% include dashboard-embed.html
    title="Panel de informalidad en Argentina"

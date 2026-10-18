@@ -15,16 +15,15 @@ lang: "en"
 alt_url: "/es/panel/"
 ---
 
-<p>Informal employment is the central fact of the Argentine labour market, and it is measured
-every quarter. The problem is that the measurement sits in raw survey files that almost nobody
-outside a statistics office opens. This dashboard turns those files into something a policy
-officer, a journalist or a union researcher can actually use. It covers informality from 2003
-onwards, broken down by sector, province, sex and age, and the series are coded so that each new
-quarter can be added rather than rebuilt by hand.</p>
+<p>Informal employment is one of the most persistent problems of the Argentine labour market,
+and it is measured every quarter. The trouble is that the measurement sits in raw survey files that
+almost nobody outside a statistics office opens. This dashboard turns those files into something a
+policy officer, a journalist or a union researcher can actually use. It covers informality from
+2003 onwards, broken down by sector, province, sex and age.</p>
 
-<p class="tool__note">Source: INDEC, Encuesta Permanente de Hogares. Built for the ILO. Every
-figure below is computed from the survey series in your browser, so the numbers in the map, the
-sector ranking and the chart always agree with one another.</p>
+<p class="tool__note">Source: INDEC, Encuesta Permanente de Hogares. Built for the ILO. The
+official measure reproduces the informality rates INDEC publishes; a long series with the same
+criterion goes back to 2003.</p>
 
 {% include dashboard-embed.html
    title="Argentina Informality Dashboard"

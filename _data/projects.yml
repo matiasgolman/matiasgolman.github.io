@@ -5,8 +5,7 @@
   blurb: >-
     An interactive tool, built for the ILO and Argentina's labour ministry, that turns two decades
     of household survey microdata into something a policy officer can actually use. It covers
-    informal employment from 2003 onwards, broken down by sector, province, sex and age, and the
-    time series are coded so they can be reproduced each quarter rather than rebuilt by hand.
+    informal employment from 2003 onwards, broken down by sector, province, sex and age.
   note: "Built for the ILO. Data from INDEC's Permanent Household Survey (EPH), 2003 onwards."
 
 - name: "Araucaria Spotter"
