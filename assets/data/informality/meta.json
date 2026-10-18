@@ -1,0 +1,9 @@
+{
+  "generado": "2026-10-18 20:03:22",
+  "ultimo_trimestre": {"y": 2026, "q": 1},
+  "inicio_oficial": {"y": 2023, "q": 4},
+  "ultimo_anio": 2025,
+  "primer_anio": {"1": 2024, "2": 2003},
+  "base_deflactor": {"y": 2026, "q": 1},
+  "validacion": "123 de 131 contrastes dentro de tolerancia, diferencia maxima 1.87 pp"
+}

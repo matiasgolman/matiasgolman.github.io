@@ -4,7 +4,7 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-10-18 (corrida 6, EN CURSO)
+**Última actualización:** 2026-10-18 (corrida 6)
 **Actualizado por:** Claude
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
@@ -22,21 +22,16 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 ## En una pantalla
 
-> **CORRIDA 6 — EN CURSO (18/10).** Actualización de datos del panel con la limpieza nueva.
-> Hecho: carpeta renombrada a `proyectos\mapa_informalidad` (todo lo viejo en `_archivo\`);
-> `mapa_informalidad.do` nuevo que lee `cross_paneles.dta`, arma el cubo (dos medidas: `v=1`
-> oficial INDEC desde 2023T4, `v=2` serie larga 2003–), contrasta con INDEC
-> (`validacion\indec_publicado.csv`) y publica por `publicar_mapa.ps1`; enganchado al final de
-> `master_construccion.do` (`proyectos_actualizar` en `00_config.do`). Contraste de la primera
-> corrida: total, sexo, edad, educación y asalariados dentro de 0,2 pp de INDEC en 2023T4–2026T1.
-> Textos de `dashboard.md`, `es/panel.md` y `_data/projects*.yml` corregidos (sin commitear).
-> Panel nuevo (lee CSV, selector de medida, KPI trimestrales, cambio interanual en mapa y
-> sector, etiquetas de rama 11/12 corregidas) escrito y guardado como borrador en
-> `_pipeline/borrador_panel_nuevo.html`; todavía no reemplaza al de `assets/dashboards/`.
-> **Falta:** que Matías vuelva a correr `mapa_informalidad.do` (la primera corrida cortó en el
-> snapshot por un `r(110)`, ya corregido; tiene `local publicar 0`), revisar el cubo, copiar el
-> panel nuevo, probarlo, borrar los `.json` viejos de `assets/data/informality`, sacar la
-> miniatura `assets/img/shot-dashboard.jpg` del panel nuevo, poner `publicar 1` y pushear.
+> **CORRIDA 6 — CERRADA (18/10).** El panel tiene datos nuevos hasta **1T 2026** con la limpieza
+> nueva. Los datos los arma `proyectos\mapa_informalidad\mapa_informalidad.do` (Stata) a partir de
+> `cross_paneles.dta` y los escribe como CSV en `assets/data/informality/` más `meta.json`; lo
+> corre solo `master_construccion.do` al final y, si el contraste con INDEC pasa, hace commit + push
+> con `publicar_mapa.ps1`. Dos medidas con selector: **oficial INDEC** (desde 2023T4, reproduce los
+> informes: total, sexo, edad, educación y asalariados a ≤0,2 pp en 2023T4–2026T1) y **serie larga**
+> (2003–). Indicadores trimestrales; resto en promedios anuales de años completos (hasta 2025);
+> mapa y sector con nivel o cambio interanual. Corregidas las etiquetas cruzadas de las ramas 11
+> (otros servicios) y 12 (servicio doméstico). Miniatura nueva. Para cada trimestre nuevo, Matías
+> sólo carga las cifras de INDEC en `validacion\indec_publicado.csv`.
 
 **El panel de informalidad se rehízo entero.** Matías pidió dos cosas: que se vea más profesional
 y que el embebido deje de encerrar el scroll. Las dos están hechas, y de paso aparecieron tres

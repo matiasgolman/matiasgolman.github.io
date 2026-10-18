@@ -5,6 +5,26 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-18 (corrida 6) — datos nuevos del panel, con la limpieza nueva
+
+- **Pipeline de datos nuevo.** `proyectos\mapa_informalidad\mapa_informalidad.do` lee
+  `cross_paneles.dta` de `codigos_limpieza\Argentina` (no repite limpieza), arma el cubo, lo
+  contrasta con INDEC y, si pasa, lo publica con `publicar_mapa.ps1`. Lo corre
+  `master_construccion.do` al final (`proyectos_actualizar` en `00_config.do`). Lo viejo quedó en
+  `mapa_informalidad\_archivo\`.
+- **Dos medidas** (`v` en el cubo): oficial INDEC (`informal_indec`, desde 2023T4) y serie larga
+  (`empleo_informal_hist`, 2003–). No se empalman; el panel tiene un selector y lo explica.
+- **Validación**: 131 contrastes contra el informe de informalidad de INDEC y el de tasas del
+  1T2026. Total, sexo, edad×sexo, educación y asalariados a ≤0,2 pp; cuenta propia 0,2–0,4 pp
+  arriba; industria y comercio hasta 1,9 pp por agrupación distinta de ramas (aviso, no frena).
+- **Panel**: lee CSV en vez de JSON; indicadores trimestrales (vs. trimestre anterior y vs. un año
+  antes); resto anual de años completos; mapa y sector con nivel o cambio interanual; ingresos en
+  pesos constantes del 1T2026; categoría ocupacional con servicio doméstico y familiares sin
+  remuneración. **Error corregido**: las etiquetas de las ramas 11 y 12 estaban cruzadas (el
+  76,9 % de «otros servicios» era servicio doméstico).
+- **Textos**: fuera «central fact» y la frase de las series «programadas para reproducirse»;
+  miniatura nueva con la paleta del sitio.
+
 ## 2026-10-15 (corrida 5) — las fotos barajadas y la ficha de UU
 
 - **La galería se baraja en cada visita.** Matías quería que no se viera siempre el mismo set

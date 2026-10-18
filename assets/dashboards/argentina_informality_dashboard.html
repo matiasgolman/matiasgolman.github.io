@@ -81,6 +81,11 @@ body.is-embedded .bar{display:none}
 .sect__note{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:0}
 
 /* --- KPI strip --- */
+.meas{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;padding:.2rem 0 1rem;
+  font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft)}
+.meas__lab{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.055em}
+.meas__note{max-width:62ch;margin:0}
+.kpi__delta + .kpi__delta{margin-top:.1rem}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
   gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .kpi{padding:.95rem 1.1rem .95rem 0;border-left:1px solid var(--rule);padding-left:1.1rem}
@@ -240,7 +245,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     <div class="bar__in">
       <div>
         <h1 class="bar__title" data-t="title">Panel de informalidad en Argentina</h1>
-        <p class="bar__sub" data-t="subtitle">INDEC · Encuesta Permanente de Hogares · 2003–2024</p>
+        <p class="bar__sub" id="subtitle">INDEC · Encuesta Permanente de Hogares</p>
       </div>
       <div style="display:flex;gap:.6rem;align-items:center">
         <div class="seg" role="group" aria-label="Language">
@@ -260,6 +265,14 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     <div class="sect__head" style="border-top:0;padding-top:0">
       <h2 class="sect__title" id="kpiH" data-t="kpi_title">Indicadores principales</h2>
       <p class="sect__note" data-t="kpi_note" id="kpiNote"></p>
+    </div>
+    <div class="meas">
+      <span class="meas__lab" data-t="measure">Medida</span>
+      <div class="seg" role="group" aria-label="Measure" id="measSeg">
+        <button type="button" data-meas="1" aria-pressed="true" data-t="meas_1">Oficial INDEC</button>
+        <button type="button" data-meas="2" aria-pressed="false" data-t="meas_2">Serie larga</button>
+      </div>
+      <p class="meas__note" id="measNote"></p>
     </div>
     <div class="kpis" id="kpis"></div>
   </section>
@@ -337,13 +350,19 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
   <section class="sect" aria-labelledby="geoH">
     <div class="sect__head">
       <h2 class="sect__title" id="geoH" data-t="landscape_title">Dónde se concentra la informalidad</h2>
-      <p class="sect__note" id="geoYear"></p>
+      <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+        <p class="sect__note" id="geoYear"></p>
+        <div class="seg" role="group" aria-label="View" id="viewSeg">
+          <button type="button" data-view="level" aria-pressed="true" data-t="view_level">Nivel</button>
+          <button type="button" data-view="change" aria-pressed="false" data-t="view_change">Cambio interanual</button>
+        </div>
+      </div>
     </div>
     <div class="split">
       <div class="card">
         <div class="card__head">
           <h3 class="card__title" data-t="sector_title">Por sector</h3>
-          <p class="card__sub" data-t="sector_sub">Tasa de informalidad, último año disponible</p>
+          <p class="card__sub" id="sectorSub"></p>
         </div>
         <div class="card__body"><div id="sectorChart"></div>
           <div class="loading" id="sectorLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
@@ -352,7 +371,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       <div class="card">
         <div class="card__head">
           <h3 class="card__title" data-t="map_title">Por provincia</h3>
-          <p class="card__sub" data-t="map_sub">Tasa de informalidad, último año disponible</p>
+          <p class="card__sub" id="mapSub"></p>
         </div>
         <div class="card__body"><div id="mapChart"></div>
           <div class="loading" id="mapLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
@@ -389,7 +408,9 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
 "use strict";
 /* ===========================================================================
    Argentina informality dashboard
-   Data: INDEC EPH, pre-aggregated cube, served as columnar JSON shards.
+   Data: INDEC EPH, pre-aggregated cube written by mapa_informalidad.do
+   (Stata) as CSV shards, plus meta.json. Column `v` is the measure:
+   1 = official INDEC definition, 2 = long series since 2003.
    Every figure on this page is computed from that cube at run time.
    =========================================================================== */
 
@@ -399,14 +420,26 @@ const PLOT_CFG = {displayModeBar:false, responsive:true};
 /* ---------- i18n ---------- */
 const T = {
   title:{es:"Panel de informalidad en Argentina",en:"Argentina informality dashboard"},
-  subtitle:{es:"INDEC · Encuesta Permanente de Hogares · 2003–2024",en:"INDEC · Permanent Household Survey · 2003–2024"},
+  subtitle:{es:"INDEC · Encuesta Permanente de Hogares",en:"INDEC · Permanent Household Survey"},
+  measure:{es:"Medida",en:"Measure"},
+  meas_1:{es:"Oficial INDEC",en:"Official (INDEC)"},
+  meas_2:{es:"Serie larga",en:"Long series"},
+  meas_note_1:{es:"Definición oficial de INDEC, disponible desde el 4.º trimestre de 2023. Coincide con los informes de INDEC. Para ver la evolución desde 2003, elegí la serie larga.",
+               en:"INDEC's official definition, available since Q4 2023. It matches INDEC's reports. For the trend since 2003, switch to the long series."},
+  meas_note_2:{es:"Mismo criterio que la oficial, calculado con preguntas que están en la encuesta desde 2003. Queda unos 3 puntos por encima de la oficial: no se deben empalmar.",
+               en:"Same criterion as the official measure, built from questions asked since 2003. It sits about 3 points above the official one: the two should not be spliced."},
+  view_level:{es:"Nivel",en:"Level"}, view_change:{es:"Cambio interanual",en:"Year-on-year change"},
+  rate_year:{es:"Tasa de informalidad, ",en:"Informality rate, "},
+  change_year:{es:"Cambio en la tasa, en puntos porcentuales, ",en:"Change in the rate, percentage points, "},
+  latest_q:{es:"Último trimestre",en:"Latest quarter"},
+  vs_prev_q:{es:"vs. trimestre anterior",en:"vs. previous quarter"},
+  vs_year_ago:{es:"vs. un año antes",en:"vs. a year earlier"},
+  qlab:{es:"T",en:"Q"},
   kpi_title:{es:"Indicadores principales",en:"Headline indicators"},
   interactive_title:{es:"Análisis interactivo",en:"Interactive analysis"},
   landscape_title:{es:"Dónde se concentra la informalidad",en:"Where informality concentrates"},
   sector_title:{es:"Por sector",en:"By sector"},
-  sector_sub:{es:"Tasa de informalidad, último año disponible",en:"Informality rate, latest year available"},
   map_title:{es:"Por provincia",en:"By province"},
-  map_sub:{es:"Tasa de informalidad, último año disponible",en:"Informality rate, latest year available"},
   data_notes:{es:"Notas",en:"Notes"},
   metric:{es:"Métrica",en:"Metric"},
   parameter:{es:"Desagregar por",en:"Break down by"},
@@ -425,7 +458,7 @@ const T = {
   informal:{es:"informal",en:"informal"}, formal:{es:"formal",en:"formal"},
   rate_axis:{es:"Tasa de informalidad (%)",en:"Informality rate (%)"},
   hours_axis:{es:"Horas semanales",en:"Weekly hours"},
-  income_axis:{es:"Ingreso mensual (ARS corrientes)",en:"Monthly income (current ARS)"},
+  income_axis:{es:"Ingreso mensual (pesos constantes)",en:"Monthly income (constant pesos)"},
   how_it_works_text:{
     es:"Elegí una métrica y, si querés, una dimensión para desagregar; los filtros de abajo acotan la población.",
     en:"Pick a metric and, optionally, a dimension to break it down; the filters below narrow the population."},
@@ -445,11 +478,11 @@ const T = {
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
   informality_definition:{
-    es:"Un puesto de trabajo se cuenta como <strong>informal</strong> si la persona es <strong>trabajador familiar sin remuneración</strong>; es <strong>asalariada y no tiene descuentos jubilatorios</strong>; o es <strong>empleadora, cuentapropista o cooperativista</strong> en un establecimiento informal o domiciliario. El empleo <strong>formal</strong> es el complemento: asalariados con descuentos jubilatorios, y empleadores, cuentapropistas y cooperativistas en establecimientos registrados.",
-    en:"A job counts as <strong>informal</strong> if the person is an <strong>unpaid family worker</strong>; an <strong>employee without pension deductions</strong>; or an <strong>employer, self-employed or co-operative member</strong> in an informal or home-based establishment. <strong>Formal</strong> employment is the complement: employees with pension deductions, and employers, self-employed and co-operative members in registered establishments."},
+    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Oficial INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la oficial (unos 11 entre los independientes), así que las dos series no se empalman.",
+    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>Official (INDEC)</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the official measure (about 11 among the self-employed), so the two series should not be spliced."},
   availability_body:{
-    es:"Las series son <strong>promedios anuales</strong> construidos sobre los trimestres disponibles de la EPH. Faltan el T3 de 2007, el T3 y el T4 de 2015 y el T1 de 2016, de modo que esos años promedian menos trimestres y pueden quedar afectados por estacionalidad. Los ingresos son nominales en pesos corrientes y <strong>no están deflactados</strong>: entre dos años distintos no son comparables en términos reales.",
-    en:"The series are <strong>annual averages</strong> built from the available EPH quarters. Q3 2007, Q3 and Q4 2015 and Q1 2016 are missing, so those years average fewer quarters and may be affected by seasonality. Incomes are nominal, in current pesos, and <strong>not deflated</strong>: across years they are not comparable in real terms."},
+    es:"Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos: el año en curso entra cuando sale su 4.º trimestre. En la serie larga, 2003 (sólo el 2.º semestre), 2007, 2015 y 2016 promedian menos trimestres porque esas bases no existen. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Las celdas con menos de 30 observaciones se marcan como imprecisas y las de menos de 10 no se muestran.",
+    en:"Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
   attrib:{
     es:'Datos y desarrollo de <a href="https://matiasgolman.github.io/">Matías Golman</a>, sobre la Encuesta Permanente de Hogares del INDEC. Hecho para la OIT. Contacto: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>',
     en:'Data and development by <a href="https://matiasgolman.github.io/">Matías Golman</a>, from INDEC\'s Permanent Household Survey. Built for the ILO. Contact: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>'}
@@ -480,26 +513,26 @@ const L = {
   g:{es:{0:"Mujeres",1:"Varones",99:"Todos"},en:{0:"Women",1:"Men",99:"All"}},
   r:{es:{1:"GBA",40:"NOA",41:"NEA",42:"Cuyo",43:"Pampeana",44:"Patagónica",99:"Todas"},
      en:{1:"GBA",40:"NOA",41:"NEA",42:"Cuyo",43:"Pampean",44:"Patagonian",99:"All"}},
-  e:{es:{1:"15–24",2:"25–44",3:"45–64",4:"65+",99:"Todas"},en:{1:"15–24",2:"25–44",3:"45–64",4:"65+",99:"All"}},
-  c:{es:{1:"Asalariado",2:"Empleador",3:"Cuenta propia",4:"Servicio doméstico",99:"Todas"},
-     en:{1:"Employee",2:"Employer",3:"Self-employed",4:"Domestic service",99:"All"}},
+  e:{es:{1:"Hasta 24",2:"25–44",3:"45–64",4:"65+",99:"Todas"},en:{1:"Up to 24",2:"25–44",3:"45–64",4:"65+",99:"All"}},
+  c:{es:{1:"Asalariado",2:"Servicio doméstico",3:"Cuenta propia",4:"Patrón",5:"Familiar sin remuneración",99:"Todas"},
+     en:{1:"Employee",2:"Domestic worker",3:"Own-account",4:"Employer",5:"Unpaid family worker",99:"All"}},
   d:{es:{1:"Secundario incompleto o menos",2:"Secundario completo / terciario incompleto",3:"Terciario completo",99:"Todos"},
      en:{1:"Incomplete secondary or less",2:"Complete secondary / incomplete tertiary",3:"Complete tertiary",99:"All"}},
   m:{es:{1:"1 miembro",2:"2 miembros",3:"3 miembros",4:"4 miembros",5:"5+ miembros",99:"Todos"},
      en:{1:"1 member",2:"2 members",3:"3 members",4:"4 members",5:"5+ members",99:"All"}},
-  s:{es:{1:"Menos de 5",2:"Entre 5 y 40",3:"Más de 40",99:"Todos"},
-     en:{1:"Fewer than 5",2:"5 to 40",3:"More than 40",99:"All"}},
+  s:{es:{1:"Hasta 5 personas",2:"De 6 a 40",3:"Más de 40",99:"Todos"},
+     en:{1:"Up to 5 people",2:"6 to 40",3:"More than 40",99:"All"}},
   q:{es:{1:"Quintil 1",2:"Quintil 2",3:"Quintil 3",4:"Quintil 4",5:"Quintil 5",99:"Todos"},
      en:{1:"Quintile 1",2:"Quintile 2",3:"Quintile 3",4:"Quintile 4",5:"Quintile 5",99:"All"}},
   j:{es:{0:"No jefe/a",1:"Jefe/a de hogar",99:"Todos"},en:{0:"Not head",1:"Head of household",99:"All"}},
   a:{es:{1:"Actividades primarias",2:"Industria manufacturera",3:"Construcción",4:"Comercio y reparaciones",
         5:"Hoteles y restaurantes",6:"Transporte y telecomunicaciones",7:"Servicios financieros e inmobiliarios",
         8:"Administración pública y defensa",9:"Enseñanza",10:"Servicios de salud",
-        11:"Servicio doméstico en hogares",12:"Otros servicios sociales y comunitarios",99:"Todos"},
+        11:"Otros servicios sociales y comunitarios",12:"Servicio doméstico en hogares",99:"Todos"},
      en:{1:"Primary activities",2:"Manufacturing",3:"Construction",4:"Trade and repairs",
         5:"Hotels and restaurants",6:"Transport and telecoms",7:"Financial and real-estate services",
         8:"Public administration and defence",9:"Education",10:"Health services",
-        11:"Domestic service in households",12:"Other social and community services",99:"All"}}
+        11:"Other social and community services",12:"Domestic service in households",99:"All"}}
 };
 const PROV = {1:"Buenos Aires",2:"Santa Fe",3:"Entre Ríos",4:"Misiones",5:"Chaco",6:"Chubut",7:"Mendoza",
   8:"Corrientes",9:"Córdoba",10:"Formosa",11:"Neuquén",12:"Santiago del Estero",13:"Jujuy",14:"Río Negro",
@@ -521,6 +554,9 @@ let geo = null;
 let picked = {};              // param -> Set of selected values
 let lastRows = null;          // for CSV / table
 let lastForm = "";            // chart-form signature; see reactOrRedraw()
+let meas = 1;                 // 1 = official INDEC, 2 = long series
+let geoView = "level";        // "level" | "change"
+let meta = null;
 const embedded = (function(){ try { return window.self !== window.top; } catch(e){ return true; } })();
 
 const $  = s => document.querySelector(s);
@@ -531,20 +567,44 @@ const seriesColors = () => ["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--
 const mapRamp      = () => ["--m0","--m1","--m2","--m3","--m4","--m5","--m6"].map(css);
 
 /* ---------- data ---------- */
+/* CSV shard -> {n, cols:{name:[...]}}. Every value is numeric; an empty cell
+   (e.g. formal hours in a cell with no formal workers) becomes null. */
+function parseCsv(txt){
+  const lines = txt.replace(/\r/g,"").split("\n").filter(l=>l.length);
+  const head = lines[0].split(",").map(h=>h.replace(/"/g,"").trim());
+  const cols = {}; head.forEach(h=>cols[h]=new Array(lines.length-1));
+  for(let i=1;i<lines.length;i++){
+    const f = lines[i].split(",");
+    for(let j=0;j<head.length;j++){
+      const v = f[j];
+      cols[head[j]][i-1] = (v===undefined || v==="" || v===".") ? null
+        : (isNaN(+v) ? v.replace(/"/g,"") : +v);
+    }
+  }
+  return {n:lines.length-1, cols};
+}
+function loadMeta(){
+  if(!meta) meta = fetch(DATA_DIR+"meta.json")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for meta"); return r.json(); })
+    .catch(err=>{ meta = null; throw err; });
+  return meta;
+}
 function load(name){
-  if(!shards[name]) shards[name] = fetch(DATA_DIR+name+".json")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for "+name); return r.json(); })
+  if(!shards[name]) shards[name] = fetch(DATA_DIR+name+".csv")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for "+name); return r.text(); })
+    .then(parseCsv)
     .catch(err=>{ delete shards[name]; throw err; });   // a failed load must stay retryable
   return shards[name];
 }
 let snap = null;
 /* The sector ranking and the map only ever show the latest year at the
-   all-filters level: 36 numbers. Reading them from a 400-byte snapshot keeps
+   all-filters level. Reading them from a small snapshot keeps
    the 1.3 MB sector shard and the 1.1 MB province shard off the first paint —
    they load only if the reader actually asks for that breakdown. */
 function loadSnap(){
-  if(!snap) snap = fetch(DATA_DIR+"snapshot.json")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for snapshot"); return r.json(); })
+  if(!snap) snap = fetch(DATA_DIR+"snapshot.csv")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for snapshot"); return r.text(); })
+    .then(parseCsv)
     .catch(err=>{ snap = null; throw err; });
   return snap;
 }
@@ -613,36 +673,37 @@ function yearAxis(years, maxLabels){
 }
 
 /* ---------- KPI strip ---------- */
+const qName = (y,q) => lang==="es" ? `${q}.º trim. ${y}` : `Q${q} ${y}`;
 async function renderKpis(){
-  const sh = await load("base");
+  const sh = await load("trimestral");
   const c = sh.cols;
   const cards = [
-    {k:"total", lab:{es:"Total",en:"Total"},        f:{g:99,r:99,e:99,c:99}, lead:true},
-    {k:"women", lab:{es:"Mujeres",en:"Women"},      f:{g:0,r:99,e:99,c:99}},
-    {k:"men",   lab:{es:"Varones",en:"Men"},        f:{g:1,r:99,e:99,c:99}},
-    {k:"youth", lab:{es:"15–24 años",en:"Aged 15–24"}, f:{g:99,r:99,e:1,c:99}},
-    {k:"prime", lab:{es:"25–44 años",en:"Aged 25–44"}, f:{g:99,r:99,e:2,c:99}}
+    {lab:{es:"Total",en:"Total"},             f:{g:99,e:99,c:99}, lead:true},
+    {lab:{es:"Mujeres",en:"Women"},           f:{g:0,e:99,c:99}},
+    {lab:{es:"Varones",en:"Men"},             f:{g:1,e:99,c:99}},
+    {lab:{es:"Hasta 24 años",en:"Up to 24"},  f:{g:99,e:1,c:99}},
+    {lab:{es:"25–44 años",en:"Aged 25–44"},   f:{g:99,e:2,c:99}}
   ];
-  let latest = -Infinity;
+  let latest = null;
   const vals = cards.map(cd=>{
-    const idx = select(sh, cd.f);
-    const byYear = {};
-    idx.forEach(i=>{ byYear[c.y[i]] = c.t[i]; });
-    const ys = Object.keys(byYear).map(Number).sort((a,b)=>a-b);
-    const y1 = ys[ys.length-1];
-    latest = Math.max(latest, y1);
-    return {cd, year:y1, v:byYear[y1], prev:byYear[y1-1]};
+    const idx = select(sh, Object.assign({v:meas}, cd.f));
+    const byQ = {};
+    idx.forEach(i=>{ byQ[c.y[i]*10+c.q[i]] = c.t[i]; });
+    const ks = Object.keys(byQ).map(Number).sort((a,b)=>a-b);
+    const k1 = ks[ks.length-1];
+    if(latest==null || k1>latest) latest = k1;
+    const prevQ = ks.length>1 ? ks[ks.length-2] : null;
+    return {cd, v:byQ[k1], pq: prevQ!=null ? byQ[prevQ] : null, py: byQ[k1-10]};
   });
-  $("#kpis").innerHTML = vals.map(({cd,v,prev})=>{
-    const d = (prev==null||v==null) ? null : v-prev;
-    const arrow = d==null ? "" : d>0.05 ? "▲" : d<-0.05 ? "▼" : "▪";
-    const dTxt = d==null ? "" :
-      `<p class="kpi__delta">${arrow} <b>${d>0?"+":""}${d.toFixed(1)} ${t("pp")}</b> ${t("vs_prev")}</p>`;
-    return `<div class="kpi${cd.lead?" kpi--lead":""}">
+  const delta = (v,p,lab) => {
+    if(v==null || p==null) return "";
+    const d = v-p, arrow = d>0.05 ? "▲" : d<-0.05 ? "▼" : "▪";
+    return `<p class="kpi__delta">${arrow} <b>${d>0?"+":""}${d.toFixed(1)} ${t("pp")}</b> ${lab}</p>`;
+  };
+  $("#kpis").innerHTML = vals.map(({cd,v,pq,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p>
-      <p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>${dTxt}</div>`;
-  }).join("");
-  $("#kpiNote").textContent = t("latest") + ": " + latest;
+      <p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>${delta(v,pq,t("vs_prev_q"))}${delta(v,py,t("vs_year_ago"))}</div>`).join("");
+  if(latest!=null) $("#kpiNote").textContent = t("latest_q") + ": " + qName(Math.floor(latest/10), latest%10);
   return latest;
 }
 
@@ -662,13 +723,14 @@ async function rowsForSelection(s){
   const cols = METRIC_COLS[s.metric];
   if(s.param==="all"){
     const sh = await load("base");
-    const idx = select(sh,{g:s.g,r:s.r,e:s.e,c:s.c});
+    const idx = select(sh,{v:meas,g:s.g,r:s.r,e:s.e,c:s.c});
     return {sh, idx, brkCol:null, cols};
   }
   const name = PARAM_SHARD[s.param], col = PARAM_COL[s.param];
   const sh = await load(name);
   const fixed = {g:s.g,r:s.r,e:s.e,c:s.c};
-  delete fixed[col];                       // the dimension being broken down runs free
+  delete fixed[col];
+  fixed.v = meas;                       // the dimension being broken down runs free
   const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99);
   return {sh, idx, brkCol:col, cols};
 }
@@ -735,9 +797,11 @@ function buildChips(param, keys, colored){
   }));
 }
 
+let baseLab = "";
 function axisTitle(metric){
   return metric==="tasa_informalidad" ? t("rate_axis")
-       : metric==="media_horas" ? t("hours_axis") : t("income_axis");
+       : metric==="media_horas" ? t("hours_axis")
+       : t("income_axis").replace(")", baseLab ? (lang==="es"?" de ":" of ")+baseLab+")" : ")");
 }
 function buildTitle(s){
   const bits = [];
@@ -926,35 +990,59 @@ function downloadCsv(){
   setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
 }
 
+/* ---------- snapshot helpers ----------
+   snapshot.csv holds, for each measure, the two latest complete years of the
+   rate by sector (k="s") and province (k="p"), with no other filter. */
+async function snapRows(kind){
+  const sh = await loadSnap(), c = sh.cols;
+  const idx = []; for(let i=0;i<sh.n;i++) if(c.k[i]===kind && c.v[i]===meas) idx.push(i);
+  const y1 = Math.max.apply(null, idx.map(i=>c.y[i]));
+  const cur = {}, prev = {};
+  idx.forEach(i=>{ if(c.y[i]===y1) cur[c.id[i]] = c.t[i]; else if(c.y[i]===y1-1) prev[c.id[i]] = c.t[i]; });
+  const rows = Object.keys(cur).map(Number).map(id=>({k:id,
+    v: geoView==="level" ? cur[id] : (prev[id]==null ? null : +(cur[id]-prev[id]).toFixed(1))}))
+    .filter(r=>r.v!=null);
+  return {year:y1, rows, hasPrev:Object.keys(prev).length>0};
+}
+function geoSub(year){
+  return (geoView==="level" ? t("rate_year")+year : t("change_year")+(year-1)+"–"+year);
+}
 /* ---------- sector dot plot ---------- */
 async function renderSector(){
   $("#sectorLoad").hidden = false;
   try{
-    const sn = (await loadSnap()).sector;
+    const sn = await snapRows("s");
     const year = sn.year;
-    const rows = sn.rows.map(r=>({k:r[0], v:r[1]})).sort((a,b)=>a.v-b.v);
+    const rows = sn.rows.slice().sort((a,b)=>a.v-b.v);
     const labs = L.a[lang];
-    const accent = css("--green"), soft = css("--ink-soft"), rule = css("--grid");
+    const accent = css("--green"), soft = css("--ink-soft");
     const names = rows.map(r=>labs[r.k]||r.k), vals = rows.map(r=>r.v);
+    const chg = geoView==="change";
+    const fmtV = v => (chg && v>0 ? "+" : "") + v.toFixed(1);
+    const dotCol = vals.map(v=> !chg ? accent : (v>0 ? css("--s2") : css("--s1")));
     const traces = [
       {type:"scatter", mode:"lines", orientation:"h",
        x:vals.flatMap((v,i)=>[0,v,null]), y:names.flatMap(n=>[n,n,null]),
        line:{color:css("--rule"),width:1}, hoverinfo:"skip", showlegend:false},
       {type:"scatter", mode:"markers+text", x:vals, y:names,
-       marker:{color:accent, size:9, line:{width:0}},
-       text:vals.map(v=>v.toFixed(1)), textposition:"middle right",
+       marker:{color:dotCol, size:9, line:{width:0}},
+       text:vals.map(fmtV), textposition:vals.map(v=>chg&&v<0?"middle left":"middle right"),
        textfont:{size:11, color:soft, family:'"Plex Sans",system-ui,sans-serif'},
-       hovertemplate:"<b>%{y}</b><br>%{x:.1f}%<extra></extra>", showlegend:false}
+       hovertemplate:"<b>%{y}</b><br>%{text}"+(chg?" pp":"%")+"<extra></extra>", showlegend:false}
     ];
-    const maxV = Math.max.apply(null, vals);
+    const maxV = Math.max.apply(null, vals), minV = Math.min.apply(null, vals);
+    const span = Math.max(Math.abs(maxV), Math.abs(minV)) || 1;
+    const range = chg ? [Math.min(0,minV)-span*0.22, Math.max(0,maxV)+span*0.22] : [0, maxV*1.16];
     Plotly.react("sectorChart", traces, baseLayout({
       height: Math.max(330, rows.length*27+56),
       margin:{t:8,r:16,b:34,l:8},
-      xaxis:Object.assign(baseLayout().xaxis,{range:[0, maxV*1.16], ticksuffix:"%", title:{text:""}}),
+      xaxis:Object.assign(baseLayout().xaxis,{range, ticksuffix: chg?"":"%", title:{text:""},
+        zeroline:chg, zerolinecolor:css("--ink-soft"), zerolinewidth:1}),
       yaxis:Object.assign(baseLayout().yaxis,{gridcolor:"rgba(0,0,0,0)", automargin:true,
         tickfont:{size:11, color:css("--ink")}})
     }), PLOT_CFG);
-    $("#geoYear").textContent = t("latest")+": "+year;
+    $("#sectorSub").textContent = geoSub(year);
+    $("#geoYear").textContent = "";
   }catch(e){ console.error(e); }
   finally{ $("#sectorLoad").hidden = true; postHeight(); }
 }
@@ -975,9 +1063,11 @@ function ringsOf(geom){
 async function renderMap(){
   $("#mapLoad").hidden = false;
   try{
-    const [sn, gj] = await Promise.all([loadSnap(), loadGeo()]);
+    const [sn, gj] = await Promise.all([snapRows("p"), loadGeo()]);
     const byCode = {};
-    sn.province.rows.forEach(r=>{ byCode[r[0]] = r[1]; });
+    sn.rows.forEach(r=>{ byCode[r.k] = r.v; });
+    const chg = geoView==="change";
+    const fmtV = v => (chg && v>0 ? "+" : "") + v.toFixed(1) + (chg ? " pp" : "%");
 
     // province code -> feature, matched on a de-accented name
     const featBy = {};
@@ -1011,8 +1101,16 @@ async function renderMap(){
     ).join("");
 
     const vals = items.map(it=>it.v);
-    const lo = Math.min.apply(null,vals), hi = Math.max.apply(null,vals);
-    const ramp = mapRamp();
+    let lo = Math.min.apply(null,vals), hi = Math.max.apply(null,vals);
+    let ramp = mapRamp();
+    if(chg){
+      // diverging, symmetric around zero: blue = informality fell, orange = rose
+      const m = Math.max(Math.abs(lo), Math.abs(hi)) || 1; lo = -m; hi = m;
+      const mix = (hex, a) => { const n = parseInt(hex.slice(1),16);
+        return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+      const b = css("--s1"), o = css("--s2");
+      ramp = [mix(b,.95),mix(b,.65),mix(b,.35),css("--paper-3"),mix(o,.35),mix(o,.65),mix(o,.95)];
+    }
     const bucket = v => ramp[Math.max(0, Math.min(ramp.length-1,
       Math.floor(((v-lo)/((hi-lo)||1)) * ramp.length)))];
     const surface = css("--paper-2");
@@ -1021,8 +1119,8 @@ async function renderMap(){
     const paths = items.map((it,i)=>
       `<path d="${pathOf(it.f.geometry)}" fill="${bucket(it.v)}" stroke="${surface}"
          stroke-width="0.8" stroke-linejoin="round" tabindex="0" role="listitem"
-         data-n="${it.name.replace(/"/g,'&quot;')}" data-v="${it.v.toFixed(1)}"
-         aria-label="${it.name}: ${it.v.toFixed(1)}%"><title>${it.name}: ${it.v.toFixed(1)}%</title></path>`
+         data-n="${it.name.replace(/"/g,'&quot;')}" data-v="${fmtV(it.v)}"
+         aria-label="${it.name}: ${fmtV(it.v)}"><title>${it.name}: ${fmtV(it.v)}</title></path>`
     ).join("");
 
     $("#mapChart").innerHTML =
@@ -1032,7 +1130,7 @@ async function renderMap(){
 
     const hint = $("#mapHint");
     const show = e => { const el=e.target.closest("path"); if(!el) return;
-      hint.innerHTML = `<b>${el.dataset.n}</b> · ${el.dataset.v}%`; };
+      hint.innerHTML = `<b>${el.dataset.n}</b> · ${el.dataset.v}`; };
     const clear = () => { hint.innerHTML = "&nbsp;"; };
     const svg = $("#mapChart svg");
     svg.addEventListener("mousemove", show);
@@ -1041,8 +1139,9 @@ async function renderMap(){
     svg.addEventListener("focusout", clear);
 
     $("#scaleBar").innerHTML = ramp.map(h=>`<i style="background:${h}"></i>`).join("");
-    $("#scaleLo").textContent = lo.toFixed(1)+"%";
-    $("#scaleHi").textContent = hi.toFixed(1)+"%";
+    $("#scaleLo").textContent = fmtV(lo);
+    $("#scaleHi").textContent = fmtV(hi);
+    $("#mapSub").textContent = geoSub(sn.year);
   }catch(e){ console.error(e); }
   finally{ $("#mapLoad").hidden = true; postHeight(); }
 }
@@ -1073,6 +1172,8 @@ function applyI18n(){
     if(/<[a-z]/i.test(v)) el.innerHTML = v; else el.textContent = v;
   });
   $("#attrib").innerHTML = t("attrib");
+  $("#measNote").textContent = t("meas_note_"+meas);
+  setSubtitle();
   $("#btnTable").textContent = $("#tableWrap").hidden ? t("show_table") : t("hide_table");
   $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
   document.title = t("title")+" · Matías Golman";
@@ -1085,6 +1186,34 @@ function setTheme(th, quiet){
   if(!quiet) redrawAll();
 }
 function redrawAll(){ lastForm = ""; render(); renderSector(); renderMap(); renderKpis(); }
+/* Annual years available for the current measure, read from meta.json. */
+function yearsFor(m){
+  if(!window._meta) return [2003];
+  const y0 = window._meta.primer_anio[String(m)], y1 = window._meta.ultimo_anio, out=[];
+  for(let y=y0;y<=y1;y++) out.push(y);
+  return out;
+}
+function fillYears(reset){
+  const ys = yearsFor(meas);
+  const keepF = +$("#fFrom").value, keepT = +$("#fTo").value;
+  fillSelect($("#fFrom"), ys.map(y=>[y,y]), ys[0]);
+  fillSelect($("#fTo"),   ys.map(y=>[y,y]), ys[ys.length-1]);
+  if(!reset && ys.includes(keepF)) $("#fFrom").value = keepF;
+  if(!reset && ys.includes(keepT)) $("#fTo").value = keepT;
+  // two or three annual points read better as bars than as a line
+  if(reset) $("#fType").value = ys.length<=3 ? "bar" : "line";
+}
+function setMeas(m){
+  meas = m;
+  $$("[data-meas]").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.meas===meas)));
+  $("#measNote").textContent = t("meas_note_"+meas);
+  fillYears(true); picked = {}; redrawAll();
+}
+function setSubtitle(){
+  const md = window._meta; if(!md) return;
+  $("#subtitle").textContent = t("subtitle") + " · " + md.primer_anio["2"] + "–" + md.ultimo_trimestre.y;
+  baseLab = qName(md.base_deflactor.y, md.base_deflactor.q);
+}
 
 /* ---------- embed plumbing ---------- */
 let lastH = 0;
@@ -1118,10 +1247,6 @@ function relang(){
     $$("[data-theme-set]").forEach(b=>b.setAttribute("aria-pressed","false"));
   }
 
-  const years=[]; for(let y=2003;y<=2024;y++) years.push(y);
-  fillSelect($("#fFrom"), years.map(y=>[y,y]), 2003);
-  fillSelect($("#fTo"),   years.map(y=>[y,y]), 2024);
-
   buildControls(false);
   applyI18n();
 
@@ -1129,8 +1254,7 @@ function relang(){
     .forEach(id=>$("#"+id).addEventListener("change", render));
   $("#fParam").addEventListener("change", ()=>{ render(); });
   $("#btnReset").addEventListener("click", ()=>{
-    picked = {}; buildControls(false);
-    $("#fFrom").value = 2003; $("#fTo").value = 2024; render();
+    picked = {}; buildControls(false); fillYears(true); render();
   });
   $("#btnAll").addEventListener("click", ()=>{
     const p = $("#fParam").value; if(p==="all") return;
@@ -1159,7 +1283,17 @@ function relang(){
   window.addEventListener("resize", postHeight);
   if(window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
 
-  renderKpis(); render(); renderSector(); renderMap();
+  $$("[data-meas]").forEach(b=>b.addEventListener("click", ()=>setMeas(+b.dataset.meas)));
+  $$("[data-view]").forEach(b=>b.addEventListener("click", ()=>{
+    geoView = b.dataset.view;
+    $$("[data-view]").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.view===geoView)));
+    renderSector(); renderMap();
+  }));
+
+  loadMeta().then(md=>{ window._meta = md; })
+    .catch(e=>console.error(e))
+    .finally(()=>{ setSubtitle(); fillYears(true); applyI18n();
+      renderKpis(); render(); renderSector(); renderMap(); });
 })();
 </script>
 </body>
