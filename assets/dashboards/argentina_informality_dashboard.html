@@ -269,7 +269,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     <div class="meas">
       <span class="meas__lab" data-t="measure">Medida</span>
       <div class="seg" role="group" aria-label="Measure" id="measSeg">
-        <button type="button" data-meas="1" aria-pressed="true" data-t="meas_1">Oficial INDEC</button>
+        <button type="button" data-meas="1" aria-pressed="true" data-t="meas_1">Metodología nueva INDEC</button>
         <button type="button" data-meas="2" aria-pressed="false" data-t="meas_2">Serie larga</button>
       </div>
       <p class="meas__note" id="measNote"></p>
@@ -422,12 +422,15 @@ const T = {
   title:{es:"Panel de informalidad en Argentina",en:"Argentina informality dashboard"},
   subtitle:{es:"INDEC · Encuesta Permanente de Hogares",en:"INDEC · Permanent Household Survey"},
   measure:{es:"Medida",en:"Measure"},
-  meas_1:{es:"Oficial INDEC",en:"Official (INDEC)"},
+  meas_1:{es:"Metodología nueva INDEC",en:"New INDEC methodology"},
   meas_2:{es:"Serie larga",en:"Long series"},
-  meas_note_1:{es:"Definición oficial de INDEC, disponible desde el 4.º trimestre de 2023. Coincide con los informes de INDEC. Para ver la evolución desde 2003, elegí la serie larga.",
-               en:"INDEC's official definition, available since Q4 2023. It matches INDEC's reports. For the trend since 2003, switch to the long series."},
-  meas_note_2:{es:"Mismo criterio que la oficial, calculado con preguntas que están en la encuesta desde 2003. Queda unos 3 puntos por encima de la oficial: no se deben empalmar.",
-               en:"Same criterion as the official measure, built from questions asked since 2003. It sits about 3 points above the official one: the two should not be spliced."},
+  overlay_name:{es:"metodología nueva INDEC",en:"new INDEC methodology"},
+  overlay_note:{es:"Línea punteada: metodología nueva de INDEC, desde el primer año completo en que existe (2024). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
+                en:"Dotted line: INDEC's new methodology, from the first full year it exists (2024). The gap to the long series reflects measurement, not a change in informality."},
+  meas_note_1:{es:"La metodología que INDEC usa desde el 4.º trimestre de 2023: coincide con sus informes. Para ver la evolución desde 2003, elegí la serie larga.",
+               en:"The methodology INDEC has used since Q4 2023: it matches INDEC's reports. For the trend since 2003, switch to the long series."},
+  meas_note_2:{es:"Mismo criterio que la metodología nueva, calculado con preguntas que están en la encuesta desde 2003. Queda unos 3 puntos por encima; en el gráfico se superponen las dos desde que existe la nueva, en vez de empalmarlas.",
+               en:"Same criterion as the new methodology, built from questions asked since 2003. It sits about 3 points higher; the chart overlays both from the moment the new one exists instead of splicing them."},
   view_level:{es:"Nivel",en:"Level"}, view_change:{es:"Cambio interanual",en:"Year-on-year change"},
   rate_year:{es:"Tasa de informalidad, ",en:"Informality rate, "},
   change_year:{es:"Cambio en la tasa, en puntos porcentuales, ",en:"Change in the rate, percentage points, "},
@@ -478,8 +481,8 @@ const T = {
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
   informality_definition:{
-    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Oficial INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la oficial (unos 11 entre los independientes), así que las dos series no se empalman.",
-    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>Official (INDEC)</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the official measure (about 11 among the self-employed), so the two series should not be spliced."},
+    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Metodología nueva INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la metodología nueva (unos 11 entre los independientes; casi nada entre los asalariados, donde las dos usan la misma pregunta). Por eso no se empalman: en la serie larga el gráfico muestra las dos superpuestas desde 2024.",
+    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced: in the long series the chart overlays both from 2024."},
   availability_body:{
     es:"Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos: el año en curso entra cuando sale su 4.º trimestre. En la serie larga, 2003 (sólo el 2.º semestre), 2007, 2015 y 2016 promedian menos trimestres porque esas bases no existen. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Las celdas con menos de 30 observaciones se marcan como imprecisas y las de menos de 10 no se muestran.",
     en:"Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
@@ -719,18 +722,19 @@ function currentSel(){
     e:+$("#fAge").value,    c:+$("#fEmp").value
   };
 }
-async function rowsForSelection(s){
+async function rowsForSelection(s, m){
+  if(m===undefined) m = meas;
   const cols = METRIC_COLS[s.metric];
   if(s.param==="all"){
     const sh = await load("base");
-    const idx = select(sh,{v:meas,g:s.g,r:s.r,e:s.e,c:s.c});
+    const idx = select(sh,{v:m,g:s.g,r:s.r,e:s.e,c:s.c});
     return {sh, idx, brkCol:null, cols};
   }
   const name = PARAM_SHARD[s.param], col = PARAM_COL[s.param];
   const sh = await load(name);
   const fixed = {g:s.g,r:s.r,e:s.e,c:s.c};
   delete fixed[col];
-  fixed.v = meas;                       // the dimension being broken down runs free
+  fixed.v = m;                       // the dimension being broken down runs free
   const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99);
   return {sh, idx, brkCol:col, cols};
 }
@@ -835,6 +839,14 @@ async function render(){
   try{
     const {sh, idx, brkCol, cols} = await rowsForSelection(s);
     const {groups, lowSample} = pivot(sh, idx, brkCol, cols, s.from, s.to);
+    /* Long series + rate: overlay the new INDEC methodology wherever it exists,
+       as a dotted line in the same colour, instead of splicing the two. */
+    let over = null;
+    if(meas===2 && s.metric==="tasa_informalidad" && s.type!=="bar"){
+      const o = await rowsForSelection(s, 1);
+      over = pivot(o.sh, o.idx, o.brkCol, o.cols, s.from, s.to).groups;
+      if(!Array.from(over.values()).some(g=>Object.keys(g).length)) over = null;
+    }
     let keys = Array.from(groups.keys());
     if(brkCol) keys.sort((a,b)=>a-b);
 
@@ -849,6 +861,7 @@ async function render(){
 
     const msgs = [];
     if(lowSample) msgs.push(t("low_sample_warning"));
+    if(over) msgs.push(t("overlay_note"));
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
       Plotly.purge("mainChart"); lastForm = "";
@@ -871,6 +884,10 @@ async function render(){
 
     const seriesAt = k => { const g = groups.get(k)||{};
       return cols.map((_,ci)=> years.map(y=> g[y] ? g[y][ci] : null)); };
+    const overAt = k => { if(!over) return null; const g = over.get(k);
+      if(!g || !Object.keys(g).length) return null;
+      return years.map(y=> g[y] ? g[y][0] : null); };
+    const ovName = t("overlay_name");
 
     lastRows = {s, keys, years, cols, labs, groups};
 
@@ -881,7 +898,8 @@ async function render(){
         arrs.forEach((vals,ci)=>{
           const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[ci];
           const nm = (brkCol ? (labs[k]||k) : "") +
-                     (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "");
+                     (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "") +
+                     (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
           traces.push(s.type==="bar" ? {
             type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}},
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
@@ -891,7 +909,20 @@ async function render(){
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           });
         });
+        const ov = overAt(k);
+        if(ov){
+          const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[0];
+          const nm = (brkCol ? (labs[k]||k)+" · " : "") + ovName;
+          traces.push({type:"scatter", mode:"lines+markers", x:years, y:ov, name:nm,
+            line:{color, width:2, dash:"dot"}, marker:{color, size:6}, connectgaps:false,
+            showlegend: !brkCol,
+            hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+        }
       });
+      // with a breakdown, one legend key explains the dotted style for all series
+      if(over && brkCol) traces.push({type:"scatter", mode:"lines+markers", x:[null], y:[null],
+        name:ovName, line:{color:css("--ink-soft"), width:2, dash:"dot"},
+        marker:{color:css("--ink-soft"), size:6}, hoverinfo:"skip"});
       const lay = baseLayout({
         height: 420,
         xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
@@ -909,7 +940,7 @@ async function render(){
       const ncol = panels<=2?panels: panels<=6?3:4;
       const nrow = Math.ceil(panels/ncol);
       let lo=Infinity, hi=-Infinity;
-      keys.forEach(k=>seriesAt(k).forEach(a=>a.forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v);} })));
+      keys.forEach(k=>seriesAt(k).concat(overAt(k)?[overAt(k)]:[]).forEach(a=>a.forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v);} })));
       if(!isFinite(lo)){ lo=0; hi=1; }
       const pad = (hi-lo)*0.12 || 1;
       const range = [Math.max(0,lo-pad), hi+pad];
@@ -925,6 +956,12 @@ async function render(){
             showlegend: dual && ki===0,
             hovertemplate:`<b>${labs?(labs[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         });
+        const ov = overAt(k);
+        if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov,
+            xaxis:"x"+ax, yaxis:"y"+ax, line:{color:colors[0], width:2, dash:"dot"},
+            marker:{color:colors[0], size:5}, connectgaps:false, name:ovName,
+            showlegend:false,
+            hovertemplate:`<b>${labs?(labs[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         const row = Math.floor(ki/ncol), col = ki%ncol;
         anns.push({text:(labs?(labs[k]||k):""), xref:"x"+ax+" domain", yref:"y"+ax+" domain",
           x:0, y:1.05, showarrow:false, xanchor:"left", yanchor:"bottom",
