@@ -22,6 +22,9 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
   pesos constantes del 1T2026; categoría ocupacional con servicio doméstico y familiares sin
   remuneración. **Error corregido**: las etiquetas de las ramas 11 y 12 estaban cruzadas (el
   76,9 % de «otros servicios» era servicio doméstico).
+- **Superposición en vez de empalme** (pedido de Matías): en la serie larga, la tasa trae la
+  metodología nueva de INDEC punteada, del mismo color, desde 2024. «Oficial INDEC» pasó a
+  llamarse «Metodología nueva INDEC».
 - **Textos**: fuera «central fact» y la frase de las series «programadas para reproducirse»;
   miniatura nueva con la paleta del sitio.
 
