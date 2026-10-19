@@ -47,3 +47,32 @@ castellano completo.
 **4. LAS FOTOS, CUANDO QUIERAS.** Dijiste que en algún momento vas a sacar las que te gusten
 menos. No corre prisa y no depende de mí: borrás el archivo de `assets/img/photos/` y la galería
 se reacomoda sola. El texto alternativo **queda como está**, por decisión tuya del 15/10.
+
+---
+
+**5. ARMAR EL PROYECTO DEL PANEL (y antes, correr Costa Rica en Stata).** Todo está en
+`Documents\Investigacion\mercado_trabajo_latam\proyectos\mapa_informalidad\_pipeline\COMO_ARMAR_EL_PROYECTO.md`.
+El primer paso es correr `codigos_limpieza\Costa_Rica\master_construccion.do` (~20 min), que
+confirma el arreglo del error. Desde ahí, lo del panel se pide en ese proyecto y no en este.
+
+---
+
+**6. DOS ENLACES DEL INEC.** En tu nota, 2025T2 tenía el mismo enlace que 2025T1 (descarga 6544)
+y 2026T2 el mismo que 2026T1 (7285). Los archivos que bajaste están bien (cada uno es el
+trimestre correcto); falta sólo el número de descarga para la próxima vez. Si lo tenés a mano,
+dejalo en el `COMENTARIO DE MATIAS`.
+
+---
+
+**7. LOS 31 GB DE `datos\Costa_Rica\_archivo_consultoria_OIT`.** No los comprimí: casi todo se
+rehace con el pipeline nuevo, así que lo razonable es **borrarlo**, no guardarlo, cuando Costa
+Rica corra en Stata. Qué es qué:
+- `stata\trimestres\` (14 GB): los `.sav` del INEC pasados a `.dta`. Repetido: se borra.
+- `stata\panel\cross_paneles`, `pool_paneles`, `cross_ocupados`, `*_en.dta`, `*_en.csv`
+  (~15 GB): los paneles de la consultoría. Los rehace el pipeline nuevo: se borran.
+- **Se guardan**: `base_awe.dta` y `base_education.dta` (los usa el proyecto de trabajador
+  adicional), `ECE_datos_tablas.rar`, `panels and codes.zip` (lo entregado) y los `codebook_*.log`.
+  `base_econometrica*.dta` (1,9 GB) sólo si querés poder rehacer las regresiones del Producto 3
+  sin volver a correr todo.
+
+Decime «borralo» (o qué cambiarías) y lo hace la próxima sesión del panel.

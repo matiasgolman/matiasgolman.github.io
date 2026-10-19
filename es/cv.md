@@ -81,13 +81,19 @@ description: >-
 <div class="cv__section">
   <h2>Comunidad</h2>
   <div class="cv__row">
-    <div class="cv__when">En curso</div>
+    <div class="cv__when">2021–25</div>
     <div class="cv__what">
       <p style="margin-top:.25rem">Docente voluntario de inglés en Refugee Roots, Nottingham, con
       adultos solicitantes de asilo. Representante de posgrado y responsable de Igualdad,
-      Diversidad e Inclusión en la Universidad de Nottingham. Co-coordinador de un proyecto
-      financiado por la UE de formación en emprendimiento sostenible para jóvenes en situación de
-      desventaja en Tanzania, Nepal, Argentina, Portugal, Eslovenia e Italia.</p>
+      Diversidad e Inclusión en la Universidad de Nottingham.</p>
+    </div>
+  </div>
+  <div class="cv__row">
+    <div class="cv__when">2015–16</div>
+    <div class="cv__what">
+      <p style="margin-top:.25rem">Co-coordinador de un proyecto financiado por la UE de formación
+      en emprendimiento sostenible para jóvenes en situación de desventaja en Tanzania, Nepal,
+      Argentina, Portugal, Eslovenia e Italia.</p>
     </div>
   </div>
 </div>

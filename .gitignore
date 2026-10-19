@@ -14,6 +14,7 @@ vendor
 # token local, nunca se sube
 _pipeline/.github_token*
 
-# Manuales de curso (fichas de OSIRIS). Son insumo para escribir /teaching/, no
-# contenido del sitio: se quedan en el disco y no se versionan.
-_pipeline/teaching manuals/
+# Insumos locales del pipeline (manuales de curso de OSIRIS, el informe de Costa Rica,
+# la exportacion de ORCID): material para escribir el sitio, no contenido. Se quedan en
+# el disco y no se versionan. El informe de Costa Rica, ademas, no se sabe si es publico.
+_pipeline/insumos/

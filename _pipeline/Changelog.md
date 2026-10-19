@@ -5,6 +5,37 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-19 (corrida 8) — Costa Rica arreglada, OIT, orden, y el panel se independiza
+
+- **`r(459)` en `03_armar_paneles` de Costa Rica.** 12 claves repetidas en 2022T2 (19 en T3 y T4):
+  el INEC usó el consecutivo 1050 para un segmento de la región Central (rural) y otro de la
+  Pacífico Central (urbano). Personas distintas, no duplicados. Revisados los 64 `.sav`: único
+  caso. Arreglo: la región entra a la clave de apareo (`03`) y a `id_hog` (`02`), y a la réplica
+  en Python. Sin correr en Stata todavía.
+- **15.ª y 17.ª CIET en la limpieza de Costa Rica** (`02`): `sector_ciet15`, `informal_ciet17`,
+  `emp_ciet17`, con el algoritmo operativo SIALC que está en `notas_metodologicas`. Medido en los
+  64 trimestres: la 17.ª CIET es siempre un subconjunto de la de INEC, entre 1,4 y 4,4 pp abajo
+  (independientes inscritos sólo en otra instancia pública y asalariados sin dato de seguro).
+  Tabla completa en `datos\Costa_Rica\outputs\comparacion_inec_vs_ciet17_20261019.csv`.
+- **Costa Rica 2025T1–2026T2.** Los seis `.sav` bajados por Matías; ventana a 2026T2; enlaces en
+  `01_descargar_bases.do` (los de 2025T2 y 2026T2 llegaron repetidos: to-do 6); el `.dta` viejo
+  de 2025T1 a `_reemplazados`. IPC 2025T4–2026T3 del BCCR; el 4T2025 anterior promediaba sólo
+  octubre y noviembre. Datos del sitio recalculados con la réplica: 2026T2 total 36,0 (INEC 36),
+  2025T4 37,8 (37,8).
+- **Textos sin «para la OIT»** (`dashboard.md`, `es/panel.md`, proyectos, `_data/projects*`, pie
+  del panel, nota del CV). **CV**: Comunidad con fechas en vez de «Ongoing».
+- **Panel**: líneas `spline` (suavizado 0,7) en análisis, superposición y comparación.
+- **Repo**: `_pipeline/insumos/` ignorado por git (el informe de Costa Rica dejó de estar
+  versionado), CV repetido borrado, `redirect-*.md` → `redirects/`.
+- **Investigacion**: `fuentes_complementarias` → `datos\Costa_Rica\`; zip verificados (nombres,
+  tamaños y CRC) y carpetas borradas: proyecto de política de empleo de Roxana Maurizio
+  (3,5 GB → 445 MB, en `_archivo\proyecto_politica_empleo_Maurizio\`), `pasos_intermedios_old`
+  y `_versiones_anteriores` de la consultoría (2,1 GB → 314 MB). `_archivo_consultoria_OIT`
+  (31 GB) queda: to-do 7.
+- **Proyecto aparte para el panel**: `proyectos\mapa_informalidad\_pipeline\` con ESTADO, To-Do,
+  Changelog, LEEME, TRAMPAS, las instrucciones del proyecto de Claude, el prompt de la tarea
+  agendada y la guía paso a paso.
+
 ## 2026-10-19 (corrida 7) — el panel pasa a América Latina: entra Costa Rica
 
 - **Costa Rica.** Limpieza nueva en `mercado_trabajo_latam\codigos_limpieza\Costa_Rica` con los

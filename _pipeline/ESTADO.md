@@ -4,7 +4,7 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-10-18 (corrida 6)
+**Última actualización:** 2026-10-19 (corrida 8)
 **Actualizado por:** Claude
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
@@ -22,66 +22,30 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 ## En una pantalla
 
-> **CORRIDA 6 — CERRADA (18/10).** El panel tiene datos nuevos hasta **1T 2026** con la limpieza
-> nueva. Los datos los arma `proyectos\mapa_informalidad\mapa_informalidad.do` (Stata) a partir de
-> `cross_paneles.dta` y los escribe como CSV en `assets/data/informality/` más `meta.json`; lo
-> corre solo `master_construccion.do` al final y, si el contraste con INDEC pasa, hace commit + push
-> con `publicar_mapa.ps1`. Dos medidas con selector: **metodología nueva INDEC** (desde 2023T4, reproduce los
-> informes: total, sexo, edad, educación y asalariados a ≤0,2 pp en 2023T4–2026T1) y **serie larga**
-> (2003–). Decisión de Matías del 18/10: indicadores, sector y mapa con la metodología nueva;
-> el análisis interactivo con la serie larga por default y un botón destacado para superponer la
-> nueva (punteada, desde 2024); nunca empalmar. Miniatura: el gráfico por grupo de edad. Indicadores trimestrales; resto en promedios anuales de años completos (hasta 2025);
-> mapa y sector con nivel o cambio interanual. Corregidas las etiquetas cruzadas de las ramas 11
-> (otros servicios) y 12 (servicio doméstico). Miniatura nueva. Para cada trimestre nuevo, Matías
-> sólo carga las cifras de INDEC en `validacion\indec_publicado.csv`.
+> **CORRIDA 8 — CERRADA (19/10).** Costa Rica arreglada y al día, el panel separado del sitio.
 
-**El panel de informalidad se rehízo entero.** Matías pidió dos cosas: que se vea más profesional
-y que el embebido deje de encerrar el scroll. Las dos están hechas, y de paso aparecieron tres
-errores que el panel venía publicando sin que nadie los viera.
-
-- **Los números del encabezado estaban mal, y eran fijos.** Los cinco indicadores (total, varones,
-  mujeres, jóvenes, adultos) estaban **escritos a mano en el HTML** y nunca se calculaban. Decían
-  51,1 % de informalidad total con una variación de ▲ 5,1 %; el cubo de datos dice **46,9 %** y
-  **+0,5 pp**. Lo mismo el mapa: tenía las tasas provinciales congeladas de otra versión (Tucumán
-  65,4 % cuando el dato es 57,8 %). **Eso era «el mapa desactualizado»**: no era el mapa, era que
-  todo lo precalculado venía de una cosecha anterior a los datos del gráfico interactivo. Ahora
-  **todo se calcula del mismo cubo en el navegador**, así que el mapa, el ranking por sector y el
-  gráfico no pueden volver a contradecirse.
-- **Los colores del desglose por sector se repetían.** La paleta tenía ocho colores y el desglose
-  por sector tiene doce series: el código hacía `colores[i % 8]`, así que «Actividades primarias» y
-  «Transporte» salían del mismo azul, y «Servicios de salud» y «Servicios financieros» del mismo
-  naranja. La leyenda era ambigua. **Ése era el «se ve raro» del comentario.**
-- **De 73 MB a 58 KB.** El HTML llevaba adentro 377.386 filas en JSON con los nombres de los veinte
-  campos repetidos en cada fila y ruido de coma flotante (`30.299999237060547` por `30,3`). Los
-  datos se pasaron a **ocho archivos columnares** en `assets/data/informality/`, uno por dimensión
-  de desglose, que se cargan sólo cuando hacen falta. **La primera carga pasó de 10,7 MB a 0,17 MB
-  comprimidos**, unas setenta veces menos.
-- **El scroll ya no se atrapa.** El `iframe` informa su altura a la página por `postMessage` y la
-  página lo estira hasta que entra entero, así que se baja con el scroll normal. Decidí **no**
-  sacar el panel a una página aparte: embebido se lee como una sección más del sitio, hereda el
-  tema claro/oscuro y sigue siendo un archivo portátil que se puede mandar suelto a la OIT. Queda
-  además un enlace «abrir en una pestaña aparte».
-- **La interfaz usa el sistema del sitio.** Literata y IBM Plex, el verde conífera, el papel
-  oscuro, y los filtros **arriba del gráfico en vez de a los costados**: antes el gráfico quedaba
-  espachurrado entre dos columnas y el eje de años era una mancha negra de etiquetas superpuestas.
-  Fuera los emojis de sector, las sombras, los bordes redondeados y el selector de seis paletas.
-- **Con más de ocho series el gráfico se parte en paneles.** Doce sectores o veinticuatro
-  provincias en una sola grilla son ilegibles con cualquier paleta. Ahora cada serie tiene su
-  panel con la misma escala. Los colores quedaron **atados a la entidad**, no a su posición: si
-  sacás una serie, las demás no cambian de color.
-- **Plotly pasó a estar alojado en el repo y con versión fija.** Antes era `plotly-latest.min.js`
-  desde el CDN, que puede cambiar sin aviso y le filtra la IP del visitante a un tercero. Ahora es
-  `plotly-basic-2.35.2` en `assets/js/` (0,36 MB comprimido).
-- **El sitemap no tiene nada roto.** Verificado desde fuera: 200, XML válido, las 18 páginas,
-  anunciado en `robots.txt`. La fila roja de Search Console es estado viejo que Google todavía no
-  refrescó. Está explicado en el To-Do.
-
-**Trampa nueva, que costó una hora:** el paquete `plotly-geo` **no trae el módulo `bar`**, y Plotly
-no avisa: acepta `type:"bar"`, lo guarda en `data`, y dibuja una línea igual (`_fullData` dice
-`scatter`). Se cambió a `plotly-basic` y **el mapa se dibuja a mano en SVG**, con proyección
-Mercator sobre el geojson de provincias, que además bajó de 461 KB a 194 KB. Segunda trampa de la
-misma familia: **`Plotly.react` no convierte una traza de `scatter` a `bar`** ni un gráfico plano
-en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráfico.
+- **El error de Costa Rica (`r(459)` en el paso 3)** era del INEC: en 2022T2–T4 le dio el mismo
+  consecutivo (1050) a dos segmentos de regiones distintas. Revisados los 64 trimestres, es el
+  único caso. La región entró a la clave del panel y del hogar. Falta que Matías corra el master
+  en Stata para confirmarlo (to-do 5).
+- **Definición de la OIT en la limpieza de Costa Rica**: `sector_ciet15`, `informal_ciet17` y
+  `emp_ciet17`, con el algoritmo SIALC. La OIT da entre 1,4 y 4,4 puntos menos que el INEC, y
+  todo informal para la OIT lo es para el INEC (detalle en `HOMOGENEIZACIONES.md` §2.1.1).
+- **Costa Rica llega a 2026T2** en el sitio (réplica en Python): los seis `.sav` nuevos, el IPC
+  hasta 2026T3 (y corregido el 4T2025, que promediaba dos meses) y la validación con el INEC (9
+  de 9 contrastes).
+- **Textos**: fuera «Built for the ILO» de todo el sitio; el panel se presenta como proyecto
+  independiente «que nació de un trabajo de consultoría sobre la informalidad en Argentina». El
+  CV ya no dice «Ongoing» en Comunidad (2021–25 y 2015–16).
+- **Líneas suaves** en todos los gráficos de líneas del panel (`spline`).
+- **Orden.** En el repo: `_pipeline\insumos\` (ignorado por git) con el informe de Costa Rica,
+  el `.bib` de ORCID y los manuales; fuera el CV repetido; los siete `redirect-*.md` en
+  `redirects\`. En `Investigacion`: fuentes complementarias a `datos\Costa_Rica\`, el proyecto de
+  Roxana Maurizio y lo viejo de la consultoría comprimidos (5,6 GB → 760 MB).
+- **El panel pasa a su propio proyecto de Claude**, con su `_pipeline\` en
+  `Investigacion\...\proyectos\mapa_informalidad\`. Guía para armarlo y para la tarea agendada:
+  `_pipeline\COMO_ARMAR_EL_PROYECTO.md` de esa carpeta. Desde ahí, este proyecto deja de tocar
+  datos del panel (ver D-24).
 
 ---
 
@@ -91,7 +55,9 @@ en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráf
 
 ### Bloqueado por Matías
 
-- **B3 — ¿El informe de Costa Rica es público?** (to-do 2). Hoy está descrito sin PDF.
+- **B3 — ¿El informe de Costa Rica es público?** (to-do 2). Hoy está descrito sin PDF. Ojo: el
+  PDF estaba versionado en el repo, que es público; el 19/10 salió del repo (sigue en el
+  historial de git).
 - **B8 — La carpeta vieja de `Documents\GitHub\...`.** Pedí permiso para borrarla y me lo denegó el
   clasificador de la sesión. Son 30 segundos a mano (to-do 4).
 
@@ -127,13 +93,10 @@ en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráf
 - **S9 — Roles de docencia.** Matías dijo que da clase y tutoriales «en muchos» pero no cuál en
   cuál. La página hoy lo dice en general, en el standfirst. Si quiere el rol por módulo, hay que
   preguntárselo.
-- **S13 — Sumar países al panel.** En curso (19/10). Entró Costa Rica (ECE del INEC, 2010T3–2025T3)
-  y el panel tiene selector de país y una vista «Comparar». Datos en
-  `assets/data/informality/<iso>/` y registro en `paises.json`; un país nuevo no toca el HTML.
-  Falta: (1) correr el master de Costa Rica en Stata y comparar con la réplica en Python que hoy
-  alimenta el sitio; (2) bajar 2025T4–2026T2 del INEC; (3) push, que espera el OK de Matías;
-  (4) miniatura nueva (la actual es sólo Argentina). Próximos países: ver
-  `mercado_trabajo_latam\datos\Bases_LATAM_disponibles.md`.
+- **S13 — Sumar países al panel → pasa al proyecto del panel.** Costa Rica está al día
+  (2026T2). Lo que queda (correr Stata, México y los demás, la ECH de 2027) vive desde el 19/10
+  en el `ESTADO.md` de `proyectos\mapa_informalidad\_pipeline\`. Acá sólo queda **la
+  miniatura** cuando entre el tercer país, y cualquier texto de página que ese proyecto pida.
 - **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
 
@@ -218,3 +181,12 @@ en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráf
   era de costo de mantenimiento y con tokens de color ese costo no existe.
 - **D-22 · Analítica:** GoatCounter, sólo si es gratis. Pendiente de que Matías cree la cuenta.
 - **D-23 · Ritmo:** aprobar antes de publicar durante el rediseño, con preview. Después, autónomo.
+
+**2026-10-19, del comentario de Matías (corrida 8):**
+
+- **D-24 · El panel de informalidad es un proyecto aparte.** Datos, limpieza, países y la tarea
+  agendada van al proyecto «Panel de informalidad LATAM», que sólo toca
+  `assets/data/informality/` y el HTML del panel. Las páginas siguen acá.
+- **D-25 · El panel no dice «para la OIT».** Nació de una consultoría para la oficina de la OIT
+  en Argentina, que autorizó a Matías a mostrar su versión; no se sabe si la OIT hará la suya.
+  Se presenta como proyecto independiente, con la consultoría mencionada sin nombre.

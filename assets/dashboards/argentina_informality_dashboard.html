@@ -541,8 +541,8 @@ const T = {
   pp:{es:"pp",en:"pp"},
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
-  attrib:{es:'Datos y desarrollo de <a href="https://matiasgolman.github.io/">Matías Golman</a>, sobre {src}. Hecho para la OIT. Contacto: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>',
-          en:'Data and development by <a href="https://matiasgolman.github.io/">Matías Golman</a>, from {src}. Built for the ILO. Contact: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>'},
+  attrib:{es:'Datos y desarrollo de <a href="https://matiasgolman.github.io/">Matías Golman</a>, sobre {src}. Contacto: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>',
+          en:'Data and development by <a href="https://matiasgolman.github.io/">Matías Golman</a>, from {src}. Contact: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>'},
   and:{es:" y ",en:" and "},
   /* comparison view */
   cmp_kpi_title:{es:"El último trimestre, país por país",en:"The latest quarter, country by country"},
@@ -964,7 +964,7 @@ async function render(){
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           } : {
             type:"scatter", mode:"lines", x:years, y:vals, name:nm,
-            line:{color, width:2, shape:"linear"}, connectgaps:false,
+            line:{color, width:2, shape:"spline", smoothing:0.7}, connectgaps:false,
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           });
         });
@@ -973,7 +973,7 @@ async function render(){
           const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[0];
           const nm = (brkCol ? (lb[k]||k)+" · " : "") + ovName;
           traces.push({type:"scatter", mode:"lines+markers", x:years, y:ov, name:nm,
-            line:{color, width:2, dash:"dot"}, marker:{color, size:6}, connectgaps:false,
+            line:{color, width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color, size:6}, connectgaps:false,
             showlegend: !brkCol, hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         }
       });
@@ -1006,14 +1006,14 @@ async function render(){
         const ax = ki===0?"":String(ki+1);
         seriesAt(k).forEach((vals,ci)=>{
           traces.push({type:"scatter",mode:"lines",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
-            line:{color: dual ? colors[ci] : colors[0], width:2}, connectgaps:false,
+            line:{color: dual ? colors[ci] : colors[0], width:2, shape:"spline", smoothing:0.7}, connectgaps:false,
             name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
             showlegend: dual && ki===0,
             hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         });
         const ov = overAt(k);
         if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov, xaxis:"x"+ax, yaxis:"y"+ax,
-            line:{color:colors[0], width:2, dash:"dot"}, marker:{color:colors[0], size:5}, connectgaps:false,
+            line:{color:colors[0], width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color:colors[0], size:5}, connectgaps:false,
             name:ovName, showlegend:false,
             hovertemplate:`<b>${lb?(lb[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         const row = Math.floor(ki/ncol), col = ki%ncol;
@@ -1261,7 +1261,7 @@ async function renderCmp(){
     lastCmp = {s, years, keys, per, lb};
     if(!brkCol){
       const traces = per.map(p=>({type:"scatter", mode:"lines", x:years, y:valsAt(p,"_"), name:cname(p.x),
-        line:{color:countryColor(p.x), width:2.2}, connectgaps:false,
+        line:{color:countryColor(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
         hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
       reactOrRedraw("cmpChart", traces, baseLayout({
         height: 420,
@@ -1284,7 +1284,7 @@ async function renderCmp(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         per.forEach(p=>traces.push({type:"scatter",mode:"lines",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
-          line:{color:countryColor(p.x), width:2}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
+          line:{color:countryColor(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
           hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
         anns.push({text:(lb[k]||k), xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,

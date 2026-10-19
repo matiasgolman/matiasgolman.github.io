@@ -165,3 +165,48 @@ tambien "Informal employment is the central fact of the Argentine labour market,
 Sin embargo, a partir de otro proyecto, genere la limpieza de la EHP mas sitematizada, para que pueda servir para multiples proyectos.  Esta se encuentra directamente en ....mercado_trabajo_latam\codigos_limpieza\Argentina . Dado que una vez limpios los datos, solo cambia la creacion de las tabulaciones por informalidad super desagregadas, me gustaria que el proyecto de herramienta interactiva (se podria llamar mapa_informalidad, directamente), haga uso de las bases ya limpias y genere el input para el mapa, que luego llame la pagina web. Es decir que, cada vez que yo actualice los datos (por ejemplo, en dos semanas sale el proximo trimestre), cuando yo corra la base que actualice la descarga, limpieza y creacion de paneles ahoraen codigos_limpieza, el mapa automaticamente tome los ultimos datos y se actualice. Es esto posible? 
 
 Hasta ahora los datos que tenemos son hasta 2024, creo que podemos sumar todo 2025 o inclusive con los que tengamos disponible de 2016. Han habido cambios en la metodologia de medicion de informalidad, asi como en los algoritmos que se utilizan en la base de datos. quiero que utilices para el nuevo mapa el codigo nuevo. Toda la informacion vieja puedes guardarlo en un _archivo dentro de la carpeta que se renombre mapa_informalidad, dentro de proyectos/ . Y luego veo que elimino o no, una vez que este seguro que todo corre correctamente. Por supuesto, una vez que corras los datos nuevos, el do file que genera los datos para el mapa, quiero que corrobores si los datos son los que muestra el INDEC en sus informes, sobre todo los genericos, por edad, por genero, etc, que son facilmente contrastables!
+
+
+## 2026-10-19 (corrida 8)
+
+-
+I got an error in the file cleaning Costa Rica database, revise it and fix it:
+
+
+------------------------------------------------------------------------------
+CORRIDA ABORTADA en 03_armar_paneles (codigo de error 459)
+Revisar el log de ese paso en C:\Users\matia\OneDrive - Universiteit Utrecht\Documents\Investigacion\mercado_trabajo_l
+> atam/datos/Costa_Rica\outputs\logs
+------------------------------------------------------------------------------
+r(459);
+
+end of do-file
+
+r(459);
+
+- STill, I would like the clening code to being able to measure and reproduce, in Costa Rica, the INEC but also the ILO informality definition (CIET 15/17). ITs OK to just have INCE in the file, but make sure the codes also generate the CIET variables.
+- The Argentina informality map was a project that started out as a consultancy for the Argentina ILO ofice. However, they approved me to show my own version of the dashbord. I have no idea whether they will do a dashboard themself + with the ministry, so maybe you can avoid mentioning it, or find a way of mentioning it softer. So I dont think you should say "Built for the International Labour Organization."
+
+- I have downloaded the costa rica SAV files
+
+t125 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/369/download/6544
+t225 came from wepage: t 125 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/369/download/6544
+t325 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/369/download/6905
+t425 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/369/download/7152
+t126 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/384/download/7285
+t226 came from wepage: https://sistemas.inec.cr/pad5/index.php/catalog/384/download/7285
+
+They are all saved as sav in the folder, but make sure the download file also accounts for the right links.
+
+Update the do files so they run with the latest data versions included.
+
+I feel the new folders are not very much ordered. For instance, fuentes_complementarias could be in the datos from the ..mercado_trabajo_latam\datos\Costa_Rica 
+
+The information from the previous project that is not repeated, does it make sense to at least zip it? the "PRojecto Politica de empleo was not my project, it was from Roxana MAurizio. That one I hope its all zipped, so does not take much space.
+
+- on my CV, I am not "Ongoing" doing all the community projects. All finished at their due time. Make sure you update that. 
+
+- make sure you order the folder "C:\Users\Golma001\OneDrive - Universiteit Utrecht\Documents\personal\matiasgolman.gith". there are many lose files there, for instance in the _pipeline, the CV or Costa Rica final report. Find a place to them so it all looks ordered. 
+- now the lines in the dashbord are a bit harsh. could you make them "smooth"?
+
+- Is it worth starting a new project that just focuses on the informality map from other countries and updates the webpage dashbord instead of keep working on this project? because I would like to set up a scheduler that starts downloading and processing the data of all the countries one by one... what do you think? If you agree, set up all the material that I will need for this project to be scheduled in a next session in Claude (detailed instructions, how I work in terms of Estado and To-do instructions, the folders that we have and which ones I should give access, the structure and pipeline, everything. Make a file with me also explaining step by step how to set it up.)

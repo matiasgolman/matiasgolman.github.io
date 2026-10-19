@@ -10,7 +10,7 @@ standfirst: >-
 body_class: "listing"
 page_class: "page--wide"
 description: >-
-  El Panel de informalidad en América Latina, hecho para la OIT con microdatos de encuestas de
+  El Panel de informalidad en América Latina, hecho con microdatos de encuestas de
   hogares de Argentina y Costa Rica, y Araucaria Spotter, un mapa comunitario de pehuenes fuera de su rango
   nativo.
 ---

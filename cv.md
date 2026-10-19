@@ -80,11 +80,17 @@ alt_url: "/es/cv/"
 <div class="cv__section">
   <h2>Community</h2>
   <div class="cv__row">
-    <div class="cv__when">Ongoing</div>
+    <div class="cv__when">2021–25</div>
     <div class="cv__what">
       <p style="margin-top:.25rem">Volunteer English teacher at Refugee Roots, Nottingham, with adults
       seeking asylum. Postgraduate representative and Equality, Diversity and Inclusion officer at the
-      University of Nottingham. Co-coordinator of an EU-funded training project on sustainable
+      University of Nottingham.</p>
+    </div>
+  </div>
+  <div class="cv__row">
+    <div class="cv__when">2015–16</div>
+    <div class="cv__what">
+      <p style="margin-top:.25rem">Co-coordinator of an EU-funded training project on sustainable
       entrepreneurship for disadvantaged youth across Tanzania, Nepal, Argentina, Portugal, Slovenia
       and Italy.</p>
     </div>

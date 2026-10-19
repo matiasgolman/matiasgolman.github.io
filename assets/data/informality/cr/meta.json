@@ -1,17 +1,17 @@
 {
   "pais": "Costa Rica",
   "iso": "cr",
-  "generado": "2026-10-19 07:40:00",
+  "generado": "2026-10-19 11:01:14",
   "fuente_calculo": "replica Python (replica_cubo_costa_rica.py); pendiente la corrida de Stata",
   "ultimo_trimestre": {
-    "y": 2025,
-    "q": 3
+    "y": 2026,
+    "q": 2
   },
   "inicio_oficial": {
     "y": 2010,
     "q": 3
   },
-  "ultimo_anio": 2024,
+  "ultimo_anio": 2025,
   "primer_anio": {
     "1": 2011,
     "2": 2010
@@ -20,5 +20,5 @@
     "y": 2025,
     "q": 3
   },
-  "validacion": "8 de 8 contrastes dentro de tolerancia, diferencia maxima 0.00 pp"
+  "validacion": "9 de 9 contrastes dentro de tolerancia, diferencia maxima 0.03 pp"
 }
