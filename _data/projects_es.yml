@@ -1,13 +1,13 @@
-- name: "Panel de informalidad en Argentina"
+- name: "Panel de informalidad en América Latina"
   url: "/es/panel/"
   shot: "/assets/img/shot-dashboard.jpg"
   shot_alt: "Captura del panel de informalidad argentina, con gráficos y un mapa provincial"
   blurb: >-
-    Una herramienta interactiva, hecha para la OIT y el Ministerio de Trabajo, que convierte dos
-    décadas de microdatos de encuestas de hogares en algo que un equipo de política pública puede
-    usar de verdad. Cubre el empleo informal desde 2003, abierto por sector, provincia, sexo y
-    edad.
-  note: "Hecho para la OIT. Datos de la Encuesta Permanente de Hogares del INDEC, desde 2003."
+    Una herramienta interactiva, hecha para la OIT, que convierte microdatos de encuestas de
+    hogares en algo que un equipo de política pública puede usar de verdad. Cubre el empleo informal
+    en Argentina (desde 2003) y Costa Rica (desde 2010), abierto por sector, región, sexo y edad, de
+    a un país o lado a lado.
+  note: "Hecho para la OIT. Datos de la Encuesta Permanente de Hogares del INDEC y de la Encuesta Continua de Empleo del INEC."
 
 - name: "Araucaria Spotter"
   url: "https://araucaria-spotter.vercel.app/"

@@ -127,9 +127,13 @@ en una grilla de paneles; hay que `purge` antes cuando cambia la forma del gráf
 - **S9 — Roles de docencia.** Matías dijo que da clase y tutoriales «en muchos» pero no cuál en
   cuál. La página hoy lo dice en general, en el standfirst. Si quiere el rol por módulo, hay que
   preguntárselo.
-- **S13 — Sumar países al panel.** Es lo único que quedó del S2 original. El cubo y la interfaz
-  ya están preparados para una dimensión más, pero hace falta decidir qué países y de qué encuesta,
-  y que las definiciones de informalidad sean comparables. No empezado.
+- **S13 — Sumar países al panel.** En curso (19/10). Entró Costa Rica (ECE del INEC, 2010T3–2025T3)
+  y el panel tiene selector de país y una vista «Comparar». Datos en
+  `assets/data/informality/<iso>/` y registro en `paises.json`; un país nuevo no toca el HTML.
+  Falta: (1) correr el master de Costa Rica en Stata y comparar con la réplica en Python que hoy
+  alimenta el sitio; (2) bajar 2025T4–2026T2 del INEC; (3) push, que espera el OK de Matías;
+  (4) miniatura nueva (la actual es sólo Argentina). Próximos países: ver
+  `mercado_trabajo_latam\datos\Bases_LATAM_disponibles.md`.
 - **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
 

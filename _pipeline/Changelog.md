@@ -5,6 +5,24 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-19 (corrida 7) — el panel pasa a América Latina: entra Costa Rica
+
+- **Costa Rica.** Limpieza nueva en `mercado_trabajo_latam\codigos_limpieza\Costa_Rica` con los
+  mismos pasos que Argentina, sobre la ECE del INEC (61 trimestres). Las tasas reproducen exacto
+  las del INEC (2024T1 38,3; 2025T1 37,3; 2025T2 35,8; 2025T3 38,3; también por sexo). Los datos
+  publicados salen por ahora de la réplica en Python; falta la corrida de Stata.
+- **Panel multipaís.** Selector de país arriba y vista «Comparar»: indicadores del último
+  trimestre país por país y un gráfico con una línea por país (serie más larga de cada uno, sólo
+  dimensiones armonizadas, sin ingresos). Notas de comparabilidad en la misma vista. El HTML
+  conserva el nombre de archivo para no romper el embed.
+- **Datos por país.** `assets/data/informality/ar/` (lo de Argentina, movido con `git mv`),
+  `cr/` y `paises.json`, el registro con etiquetas y textos de cada país. `mapa_informalidad.do`
+  pasó a recorrer países (`mapa_un_pais.do` + un adaptador por país).
+- **Error corregido**: las etiquetas de provincia 14, 22 y 24 (Santa Cruz, Tierra del Fuego, Río
+  Negro) estaban rotadas en el panel publicado.
+- **Textos**: «Argentina Informality Dashboard» → «Latin America Informality Dashboard» (y «Panel
+  de informalidad en América Latina») en las páginas, en proyectos y en los `_data`.
+
 ## 2026-10-18 (corrida 6) — datos nuevos del panel, con la limpieza nueva
 
 - **Pipeline de datos nuevo.** `proyectos\mapa_informalidad\mapa_informalidad.do` lee
