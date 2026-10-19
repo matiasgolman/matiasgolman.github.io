@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>Panel de informalidad en Argentina · Matías Golman</title>
+<title>Panel de informalidad · Matías Golman</title>
 <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
 <script src="../js/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
@@ -245,6 +245,31 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
   .kpi:nth-child(even){border-left:1px solid var(--rule);padding-left:1.1rem}
   .kpi:nth-child(-n+2){border-top:0}
 }
+
+/* --- country bar (always visible, also when embedded) --- */
+.ctry{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;margin:0 0 1.4rem}
+.ctry__lab{font-family:var(--sans);font-size:.7rem;font-weight:500;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.055em}
+.ctry .seg button{padding:.38rem .9rem}
+.ctry .seg button[data-mode="comp"]{font-style:italic}
+.ctry__src{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:0}
+[hidden]{display:none !important}
+
+/* --- comparison KPIs: one row per country --- */
+.cmpk{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cmpk__row{display:grid;grid-template-columns:minmax(8rem,1.2fr) repeat(3,minmax(0,1fr));
+  gap:0;border-top:1px solid var(--rule)}
+.cmpk__row:first-child{border-top:0}
+.cmpk__name{font-family:var(--serif);font-weight:600;font-size:var(--fs-1);padding:.9rem 0;
+  display:flex;flex-direction:column;justify-content:center}
+.cmpk__name small{font-family:var(--sans);font-weight:400;font-size:var(--fs-s);color:var(--ink-soft)}
+.cmpk__sw{display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-right:.45rem;vertical-align:.05em}
+.cmpk .kpi{border-left:1px solid var(--rule)}
+@media (max-width:46rem){
+  .cmpk__row{grid-template-columns:1fr 1fr 1fr}
+  .cmpk__name{grid-column:1 / -1;padding-bottom:0}
+  .cmpk .kpi:first-of-type{border-left:0;padding-left:0}
+}
 </style>
 </head>
 <body>
@@ -253,8 +278,8 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
   <header class="bar">
     <div class="bar__in">
       <div>
-        <h1 class="bar__title" data-t="title">Panel de informalidad en Argentina</h1>
-        <p class="bar__sub" id="subtitle">INDEC · Encuesta Permanente de Hogares</p>
+        <h1 class="bar__title" id="pageTitle">Panel de informalidad laboral</h1>
+        <p class="bar__sub" id="subtitle"></p>
       </div>
       <div style="display:flex;gap:.6rem;align-items:center">
         <div class="seg" role="group" aria-label="Language">
@@ -269,57 +294,51 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     </div>
   </header>
 
-  <!-- ===== KPI strip ===== -->
+  <!-- ===== Country bar ===== -->
+  <nav class="ctry" aria-label="Country">
+    <span class="ctry__lab" data-t="country">País</span>
+    <div class="seg" role="group" id="ctrySeg"></div>
+    <p class="ctry__src" id="ctrySrc" hidden></p>
+  </nav>
+
+  <!-- =================== ONE COUNTRY =================== -->
+  <div id="viewPais">
+
   <section aria-labelledby="kpiH">
     <div class="sect__head" style="border-top:0;padding-top:0">
       <h2 class="sect__title" id="kpiH" data-t="kpi_title">Indicadores principales</h2>
-      <p class="sect__note" data-t="kpi_note" id="kpiNote"></p>
+      <p class="sect__note" id="kpiNote"></p>
     </div>
     <p class="meth" data-t="kpi_meth"></p>
     <div class="kpis" id="kpis"></div>
   </section>
 
-  <!-- ===== Interactive analysis ===== -->
   <section class="sect" aria-labelledby="iaH">
     <div class="sect__head">
       <h2 class="sect__title" id="iaH" data-t="interactive_title">Análisis interactivo</h2>
       <p class="sect__note" data-t="how_it_works_text"></p>
     </div>
-
     <div class="panel">
       <div class="controls">
-        <div class="ctl">
-          <label for="fMetric" data-t="metric">Métrica</label>
-          <select id="fMetric"></select>
-        </div>
-        <div class="ctl">
-          <label for="fParam" data-t="parameter">Desagregar por</label>
-          <select id="fParam"></select>
-        </div>
-        <div class="ctl">
-          <label for="fType" data-t="chart_type">Gráfico</label>
-          <select id="fType"></select>
-        </div>
+        <div class="ctl"><label for="fMetric" data-t="metric">Métrica</label><select id="fMetric"></select></div>
+        <div class="ctl"><label for="fParam" data-t="parameter">Desagregar por</label><select id="fParam"></select></div>
+        <div class="ctl"><label for="fType" data-t="chart_type">Gráfico</label><select id="fType"></select></div>
         <div class="ctl ctl--years">
           <div class="yr"><label for="fFrom" data-t="from_year">Desde</label><select id="fFrom"></select></div>
           <span class="dash">–</span>
           <div class="yr"><label for="fTo" data-t="to_year">Hasta</label><select id="fTo"></select></div>
         </div>
       </div>
-
       <div class="controls controls--sub">
         <div class="ctl"><label for="fGender" data-t="gender">Género</label><select id="fGender"></select></div>
-        <div class="ctl"><label for="fRegion" data-t="region">Región</label><select id="fRegion"></select></div>
+        <div class="ctl"><label for="fRegion" id="fRegionLab">Región</label><select id="fRegion"></select></div>
         <div class="ctl"><label for="fAge" data-t="age">Edad</label><select id="fAge"></select></div>
         <div class="ctl"><label for="fEmp" data-t="emp_category">Categoría ocupacional</label><select id="fEmp"></select></div>
-        <div class="ctl ctl--act">
-          <button class="btn" id="btnReset" data-t="reset_filters" type="button">Reiniciar</button>
-        </div>
+        <div class="ctl ctl--act"><button class="btn" id="btnReset" data-t="reset_filters" type="button">Reiniciar</button></div>
       </div>
-
       <div class="series" id="seriesBox" hidden>
         <div class="series__head">
-          <span class="series__lab" id="seriesLab" data-t="select_values">Series</span>
+          <span class="series__lab" id="seriesLab">Series</span>
           <span class="series__acts">
             <button type="button" id="btnAll"  data-t="select_all">Todas</button>
             <button type="button" id="btnNone" data-t="deselect_all">Ninguna</button>
@@ -327,12 +346,8 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
         </div>
         <div class="chips" id="chips"></div>
       </div>
-
       <div class="plot-head">
-        <div>
-          <h3 class="plot-title" id="plotTitle"></h3>
-          <p class="plot-sub" id="plotSub"></p>
-        </div>
+        <div><h3 class="plot-title" id="plotTitle"></h3><p class="plot-sub" id="plotSub"></p></div>
         <button type="button" class="ovbtn" id="btnOver" aria-pressed="false">
           <span class="ovbtn__sw" aria-hidden="true"></span><span id="btnOverTxt"></span></button>
       </div>
@@ -350,12 +365,10 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     </div>
   </section>
 
-  <!-- ===== Sector + map ===== -->
   <section class="sect" aria-labelledby="geoH">
     <div class="sect__head">
       <h2 class="sect__title" id="geoH" data-t="landscape_title">Dónde se concentra la informalidad</h2>
       <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
-        <p class="sect__note" id="geoYear"></p>
         <div class="seg" role="group" aria-label="View" id="viewSeg">
           <button type="button" data-view="level" aria-pressed="true" data-t="view_level">Nivel</button>
           <button type="button" data-view="change" aria-pressed="false" data-t="view_change">Cambio interanual</button>
@@ -364,116 +377,154 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
     </div>
     <div class="split">
       <div class="card">
-        <div class="card__head">
-          <h3 class="card__title" data-t="sector_title">Por sector</h3>
-          <p class="card__sub" id="sectorSub"></p>
-        </div>
+        <div class="card__head"><h3 class="card__title" data-t="sector_title">Por sector</h3><p class="card__sub" id="sectorSub"></p></div>
         <div class="card__body"><div id="sectorChart"></div>
           <div class="loading" id="sectorLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
         </div>
       </div>
       <div class="card">
-        <div class="card__head">
-          <h3 class="card__title" data-t="map_title">Por provincia</h3>
-          <p class="card__sub" id="mapSub"></p>
-        </div>
+        <div class="card__head"><h3 class="card__title" data-t="map_title">Por provincia</h3><p class="card__sub" id="mapSub"></p></div>
         <div class="card__body"><div id="mapChart"></div>
           <div class="loading" id="mapLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
         </div>
-        <div class="scale">
-          <span id="scaleLo">—</span>
-          <span class="scale__bar" id="scaleBar"></span>
-          <span id="scaleHi">—</span>
-        </div>
+        <div class="scale"><span id="scaleLo">—</span><span class="scale__bar" id="scaleBar"></span><span id="scaleHi">—</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Notes ===== -->
   <section class="sect" aria-labelledby="nH">
-    <div class="sect__head">
-      <h2 class="sect__title" id="nH" data-t="data_notes">Notas</h2>
-    </div>
+    <div class="sect__head"><h2 class="sect__title" id="nH" data-t="data_notes">Notas</h2></div>
     <div class="notes">
-      <details class="note">
-        <summary data-t="informality_info">Definición de informalidad</summary>
-        <div class="note__body" data-t="informality_definition"></div>
-      </details>
-      <details class="note">
-        <summary data-t="data_availability_notes">Disponibilidad de datos</summary>
-        <div class="note__body" data-t="availability_body"></div>
-      </details>
+      <details class="note"><summary data-t="informality_info">Definición de informalidad</summary>
+        <div class="note__body" data-t="informality_definition"></div></details>
+      <details class="note"><summary data-t="data_availability_notes">Disponibilidad de datos</summary>
+        <div class="note__body" data-t="availability_body"></div></details>
     </div>
-    <p class="attrib" id="attrib"></p>
+  </section>
+  </div>
+
+  <!-- =================== COMPARISON =================== -->
+  <div id="viewComp" hidden>
+  <section aria-labelledby="cmpH">
+    <div class="sect__head" style="border-top:0;padding-top:0">
+      <h2 class="sect__title" id="cmpH" data-t="cmp_kpi_title">El último trimestre, país por país</h2>
+      <p class="sect__note" data-t="cmp_kpi_note"></p>
+    </div>
+    <div class="cmpk" id="cmpKpis"></div>
   </section>
 
+  <section class="sect" aria-labelledby="cmpH2">
+    <div class="sect__head">
+      <h2 class="sect__title" id="cmpH2" data-t="cmp_title">Comparar países</h2>
+      <p class="sect__note" data-t="cmp_how"></p>
+    </div>
+    <div class="panel">
+      <div class="controls">
+        <div class="ctl"><label for="cMetric" data-t="metric">Métrica</label><select id="cMetric"></select></div>
+        <div class="ctl"><label for="cParam" data-t="parameter">Desagregar por</label><select id="cParam"></select></div>
+        <div class="ctl ctl--years">
+          <div class="yr"><label for="cFrom" data-t="from_year">Desde</label><select id="cFrom"></select></div>
+          <span class="dash">–</span>
+          <div class="yr"><label for="cTo" data-t="to_year">Hasta</label><select id="cTo"></select></div>
+        </div>
+      </div>
+      <div class="controls controls--sub">
+        <div class="ctl"><label for="cGender" data-t="gender">Género</label><select id="cGender"></select></div>
+        <div class="ctl"><label for="cAge" data-t="age">Edad</label><select id="cAge"></select></div>
+        <div class="ctl"><label for="cEmp" data-t="emp_category">Categoría ocupacional</label><select id="cEmp"></select></div>
+        <div class="ctl ctl--act"><button class="btn" id="cReset" data-t="reset_filters" type="button">Reiniciar</button></div>
+      </div>
+      <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div></div>
+      <p class="warn" id="cmpWarn" hidden></p>
+      <p class="plotmsg" id="cmpMsg" hidden></p>
+      <div class="plot"><div id="cmpChart"></div>
+        <div class="loading" id="cmpLoad" hidden><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
+      </div>
+      <div class="plot-foot">
+        <button class="btn" id="cCsv" type="button" data-t="download_data">Descargar datos (CSV)</button>
+        <button class="btn" id="cPng" type="button" data-t="download_chart">Descargar gráfico (PNG)</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="cnH">
+    <div class="sect__head"><h2 class="sect__title" id="cnH" data-t="data_notes">Notas</h2></div>
+    <div class="notes">
+      <details class="note" open><summary data-t="cmp_caveat_title">Qué se puede comparar y qué no</summary>
+        <div class="note__body" id="cmpCaveat"></div></details>
+    </div>
+  </section>
+  </div>
+
+  <p class="attrib" id="attrib"></p>
 </div>
 <script>
 "use strict";
 /* ===========================================================================
-   Argentina informality dashboard
-   Data: INDEC EPH, pre-aggregated cube written by mapa_informalidad.do
-   (Stata) as CSV shards, plus meta.json. Column `v` is the measure:
-   1 = official INDEC definition, 2 = long series since 2003.
-   Every figure on this page is computed from that cube at run time.
+   Informality dashboard, Latin America (Argentina, Costa Rica, ...)
+   Data: one folder per country under assets/data/informality/<iso>/, written
+   by proyectos/mapa_informalidad/mapa_informalidad.do (Stata): CSV shards of a
+   pre-aggregated cube plus meta.json. paises.json is the registry: country
+   names, sources, the labels that change by country (r, p, s) and every text
+   that does. Column `v` is the measure: 1 = the statistics office's official
+   definition, 2 = the longest series with a single rule.
+   Every figure on this page is computed from the cubes at run time.
+   Adding a country needs no change here: a folder of data and an entry in
+   paises.json.
    =========================================================================== */
 
 const DATA_DIR = "../data/informality/";
 const PLOT_CFG = {displayModeBar:false, responsive:true};
 
-/* ---------- i18n ---------- */
+/* ---------- i18n: texts shared by every country ----------
+   Anything that depends on the country lives in paises.json (`textos`) and
+   wins over these. */
 const T = {
-  title:{es:"Panel de informalidad en Argentina",en:"Argentina informality dashboard"},
-  subtitle:{es:"INDEC · Encuesta Permanente de Hogares",en:"INDEC · Permanent Household Survey"},
-  measure:{es:"Medida",en:"Measure"},
-  meas_1:{es:"Metodología nueva INDEC",en:"New INDEC methodology"},
-  meas_2:{es:"Serie larga",en:"Long series"},
-  overlay_name:{es:"metodología nueva INDEC",en:"new INDEC methodology"},
-  overlay_note:{es:"Línea punteada: metodología nueva de INDEC, desde el primer año completo en que existe (2024). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
-                en:"Dotted line: INDEC's new methodology, from the first full year it exists (2024). The gap to the long series reflects measurement, not a change in informality."},
-  kpi_meth:{es:"Con la metodología nueva de INDEC (vigente desde el 4.º trimestre de 2023), la misma de sus informes.",
-            en:"Using INDEC's new methodology (in force since Q4 2023), the one in its own reports."},
-  geo_meth:{es:"Metodología nueva INDEC · ",en:"New INDEC methodology · "},
-  over_on:{es:"Superponer metodología nueva INDEC",en:"Overlay new INDEC methodology"},
-  over_off:{es:"Quitar metodología nueva INDEC",en:"Remove new INDEC methodology"},
-  over_na:{es:"La superposición está disponible para la tasa de informalidad en líneas o paneles.",
-           en:"The overlay is available for the informality rate as lines or panels."},
-  chart_meth:{es:"Serie larga (2003–)",en:"Long series (2003–)"},
-  meas_note_1:{es:"La metodología que INDEC usa desde el 4.º trimestre de 2023: coincide con sus informes. Para ver la evolución desde 2003, elegí la serie larga.",
-               en:"The methodology INDEC has used since Q4 2023: it matches INDEC's reports. For the trend since 2003, switch to the long series."},
-  meas_note_2:{es:"Mismo criterio que la metodología nueva, calculado con preguntas que están en la encuesta desde 2003. Queda unos 3 puntos por encima; en el gráfico se superponen las dos desde que existe la nueva, en vez de empalmarlas.",
-               en:"Same criterion as the new methodology, built from questions asked since 2003. It sits about 3 points higher; the chart overlays both from the moment the new one exists instead of splicing them."},
+  title:{es:"Panel de informalidad laboral",en:"Labour informality dashboard"},
+  title_in:{es:"Panel de informalidad en ",en:"Informality dashboard: "},
+  title_cmp:{es:"Panel de informalidad: comparación entre países",en:"Informality dashboard: country comparison"},
+  country:{es:"País",en:"Country"},
+  compare:{es:"Comparar",en:"Compare"},
   view_level:{es:"Nivel",en:"Level"}, view_change:{es:"Cambio interanual",en:"Year-on-year change"},
   rate_year:{es:"Tasa de informalidad, ",en:"Informality rate, "},
   change_year:{es:"Cambio en la tasa, en puntos porcentuales, ",en:"Change in the rate, percentage points, "},
   latest_q:{es:"Último trimestre",en:"Latest quarter"},
   vs_prev_q:{es:"vs. trimestre anterior",en:"vs. previous quarter"},
   vs_year_ago:{es:"vs. un año antes",en:"vs. a year earlier"},
-  qlab:{es:"T",en:"Q"},
   kpi_title:{es:"Indicadores principales",en:"Headline indicators"},
   interactive_title:{es:"Análisis interactivo",en:"Interactive analysis"},
   landscape_title:{es:"Dónde se concentra la informalidad",en:"Where informality concentrates"},
   sector_title:{es:"Por sector",en:"By sector"},
-  map_title:{es:"Por provincia",en:"By province"},
+  map_title:{es:"Por región",en:"By region"},
   data_notes:{es:"Notas",en:"Notes"},
   metric:{es:"Métrica",en:"Metric"},
   parameter:{es:"Desagregar por",en:"Break down by"},
   chart_type:{es:"Gráfico",en:"Chart"},
   from_year:{es:"Desde",en:"From"}, to_year:{es:"Hasta",en:"To"},
   gender:{es:"Género",en:"Gender"}, region:{es:"Región",en:"Region"},
+  provincia:{es:"Provincia",en:"Province"},
   age:{es:"Edad",en:"Age"}, emp_category:{es:"Categoría ocupacional",en:"Occupational category"},
   reset_filters:{es:"Reiniciar",en:"Reset"},
-  select_values:{es:"Series",en:"Series"},
   select_all:{es:"Todas",en:"All"}, deselect_all:{es:"Ninguna",en:"None"},
   loading:{es:"Cargando…",en:"Loading…"},
   show_table:{es:"Ver tabla",en:"Show table"}, hide_table:{es:"Ocultar tabla",en:"Hide table"},
   download_data:{es:"Descargar datos (CSV)",en:"Download data (CSV)"},
   download_chart:{es:"Descargar gráfico (PNG)",en:"Download chart (PNG)"},
-  all:{es:"Todos",en:"All"}, year:{es:"Año",en:"Year"},
+  year:{es:"Año",en:"Year"},
   informal:{es:"informal",en:"informal"}, formal:{es:"formal",en:"formal"},
   rate_axis:{es:"Tasa de informalidad (%)",en:"Informality rate (%)"},
   hours_axis:{es:"Horas semanales",en:"Weekly hours"},
-  income_axis:{es:"Ingreso mensual (pesos constantes)",en:"Monthly income (constant pesos)"},
+  income_axis:{es:"Ingreso mensual (moneda constante)",en:"Monthly income (constant currency)"},
+  meas_1:{es:"Medida oficial",en:"Official measure"},
+  meas_2:{es:"Serie larga",en:"Long series"},
+  overlay_name:{es:"medida oficial",en:"official measure"},
+  overlay_note:{es:"",en:""},
+  over_on:{es:"Superponer la medida oficial",en:"Overlay the official measure"},
+  over_off:{es:"Quitar la medida oficial",en:"Remove the official measure"},
+  over_na:{es:"La superposición está disponible para la tasa de informalidad en líneas o paneles.",
+           en:"The overlay is available for the informality rate as lines or panels."},
+  chart_meth:{es:"Serie larga",en:"Long series"},
+  geo_meth:{es:"Medida oficial · ",en:"Official measure · "},
   how_it_works_text:{
     es:"Elegí una métrica y, si querés, una dimensión para desagregar; los filtros de abajo acotan la población.",
     en:"Pick a metric and, optionally, a dimension to break it down; the filters below narrow the population."},
@@ -487,20 +538,25 @@ const T = {
   load_failed:{es:"No se pudieron cargar los datos. Probá cambiar un filtro o recargar la página.",
                en:"The data could not be loaded. Try changing a filter or reloading the page."},
   pick_one:{es:"Elegí al menos una serie.",en:"Select at least one series."},
-  vs_prev:{es:"vs. año anterior",en:"vs. previous year"},
   pp:{es:"pp",en:"pp"},
-  latest:{es:"Último año disponible",en:"Latest year available"},
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
-  informality_definition:{
-    es:"Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Metodología nueva INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la metodología nueva (unos 11 entre los independientes; casi nada entre los asalariados, donde las dos usan la misma pregunta). Por eso no se empalman. Los indicadores principales, el ranking por sector y el mapa usan la metodología nueva; el análisis interactivo usa la serie larga y permite superponer la nueva desde 2024.",
-    en:"Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced. Headline indicators, the sector ranking and the map use the new methodology; the interactive analysis uses the long series and can overlay the new one from 2024."},
-  availability_body:{
-    es:"Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos: el año en curso entra cuando sale su 4.º trimestre. En la serie larga, 2003 (sólo el 2.º semestre), 2007, 2015 y 2016 promedian menos trimestres porque esas bases no existen. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Las celdas con menos de 30 observaciones se marcan como imprecisas y las de menos de 10 no se muestran.",
-    en:"Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
-  attrib:{
-    es:'Datos y desarrollo de <a href="https://matiasgolman.github.io/">Matías Golman</a>, sobre la Encuesta Permanente de Hogares del INDEC. Hecho para la OIT. Contacto: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>',
-    en:'Data and development by <a href="https://matiasgolman.github.io/">Matías Golman</a>, from INDEC\'s Permanent Household Survey. Built for the ILO. Contact: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>'}
+  attrib:{es:'Datos y desarrollo de <a href="https://matiasgolman.github.io/">Matías Golman</a>, sobre {src}. Hecho para la OIT. Contacto: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>',
+          en:'Data and development by <a href="https://matiasgolman.github.io/">Matías Golman</a>, from {src}. Built for the ILO. Contact: <a href="mailto:matias.golman@gmail.com">matias.golman@gmail.com</a>'},
+  and:{es:" y ",en:" and "},
+  /* comparison view */
+  cmp_kpi_title:{es:"El último trimestre, país por país",en:"The latest quarter, country by country"},
+  cmp_kpi_note:{es:"Tasa de empleo informal con la medida oficial de cada instituto",en:"Informal employment rate on each statistics office's official measure"},
+  cmp_title:{es:"Comparar países",en:"Compare countries"},
+  cmp_how:{es:"Promedios anuales, una línea por país. Al desagregar, un panel por grupo con la misma escala.",
+           en:"Annual averages, one line per country. With a breakdown, one panel per group on a shared scale."},
+  cmp_caveat_title:{es:"Qué se puede comparar y qué no",en:"What can and cannot be compared"},
+  cmp_meth:{es:"Serie más larga de cada país",en:"Longest series for each country"},
+  cmp_warn_def:{es:"El tamaño del establecimiento y el quintil de ingreso no se definen igual en todas las encuestas: ver las notas.",
+                en:"Establishment size and income quintile are not defined the same way in every survey: see the notes."},
+  hours_inf:{es:"Horas trabajadas, informales (promedio)",en:"Hours worked, informal (mean)"},
+  hours_for:{es:"Horas trabajadas, formales (promedio)",en:"Hours worked, formal (mean)"},
+  all_employed:{es:"Todas las personas ocupadas",en:"All employed people"}
 };
 const METRICS = {
   tasa_informalidad:{es:"Tasa de informalidad",en:"Informality rate"},
@@ -508,9 +564,10 @@ const METRICS = {
   media_ingreso:{es:"Ingreso (promedio)",en:"Income (mean)"},
   mediana_ingreso:{es:"Ingreso (mediana)",en:"Income (median)"}
 };
-const PARAMS = {
+const CMP_METRICS = {tasa_informalidad:["t"], horas_inf:["h"], horas_for:["f"]};
+const PARAMS_BASE = {
   all:{es:"Sin desagregar",en:"No breakdown"},
-  genero:{es:"Género",en:"Gender"}, region:{es:"Región",en:"Region"},
+  genero:{es:"Género",en:"Gender"}, region:null,
   edad_tramos:{es:"Grupo de edad",en:"Age group"},
   categoria_empleo:{es:"Categoría ocupacional",en:"Occupational category"},
   educr:{es:"Educación",en:"Education"},
@@ -519,15 +576,16 @@ const PARAMS = {
   tam:{es:"Tamaño del establecimiento",en:"Establishment size"},
   quintil:{es:"Quintil de ingreso",en:"Income quintile"},
   jefe_hogar:{es:"Posición en el hogar",en:"Position in household"},
-  provincia:{es:"Provincia",en:"Province"}
+  provincia:null
 };
+const CMP_PARAMS = ["all","genero","edad_tramos","categoria_empleo","educr","miembros_hogar","rama_actividad","jefe_hogar","tam","quintil"];
+const CMP_WARN_PARAMS = ["tam","quintil"];
 const CHARTS = {line:{es:"Líneas",en:"Line"},bar:{es:"Barras",en:"Bar"},small:{es:"Paneles",en:"Small multiples"}};
 
-/* ---------- value labels ---------- */
+/* ---------- value labels shared by every country (harmonized codes) ----------
+   r, p and s change by country and come from paises.json. */
 const L = {
   g:{es:{0:"Mujeres",1:"Varones",99:"Todos"},en:{0:"Women",1:"Men",99:"All"}},
-  r:{es:{1:"GBA",40:"NOA",41:"NEA",42:"Cuyo",43:"Pampeana",44:"Patagónica",99:"Todas"},
-     en:{1:"GBA",40:"NOA",41:"NEA",42:"Cuyo",43:"Pampean",44:"Patagonian",99:"All"}},
   e:{es:{1:"Hasta 24",2:"25–44",3:"45–64",4:"65+",99:"Todas"},en:{1:"Up to 24",2:"25–44",3:"45–64",4:"65+",99:"All"}},
   c:{es:{1:"Asalariado",2:"Servicio doméstico",3:"Cuenta propia",4:"Patrón",5:"Familiar sin remuneración",99:"Todas"},
      en:{1:"Employee",2:"Domestic worker",3:"Own-account",4:"Employer",5:"Unpaid family worker",99:"All"}},
@@ -535,8 +593,6 @@ const L = {
      en:{1:"Incomplete secondary or less",2:"Complete secondary / incomplete tertiary",3:"Complete tertiary",99:"All"}},
   m:{es:{1:"1 miembro",2:"2 miembros",3:"3 miembros",4:"4 miembros",5:"5+ miembros",99:"Todos"},
      en:{1:"1 member",2:"2 members",3:"3 members",4:"4 members",5:"5+ members",99:"All"}},
-  s:{es:{1:"Hasta 5 personas",2:"De 6 a 40",3:"Más de 40",99:"Todos"},
-     en:{1:"Up to 5 people",2:"6 to 40",3:"More than 40",99:"All"}},
   q:{es:{1:"Quintil 1",2:"Quintil 2",3:"Quintil 3",4:"Quintil 4",5:"Quintil 5",99:"Todos"},
      en:{1:"Quintile 1",2:"Quintile 2",3:"Quintile 3",4:"Quintile 4",5:"Quintile 5",99:"All"}},
   j:{es:{0:"No jefe/a",1:"Jefe/a de hogar",99:"Todos"},en:{0:"Not head",1:"Head of household",99:"All"}},
@@ -547,13 +603,11 @@ const L = {
      en:{1:"Primary activities",2:"Manufacturing",3:"Construction",4:"Trade and repairs",
         5:"Hotels and restaurants",6:"Transport and telecoms",7:"Financial and real-estate services",
         8:"Public administration and defence",9:"Education",10:"Health services",
-        11:"Other social and community services",12:"Domestic service in households",99:"All"}}
+        11:"Other social and community services",12:"Domestic service in households",99:"All"}},
+  /* fallbacks; every country overrides these in paises.json */
+  r:{es:{99:"Todas"},en:{99:"All"}}, p:{es:{99:"Todas"},en:{99:"All"}},
+  s:{es:{1:"Hasta 5 personas",2:"Mediano",3:"Grande",99:"Todos"},en:{1:"Up to 5 people",2:"Medium",3:"Large",99:"All"}}
 };
-const PROV = {1:"Buenos Aires",2:"Santa Fe",3:"Entre Ríos",4:"Misiones",5:"Chaco",6:"Chubut",7:"Mendoza",
-  8:"Corrientes",9:"Córdoba",10:"Formosa",11:"Neuquén",12:"Santiago del Estero",13:"Jujuy",14:"Río Negro",
-  15:"Catamarca",16:"Salta",17:"La Rioja",18:"San Luis",19:"San Juan",20:"Tucumán",21:"La Pampa",
-  22:"Santa Cruz",23:"CABA",24:"Tierra del Fuego",99:"Todas"};
-L.p = {es:PROV,en:Object.assign({},PROV,{3:"Entre Rios",99:"All"})};
 
 const PARAM_COL = {genero:"g",region:"r",edad_tramos:"e",categoria_empleo:"c",
   educr:"d",miembros_hogar:"m",rama_actividad:"a",tam:"s",quintil:"q",jefe_hogar:"j",provincia:"p"};
@@ -564,31 +618,43 @@ const METRIC_COLS = {tasa_informalidad:["t"],media_horas:["h","f"],media_ingreso
 
 /* ---------- state ---------- */
 let lang = (document.documentElement.lang === "en") ? "en" : "es";
-const shards = {};            // name -> Promise<{n,brk,cols}>
-let geo = null;
+let REG = null;               // paises.json
+let iso = null;               // country on screen
+let mode = "pais";            // "pais" | "comp"
+const META = {};              // iso -> meta.json (resolved)
+const shards = {};            // "iso/name" -> Promise<{n,cols}>
+const geos = {}, snaps = {}, metas = {};
 let picked = {};              // param -> Set of selected values
-let lastRows = null;          // for CSV / table
-let lastForm = "";            // chart-form signature; see reactOrRedraw()
-/* Headline indicators, sector ranking and map use the new INDEC methodology
-   (v=1); the interactive chart uses the long series (v=2), with the new
-   methodology as an optional overlay. */
-const meas = 1;               // measure for KPIs, sector and map
-const CHART_V = 2;            // measure for the interactive chart
-let showOver = false;         // overlay of v=1 on the chart
-let geoView = "level";        // "level" | "change"
-let meta = null;
+let lastRows = null, lastCmp = null;
+let lastForm = "", lastFormC = "";
+/* Headline indicators, sector ranking and map use the official measure (v=1);
+   the interactive chart uses the long series (v=2), with v=1 as an overlay. */
+const meas = 1;
+const CHART_V = 2;
+let showOver = false;
+let geoView = "level";
 const embedded = (function(){ try { return window.self !== window.top; } catch(e){ return true; } })();
 
 const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
-const t  = k => (T[k] && T[k][lang]) || "";
+const C  = (x) => REG && REG.paises[x||iso];
+/* A country text wins over the shared one. */
+const t  = (k, x) => { const c = C(x); const v = c && c.textos && c.textos[k];
+  if(v && v[lang] != null) return v[lang]; return (T[k] && T[k][lang]) || ""; };
+const labs = (col, x) => { const c = C(x); const v = c && c.labels && c.labels[col];
+  return v ? v[lang] : L[col][lang]; };
+const cname = x => C(x).nombre[lang];
+const PARAMS = () => { const p = Object.assign({}, PARAMS_BASE);
+  p.region = {es:t("region"),en:t("region")}; p.provincia = {es:t("provincia"),en:t("provincia")};
+  if(lang==="es"){ p.region.es = t("region"); p.provincia.es = t("provincia"); }
+  else { p.region.en = t("region"); p.provincia.en = t("provincia"); }
+  return p; };
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const seriesColors = () => ["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--s8"].map(css);
 const mapRamp      = () => ["--m0","--m1","--m2","--m3","--m4","--m5","--m6"].map(css);
+const countryColor = x => seriesColors()[REG.orden.indexOf(x) % 8];
 
 /* ---------- data ---------- */
-/* CSV shard -> {n, cols:{name:[...]}}. Every value is numeric; an empty cell
-   (e.g. formal hours in a cell with no formal workers) becomes null. */
 function parseCsv(txt){
   const lines = txt.replace(/\r/g,"").split("\n").filter(l=>l.length);
   const head = lines[0].split(",").map(h=>h.replace(/"/g,"").trim());
@@ -603,38 +669,26 @@ function parseCsv(txt){
   }
   return {n:lines.length-1, cols};
 }
-function loadMeta(){
-  if(!meta) meta = fetch(DATA_DIR+"meta.json")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for meta"); return r.json(); })
-    .catch(err=>{ meta = null; throw err; });
-  return meta;
+function getJson(url, cache, key){
+  if(!cache[key]) cache[key] = fetch(url)
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for "+url); return r.json(); })
+    .catch(err=>{ delete cache[key]; throw err; });
+  return cache[key];
 }
-function load(name){
-  if(!shards[name]) shards[name] = fetch(DATA_DIR+name+".csv")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for "+name); return r.text(); })
+const loadMeta = x => getJson(DATA_DIR+x+"/meta.json", metas, x).then(m=>{ META[x]=m; return m; });
+const loadGeo  = x => getJson(DATA_DIR+x+"/"+C(x).geo, geos, x);
+function load(name, x){
+  x = x || iso;
+  const key = x+"/"+name;
+  if(!shards[key]) shards[key] = fetch(DATA_DIR+x+"/"+name+".csv")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for "+key); return r.text(); })
     .then(parseCsv)
-    .catch(err=>{ delete shards[name]; throw err; });   // a failed load must stay retryable
-  return shards[name];
+    .catch(err=>{ delete shards[key]; throw err; });   // a failed load must stay retryable
+  return shards[key];
 }
-let snap = null;
-/* The sector ranking and the map only ever show the latest year at the
-   all-filters level. Reading them from a small snapshot keeps
-   the 1.3 MB sector shard and the 1.1 MB province shard off the first paint —
-   they load only if the reader actually asks for that breakdown. */
-function loadSnap(){
-  if(!snap) snap = fetch(DATA_DIR+"snapshot.csv")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for snapshot"); return r.text(); })
-    .then(parseCsv)
-    .catch(err=>{ snap = null; throw err; });
-  return snap;
-}
-function loadGeo(){
-  if(!geo) geo = fetch(DATA_DIR+"provinces.geo.json")
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status+" for geo"); return r.json(); })
-    .catch(err=>{ geo = null; throw err; });
-  return geo;
-}
-/** Return row indices of `sh` where every key of `fixed` matches. */
+/* The sector ranking and the map only show the latest years at the all-filters
+   level, read from a small snapshot so the big shards stay off the first paint. */
+const loadSnap = x => { x = x||iso; return load("snapshot", x); };
 function select(sh, fixed){
   const c = sh.cols, n = sh.n, ks = Object.keys(fixed), out = [];
   for(let i=0;i<n;i++){
@@ -646,14 +700,12 @@ function select(sh, fixed){
 }
 const fmt = (v,metric) => v==null ? "–"
   : metric==="tasa_informalidad" ? v.toFixed(1)+"%"
-  : metric==="media_horas" ? v.toFixed(1)
+  : (metric==="media_horas" || metric==="horas_inf" || metric==="horas_for") ? v.toFixed(1)
   : Math.round(v).toLocaleString(lang==="es"?"es-AR":"en-GB");
 
-/* Plotly.react cannot morph a scatter trace into a bar, nor a single plot into
-   a subplot grid: it keeps the old rendering. Purge whenever the *form* changes
-   and react only for same-shape data updates, which stays cheap. */
-function reactOrRedraw(div, traces, layout, sig){
-  if(sig !== lastForm){ Plotly.purge(div); lastForm = sig; }
+function reactOrRedraw(div, traces, layout, sig, which){
+  if(which==="c"){ if(sig !== lastFormC){ Plotly.purge(div); lastFormC = sig; } }
+  else if(sig !== lastForm){ Plotly.purge(div); lastForm = sig; }
   Plotly.react(div, traces, layout, PLOT_CFG);
 }
 
@@ -675,9 +727,6 @@ function baseLayout(extra){
     showlegend:false, dragmode:false
   }, extra||{});
 }
-/* Year ticks that never collide. `maxLabels` is driven by the width the axis
-   actually gets, so a narrow small-multiples panel gets far fewer than a
-   full-width plot. The last year is always labelled. */
 function yearAxis(years, maxLabels){
   const first = years[0], last = years[years.length-1], span = last-first+1;
   const cap = maxLabels || 12;
@@ -694,16 +743,15 @@ function yearAxis(years, maxLabels){
 
 /* ---------- KPI strip ---------- */
 const qName = (y,q) => lang==="es" ? `${q}.º trim. ${y}` : `Q${q} ${y}`;
-async function renderKpis(){
-  const sh = await load("trimestral");
-  const c = sh.cols;
-  const cards = [
-    {lab:{es:"Total",en:"Total"},             f:{g:99,e:99,c:99}, lead:true},
-    {lab:{es:"Mujeres",en:"Women"},           f:{g:0,e:99,c:99}},
-    {lab:{es:"Varones",en:"Men"},             f:{g:1,e:99,c:99}},
-    {lab:{es:"Hasta 24 años",en:"Up to 24"},  f:{g:99,e:1,c:99}},
-    {lab:{es:"25–44 años",en:"Aged 25–44"},   f:{g:99,e:2,c:99}}
-  ];
+const KPI_CARDS = [
+  {lab:{es:"Total",en:"Total"},             f:{g:99,e:99,c:99}, lead:true},
+  {lab:{es:"Mujeres",en:"Women"},           f:{g:0,e:99,c:99}},
+  {lab:{es:"Varones",en:"Men"},             f:{g:1,e:99,c:99}},
+  {lab:{es:"Hasta 24 años",en:"Up to 24"},  f:{g:99,e:1,c:99}},
+  {lab:{es:"25–44 años",en:"Aged 25–44"},   f:{g:99,e:2,c:99}}
+];
+async function kpiValues(x, cards){
+  const sh = await load("trimestral", x), c = sh.cols;
   let latest = null;
   const vals = cards.map(cd=>{
     const idx = select(sh, Object.assign({v:meas}, cd.f));
@@ -715,11 +763,15 @@ async function renderKpis(){
     const prevQ = ks.length>1 ? ks[ks.length-2] : null;
     return {cd, v:byQ[k1], pq: prevQ!=null ? byQ[prevQ] : null, py: byQ[k1-10]};
   });
-  const delta = (v,p,lab) => {
-    if(v==null || p==null) return "";
-    const d = v-p, arrow = d>0.05 ? "▲" : d<-0.05 ? "▼" : "▪";
-    return `<p class="kpi__delta">${arrow} <b>${d>0?"+":""}${d.toFixed(1)} ${t("pp")}</b> ${lab}</p>`;
-  };
+  return {vals, latest};
+}
+const delta = (v,p,lab) => {
+  if(v==null || p==null) return "";
+  const d = v-p, arrow = d>0.05 ? "▲" : d<-0.05 ? "▼" : "▪";
+  return `<p class="kpi__delta">${arrow} <b>${d>0?"+":""}${d.toFixed(1)} ${t("pp")}</b> ${lab}</p>`;
+};
+async function renderKpis(){
+  const {vals, latest} = await kpiValues(iso, KPI_CARDS);
   $("#kpis").innerHTML = vals.map(({cd,v,pq,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p>
       <p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>${delta(v,pq,t("vs_prev_q"))}${delta(v,py,t("vs_year_ago"))}</div>`).join("");
@@ -730,32 +782,28 @@ async function renderKpis(){
 /* ---------- main interactive chart ---------- */
 function currentSel(){
   return {
-    metric: $("#fMetric").value,
-    param:  $("#fParam").value,
-    type:   $("#fType").value,
-    from:   +$("#fFrom").value,
-    to:     +$("#fTo").value,
-    g:+$("#fGender").value, r:+$("#fRegion").value,
-    e:+$("#fAge").value,    c:+$("#fEmp").value
+    metric: $("#fMetric").value, param: $("#fParam").value, type: $("#fType").value,
+    from: +$("#fFrom").value, to: +$("#fTo").value,
+    g:+$("#fGender").value, r:+$("#fRegion").value, e:+$("#fAge").value, c:+$("#fEmp").value
   };
 }
-async function rowsForSelection(s, m){
+async function rowsForSelection(s, m, x){
   if(m===undefined) m = CHART_V;
-  const cols = METRIC_COLS[s.metric];
+  x = x || iso;
+  const cols = METRIC_COLS[s.metric] || CMP_METRICS[s.metric];
   if(s.param==="all"){
-    const sh = await load("base");
+    const sh = await load("base", x);
     const idx = select(sh,{v:m,g:s.g,r:s.r,e:s.e,c:s.c});
     return {sh, idx, brkCol:null, cols};
   }
   const name = PARAM_SHARD[s.param], col = PARAM_COL[s.param];
-  const sh = await load(name);
+  const sh = await load(name, x);
   const fixed = {g:s.g,r:s.r,e:s.e,c:s.c};
   delete fixed[col];
-  fixed.v = m;                       // the dimension being broken down runs free
+  fixed.v = m;
   const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99);
   return {sh, idx, brkCol:col, cols};
 }
-/** group rows -> {key -> {year -> [v1,v2]}} */
 function pivot(sh, idx, brkCol, cols, from, to){
   const c = sh.cols, out = new Map(); let lowSample = false;
   for(const i of idx){
@@ -768,10 +816,7 @@ function pivot(sh, idx, brkCol, cols, from, to){
   }
   return {groups:out, lowSample};
 }
-
-/* Colour follows the entity, not its rank: a slot is held until that entity is
-   deselected, so removing one series never repaints the survivors. */
-const slots = {};                       // param -> Map(entity -> slot index)
+const slots = {};
 function syncSlots(param, sel){
   if(!slots[param]) slots[param] = new Map();
   const m = slots[param];
@@ -793,23 +838,20 @@ function ensureSelection(param, keys){
   syncSlots(param, picked[param]);
   return picked[param];
 }
-/* `colored` is false whenever the chart does not encode these entities by hue
-   (small multiples), so a chip never advertises a colour the plot doesn't use. */
 function buildChips(param, keys, colored){
   const box = $("#seriesBox");
   if(param==="all"){ box.hidden = true; return; }
   box.hidden = false;
-  $("#seriesLab").textContent = PARAMS[param][lang];
+  $("#seriesLab").textContent = PARAMS()[param][lang];
   const col = PARAM_COL[param];
-  const labs = L[col][lang];
+  const lb = labs(col);
   const sel = picked[param];
-  const ordered = keys.slice();
   const colorOf = k => (colored && sel.size<=8) ? slotColor(param,k) : null;
-  $("#chips").innerHTML = ordered.map(k=>{
+  $("#chips").innerHTML = keys.map(k=>{
     const on = sel.has(k), col2 = colorOf(k);
     return `<button class="chip" type="button" aria-pressed="${on}" data-k="${k}">
       <span class="chip__sw" style="${on&&col2?`background:${col2}`:""}"></span>
-      <span class="chip__txt">${labs[k]||k}</span></button>`;
+      <span class="chip__txt">${lb[k]||k}</span></button>`;
   }).join("");
   $$("#chips .chip").forEach(b=>b.addEventListener("click",()=>{
     const k = isNaN(+b.dataset.k) ? b.dataset.k : +b.dataset.k;
@@ -817,37 +859,34 @@ function buildChips(param, keys, colored){
     render();
   }));
 }
-
-let baseLab = "";
-function axisTitle(metric){
-  return metric==="tasa_informalidad" ? t("rate_axis")
-       : metric==="media_horas" ? t("hours_axis")
-       : t("income_axis").replace(")", baseLab ? (lang==="es"?" de ":" of ")+baseLab+")" : ")");
+function baseLab(x){
+  const md = META[x||iso];
+  return md ? qName(md.base_deflactor.y, md.base_deflactor.q) : "";
 }
-function buildTitle(s){
-  const bits = [];
-  if(s.g!==99) bits.push(L.g[lang][s.g]);
-  if(s.e!==99) bits.push(L.e[lang][s.e]);
-  if(s.r!==99) bits.push(L.r[lang][s.r]);
-  if(s.c!==99) bits.push(L.c[lang][s.c]);
-  const who = bits.length ? bits.join(" · ") : (lang==="es"?"Todas las personas ocupadas":"All employed people");
-  const by  = s.param==="all" ? "" : (lang==="es"?", por ":", by ")+PARAMS[s.param][lang].toLowerCase();
-  return METRICS[s.metric][lang] + by;
-  }
-function subTitle(s){
+function axisTitle(metric){
+  if(metric==="tasa_informalidad") return t("rate_axis");
+  if(metric==="media_horas"||metric==="horas_inf"||metric==="horas_for") return t("hours_axis");
+  const bl = baseLab();
+  return t("income_axis").replace(")", bl ? (lang==="es"?" de ":" of ")+bl+")" : ")");
+}
+function whoText(s){
   const bits = [];
   if(s.g!==99) bits.push(L.g[lang][s.g]);
   if(s.e!==99) bits.push(L.e[lang][s.e]+(lang==="es"?" años":""));
-  if(s.r!==99) bits.push(L.r[lang][s.r]);
+  if(s.r!=null && s.r!==99) bits.push(labs("r")[s.r]);
   if(s.c!==99) bits.push(L.c[lang][s.c]);
-  const who = bits.length ? bits.join(" · ") : (lang==="es"?"Todas las personas ocupadas":"All employed people");
-  return t("chart_meth") + " · " + who + " · " + s.from + "–" + s.to;
+  return bits.length ? bits.join(" · ") : t("all_employed");
 }
+function buildTitle(s, metrics){
+  const by = s.param==="all" ? "" : (lang==="es"?", por ":", by ")+PARAMS()[s.param][lang].toLowerCase();
+  return (metrics||METRICS)[s.metric][lang] + by;
+}
+const subTitle = s => t("chart_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
 
-function showMsg(text){
-  const el = $("#mainMsg");
+function showMsg(text, id, chart){
+  const el = $(id||"#mainMsg");
   el.hidden = !text; el.textContent = text || "";
-  $("#mainChart").style.display = text ? "none" : "";
+  $(chart||"#mainChart").style.display = text ? "none" : "";
 }
 async function render(){
   const s = currentSel();
@@ -856,11 +895,14 @@ async function render(){
   try{
     const {sh, idx, brkCol, cols} = await rowsForSelection(s);
     const {groups, lowSample} = pivot(sh, idx, brkCol, cols, s.from, s.to);
-    /* Long series + rate: overlay the new INDEC methodology wherever it exists,
-       as a dotted line in the same colour, instead of splicing the two. */
+    /* Long series + rate: overlay the official measure wherever it exists, as a
+       dotted line in the same colour, instead of splicing the two. Not offered
+       where both measures are the same (Costa Rica). */
     let over = null;
-    const canOver = s.metric==="tasa_informalidad" && s.type!=="bar";
+    const same = C().v_iguales;
+    const canOver = !same && s.metric==="tasa_informalidad" && s.type!=="bar";
     const bo = $("#btnOver");
+    bo.hidden = !!same;
     bo.disabled = !canOver; bo.title = canOver ? "" : t("over_na");
     bo.setAttribute("aria-pressed", String(showOver && canOver));
     $("#btnOverTxt").textContent = (showOver && canOver) ? t("over_off") : t("over_on");
@@ -871,7 +913,6 @@ async function render(){
     }
     let keys = Array.from(groups.keys());
     if(brkCol) keys.sort((a,b)=>a-b);
-
     const allKeys = keys.slice();
     if(brkCol){
       const sel = ensureSelection(s.param, allKeys);
@@ -883,7 +924,7 @@ async function render(){
 
     const msgs = [];
     if(lowSample) msgs.push(t("low_sample_warning"));
-    if(over) msgs.push(t("overlay_note"));
+    if(over && t("overlay_note")) msgs.push(t("overlay_note"));
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
       Plotly.purge("mainChart"); lastForm = "";
@@ -895,9 +936,7 @@ async function render(){
     const years = []; for(let y=s.from;y<=s.to;y++) years.push(y);
     const dual  = cols.length===2;
     const colors = seriesColors();
-    const labs   = brkCol ? L[brkCol][lang] : null;
-
-    // Decide the form first: one plot, or small multiples. Chips follow it.
+    const lb   = brkCol ? labs(brkCol) : null;
     const useSmall = s.type==="small" || (brkCol && (keys.length>8 || (dual && keys.length>1)));
     if(brkCol) buildChips(s.param, allKeys, !useSmall);
     if(useSmall && keys.length>8) msgs.push(t("many_series"));
@@ -910,16 +949,14 @@ async function render(){
       if(!g || !Object.keys(g).length) return null;
       return years.map(y=> g[y] ? g[y][0] : null); };
     const ovName = t("overlay_name");
-
-    lastRows = {s, keys, years, cols, labs, groups};
+    lastRows = {s, keys, years, cols, labs:lb, groups};
 
     if(!useSmall){
       const traces = [];
       keys.forEach((k,ki)=>{
-        const arrs = seriesAt(k);
-        arrs.forEach((vals,ci)=>{
+        seriesAt(k).forEach((vals,ci)=>{
           const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[ci];
-          const nm = (brkCol ? (labs[k]||k) : "") +
+          const nm = (brkCol ? (lb[k]||k) : "") +
                      (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "") +
                      (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
           traces.push(s.type==="bar" ? {
@@ -934,14 +971,12 @@ async function render(){
         const ov = overAt(k);
         if(ov){
           const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[0];
-          const nm = (brkCol ? (labs[k]||k)+" · " : "") + ovName;
+          const nm = (brkCol ? (lb[k]||k)+" · " : "") + ovName;
           traces.push({type:"scatter", mode:"lines+markers", x:years, y:ov, name:nm,
             line:{color, width:2, dash:"dot"}, marker:{color, size:6}, connectgaps:false,
-            showlegend: !brkCol,
-            hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+            showlegend: !brkCol, hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         }
       });
-      // with a breakdown, one legend key explains the dotted style for all series
       if(over && brkCol) traces.push({type:"scatter", mode:"lines+markers", x:[null], y:[null],
         name:ovName, line:{color:css("--ink-soft"), width:2, dash:"dot"},
         marker:{color:css("--ink-soft"), size:6}, hoverinfo:"skip"});
@@ -957,7 +992,6 @@ async function render(){
       });
       reactOrRedraw("mainChart", traces, lay, "flat|"+s.type+"|"+traces.length);
     } else {
-      // small multiples: one panel per series, shared y scale
       const panels = keys.length;
       const ncol = panels<=2?panels: panels<=6?3:4;
       const nrow = Math.ceil(panels/ncol);
@@ -971,32 +1005,27 @@ async function render(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         seriesAt(k).forEach((vals,ci)=>{
-          traces.push({type:"scatter",mode:"lines",x:years,y:vals,
-            xaxis:"x"+ax, yaxis:"y"+ax,
+          traces.push({type:"scatter",mode:"lines",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
             line:{color: dual ? colors[ci] : colors[0], width:2}, connectgaps:false,
-            name: dual ? (ci===0?t("informal"):t("formal")) : (labs?labs[k]:""),
+            name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
             showlegend: dual && ki===0,
-            hovertemplate:`<b>${labs?(labs[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+            hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         });
         const ov = overAt(k);
-        if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov,
-            xaxis:"x"+ax, yaxis:"y"+ax, line:{color:colors[0], width:2, dash:"dot"},
-            marker:{color:colors[0], size:5}, connectgaps:false, name:ovName,
-            showlegend:false,
-            hovertemplate:`<b>${labs?(labs[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+        if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov, xaxis:"x"+ax, yaxis:"y"+ax,
+            line:{color:colors[0], width:2, dash:"dot"}, marker:{color:colors[0], size:5}, connectgaps:false,
+            name:ovName, showlegend:false,
+            hovertemplate:`<b>${lb?(lb[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         const row = Math.floor(ki/ncol), col = ki%ncol;
-        anns.push({text:(labs?(labs[k]||k):""), xref:"x"+ax+" domain", yref:"y"+ax+" domain",
+        anns.push({text:(lb?(lb[k]||k):""), xref:"x"+ax+" domain", yref:"y"+ax+" domain",
           x:0, y:1.05, showarrow:false, xanchor:"left", yanchor:"bottom",
           font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
-        lay["xaxis"+ax] = Object.assign({}, baseLayout().xaxis, tick,
-          {showticklabels: row===nrow-1 || ki>=panels-ncol});
-        lay["yaxis"+ax] = Object.assign({}, baseLayout().yaxis,
-          {range, showticklabels: col===0});
+        lay["xaxis"+ax] = Object.assign({}, baseLayout().xaxis, tick, {showticklabels: row===nrow-1 || ki>=panels-ncol});
+        lay["yaxis"+ax] = Object.assign({}, baseLayout().yaxis, {range, showticklabels: col===0});
       });
       reactOrRedraw("mainChart", traces, baseLayout(Object.assign({
         grid:{rows:nrow, columns:ncol, pattern:"independent", xgap:0.09, ygap:0.34},
-        height: Math.max(290, nrow*168+112),
-        annotations:anns, margin:{t:44,r:14,b:62,l:54},
+        height: Math.max(290, nrow*168+112), annotations:anns, margin:{t:44,r:14,b:62,l:54},
         showlegend: dual, legend:{orientation:"h",yanchor:"top",y:-0.08,x:0,
           font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"}
       }, lay)), "small|"+nrow+"x"+ncol+"|"+traces.length);
@@ -1015,20 +1044,19 @@ async function render(){
 /* ---------- table / CSV ---------- */
 function tableRows(){
   if(!lastRows) return null;
-  const {s,keys,years,cols,labs,groups} = lastRows;
+  const {s,keys,years,cols,labs:lb,groups} = lastRows;
   const head = [t("year")];
   keys.forEach(k=>{
-    const base = labs ? (labs[k]||k) : METRICS[s.metric][lang];
+    const base = lb ? (lb[k]||k) : METRICS[s.metric][lang];
     if(cols.length===2){ head.push(base+" · "+t("informal")); head.push(base+" · "+t("formal")); }
     else head.push(base);
   });
   const body = years.map(y=>{
     const row = [y];
-    keys.forEach(k=>{ const g = groups.get(k)||{};
-      cols.forEach((_,ci)=> row.push(g[y]?g[y][ci]:null)); });
+    keys.forEach(k=>{ const g = groups.get(k)||{}; cols.forEach((_,ci)=> row.push(g[y]?g[y][ci]:null)); });
     return row;
   });
-  return {head, body, metric:s.metric, keys, labs};
+  return {head, body, metric:s.metric, keys};
 }
 function drawTable(){
   const d = tableRows(); if(!d) return;
@@ -1039,19 +1067,17 @@ function drawTable(){
     d.body.map(r=>`<tr>${r.map((v,i)=>`<td>${i===0?v:fmt(v,d.metric)}</td>`).join("")}</tr>`).join("")
   }</tbody></table>`;
 }
-function downloadCsv(){
-  const d = tableRows(); if(!d) return;
+function saveCsv(head, body, name){
   const esc = v => v==null ? "" : (/[",\n;]/.test(String(v)) ? '"'+String(v).replace(/"/g,'""')+'"' : v);
-  const csv = [d.head.map(esc).join(","), ...d.body.map(r=>r.map(esc).join(","))].join("\n");
+  const csv = [head.map(esc).join(","), ...body.map(r=>r.map(esc).join(","))].join("\n");
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob(["﻿"+csv],{type:"text/csv;charset=utf-8"}));
-  a.download = "informalidad_argentina.csv"; a.click();
+  a.download = name; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
 }
+function downloadCsv(){ const d = tableRows(); if(d) saveCsv(d.head, d.body, "informalidad_"+iso+".csv"); }
 
-/* ---------- snapshot helpers ----------
-   snapshot.csv holds, for each measure, the two latest complete years of the
-   rate by sector (k="s") and province (k="p"), with no other filter. */
+/* ---------- snapshot helpers ---------- */
 async function snapRows(kind){
   const sh = await loadSnap(), c = sh.cols;
   const idx = []; for(let i=0;i<sh.n;i++) if(c.k[i]===kind && c.v[i]===meas) idx.push(i);
@@ -1061,27 +1087,23 @@ async function snapRows(kind){
   const rows = Object.keys(cur).map(Number).map(id=>({k:id,
     v: geoView==="level" ? cur[id] : (prev[id]==null ? null : +(cur[id]-prev[id]).toFixed(1))}))
     .filter(r=>r.v!=null);
-  return {year:y1, rows, hasPrev:Object.keys(prev).length>0};
+  return {year:y1, rows};
 }
-function geoSub(year){
-  return t("geo_meth") + (geoView==="level" ? t("rate_year").toLowerCase()+year : t("change_year").toLowerCase()+(year-1)+"–"+year);
-}
-/* ---------- sector dot plot ---------- */
+const geoSub = year => t("geo_meth") + (geoView==="level" ? t("rate_year").toLowerCase()+year : t("change_year").toLowerCase()+(year-1)+"–"+year);
+
 async function renderSector(){
   $("#sectorLoad").hidden = false;
   try{
     const sn = await snapRows("s");
-    const year = sn.year;
     const rows = sn.rows.slice().sort((a,b)=>a.v-b.v);
-    const labs = L.a[lang];
+    const lb = labs("a");
     const accent = css("--green"), soft = css("--ink-soft");
-    const names = rows.map(r=>labs[r.k]||r.k), vals = rows.map(r=>r.v);
+    const names = rows.map(r=>lb[r.k]||r.k), vals = rows.map(r=>r.v);
     const chg = geoView==="change";
     const fmtV = v => (chg && v>0 ? "+" : "") + v.toFixed(1);
     const dotCol = vals.map(v=> !chg ? accent : (v>0 ? css("--s2") : css("--s1")));
     const traces = [
-      {type:"scatter", mode:"lines", orientation:"h",
-       x:vals.flatMap((v,i)=>[0,v,null]), y:names.flatMap(n=>[n,n,null]),
+      {type:"scatter", mode:"lines", x:vals.flatMap(v=>[0,v,null]), y:names.flatMap(n=>[n,n,null]),
        line:{color:css("--rule"),width:1}, hoverinfo:"skip", showlegend:false},
       {type:"scatter", mode:"markers+text", x:vals, y:names,
        marker:{color:dotCol, size:9, line:{width:0}},
@@ -1092,136 +1114,250 @@ async function renderSector(){
     const maxV = Math.max.apply(null, vals), minV = Math.min.apply(null, vals);
     const span = Math.max(Math.abs(maxV), Math.abs(minV)) || 1;
     const range = chg ? [Math.min(0,minV)-span*0.22, Math.max(0,maxV)+span*0.22] : [0, maxV*1.16];
+    Plotly.purge("sectorChart");
     Plotly.react("sectorChart", traces, baseLayout({
-      height: Math.max(330, rows.length*27+56),
-      margin:{t:8,r:16,b:34,l:8},
+      height: Math.max(330, rows.length*27+56), margin:{t:8,r:16,b:34,l:8},
       xaxis:Object.assign(baseLayout().xaxis,{range, ticksuffix: chg?"":"%", title:{text:""},
         zeroline:chg, zerolinecolor:css("--ink-soft"), zerolinewidth:1}),
       yaxis:Object.assign(baseLayout().yaxis,{gridcolor:"rgba(0,0,0,0)", automargin:true,
         tickfont:{size:11, color:css("--ink")}})
     }), PLOT_CFG);
-    $("#sectorSub").textContent = geoSub(year);
-    $("#geoYear").textContent = "";
+    $("#sectorSub").textContent = geoSub(sn.year);
   }catch(e){ console.error(e); }
   finally{ $("#sectorLoad").hidden = true; postHeight(); }
 }
 
-/* ---------- province choropleth (hand-drawn SVG) ----------
-   Plotly's geo bundle carries no bar trace, so the map is drawn directly:
-   a Mercator projection over 24 polygons, themed from the same CSS tokens. */
-const deacc = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim();
-/* Both axes must end up in the SAME unit (radians) or the fit collapses. */
+/* ---------- choropleth (hand-drawn SVG) ----------
+   Plotly's geo bundle carries no bar trace, so the map is drawn directly: a
+   Mercator projection over the country's polygons, themed from the CSS tokens.
+   Features match a code by `properties.id` when the GeoJSON has it, and by the
+   de-accented name otherwise. Tall countries are fitted to the height, wide
+   ones to the width. */
+const deacc = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim();
 const mercX = lon => lon * Math.PI/180;
-const mercY = lat => {
-  const r = Math.max(-85, Math.min(85, lat)) * Math.PI/180;
-  return -Math.log(Math.tan(Math.PI/4 + r/2));
-};
-function ringsOf(geom){
-  return geom.type === "Polygon" ? geom.coordinates : geom.coordinates.flat();
-}
+const mercY = lat => { const r = Math.max(-85, Math.min(85, lat)) * Math.PI/180; return -Math.log(Math.tan(Math.PI/4 + r/2)); };
+const ringsOf = geom => geom.type === "Polygon" ? geom.coordinates : geom.coordinates.flat();
 async function renderMap(){
   $("#mapLoad").hidden = false;
+  const x = iso;
   try{
-    const [sn, gj] = await Promise.all([snapRows("p"), loadGeo()]);
-    const byCode = {};
-    sn.rows.forEach(r=>{ byCode[r.k] = r.v; });
+    const [sn, gj] = await Promise.all([snapRows("p"), loadGeo(x)]);
+    if(x !== iso) return;
+    const PL = labs("p");
+    const byCode = {}; sn.rows.forEach(r=>{ byCode[r.k] = r.v; });
     const chg = geoView==="change";
     const fmtV = v => (chg && v>0 ? "+" : "") + v.toFixed(1) + (chg ? " pp" : "%");
-
-    // province code -> feature, matched on a de-accented name
-    const featBy = {};
+    const featById = {}, featBy = {};
     gj.features.forEach(f=>{
+      if(f.properties.id!=null) featById[String(f.properties.id)] = f;
       featBy[deacc(f.properties.name)] = f;
       if(f.properties.kpi) featBy[deacc(f.properties.kpi)] = f;
     });
     const items = [];
     Object.keys(byCode).forEach(code=>{
-      const nm = PROV[code]; if(!nm) return;
-      const f = featBy[deacc(nm)];
+      const nm = PL[code]; if(!nm) return;
+      const f = featById[code] || featBy[deacc(nm)] || featBy[deacc(C().labels.p.es[code]||"")];
       if(f) items.push({f, name:nm, v:byCode[code]});
     });
     if(!items.length) throw new Error("no map matches");
-
-    // fit all drawn geometry to the viewBox
     let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
     items.forEach(it=>ringsOf(it.f.geometry).forEach(r=>r.forEach(pt=>{
-      const x = mercX(pt[0]), y = mercY(pt[1]);
-      if(x<x0)x0=x; if(x>x1)x1=x;
-      if(y<y0)y0=y; if(y>y1)y1=y;
+      const a = mercX(pt[0]), b = mercY(pt[1]);
+      if(a<x0)x0=a; if(a>x1)x1=a; if(b<y0)y0=b; if(b>y1)y1=b;
     })));
-    const H = 660, PAD = 8;
-    const sc = (H-2*PAD)/(y1-y0);                 // height-driven: Argentina is tall
-    const W = Math.ceil((x1-x0)*sc) + 2*PAD;
-    const ox = PAD, oy = PAD;
-    const px = lon => ox + (mercX(lon)-x0)*sc;
-    const py = lat => oy + (mercY(lat)-y0)*sc;
+    const PAD = 8, tall = C().geo_alto;
+    let W, H, sc;
+    if(tall){ H = 660; sc = (H-2*PAD)/(y1-y0); W = Math.ceil((x1-x0)*sc) + 2*PAD; }
+    else    { W = 640; sc = (W-2*PAD)/(x1-x0); H = Math.ceil((y1-y0)*sc) + 2*PAD; }
+    const px = lon => PAD + (mercX(lon)-x0)*sc, py = lat => PAD + (mercY(lat)-y0)*sc;
     const pathOf = geom => ringsOf(geom).map(r=>
-      r.map((pt,i)=>(i?"L":"M")+px(pt[0]).toFixed(1)+" "+py(pt[1]).toFixed(1)).join("")+"Z"
-    ).join("");
-
+      r.map((pt,i)=>(i?"L":"M")+px(pt[0]).toFixed(1)+" "+py(pt[1]).toFixed(1)).join("")+"Z").join("");
     const vals = items.map(it=>it.v);
     let lo = Math.min.apply(null,vals), hi = Math.max.apply(null,vals);
     let ramp = mapRamp();
     if(chg){
-      // diverging, symmetric around zero: blue = informality fell, orange = rose
       const m = Math.max(Math.abs(lo), Math.abs(hi)) || 1; lo = -m; hi = m;
-      const mix = (hex, a) => { const n = parseInt(hex.slice(1),16);
-        return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+      const mix = (hex, a) => { const n = parseInt(hex.slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
       const b = css("--s1"), o = css("--s2");
       ramp = [mix(b,.95),mix(b,.65),mix(b,.35),css("--paper-3"),mix(o,.35),mix(o,.65),mix(o,.95)];
     }
-    const bucket = v => ramp[Math.max(0, Math.min(ramp.length-1,
-      Math.floor(((v-lo)/((hi-lo)||1)) * ramp.length)))];
+    const bucket = v => ramp[Math.max(0, Math.min(ramp.length-1, Math.floor(((v-lo)/((hi-lo)||1)) * ramp.length)))];
     const surface = css("--paper-2");
-
     items.sort((a,b)=>a.v-b.v);
-    const paths = items.map((it,i)=>
+    const paths = items.map(it=>
       `<path d="${pathOf(it.f.geometry)}" fill="${bucket(it.v)}" stroke="${surface}"
          stroke-width="0.8" stroke-linejoin="round" tabindex="0" role="listitem"
          data-n="${it.name.replace(/"/g,'&quot;')}" data-v="${fmtV(it.v)}"
-         aria-label="${it.name}: ${fmtV(it.v)}"><title>${it.name}: ${fmtV(it.v)}</title></path>`
-    ).join("");
-
+         aria-label="${it.name}: ${fmtV(it.v)}"><title>${it.name}: ${fmtV(it.v)}</title></path>`).join("");
     $("#mapChart").innerHTML =
-      `<div class="mapbox"><svg viewBox="0 0 ${W} ${H}" class="mapsvg" role="list"
+      `<div class="mapbox"><svg viewBox="0 0 ${W} ${H}" class="mapsvg" role="list" style="${tall?"":"max-width:100%"}"
             aria-label="${t("map_title")}" preserveAspectRatio="xMidYMid meet">${paths}</svg>
        <p class="maphint" id="mapHint">&nbsp;</p></div>`;
-
     const hint = $("#mapHint");
-    const show = e => { const el=e.target.closest("path"); if(!el) return;
-      hint.innerHTML = `<b>${el.dataset.n}</b> · ${el.dataset.v}`; };
+    const show = e => { const el=e.target.closest("path"); if(!el) return; hint.innerHTML = `<b>${el.dataset.n}</b> · ${el.dataset.v}`; };
     const clear = () => { hint.innerHTML = "&nbsp;"; };
     const svg = $("#mapChart svg");
-    svg.addEventListener("mousemove", show);
-    svg.addEventListener("mouseleave", clear);
-    svg.addEventListener("focusin", show);
-    svg.addEventListener("focusout", clear);
-
+    svg.addEventListener("mousemove", show); svg.addEventListener("mouseleave", clear);
+    svg.addEventListener("focusin", show);   svg.addEventListener("focusout", clear);
     $("#scaleBar").innerHTML = ramp.map(h=>`<i style="background:${h}"></i>`).join("");
-    $("#scaleLo").textContent = fmtV(lo);
-    $("#scaleHi").textContent = fmtV(hi);
+    $("#scaleLo").textContent = fmtV(lo); $("#scaleHi").textContent = fmtV(hi);
     $("#mapSub").textContent = geoSub(sn.year);
   }catch(e){ console.error(e); }
   finally{ $("#mapLoad").hidden = true; postHeight(); }
 }
 
-/* ---------- i18n + controls ---------- */
+/* ===========================================================================
+   COMPARISON VIEW
+   One line per country on the annual cube, longest series of each (v=2).
+   Only the harmonized dimensions are offered; region and province are
+   country-specific geographies and are left out. Incomes are left out too:
+   different currencies.
+   =========================================================================== */
+async function renderCmpKpis(){
+  const cards = KPI_CARDS.slice(0,3);
+  const rows = await Promise.all(REG.orden.map(async x=>{
+    try{ const r = await kpiValues(x, cards); return {x, ...r}; }catch(e){ console.error(e); return {x, vals:null}; }
+  }));
+  $("#cmpKpis").innerHTML = rows.map(({x,vals,latest})=>{
+    const head = `<div class="cmpk__name"><span><span class="cmpk__sw" style="background:${countryColor(x)}"></span>${cname(x)}</span>
+       <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t("meas_1", x)}</small></div>`;
+    if(!vals) return `<div class="cmpk__row">${head}</div>`;
+    return `<div class="cmpk__row">${head}${vals.map(({cd,v,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
+      <p class="kpi__label">${cd.lab[lang]}</p><p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>
+      ${delta(v,py,t("vs_year_ago"))}</div>`).join("")}</div>`;
+  }).join("");
+  postHeight();
+}
+function cmpSel(){
+  return {metric:$("#cMetric").value, param:$("#cParam").value,
+    from:+$("#cFrom").value, to:+$("#cTo").value,
+    g:+$("#cGender").value, e:+$("#cAge").value, c:+$("#cEmp").value, r:99};
+}
+async function renderCmp(){
+  const s = cmpSel();
+  if(s.from > s.to){ $("#cTo").value = s.from; s.to = s.from; }
+  $("#cmpLoad").hidden = false;
+  try{
+    const per = await Promise.all(REG.orden.map(async x=>{
+      const r = await rowsForSelection(s, 2, x);
+      const p = pivot(r.sh, r.idx, r.brkCol, r.cols, s.from, s.to);
+      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol};
+    }));
+    const brkCol = per[0].brkCol;
+    const years = []; for(let y=s.from;y<=s.to;y++) years.push(y);
+    const keysSet = new Set(); per.forEach(p=>p.groups.forEach((_,k)=>keysSet.add(k)));
+    const keys = Array.from(keysSet).sort((a,b)=>a-b);
+    const msgs = [];
+    if(per.some(p=>p.low)) msgs.push(t("low_sample_warning"));
+    if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
+    $("#cmpWarn").hidden = !msgs.length; $("#cmpWarn").textContent = msgs.join("  ");
+    $("#cmpTitle").textContent = buildTitle(s, Object.assign({}, METRICS,
+      {horas_inf:{es:t("hours_inf"),en:t("hours_inf")}, horas_for:{es:t("hours_for"),en:t("hours_for")}}));
+    $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
+    if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
+    showMsg(null,"#cmpMsg","#cmpChart");
+    const valsAt = (p,k) => { const g = p.groups.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
+    const lb = brkCol ? L[brkCol][lang] : null;   // harmonized dims: shared labels
+    lastCmp = {s, years, keys, per, lb};
+    if(!brkCol){
+      const traces = per.map(p=>({type:"scatter", mode:"lines", x:years, y:valsAt(p,"_"), name:cname(p.x),
+        line:{color:countryColor(p.x), width:2.2}, connectgaps:false,
+        hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
+      reactOrRedraw("cmpChart", traces, baseLayout({
+        height: 420,
+        xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
+        yaxis: Object.assign(baseLayout().yaxis, {title:{text:axisTitle(s.metric),font:{size:11,color:css("--ink-soft")},standoff:12}}),
+        showlegend:true, legend:{orientation:"h", yanchor:"bottom", y:1.02, xanchor:"left", x:0,
+          font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"},
+        hovermode:"x unified"
+      }), "cflat|"+traces.length, "c");
+    } else {
+      const panels = keys.length;
+      const ncol = panels<=2?panels: panels<=6?3:4;
+      const nrow = Math.ceil(panels/ncol);
+      let lo=Infinity, hi=-Infinity;
+      keys.forEach(k=>per.forEach(p=>valsAt(p,k).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v);} })));
+      if(!isFinite(lo)){ lo=0; hi=1; }
+      const pad = (hi-lo)*0.12 || 1, range = [Math.max(0,lo-pad), hi+pad];
+      const traces=[], anns=[], lay={};
+      const tick = yearAxis(years, ncol>=4 ? 3 : ncol===3 ? 4 : 6);
+      keys.forEach((k,ki)=>{
+        const ax = ki===0?"":String(ki+1);
+        per.forEach(p=>traces.push({type:"scatter",mode:"lines",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
+          line:{color:countryColor(p.x), width:2}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
+          hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
+        const row = Math.floor(ki/ncol), col = ki%ncol;
+        anns.push({text:(lb[k]||k), xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
+          xanchor:"left", yanchor:"bottom", font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
+        lay["xaxis"+ax] = Object.assign({}, baseLayout().xaxis, tick, {showticklabels: row===nrow-1 || ki>=panels-ncol});
+        lay["yaxis"+ax] = Object.assign({}, baseLayout().yaxis, {range, showticklabels: col===0});
+      });
+      reactOrRedraw("cmpChart", traces, baseLayout(Object.assign({
+        grid:{rows:nrow, columns:ncol, pattern:"independent", xgap:0.09, ygap:0.34},
+        height: Math.max(290, nrow*168+112), annotations:anns, margin:{t:44,r:14,b:62,l:54},
+        showlegend:true, legend:{orientation:"h",yanchor:"top",y:-0.08,x:0, font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"}
+      }, lay)), "csmall|"+nrow+"x"+ncol+"|"+traces.length, "c");
+    }
+  }catch(err){
+    console.error(err); Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("load_failed"),"#cmpMsg","#cmpChart");
+  }finally{ $("#cmpLoad").hidden = true; postHeight(); }
+}
+function downloadCmpCsv(){
+  if(!lastCmp) return;
+  const {years, keys, per, lb} = lastCmp;
+  const head = [t("year")], body = years.map(y=>[y]);
+  keys.forEach(k=>per.forEach(p=>{
+    head.push(cname(p.x) + (k==="_" ? "" : " · "+(lb[k]||k)));
+    const g = p.groups.get(k)||{};
+    years.forEach((y,i)=>body[i].push(g[y]?g[y][0]:null));
+  }));
+  saveCsv(head, body, "informalidad_comparacion.csv");
+}
+function cmpYears(){
+  const lo = Math.min.apply(null, REG.orden.map(x=>META[x] ? META[x].primer_anio["2"] : 9999));
+  const hi = Math.max.apply(null, REG.orden.map(x=>META[x] ? META[x].ultimo_anio : 0));
+  const out=[]; for(let y=lo;y<=hi;y++) out.push(y); return out;
+}
+
+/* ---------- controls ---------- */
 function fillSelect(el, entries, value){
   el.innerHTML = entries.map(([v,label])=>`<option value="${v}">${label}</option>`).join("");
   if(value!==undefined) el.value = String(value);
 }
+const opts = (col, x) => { const lb = col in L && !["r","p","s"].includes(col) ? L[col][lang] : labs(col, x);
+  return Object.keys(lb).map(Number).sort((a,b)=>a-b).map(v=>[v, lb[v]]); };
 function buildControls(keepValues){
   const keep = keepValues ? currentSel() : null;
+  const P = PARAMS();
   const dictEntries = (d) => Object.keys(d).map(k=>[k, d[k][lang]]);
   fillSelect($("#fMetric"), dictEntries(METRICS), keep?keep.metric:"tasa_informalidad");
-  fillSelect($("#fParam"),  dictEntries(PARAMS),  keep?keep.param:"all");
-  fillSelect($("#fType"),   dictEntries(CHARTS),  keep?keep.type:"line");
-  const opts = (col) => Object.keys(L[col][lang]).map(Number).sort((a,b)=>a-b)
-      .map(v=>[v, L[col][lang][v]]);
+  fillSelect($("#fParam"),  dictEntries(P), keep?keep.param:"all");
+  fillSelect($("#fType"),   dictEntries(CHARTS), keep?keep.type:"line");
   fillSelect($("#fGender"), opts("g"), keep?keep.g:99);
-  fillSelect($("#fRegion"), opts("r"), keep?keep.r:99);
+  fillSelect($("#fRegion"), opts("r"), keep && labs("r")[keep.r]!=null ? keep.r : 99);
   fillSelect($("#fAge"),    opts("e"), keep?keep.e:99);
   fillSelect($("#fEmp"),    opts("c"), keep?keep.c:99);
+  $("#fRegionLab").textContent = t("region");
+  // comparison controls
+  const ck = keepValues && $("#cMetric").value ? cmpSel() : null;
+  fillSelect($("#cMetric"), [["tasa_informalidad",METRICS.tasa_informalidad[lang]],["horas_inf",t("hours_inf")],["horas_for",t("hours_for")]],
+    ck?ck.metric:"tasa_informalidad");
+  fillSelect($("#cParam"), CMP_PARAMS.map(k=>[k, P[k][lang]]), ck?ck.param:"all");
+  fillSelect($("#cGender"), opts("g"), ck?ck.g:99);
+  fillSelect($("#cAge"),    opts("e"), ck?ck.e:99);
+  fillSelect($("#cEmp"),    opts("c"), ck?ck.c:99);
+}
+function buildCountryBar(){
+  const b = REG.orden.map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("")
+    + `<button type="button" data-mode="comp" aria-pressed="${mode==="comp"}">${t("compare")}</button>`;
+  $("#ctrySeg").innerHTML = b;
+  $$("#ctrySeg [data-iso]").forEach(el=>el.addEventListener("click", ()=>setCountry(el.dataset.iso)));
+  $("#ctrySeg [data-mode]").addEventListener("click", ()=>setMode("comp"));
+}
+function sourceLine(){
+  if(mode==="comp") return REG.orden.map(x=>cname(x)+": "+t("subtitle",x)).join(" · ");
+  const md = META[iso];
+  return t("subtitle") + (md ? " · " + md.primer_anio["2"] + "–" + md.ultimo_trimestre.y : "");
 }
 function applyI18n(){
   document.documentElement.lang = lang;
@@ -1230,11 +1366,19 @@ function applyI18n(){
     if(!v) return;
     if(/<[a-z]/i.test(v)) el.innerHTML = v; else el.textContent = v;
   });
-  $("#attrib").innerHTML = t("attrib");
-  setSubtitle();
+  const title = mode==="comp" ? t("title_cmp") : t("title_in") + cname(iso);
+  $("#pageTitle").textContent = title;
+  $("#subtitle").textContent = sourceLine();
+  $("#ctrySrc").textContent = sourceLine();
+  const src = mode==="comp"
+    ? REG.orden.map(x=>t("fuente",x)).join(t("and"))
+    : t("fuente");
+  $("#attrib").innerHTML = t("attrib").replace("{src}", src);
+  $("#cmpCaveat").innerHTML = REG.comparabilidad[lang];
   $("#btnTable").textContent = $("#tableWrap").hidden ? t("show_table") : t("hide_table");
   $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
-  document.title = t("title")+" · Matías Golman";
+  document.title = title + " · Matías Golman";
+  buildCountryBar();
 }
 function setTheme(th, quiet){
   if(th==="light" || th==="dark") document.documentElement.setAttribute("data-theme", th);
@@ -1243,11 +1387,14 @@ function setTheme(th, quiet){
     String(b.dataset.themeSet === (document.documentElement.getAttribute("data-theme")||""))));
   if(!quiet) redrawAll();
 }
-function redrawAll(){ lastForm = ""; render(); renderSector(); renderMap(); renderKpis(); }
-/* Annual years available for the current measure, read from meta.json. */
+function redrawAll(){
+  lastForm = ""; lastFormC = "";
+  if(mode==="comp"){ renderCmpKpis(); renderCmp(); }
+  else { render(); renderSector(); renderMap(); renderKpis(); }
+}
 function yearsFor(m){
-  if(!window._meta) return [2003];
-  const y0 = window._meta.primer_anio[String(m)], y1 = window._meta.ultimo_anio, out=[];
+  const md = META[iso]; if(!md) return [2003];
+  const y0 = md.primer_anio[String(m)], y1 = md.ultimo_anio, out=[];
   for(let y=y0;y<=y1;y++) out.push(y);
   return out;
 }
@@ -1258,13 +1405,38 @@ function fillYears(reset){
   fillSelect($("#fTo"),   ys.map(y=>[y,y]), ys[ys.length-1]);
   if(!reset && ys.includes(keepF)) $("#fFrom").value = keepF;
   if(!reset && ys.includes(keepT)) $("#fTo").value = keepT;
-  // two or three annual points read better as bars than as a line
   if(reset) $("#fType").value = ys.length<=3 ? "bar" : "line";
 }
-function setSubtitle(){
-  const md = window._meta; if(!md) return;
-  $("#subtitle").textContent = t("subtitle") + " · " + md.primer_anio["2"] + "–" + md.ultimo_trimestre.y;
-  baseLab = qName(md.base_deflactor.y, md.base_deflactor.q);
+function fillCmpYears(){
+  const ys = cmpYears();
+  const keepF = +$("#cFrom").value, keepT = +$("#cTo").value;
+  fillSelect($("#cFrom"), ys.map(y=>[y,y]), ys[0]);
+  fillSelect($("#cTo"),   ys.map(y=>[y,y]), ys[ys.length-1]);
+  if(ys.includes(keepF)) $("#cFrom").value = keepF;
+  if(ys.includes(keepT)) $("#cTo").value = keepT;
+}
+function remember(){
+  try{
+    const q = new URLSearchParams(location.search);
+    q.set("pais", mode==="comp" ? "comparar" : iso);
+    history.replaceState(null, "", location.pathname + "?" + q.toString() + location.hash);
+  }catch(e){}
+}
+async function setCountry(x){
+  if(!REG.paises[x]) return;
+  mode = "pais"; iso = x; picked = {}; showOver = false;
+  Object.keys(slots).forEach(k=>delete slots[k]);
+  $("#viewPais").hidden = false; $("#viewComp").hidden = true;
+  try{ await loadMeta(x); }catch(e){ console.error(e); }
+  buildControls(false); fillYears(true); applyI18n(); remember();
+  redrawAll();
+}
+async function setMode(m){
+  mode = m;
+  $("#viewPais").hidden = (m==="comp"); $("#viewComp").hidden = (m!=="comp");
+  await Promise.all(REG.orden.map(x=>loadMeta(x).catch(e=>console.error(e))));
+  fillCmpYears(); applyI18n(); remember();
+  redrawAll();
 }
 
 /* ---------- embed plumbing ---------- */
@@ -1284,40 +1456,41 @@ window.addEventListener("message", ev=>{
   if(d.type==="dashboard:theme") setTheme(d.theme);
   if(d.type==="dashboard:lang" && (d.lang==="es"||d.lang==="en")){ lang=d.lang; relang(); }
 });
-function relang(){
-  buildControls(true); applyI18n(); picked = {}; redrawAll();
-}
+function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="comp") fillCmpYears(); redrawAll(); }
 
 /* ---------- init ---------- */
-(function init(){
+(async function init(){
   if(embedded) document.body.classList.add("is-embedded");
   const q = new URLSearchParams(location.search);
   if(q.get("lang")==="en"||q.get("lang")==="es") lang = q.get("lang");
   else if((document.referrer||"").includes("/es/")) lang = "es";
   if(q.get("theme")) setTheme(q.get("theme"), true);
-  else {
-    $$("[data-theme-set]").forEach(b=>b.setAttribute("aria-pressed","false"));
+  else $$("[data-theme-set]").forEach(b=>b.setAttribute("aria-pressed","false"));
+
+  try{
+    REG = await fetch(DATA_DIR+"paises.json").then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); });
+  }catch(e){
+    console.error(e);
+    document.querySelector(".wrap").insertAdjacentHTML("afterbegin",
+      `<p class="warn">${(T.load_failed[lang])}</p>`);
+    return;
   }
+  const want = (q.get("pais")||"").toLowerCase();
+  iso = REG.paises[want] ? want : REG.orden[0];
 
-  buildControls(false);
-  applyI18n();
-
-  ["fMetric","fType","fFrom","fTo","fGender","fRegion","fAge","fEmp"]
+  ["fMetric","fType","fFrom","fTo","fGender","fRegion","fAge","fEmp","fParam"]
     .forEach(id=>$("#"+id).addEventListener("change", render));
-  $("#fParam").addEventListener("change", ()=>{ render(); });
-  $("#btnReset").addEventListener("click", ()=>{
-    picked = {}; buildControls(false); fillYears(true); render();
-  });
+  ["cMetric","cParam","cFrom","cTo","cGender","cAge","cEmp"]
+    .forEach(id=>$("#"+id).addEventListener("change", renderCmp));
+  $("#btnReset").addEventListener("click", ()=>{ picked = {}; buildControls(false); fillYears(true); render(); });
+  $("#cReset").addEventListener("click", ()=>{ $("#cMetric").value=""; buildControls(false); fillCmpYears(); renderCmp(); });
   $("#btnAll").addEventListener("click", ()=>{
     const p = $("#fParam").value; if(p==="all") return;
     const col = PARAM_COL[p];
-    picked[p] = new Set(Object.keys(L[col][lang]).map(Number).filter(v=>v!==99));
+    picked[p] = new Set(Object.keys(labs(col)).map(Number).filter(v=>v!==99));
     render();
   });
-  $("#btnNone").addEventListener("click", ()=>{
-    const p = $("#fParam").value; if(p==="all") return;
-    picked[p] = new Set(); render();
-  });
+  $("#btnNone").addEventListener("click", ()=>{ const p = $("#fParam").value; if(p==="all") return; picked[p] = new Set(); render(); });
   $("#btnTable").addEventListener("click", ()=>{
     const w = $("#tableWrap"); w.hidden = !w.hidden;
     $("#btnTable").textContent = w.hidden ? t("show_table") : t("hide_table");
@@ -1325,16 +1498,15 @@ function relang(){
     postHeight();
   });
   $("#btnCsv").addEventListener("click", downloadCsv);
-  $("#btnPng").addEventListener("click", ()=>{
-    Plotly.downloadImage("mainChart", {format:"png", scale:2, width:1200, height:560,
-      filename:"informalidad_argentina"});
-  });
+  $("#btnPng").addEventListener("click", ()=>Plotly.downloadImage("mainChart",
+    {format:"png", scale:2, width:1200, height:560, filename:"informalidad_"+iso}));
+  $("#cCsv").addEventListener("click", downloadCmpCsv);
+  $("#cPng").addEventListener("click", ()=>Plotly.downloadImage("cmpChart",
+    {format:"png", scale:2, width:1200, height:560, filename:"informalidad_comparacion"}));
   $$("[data-lang]").forEach(b=>b.addEventListener("click", ()=>{ lang=b.dataset.lang; relang(); }));
   $$("[data-theme-set]").forEach(b=>b.addEventListener("click", ()=>setTheme(b.dataset.themeSet)));
-
   window.addEventListener("resize", postHeight);
   if(window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
-
   $("#btnOver").addEventListener("click", ()=>{ showOver = !showOver; render(); });
   $$("[data-view]").forEach(b=>b.addEventListener("click", ()=>{
     geoView = b.dataset.view;
@@ -1342,10 +1514,8 @@ function relang(){
     renderSector(); renderMap();
   }));
 
-  loadMeta().then(md=>{ window._meta = md; })
-    .catch(e=>console.error(e))
-    .finally(()=>{ setSubtitle(); fillYears(true); applyI18n();
-      renderKpis(); render(); renderSector(); renderMap(); });
+  if(want==="comparar"){ await loadMeta(iso).catch(()=>{}); buildControls(false); fillYears(true); await setMode("comp"); }
+  else await setCountry(iso);
 })();
 </script>
 </body>
