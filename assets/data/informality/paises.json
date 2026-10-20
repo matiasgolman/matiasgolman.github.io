@@ -1,90 +1,471 @@
 {
   "_nota": "Registro de paises del panel de informalidad. Lo publica mapa_informalidad.do en assets/data/informality/paises.json y lo lee el panel en el navegador. Para sumar un pais: una entrada en 'orden' y otra en 'paises' (ver mapa_informalidad.do, PARA SUMAR UN PAIS). Las etiquetas de las dimensiones armonizadas (g, e, c, d, m, j, a, q) estan en el HTML y valen para todos los paises; aca van las que cambian por pais (r, p, s) y todos los textos.",
-  "orden": ["ar", "cr"],
+  "orden": [
+    "ar",
+    "cr",
+    "mx"
+  ],
   "paises": {
     "ar": {
-      "nombre": {"es": "Argentina", "en": "Argentina"},
+      "nombre": {
+        "es": "Argentina",
+        "en": "Argentina"
+      },
       "geo": "provinces.geo.json",
       "geo_alto": true,
       "v_iguales": false,
-      "moneda": {"es": "pesos", "en": "pesos"},
+      "moneda": {
+        "es": "pesos",
+        "en": "pesos"
+      },
       "labels": {
-        "r": {"es": {"1": "GBA", "40": "NOA", "41": "NEA", "42": "Cuyo", "43": "Pampeana", "44": "Patagónica", "99": "Todas"},
-              "en": {"1": "GBA", "40": "NOA", "41": "NEA", "42": "Cuyo", "43": "Pampean", "44": "Patagonian", "99": "All"}},
-        "p": {"es": {"1": "Buenos Aires", "2": "Santa Fe", "3": "Entre Ríos", "4": "Misiones", "5": "Chaco", "6": "Chubut", "7": "Mendoza",
-                     "8": "Corrientes", "9": "Córdoba", "10": "Formosa", "11": "Neuquén", "12": "Santiago del Estero", "13": "Jujuy", "14": "Santa Cruz",
-                     "15": "Catamarca", "16": "Salta", "17": "La Rioja", "18": "San Luis", "19": "San Juan", "20": "Tucumán", "21": "La Pampa",
-                     "22": "Tierra del Fuego", "23": "CABA", "24": "Río Negro", "99": "Todas"},
-              "en": {"1": "Buenos Aires", "2": "Santa Fe", "3": "Entre Rios", "4": "Misiones", "5": "Chaco", "6": "Chubut", "7": "Mendoza",
-                     "8": "Corrientes", "9": "Córdoba", "10": "Formosa", "11": "Neuquén", "12": "Santiago del Estero", "13": "Jujuy", "14": "Santa Cruz",
-                     "15": "Catamarca", "16": "Salta", "17": "La Rioja", "18": "San Luis", "19": "San Juan", "20": "Tucumán", "21": "La Pampa",
-                     "22": "Tierra del Fuego", "23": "CABA", "24": "Río Negro", "99": "All"}},
-        "s": {"es": {"1": "Hasta 5 personas", "2": "De 6 a 40", "3": "Más de 40", "99": "Todos"},
-              "en": {"1": "Up to 5 people", "2": "6 to 40", "3": "More than 40", "99": "All"}}
+        "r": {
+          "es": {
+            "1": "GBA",
+            "40": "NOA",
+            "41": "NEA",
+            "42": "Cuyo",
+            "43": "Pampeana",
+            "44": "Patagónica",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "GBA",
+            "40": "NOA",
+            "41": "NEA",
+            "42": "Cuyo",
+            "43": "Pampean",
+            "44": "Patagonian",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Buenos Aires",
+            "2": "Santa Fe",
+            "3": "Entre Ríos",
+            "4": "Misiones",
+            "5": "Chaco",
+            "6": "Chubut",
+            "7": "Mendoza",
+            "8": "Corrientes",
+            "9": "Córdoba",
+            "10": "Formosa",
+            "11": "Neuquén",
+            "12": "Santiago del Estero",
+            "13": "Jujuy",
+            "14": "Santa Cruz",
+            "15": "Catamarca",
+            "16": "Salta",
+            "17": "La Rioja",
+            "18": "San Luis",
+            "19": "San Juan",
+            "20": "Tucumán",
+            "21": "La Pampa",
+            "22": "Tierra del Fuego",
+            "23": "CABA",
+            "24": "Río Negro",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Buenos Aires",
+            "2": "Santa Fe",
+            "3": "Entre Rios",
+            "4": "Misiones",
+            "5": "Chaco",
+            "6": "Chubut",
+            "7": "Mendoza",
+            "8": "Corrientes",
+            "9": "Córdoba",
+            "10": "Formosa",
+            "11": "Neuquén",
+            "12": "Santiago del Estero",
+            "13": "Jujuy",
+            "14": "Santa Cruz",
+            "15": "Catamarca",
+            "16": "Salta",
+            "17": "La Rioja",
+            "18": "San Luis",
+            "19": "San Juan",
+            "20": "Tucumán",
+            "21": "La Pampa",
+            "22": "Tierra del Fuego",
+            "23": "CABA",
+            "24": "Río Negro",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 40",
+            "3": "Más de 40",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 40",
+            "3": "More than 40",
+            "99": "All"
+          }
+        }
       },
       "textos": {
-        "subtitle": {"es": "INDEC · Encuesta Permanente de Hogares", "en": "INDEC · Permanent Household Survey"},
-        "meas_1": {"es": "Metodología nueva INDEC", "en": "New INDEC methodology"},
-        "meas_2": {"es": "Serie larga", "en": "Long series"},
-        "overlay_name": {"es": "metodología nueva INDEC", "en": "new INDEC methodology"},
-        "overlay_note": {"es": "Línea punteada: metodología nueva de INDEC, desde el primer año completo en que existe (2024). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
-                         "en": "Dotted line: INDEC's new methodology, from the first full year it exists (2024). The gap to the long series reflects measurement, not a change in informality."},
-        "kpi_meth": {"es": "Con la metodología nueva de INDEC (vigente desde el 4.º trimestre de 2023), la misma de sus informes.",
-                     "en": "Using INDEC's new methodology (in force since Q4 2023), the one in its own reports."},
-        "geo_meth": {"es": "Metodología nueva INDEC · ", "en": "New INDEC methodology · "},
-        "over_on": {"es": "Superponer metodología nueva INDEC", "en": "Overlay new INDEC methodology"},
-        "over_off": {"es": "Quitar metodología nueva INDEC", "en": "Remove new INDEC methodology"},
-        "chart_meth": {"es": "Serie larga (2003–)", "en": "Long series (2003–)"},
-        "map_title": {"es": "Por provincia", "en": "By province"},
-        "region": {"es": "Región", "en": "Region"},
-        "provincia": {"es": "Provincia", "en": "Province"},
-        "income_axis": {"es": "Ingreso mensual (pesos constantes)", "en": "Monthly income (constant pesos)"},
+        "subtitle": {
+          "es": "INDEC · Encuesta Permanente de Hogares",
+          "en": "INDEC · Permanent Household Survey"
+        },
+        "meas_1": {
+          "es": "Metodología nueva INDEC",
+          "en": "New INDEC methodology"
+        },
+        "meas_2": {
+          "es": "Serie larga",
+          "en": "Long series"
+        },
+        "overlay_name": {
+          "es": "metodología nueva INDEC",
+          "en": "new INDEC methodology"
+        },
+        "overlay_note": {
+          "es": "Línea punteada: metodología nueva de INDEC, desde el primer año completo en que existe (2024). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
+          "en": "Dotted line: INDEC's new methodology, from the first full year it exists (2024). The gap to the long series reflects measurement, not a change in informality."
+        },
+        "kpi_meth": {
+          "es": "Con la metodología nueva de INDEC (vigente desde el 4.º trimestre de 2023), la misma de sus informes.",
+          "en": "Using INDEC's new methodology (in force since Q4 2023), the one in its own reports."
+        },
+        "geo_meth": {
+          "es": "Metodología nueva INDEC · ",
+          "en": "New INDEC methodology · "
+        },
+        "over_on": {
+          "es": "Superponer metodología nueva INDEC",
+          "en": "Overlay new INDEC methodology"
+        },
+        "over_off": {
+          "es": "Quitar metodología nueva INDEC",
+          "en": "Remove new INDEC methodology"
+        },
+        "chart_meth": {
+          "es": "Serie larga (2003–)",
+          "en": "Long series (2003–)"
+        },
+        "map_title": {
+          "es": "Por provincia",
+          "en": "By province"
+        },
+        "region": {
+          "es": "Región",
+          "en": "Region"
+        },
+        "provincia": {
+          "es": "Provincia",
+          "en": "Province"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (pesos constantes)",
+          "en": "Monthly income (constant pesos)"
+        },
         "informality_definition": {
           "es": "Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong> (17.ª CIET). Un <strong>asalariado</strong> es informal si no le hacen descuentos jubilatorios; los <strong>trabajadores familiares sin remuneración</strong> son informales siempre; un <strong>patrón o cuentapropista</strong> es informal si su actividad no está registrada.<br><br><strong>Metodología nueva INDEC</strong>: el algoritmo de la Metodología INDEC N.º 43, que para patrones y cuentapropistas usa preguntas sobre aportes, inscripción y facturación incorporadas al cuestionario en el 4.º trimestre de 2023. Reproduce las tasas que publica INDEC.<br><strong>Serie larga</strong>: para patrones y cuentapropistas aproxima ese registro con preguntas que la encuesta hace desde 2003, de modo que la regla no cambia en toda la serie. Queda unos 3 puntos por encima de la metodología nueva (unos 11 entre los independientes; casi nada entre los asalariados, donde las dos usan la misma pregunta). Por eso no se empalman. Los indicadores principales, el ranking por sector y el mapa usan la metodología nueva; el análisis interactivo usa la serie larga y permite superponer la nueva desde 2024.",
-          "en": "Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced. Headline indicators, the sector ranking and the map use the new methodology; the interactive analysis uses the long series and can overlay the new one from 2024."},
+          "en": "Both measures follow the <strong>job-based</strong> criterion (17th ICLS). An <strong>employee</strong> is informal without pension contributions; <strong>unpaid family workers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the activity is not registered.<br><br><strong>New INDEC methodology</strong>: the algorithm in INDEC Methodology No. 43, which for employers and own-account workers relies on questions on contributions, registration and invoicing added to the questionnaire in Q4 2023. It reproduces INDEC's published rates.<br><strong>Long series</strong>: approximates that registration with questions asked since 2003, so the rule never changes along the series. It sits about 3 points above the new methodology (about 11 among the self-employed; almost nothing among employees, where both use the same question). So they are not spliced. Headline indicators, the sector ranking and the map use the new methodology; the interactive analysis uses the long series and can overlay the new one from 2024."
+        },
         "availability_body": {
           "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos: el año en curso entra cuando sale su 4.º trimestre. En la serie larga, 2003 (sólo el 2.º semestre), 2007, 2015 y 2016 promedian menos trimestres porque esas bases no existen. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Las celdas con menos de 30 observaciones se marcan como imprecisas y las de menos de 10 no se muestran.",
-          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
-        "fuente": {"es": "la Encuesta Permanente de Hogares del INDEC", "en": "INDEC's Permanent Household Survey"}
+          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years: the current year enters once its fourth quarter is out. In the long series, 2003 (second half only), 2007, 2015 and 2016 average fewer quarters because those files do not exist. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Permanente de Hogares del INDEC",
+          "en": "INDEC's Permanent Household Survey"
+        }
       }
     },
     "cr": {
-      "nombre": {"es": "Costa Rica", "en": "Costa Rica"},
+      "nombre": {
+        "es": "Costa Rica",
+        "en": "Costa Rica"
+      },
       "geo": "regions.geo.json",
       "geo_alto": false,
       "v_iguales": true,
-      "moneda": {"es": "colones", "en": "colones"},
+      "moneda": {
+        "es": "colones",
+        "en": "colones"
+      },
       "labels": {
-        "r": {"es": {"1": "Urbana", "2": "Rural", "99": "Todas"}, "en": {"1": "Urban", "2": "Rural", "99": "All"}},
-        "p": {"es": {"1": "Central", "2": "Chorotega", "3": "Pacífico Central", "4": "Brunca", "5": "Huetar Caribe", "6": "Huetar Norte", "99": "Todas"},
-              "en": {"1": "Central", "2": "Chorotega", "3": "Central Pacific", "4": "Brunca", "5": "Huetar Caribe", "6": "Huetar Norte", "99": "All"}},
-        "s": {"es": {"1": "Hasta 5 personas", "2": "De 6 a 29", "3": "30 o más", "99": "Todos"},
-              "en": {"1": "Up to 5 people", "2": "6 to 29", "3": "30 or more", "99": "All"}}
+        "r": {
+          "es": {
+            "1": "Urbana",
+            "2": "Rural",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Urban",
+            "2": "Rural",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Central",
+            "2": "Chorotega",
+            "3": "Pacífico Central",
+            "4": "Brunca",
+            "5": "Huetar Caribe",
+            "6": "Huetar Norte",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Central",
+            "2": "Chorotega",
+            "3": "Central Pacific",
+            "4": "Brunca",
+            "5": "Huetar Caribe",
+            "6": "Huetar Norte",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 29",
+            "3": "30 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 29",
+            "3": "30 or more",
+            "99": "All"
+          }
+        }
       },
       "textos": {
-        "subtitle": {"es": "INEC · Encuesta Continua de Empleo", "en": "INEC · Continuous Employment Survey"},
-        "meas_1": {"es": "Medida oficial INEC", "en": "Official INEC measure"},
-        "meas_2": {"es": "Medida oficial INEC", "en": "Official INEC measure"},
-        "kpi_meth": {"es": "Con la clasificación oficial de INEC, la misma de sus informes trimestrales.",
-                     "en": "Using INEC's official classification, the one in its quarterly reports."},
-        "geo_meth": {"es": "Medida oficial INEC · ", "en": "Official INEC measure · "},
-        "chart_meth": {"es": "Medida oficial INEC (2010–)", "en": "Official INEC measure (2010–)"},
-        "map_title": {"es": "Por región de planificación", "en": "By planning region"},
-        "region": {"es": "Zona", "en": "Area"},
-        "provincia": {"es": "Región de planificación", "en": "Planning region"},
-        "income_axis": {"es": "Ingreso mensual (colones constantes)", "en": "Monthly income (constant colones)"},
+        "subtitle": {
+          "es": "INEC · Encuesta Continua de Empleo",
+          "en": "INEC · Continuous Employment Survey"
+        },
+        "meas_1": {
+          "es": "Medida oficial INEC",
+          "en": "Official INEC measure"
+        },
+        "meas_2": {
+          "es": "Medida oficial INEC",
+          "en": "Official INEC measure"
+        },
+        "kpi_meth": {
+          "es": "Con la clasificación oficial de INEC, la misma de sus informes trimestrales.",
+          "en": "Using INEC's official classification, the one in its quarterly reports."
+        },
+        "geo_meth": {
+          "es": "Medida oficial INEC · ",
+          "en": "Official INEC measure · "
+        },
+        "chart_meth": {
+          "es": "Medida oficial INEC (2010–)",
+          "en": "Official INEC measure (2010–)"
+        },
+        "map_title": {
+          "es": "Por región de planificación",
+          "en": "By planning region"
+        },
+        "region": {
+          "es": "Zona",
+          "en": "Area"
+        },
+        "provincia": {
+          "es": "Región de planificación",
+          "en": "Planning region"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (colones constantes)",
+          "en": "Monthly income (constant colones)"
+        },
         "informality_definition": {
           "es": "La clasificación oficial de INEC, con el criterio del <strong>puesto de trabajo</strong> (17.ª CIET), que viene en los microdatos de la encuesta. Un <strong>asalariado</strong> es informal si no tiene rebajo de seguro social; los <strong>auxiliares no remunerados</strong> son informales siempre; un <strong>empleador o cuentapropista</strong> es informal si su negocio no está inscrito y no lleva contabilidad formal.<br><br>La medida existe con la misma regla desde el 3.º trimestre de 2010, así que en Costa Rica hay <strong>una sola serie</strong>: los indicadores, el mapa y el análisis interactivo usan la misma. Reproduce al decimal las tasas que publica INEC.",
-          "en": "INEC's official classification, on the <strong>job-based</strong> criterion (17th ICLS), which ships with the survey microdata. An <strong>employee</strong> is informal without social-security deductions; <strong>unpaid family helpers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the business is neither registered nor keeps formal accounts.<br><br>The measure has had the same rule since Q3 2010, so Costa Rica has <strong>a single series</strong>: headline indicators, the map and the interactive analysis all use it. It reproduces INEC's published rates to the decimal."},
+          "en": "INEC's official classification, on the <strong>job-based</strong> criterion (17th ICLS), which ships with the survey microdata. An <strong>employee</strong> is informal without social-security deductions; <strong>unpaid family helpers</strong> are always informal; an <strong>employer or own-account worker</strong> is informal if the business is neither registered nor keeps formal accounts.<br><br>The measure has had the same rule since Q3 2010, so Costa Rica has <strong>a single series</strong>: headline indicators, the map and the interactive analysis all use it. It reproduces INEC's published rates to the decimal."
+        },
         "availability_body": {
           "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre en la base. El resto del panel usa <strong>promedios anuales</strong> de años completos; 2010 tiene sólo el 3.º y el 4.º trimestre, porque la encuesta empieza ahí. 2020T2 y 2020T3 se relevaron por teléfono, con una muestra más chica. El <strong>quintil</strong> es de ingreso <em>laboral</em> per cápita del hogar: la ECE no releva otros ingresos. El tamaño del establecimiento corta en 30 personas y no en 40 como en Argentina. Los ingresos son los de la ocupación principal, en <strong>colones constantes</strong> del período indicado en el eje. El mapa es por región de planificación, porque la base pública no trae la provincia. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
-          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years; 2010 has only Q3 and Q4, because the survey starts there. Q2 and Q3 2020 were collected by phone, with a smaller sample. The <strong>quintile</strong> is of household per-capita <em>labour</em> income: the survey collects no other income. Establishment size breaks at 30 people rather than 40 as in Argentina. Incomes are from the main job, in <strong>constant colones</strong> of the period shown on the axis. The map is by planning region, because the public file carries no province. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."},
-        "fuente": {"es": "la Encuesta Continua de Empleo del INEC", "en": "INEC's Continuous Employment Survey"}
+          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years; 2010 has only Q3 and Q4, because the survey starts there. Q2 and Q3 2020 were collected by phone, with a smaller sample. The <strong>quintile</strong> is of household per-capita <em>labour</em> income: the survey collects no other income. Establishment size breaks at 30 people rather than 40 as in Argentina. Incomes are from the main job, in <strong>constant colones</strong> of the period shown on the axis. The map is by planning region, because the public file carries no province. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Continua de Empleo del INEC",
+          "en": "INEC's Continuous Employment Survey"
+        }
+      }
+    },
+    "mx": {
+      "nombre": {
+        "es": "México",
+        "en": "Mexico"
+      },
+      "geo": "states.geo.json",
+      "geo_alto": false,
+      "v_iguales": true,
+      "moneda": {
+        "es": "pesos",
+        "en": "pesos"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Urbana",
+            "2": "Rural",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Urban",
+            "2": "Rural",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Aguascalientes",
+            "2": "Baja California",
+            "3": "Baja California Sur",
+            "4": "Campeche",
+            "5": "Coahuila",
+            "6": "Colima",
+            "7": "Chiapas",
+            "8": "Chihuahua",
+            "9": "Ciudad de México",
+            "10": "Durango",
+            "11": "Guanajuato",
+            "12": "Guerrero",
+            "13": "Hidalgo",
+            "14": "Jalisco",
+            "15": "México",
+            "16": "Michoacán",
+            "17": "Morelos",
+            "18": "Nayarit",
+            "19": "Nuevo León",
+            "20": "Oaxaca",
+            "21": "Puebla",
+            "22": "Querétaro",
+            "23": "Quintana Roo",
+            "24": "San Luis Potosí",
+            "25": "Sinaloa",
+            "26": "Sonora",
+            "27": "Tabasco",
+            "28": "Tamaulipas",
+            "29": "Tlaxcala",
+            "30": "Veracruz",
+            "31": "Yucatán",
+            "32": "Zacatecas",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Aguascalientes",
+            "2": "Baja California",
+            "3": "Baja California Sur",
+            "4": "Campeche",
+            "5": "Coahuila",
+            "6": "Colima",
+            "7": "Chiapas",
+            "8": "Chihuahua",
+            "9": "Mexico City",
+            "10": "Durango",
+            "11": "Guanajuato",
+            "12": "Guerrero",
+            "13": "Hidalgo",
+            "14": "Jalisco",
+            "15": "State of Mexico",
+            "16": "Michoacán",
+            "17": "Morelos",
+            "18": "Nayarit",
+            "19": "Nuevo León",
+            "20": "Oaxaca",
+            "21": "Puebla",
+            "22": "Querétaro",
+            "23": "Quintana Roo",
+            "24": "San Luis Potosí",
+            "25": "Sinaloa",
+            "26": "Sonora",
+            "27": "Tabasco",
+            "28": "Tamaulipas",
+            "29": "Tlaxcala",
+            "30": "Veracruz",
+            "31": "Yucatán",
+            "32": "Zacatecas",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 50",
+            "3": "51 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 50",
+            "3": "51 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "INEGI · Encuesta Nacional de Ocupación y Empleo",
+          "en": "INEGI · National Occupation and Employment Survey"
+        },
+        "meas_1": {
+          "es": "Medida oficial INEGI",
+          "en": "Official INEGI measure"
+        },
+        "meas_2": {
+          "es": "Medida oficial INEGI",
+          "en": "Official INEGI measure"
+        },
+        "kpi_meth": {
+          "es": "Con la tasa de informalidad laboral 1 (TIL1) del INEGI, la misma de sus comunicados trimestrales.",
+          "en": "Using INEGI's labour informality rate 1 (TIL1), the one in its quarterly releases."
+        },
+        "geo_meth": {
+          "es": "Medida oficial INEGI · ",
+          "en": "Official INEGI measure · "
+        },
+        "chart_meth": {
+          "es": "Medida oficial INEGI (2005–)",
+          "en": "Official INEGI measure (2005–)"
+        },
+        "map_title": {
+          "es": "Por entidad federativa",
+          "en": "By state"
+        },
+        "region": {
+          "es": "Zona",
+          "en": "Area"
+        },
+        "provincia": {
+          "es": "Entidad federativa",
+          "en": "State"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (pesos constantes)",
+          "en": "Monthly income (constant pesos)"
+        },
+        "informality_definition": {
+          "es": "La tasa de informalidad laboral 1 (TIL1) del INEGI, que viene en los microdatos de la encuesta, con el criterio del <strong>puesto de trabajo</strong> (17.ª CIET, matriz de Hussmanns). Son informales quienes trabajan en el <strong>sector informal</strong> (negocios de los hogares sin registros contables), en el <strong>trabajo doméstico remunerado</strong> o en la <strong>agricultura de subsistencia</strong>, y quienes, trabajando para empresas, gobierno o instituciones, <strong>no tienen la protección de la seguridad social</strong> por su trabajo.<br><br>La medida existe con la misma regla desde 2005, así que en México hay <strong>una sola serie</strong>: los indicadores, el mapa y el análisis interactivo usan la misma. Reproduce las tasas que publica el INEGI (total y por sexo) con una diferencia de dos décimas como máximo.",
+          "en": "INEGI's labour informality rate 1 (TIL1), which ships with the survey microdata, on the <strong>job-based</strong> criterion (17th ICLS, Hussmanns matrix). Informal workers are those in the <strong>informal sector</strong> (household businesses without accounting records), in <strong>paid domestic work</strong> or <strong>subsistence agriculture</strong>, and those who work for firms, government or institutions <strong>without social-security coverage</strong> through their job.<br><br>The measure has had the same rule since 2005, so Mexico has <strong>a single series</strong>: headline indicators, the map and the interactive analysis all use it. It reproduces INEGI's published rates (total and by sex) to within two tenths of a point."
+        },
+        "availability_body": {
+          "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre en la base. El resto del panel usa <strong>promedios anuales</strong> de años completos. En el 2.º trimestre de 2020 no hubo encuesta (la pandemia); 2020 promedia los otros tres en la serie, y entre 2020 y 2022 parte de la muestra se entrevistó por teléfono. El universo son los ocupados de 15 años y más, como en el INEGI. El <strong>quintil</strong> es de ingreso <em>laboral</em> per cápita del hogar (la encuesta no releva otros ingresos) y sólo se calcula para los hogares en que todos los ocupados declaran el monto: en los últimos años, cerca de un tercio de los ocupados da sólo un rango. El tamaño del establecimiento corta en 50 personas y no en 40 como en Argentina. Los ingresos son los de la ocupación principal, en <strong>pesos constantes</strong> del período indicado en el eje. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years. There was no survey in Q2 2020 (the pandemic); 2020 averages the other three quarters in the series, and between 2020 and 2022 part of the sample was interviewed by phone. The universe is employed people aged 15 and over, as in INEGI's figures. The <strong>quintile</strong> is of household per-capita <em>labour</em> income (the survey collects no other income) and is only computed for households where every employed member reports an amount: in recent years about a third of workers give only a bracket. Establishment size breaks at 50 people rather than 40 as in Argentina. Incomes are from the main job, in <strong>constant pesos</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Nacional de Ocupación y Empleo del INEGI",
+          "en": "INEGI's National Occupation and Employment Survey"
+        }
       }
     }
   },
   "comparabilidad": {
-    "es": "Cada país se mide con la definición oficial de su instituto: las dos siguen el criterio del puesto de trabajo, pero no son la misma regla para los independientes. Para comparar tendencias se usa la serie más larga de cada país (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial). El tamaño del establecimiento y el quintil no se definen igual en las dos encuestas, y la EPH es urbana mientras que la ECE es nacional. Los ingresos no se comparan: están en monedas distintas.",
-    "en": "Each country is measured with its own statistics office's official definition: both follow the job-based criterion, but the rule for the self-employed is not the same. To compare trends, the longest series for each country is used (for Argentina, the long series, which sits about 3 points above the official one). Establishment size and income quintile are not defined the same way in both surveys, and Argentina's EPH covers urban areas while Costa Rica's ECE is national. Incomes are not compared: they are in different currencies."
+    "es": "Cada país se mide con la definición oficial de su instituto: todas siguen el criterio del puesto de trabajo, pero no son la misma regla para los independientes. Para comparar tendencias se usa la serie más larga de cada país (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica y México son nacionales. Los ingresos no se comparan: están en monedas distintas.",
+    "en": "Each country is measured with its own statistics office's official definition: all follow the job-based criterion, but the rule for the self-employed is not the same. To compare trends, the longest series for each country is used (for Argentina, the long series, which sits about 3 points above the official one). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican and Mexican surveys are national. Incomes are not compared: they are in different currencies."
   }
 }
