@@ -13,7 +13,7 @@ Gracias por tu interés en mi trayectoria.
 
 Un CV y una lista de papers capturan bien la historia académica, la experiencia laboral y algunos
 resultados estandarizados de productividad, pero creo que cuentan sólo una parte de la historia
-cuando se trata de entender la trayectoria y el potencial de alguien.
+cuando se trata de entender los intereses y el potencial de alguien.
 
 Si yo estuviera del lado de quien contrata, me interesaría tener en el equipo a alguien que no sólo
 sea trabajador, creativo, apasionado y comprometido con lo que hace, sino también alguien con quien

@@ -64,7 +64,7 @@ dejalo en el `COMENTARIO DE MATIAS`.
 
 ---
 
-**7. LOS 31 GB DE `datos\Costa_Rica\_archivo_consultoria_OIT`.** No los comprimí: casi todo se
+**7. LOS 31 GB DE `datos\Costa_Rica\_archivo_consultoria_OIT`.** *(2026-10-19: resuelto en el proyecto de bases; ver su To-Do, punto 2.)* No los comprimí: casi todo se
 rehace con el pipeline nuevo, así que lo razonable es **borrarlo**, no guardarlo, cuando Costa
 Rica corra en Stata. Qué es qué:
 - `stata\trimestres\` (14 GB): los `.sav` del INEC pasados a `.dta`. Repetido: se borra.

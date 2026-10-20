@@ -63,6 +63,9 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 ### Abiertos
 
+- **(2026-10-20, proyecto de bases LATAM) México entró al panel de informalidad** (`assets/data/informality/mx/` y `paises.json`,
+  commit `ef0bff2`). Ya son tres países: falta rehacer la miniatura del panel.
+
 - **S1 — CERRADO: Google indexó el sitio.** La inspección de URL del 14/10 a la noche devuelve «La
   URL está en Google» y «La página está indexada», con rastreo y canónica correctos. Google lo
   descubrió desde el **repositorio de Nottingham** y desde el **CV del IIEP**, no desde el sitemap.
@@ -95,7 +98,7 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
   preguntárselo.
 - **S13 — Sumar países al panel → pasa al proyecto del panel.** Costa Rica está al día
   (2026T2). Lo que queda (correr Stata, México y los demás, la ECH de 2027) vive desde el 19/10
-  en el `ESTADO.md` de `proyectos\mapa_informalidad\_pipeline\`. Acá sólo queda **la
+  en el `ESTADO.md` de `mercado_trabajo_latam\_pipeline\ (mudado el 2026-10-19)`. Acá sólo queda **la
   miniatura** cuando entre el tercer país, y cualquier texto de página que ese proyecto pida.
 - **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
