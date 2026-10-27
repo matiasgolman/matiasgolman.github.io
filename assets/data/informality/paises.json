@@ -3,7 +3,8 @@
   "orden": [
     "ar",
     "cr",
-    "mx"
+    "mx",
+    "br"
   ],
   "paises": {
     "ar": {
@@ -462,10 +463,183 @@
           "en": "INEGI's National Occupation and Employment Survey"
         }
       }
+    },
+    "br": {
+      "nombre": {
+        "es": "Brasil",
+        "en": "Brazil"
+      },
+      "geo": "states.geo.json",
+      "geo_alto": false,
+      "v_iguales": false,
+      "moneda": {
+        "es": "reales",
+        "en": "reais"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Urbana",
+            "2": "Rural",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Urban",
+            "2": "Rural",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "11": "Rondônia",
+            "12": "Acre",
+            "13": "Amazonas",
+            "14": "Roraima",
+            "15": "Pará",
+            "16": "Amapá",
+            "17": "Tocantins",
+            "21": "Maranhão",
+            "22": "Piauí",
+            "23": "Ceará",
+            "24": "Rio Grande do Norte",
+            "25": "Paraíba",
+            "26": "Pernambuco",
+            "27": "Alagoas",
+            "28": "Sergipe",
+            "29": "Bahia",
+            "31": "Minas Gerais",
+            "32": "Espírito Santo",
+            "33": "Rio de Janeiro",
+            "35": "São Paulo",
+            "41": "Paraná",
+            "42": "Santa Catarina",
+            "43": "Rio Grande do Sul",
+            "50": "Mato Grosso do Sul",
+            "51": "Mato Grosso",
+            "52": "Goiás",
+            "53": "Distrito Federal",
+            "99": "Todas"
+          },
+          "en": {
+            "11": "Rondônia",
+            "12": "Acre",
+            "13": "Amazonas",
+            "14": "Roraima",
+            "15": "Pará",
+            "16": "Amapá",
+            "17": "Tocantins",
+            "21": "Maranhão",
+            "22": "Piauí",
+            "23": "Ceará",
+            "24": "Rio Grande do Norte",
+            "25": "Paraíba",
+            "26": "Pernambuco",
+            "27": "Alagoas",
+            "28": "Sergipe",
+            "29": "Bahia",
+            "31": "Minas Gerais",
+            "32": "Espírito Santo",
+            "33": "Rio de Janeiro",
+            "35": "São Paulo",
+            "41": "Paraná",
+            "42": "Santa Catarina",
+            "43": "Rio Grande do Sul",
+            "50": "Mato Grosso do Sul",
+            "51": "Mato Grosso",
+            "52": "Goiás",
+            "53": "Distrito Federal",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 50",
+            "3": "51 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 50",
+            "3": "51 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "IBGE · Pesquisa Nacional por Amostra de Domicílios Contínua",
+          "en": "IBGE · Continuous National Household Sample Survey"
+        },
+        "meas_1": {
+          "es": "Medida oficial IBGE",
+          "en": "Official IBGE measure"
+        },
+        "meas_2": {
+          "es": "Serie larga",
+          "en": "Long series"
+        },
+        "overlay_name": {
+          "es": "medida oficial IBGE",
+          "en": "official IBGE measure"
+        },
+        "overlay_note": {
+          "es": "Línea punteada: medida oficial del IBGE, desde el primer año completo en que existe (2016). La distancia con la serie larga es de medición, no un cambio en la informalidad.",
+          "en": "Dotted line: IBGE's official measure, from the first full year it exists (2016). The gap to the long series reflects measurement, not a change in informality."
+        },
+        "over_on": {
+          "es": "Superponer medida oficial IBGE",
+          "en": "Overlay official IBGE measure"
+        },
+        "over_off": {
+          "es": "Quitar medida oficial IBGE",
+          "en": "Remove official IBGE measure"
+        },
+        "kpi_meth": {
+          "es": "Con la tasa de informalidad oficial del IBGE (desde el 4.º trimestre de 2015), la misma de sus publicaciones trimestrales.",
+          "en": "Using IBGE's official informality rate (since Q4 2015), the one in its quarterly releases."
+        },
+        "geo_meth": {
+          "es": "Medida oficial IBGE · ",
+          "en": "Official IBGE measure · "
+        },
+        "chart_meth": {
+          "es": "Serie larga (2012–)",
+          "en": "Long series (2012–)"
+        },
+        "map_title": {
+          "es": "Por unidad de la federación",
+          "en": "By state"
+        },
+        "region": {
+          "es": "Zona",
+          "en": "Area"
+        },
+        "provincia": {
+          "es": "Unidad de la federación",
+          "en": "State"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (reales constantes)",
+          "en": "Monthly income (constant reais)"
+        },
+        "informality_definition": {
+          "es": "Las dos medidas siguen el criterio del <strong>puesto de trabajo</strong>. Un <strong>asalariado</strong> del sector privado o del <strong>servicio doméstico</strong> es informal si no tiene <em>carteira de trabalho</em> firmada; los asalariados públicos y los estatutarios cuentan como formales, como en el IBGE; los <strong>trabajadores familiares auxiliares</strong> son informales siempre.<br><br><strong>Medida oficial IBGE</strong>: un <strong>empleador o cuentapropista</strong> es informal si su negocio no está inscripto en el registro de personas jurídicas (CNPJ). La pregunta existe desde el 4.º trimestre de 2015. Reproduce las tasas que publica el IBGE (total, por sexo y por edad) con una diferencia de cinco centésimas como máximo.<br><strong>Serie larga</strong>: para empleadores y cuentapropistas usa la contribución a la previsión social, que la encuesta pregunta desde 2012, de modo que la regla no cambia en toda la serie. Queda entre 1 y 3 puntos por debajo de la oficial (hay más independientes sin CNPJ que sin aportes). Por eso no se empalman. Los indicadores principales, el ranking por sector y el mapa usan la medida oficial; el análisis interactivo usa la serie larga y permite superponer la oficial desde 2016.",
+          "en": "Both measures follow the <strong>job-based</strong> criterion. A private-sector or <strong>domestic</strong> employee is informal without a signed <em>carteira de trabalho</em> (work card); public employees and civil servants count as formal, as in IBGE's figures; <strong>contributing family workers</strong> are always informal.<br><br><strong>Official IBGE measure</strong>: an <strong>employer or own-account worker</strong> is informal if the business is not in the national register of legal entities (CNPJ). The question exists since Q4 2015. It reproduces IBGE's published rates (total, by sex and by age) to within five hundredths of a point.<br><strong>Long series</strong>: for employers and own-account workers it uses social-security contributions, asked since 2012, so the rule never changes along the series. It sits 1 to 3 points below the official measure (more self-employed lack a CNPJ than lack contributions). So they are not spliced. Headline indicators, the sector ranking and the map use the official measure; the interactive analysis uses the long series and can overlay the official one from 2016."
+        },
+        "availability_body": {
+          "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre en la base. El resto del panel usa <strong>promedios anuales</strong> de años completos. La medida oficial empieza en el 4.º trimestre de 2015 (su primer año completo es 2016); la serie larga, en 2012. Entre el 2.º trimestre de 2020 y el 2.º de 2021 la encuesta se hizo sólo por teléfono, con una muestra más chica. El universo son los ocupados de 14 años y más, como en el IBGE. El <strong>quintil</strong> es de ingreso <em>laboral</em> per cápita del domicilio (la encuesta trimestral no releva otros ingresos). El tamaño del establecimiento corta en 50 personas y no en 40 como en Argentina, y no se preguntó entre el 4.º trimestre de 2015 y el 2.º de 2016. Los ingresos son los efectivos de la ocupación principal, en <strong>reales constantes</strong> del período indicado en el eje. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years. The official measure starts in Q4 2015 (its first full year is 2016); the long series, in 2012. Between Q2 2020 and Q2 2021 the survey was run by phone only, with a smaller sample. The universe is employed people aged 14 and over, as in IBGE's figures. The <strong>quintile</strong> is of household per-capita <em>labour</em> income (the quarterly survey collects no other income). Establishment size breaks at 50 people rather than 40 as in Argentina, and was not asked between Q4 2015 and Q2 2016. Incomes are actual earnings from the main job, in <strong>constant reais</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua) del IBGE",
+          "en": "IBGE's Continuous National Household Sample Survey (PNAD Contínua)"
+        }
+      }
     }
   },
   "comparabilidad": {
-    "es": "Cada país se mide con la definición oficial de su instituto: todas siguen el criterio del puesto de trabajo, pero no son la misma regla para los independientes. Para comparar tendencias se usa la serie más larga de cada país (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica y México son nacionales. Los ingresos no se comparan: están en monedas distintas.",
-    "en": "Each country is measured with its own statistics office's official definition: all follow the job-based criterion, but the rule for the self-employed is not the same. To compare trends, the longest series for each country is used (for Argentina, the long series, which sits about 3 points above the official one). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican and Mexican surveys are national. Incomes are not compared: they are in different currencies."
+    "es": "Cada país se mide con la definición oficial de su instituto: todas siguen el criterio del puesto de trabajo, pero no son la misma regla para los independientes. Para comparar tendencias se usa la serie más larga de cada país (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México y Brasil son nacionales. Los ingresos no se comparan: están en monedas distintas.",
+    "en": "Each country is measured with its own statistics office's official definition: all follow the job-based criterion, but the rule for the self-employed is not the same. To compare trends, the longest series for each country is used (for Argentina, the long series, which sits about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican and Brazilian surveys are national. Incomes are not compared: they are in different currencies."
   }
 }
