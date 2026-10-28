@@ -71,6 +71,16 @@ inprogress:
     text: >-
       How much a worker gains from staying in the same job, measured across Latin American labour
       markets where job tenure is short and informality is common.
+  - title: "Generative AI and job satisfaction"
+    year: "in progress"
+    text: >-
+      Whether the arrival of generative AI tools at work changes how satisfied workers are with
+      their jobs.
+  - title: "Income losses and household labour supply"
+    year: "in progress"
+    text: >-
+      How the other members of a household change how much they work when the household loses
+      income.
 
 published:
   - title: "What drives debt defaults in microfinance? The case of Asociación Civil Avanzar"
@@ -139,7 +149,7 @@ policy:
     url: "https://www.oecd.org/en/publications/unleashing-sme-potential-to-scale-up_ea948a58-en.html"
     text: >-
       A co-authored report on what holds small firms back from growing. My part was the
-      econometric analysis and an assessment of whether machine learning can predict firm growth
+      econometric analysis, writing, and an assessment of whether machine learning can predict firm growth
       from the firms' own websites.
   - title: "Argentina labour market outlook bulletin"
     year: 2023

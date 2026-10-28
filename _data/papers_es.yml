@@ -70,6 +70,15 @@ inprogress:
     text: >-
       Cuánto gana un trabajador por permanecer en el mismo empleo, medido en mercados laborales
       latinoamericanos donde la antigüedad es corta y la informalidad es alta.
+  - title: "IA generativa y satisfacción laboral"
+    year: "en curso"
+    text: >-
+      Si la llegada de herramientas de IA generativa al trabajo cambia qué tan satisfechos están
+      los trabajadores con su empleo.
+  - title: "Pérdidas de ingreso y oferta laboral de los hogares"
+    year: "en curso"
+    text: >-
+      Cómo cambian cuánto trabajan los demás miembros de un hogar cuando el hogar pierde ingresos.
 
 published:
   - title: "¿Qué determina la mora en microfinanzas? El caso de la Asociación Civil Avanzar"
@@ -138,7 +147,7 @@ policy:
     url: "https://www.oecd.org/en/publications/unleashing-sme-potential-to-scale-up_ea948a58-en.html"
     text: >-
       Informe en coautoría sobre qué frena el crecimiento de las empresas chicas. Mi parte fue el
-      análisis econométrico y una evaluación de si el aprendizaje automático puede predecir el
+      análisis econométrico, la redacción y una evaluación de si el aprendizaje automático puede predecir el
       crecimiento de una empresa a partir de su propio sitio web.
   - title: "Boletín del mercado laboral argentino"
     year: 2023

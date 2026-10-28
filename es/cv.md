@@ -83,7 +83,7 @@ description: >-
   <div class="cv__row">
     <div class="cv__when">2021–25</div>
     <div class="cv__what">
-      <p style="margin-top:.25rem">Docente voluntario de inglés en Refugee Roots, Nottingham, con
+      <p style="margin-top:.25rem">Docente voluntario de inglés en <a href="https://www.refugeeroots.org.uk/">Refugee Roots</a>, Nottingham, con
       adultos solicitantes de asilo. Representante de posgrado y responsable de Igualdad,
       Diversidad e Inclusión en la Universidad de Nottingham.</p>
     </div>
@@ -100,8 +100,8 @@ description: >-
   <div class="cv__row">
     <div class="cv__when">2015–16</div>
     <div class="cv__what">
-      <p style="margin-top:.25rem">Co-coordinador de un proyecto financiado por la UE de formación
-      en emprendimiento sostenible para jóvenes en situación de desventaja en Tanzania, Nepal,
+      <p style="margin-top:.25rem">Co-coordinador de <a href="https://cesie.org/en/project/greentrepreneurship/">Greentrepreneurship</a>, un proyecto financiado
+      por la UE de formación en emprendimiento sostenible para jóvenes en situación de desventaja en Tanzania, Nepal,
       Argentina, Portugal, Eslovenia e Italia.</p>
     </div>
   </div>

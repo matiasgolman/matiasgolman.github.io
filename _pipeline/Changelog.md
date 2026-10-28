@@ -5,6 +5,18 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-28 (2) — CV más parejo en enlaces y alineado con el CV en LaTeX
+
+- Enlaces en el CV: Refugee Roots, Greentrepreneurship (CESIE), Uniendo Caminos (Subir al Sur),
+  el informe de la OCDE, el WP 34 de la OIT, el documento del Banco Mundial y el perfil del IIEP.
+- Licenciatura: «a five-and-a-half-year degree» / «carrera de cinco años y medio».
+- Nuevo: investigador asociado del IIEP-Baires, unidad EDIL («2026–»: fecha por confirmar; el
+  perfil público del IIEP dice «Investigador UBA» y no nombra EDIL).
+- OCDE: «Policy analyst intern» como en el CV en LaTeX (antes «Junior economist»), y «writing» en
+  lo que hizo. Utrecht: la descripción del puesto sigue a la del CV en LaTeX.
+- «In progress»: GenAI and job satisfaction; income losses and household labour supply (textos de
+  una línea, para que Matías los afine).
+
 ## 2026-10-28 — enlaces, dos entradas nuevas en el CV y el panel con cuatro países
 
 - **Enlaces de publicaciones** (`_data/papers*.yml`): WESO 2021, OCDE (URL nueva; año 2025, que
