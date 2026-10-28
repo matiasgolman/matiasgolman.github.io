@@ -5,6 +5,16 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-28 (3) — CV en PDF de dos páginas y CV de la web completo
+
+- CV en LaTeX reescrito como archivo autónomo (sin la clase `matias_cv_final`), dos páginas,
+  compilado y revisado; fuente en `/mnt/...` del chat, Matías lo pega en Overleaf. PDF en
+  `assets/pdf/CV_MatiasGolman_26.pdf`, enlazado desde `/cv/` y `/es/cv/` (antes
+  `cv-matias-golman.pdf`, que queda viejo en el repo).
+- Web: CENES 2015–16 con Avanzar (fuera la fila de Comunidad y la mención al BID), Uniendo
+  Caminos voluntario 2014–15 y coordinador 2016–17, pasantías OIT 2018 y 2019, MRes 2020–21,
+  Refugee Roots 2022–24 en fila propia. El paper con Uma Rani nunca salió: no va.
+
 ## 2026-10-28 (2) — CV más parejo en enlaces y alineado con el CV en LaTeX
 
 - Enlaces en el CV: Refugee Roots, Greentrepreneurship (CESIE), Uniendo Caminos (Subir al Sur),

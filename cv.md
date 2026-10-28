@@ -13,7 +13,7 @@ lang: "en"
 alt_url: "/es/cv/"
 ---
 
-<p><a class="btn" href="{{ '/assets/pdf/cv-matias-golman.pdf' | relative_url }}">Download the PDF</a></p>
+<p><a class="btn" href="{{ '/assets/pdf/CV_MatiasGolman_26.pdf' | relative_url }}">Download the PDF</a></p>
 
 <div class="cv__section">
   <h2>Positions</h2>
@@ -82,9 +82,15 @@ alt_url: "/es/cv/"
   <div class="cv__row">
     <div class="cv__when">2021–25</div>
     <div class="cv__what">
+      <p style="margin-top:.25rem">Postgraduate representative and Equality, Diversity and Inclusion
+      officer at the University of Nottingham.</p>
+    </div>
+  </div>
+  <div class="cv__row">
+    <div class="cv__when">2022–24</div>
+    <div class="cv__what">
       <p style="margin-top:.25rem">Volunteer English teacher at <a href="https://www.refugeeroots.org.uk/">Refugee Roots</a>, Nottingham, with adults
-      seeking asylum. Postgraduate representative and Equality, Diversity and Inclusion officer at the
-      University of Nottingham.</p>
+      seeking asylum.</p>
     </div>
   </div>
   <div class="cv__row">

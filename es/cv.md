@@ -14,7 +14,7 @@ description: >-
   Nottingham.
 ---
 
-<p><a class="btn" href="{{ '/assets/pdf/cv-matias-golman.pdf' | relative_url }}">Descargar el PDF</a></p>
+<p><a class="btn" href="{{ '/assets/pdf/CV_MatiasGolman_26.pdf' | relative_url }}">Descargar el PDF</a></p>
 
 <div class="cv__section">
   <h2>Trayectoria</h2>
@@ -83,9 +83,15 @@ description: >-
   <div class="cv__row">
     <div class="cv__when">2021–25</div>
     <div class="cv__what">
+      <p style="margin-top:.25rem">Representante de posgrado y responsable de Igualdad, Diversidad e
+      Inclusión en la Universidad de Nottingham.</p>
+    </div>
+  </div>
+  <div class="cv__row">
+    <div class="cv__when">2022–24</div>
+    <div class="cv__what">
       <p style="margin-top:.25rem">Docente voluntario de inglés en <a href="https://www.refugeeroots.org.uk/">Refugee Roots</a>, Nottingham, con
-      adultos solicitantes de asilo. Representante de posgrado y responsable de Igualdad,
-      Diversidad e Inclusión en la Universidad de Nottingham.</p>
+      adultos solicitantes de asilo.</p>
     </div>
   </div>
   <div class="cv__row">
