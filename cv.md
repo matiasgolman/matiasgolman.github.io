@@ -88,15 +88,6 @@ alt_url: "/es/cv/"
     </div>
   </div>
   <div class="cv__row">
-    <div class="cv__when">2016–17</div>
-    <div class="cv__what">
-      <p style="margin-top:.25rem">Volunteer at <a href="https://quieroayudar.org/organizaciones/asociacion-civil-avanzar-por-el-desarrollo-humano">Asociación Civil Avanzar
-      por el Desarrollo Humano</a>, Buenos Aires, a microcredit organisation. Improved its client
-      databases so that loan programmes could be better tailored, and gave entrepreneurship workshops
-      to borrowers.</p>
-    </div>
-  </div>
-  <div class="cv__row">
     <div class="cv__when">2015–16</div>
     <div class="cv__what">
       <p style="margin-top:.25rem">Co-coordinator of <a href="https://cesie.org/en/project/greentrepreneurship/">Greentrepreneurship</a>, an EU-funded training
