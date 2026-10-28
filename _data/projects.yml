@@ -1,13 +1,13 @@
 - name: "Latin America Informality Dashboard"
   url: "/dashboard/"
   shot: "/assets/img/shot-dashboard.jpg"
-  shot_alt: "Screenshot of the Argentina informality dashboard showing charts and a provincial map"
+  shot_alt: "Screenshot of the informality dashboard comparing informality rates in Argentina, Costa Rica, Mexico and Brazil"
   blurb: >-
     An interactive tool that turns household survey microdata into something a policy officer can
-    actually use. It covers informal employment in Argentina (from 2003) and
-    Costa Rica (from 2010), broken down by sector, region, sex and age, one country at a time or
+    actually use. It covers informal employment in Argentina (from 2003), Mexico
+    (from 2005), Costa Rica (from 2010) and Brazil (from 2012), broken down by sector, region, sex and age, one country at a time or
     side by side.
-  note: "Data from INDEC's Permanent Household Survey (EPH) and INEC's Continuous Employment Survey (ECE)."
+  note: "Data from the national household surveys: INDEC's EPH (Argentina), IBGE's PNAD Contínua (Brazil), INEC's ECE (Costa Rica) and INEGI's ENOE (Mexico)."
 
 - name: "Araucaria Spotter"
   url: "https://araucaria-spotter.vercel.app/"

@@ -18,6 +18,14 @@ scroll.
 *(vacío — dejame acá lo que quieras que haga la próxima corrida. La corrida lo lee primero, lo
 archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.)*
 
+
+- he encontrado algunos cambios para hacer. Las actuales fotos que se muestran en google lay son de versiones viejas, en donde muchas de las features actuales no estaban. Puedes incorporar las fotos nuevas? creo que hay que cortar la parte superior en dnde se ve la hora del telefono
+
+- Por otro lado, en el daschboard the informalidad, estaba pensando que si podemos incorporar la parte de salario. Mas alla de que los salarios se miden en monedas distintas, podemos hacer todos los salarios en base 100 par ael anio 2016, y presentar la comparativa de crecimiento del salario. 
+
+Asimismo, la categoria "Traajador sin remuneracion" no tiene sentido, ya que siempre es informal. Solo ocupa espacio. Habria que sacarlo.
+
+
 ---
 
 ## En una pantalla
@@ -53,18 +61,18 @@ archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.
 
 *(Abiertos arriba. Un ítem que se cierra se reduce a una línea y el detalle se archiva.)*
 
+- **CERRADO 28/10: textos y miniatura del panel con los cuatro países** (Brasil y México entraron
+  el 20 y el 27/10). Ver Changelog.
+
 ### Bloqueado por Matías
 
-- **B3 — ¿El informe de Costa Rica es público?** (to-do 2). Hoy está descrito sin PDF. Ojo: el
+- **B3 — RESUELTO 28/10: el informe de Costa Rica está en revisión editorial de la OIT**; figura como «forthcoming», sin PDF hasta que salga. Antes: (to-do 2). Hoy está descrito sin PDF. Ojo: el
   PDF estaba versionado en el repo, que es público; el 19/10 salió del repo (sigue en el
   historial de git).
 - **B8 — La carpeta vieja de `Documents\GitHub\...`.** Pedí permiso para borrarla y me lo denegó el
   clasificador de la sesión. Son 30 segundos a mano (to-do 4).
 
 ### Abiertos
-
-- **(2026-10-20, proyecto de bases LATAM) México entró al panel de informalidad** (`assets/data/informality/mx/` y `paises.json`,
-  commit `ef0bff2`). Ya son tres países: falta rehacer la miniatura del panel.
 
 - **S1 — CERRADO: Google indexó el sitio.** La inspección de URL del 14/10 a la noche devuelve «La
   URL está en Google» y «La página está indexada», con rastreo y canónica correctos. Google lo

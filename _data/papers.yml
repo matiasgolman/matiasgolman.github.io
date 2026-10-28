@@ -84,7 +84,8 @@ published:
       own client records rather than a survey.
   - title: "NEETs' labour market transitions: a survey for Argentina"
     year: 2020
-    where: "Revista de Economía Política de Buenos Aires, 21"
+    where: "Revista de Economía Política de Buenos Aires, 14(21), 9–47"
+    url: "https://ojs.economicas.uba.ar/REPBA/article/view/1858"
     pdf: "/assets/pdf/golman-neets.pdf"
     text: >-
       What happens next to young Argentines who are neither in employment nor in education or
@@ -92,12 +93,14 @@ published:
   - title: "Unemployment duration in Argentina: a dynamic analysis, 2003–2018"
     year: 2020
     where: "Asociación Argentina de Economía Política, annual meeting"
+    url: "https://aaep.org.ar/works/works2020/Golman1.pdf"
     text: >-
       How long spells of unemployment last in Argentina, and whether the chance of leaving one
       falls the longer a person has been out of work.
   - title: "Asymmetric impacts of the economic cycle on unemployment in Argentina"
     year: 2018
     where: "Asociación Argentina de Economía Política, annual meeting, UNLP"
+    url: "https://sedici.unlp.edu.ar/handle/10915/164964"
     text: >-
       Unemployment rises faster in a downturn than it falls in a recovery. This paper measures
       that asymmetry for Argentina.
@@ -105,7 +108,7 @@ published:
 policy:
   - title: "Labour market informality in Costa Rica"
     year: "2025–26"
-    org: "International Labour Organization"
+    org: "International Labour Organization, forthcoming"
     text: >-
       A diagnostic of informal employment, written to feed the national formalisation framework.
       It reviews a decade of studies and legal instruments, tracks how informal employment has
@@ -116,6 +119,7 @@ policy:
     authors: "with Christoph Ernst"
     year: 2022
     org: "International Labour Organization"
+    url: "https://www.ilo.org/publications/future-work-emerging-sectors-and-potential-transition-formality"
     pdf: "/assets/pdf/ilo-future-of-work-formality.pdf"
     text: >-
       Where new formal jobs could come from in the green economy, the platform economy and the
@@ -124,15 +128,15 @@ policy:
     authors: "with Carla Henry"
     year: 2021
     org: "ILO Working Paper 34"
-    url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases"
+    url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases-1"
     pdf: "/assets/pdf/ilo-wp34-old-age-income-security.pdf"
     text: >-
       How prepared people are for the move from work to retirement in middle-income countries,
       built on a new comparative database and a work-to-retirement preparedness index.
-  - title: "Unleashing SMEs' potential to scale up"
-    year: 2024
+  - title: "Unleashing SME potential to scale up"
+    year: 2025
     org: "OECD"
-    url: "https://www.oecd.org/en/publications/unleashing-smes-potential-to-scale-up_b1150a27-en.html"
+    url: "https://www.oecd.org/en/publications/unleashing-sme-potential-to-scale-up_ea948a58-en.html"
     text: >-
       A co-authored report on what holds small firms back from growing. My part was the
       econometric analysis and an assessment of whether machine learning can predict firm growth
@@ -140,13 +144,14 @@ policy:
   - title: "Argentina labour market outlook bulletin"
     year: 2023
     org: "ILO and ECLAC"
+    url: "https://repositorio.cepal.org/entities/publication/352bfe37-a1bb-4d86-bbcf-236c689a2bb8"
     text: >-
       Analysis and writing on productivity, employment trajectories and income conditions, for the
       joint bulletin on the Argentine labour market.
   - title: "World Employment and Social Outlook 2021: the role of digital labour platforms"
     year: 2021
     org: "International Labour Organization"
-    url: "https://www.ilo.org/publications/flagship-reports/world-employment-and-social-outlook-2021-role-digital-labour-platforms"
+    url: "https://www.ilo.org/publications/flagship-reports/role-digital-labour-platforms-transforming-world-work"
     text: >-
       A contribution to the flagship report, covering survey data and comparative wage analysis
       for platform workers in Chile, Mexico, Argentina, India and the United States, plus a

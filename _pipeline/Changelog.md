@@ -5,6 +5,28 @@ final. Orden cronológico inverso (lo más nuevo arriba).*
 
 ---
 
+## 2026-10-28 — enlaces, dos entradas nuevas en el CV y el panel con cuatro países
+
+- **Enlaces de publicaciones** (`_data/papers*.yml`): WESO 2021, OCDE (URL nueva; año 2025, que
+  es la fecha de publicación del informe) y Old age (`...-cases-1`) corregidos; agregados el
+  boletín OIT–CEPAL (repositorio CEPAL), Future of Work (página de la OIT, además del PDF), NEETs
+  (REPBA, con 14(21), 9–47), duración del desempleo (PDF de la AAEP) y ciclo y desempleo (SEDICI).
+  Con eso «Selected publications» del CV queda enlazado entero. Comprobados todos los enlaces
+  externos del sitio construido (la OCDE y la CEPAL dan 403 a robots, abren bien en navegador).
+- **Costa Rica**: en revisión editorial de la OIT (Matías, 28/10). Figura «forthcoming / de
+  próxima publicación», sin PDF. Cierra B3 hasta que se publique.
+- **CV**: puesto 2016–18 en el Centro de Estrategias de Estado y Mercado (libro *La
+  industrialización en la Argentina del siglo XXI*, enlazado a la nota de El Cohete a la Luna que
+  lo nombra en el equipo). Comunidad: voluntario en Avanzar por el Desarrollo Humano (2016–17).
+  El PDF del CV no se tocó.
+- **Panel**: textos de `/dashboard/`, `/es/panel/`, proyectos y `_data/projects*` con Argentina,
+  Brasil, Costa Rica y México. Miniatura nueva: la vista «Compare» con las cuatro series.
+
+## 2026-10-20 — limpieza del To-Do (sesión del tracker de proyectos)
+- Matías confirmó que el sitio funciona perfecto (sitemap, indexación, fotos, Costa Rica y México en el panel). Se vaciaron los 7 ítems del To-Do; GoatCounter no vuelve al To-Do.
+- Ítem 5 (armar el proyecto del panel / correr Costa Rica en Stata) e ítem 6 (enlaces del INEC): cerrados por la misma confirmación.
+- Respuestas de Matías también pueden llegar por el Excel del tracker: `tracker.py --respuestas web`.
+
 ## 2026-10-19 (corrida 8) — Costa Rica arreglada, OIT, orden, y el panel se independiza
 
 - **`r(459)` en `03_armar_paneles` de Costa Rica.** 12 claves repetidas en 2022T2 (19 en T3 y T4):

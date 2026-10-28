@@ -6,13 +6,14 @@ lang: "es"
 alt_url: "/dashboard/"
 standfirst: >-
   Microdatos de encuestas de hogares sobre empleo informal en América Latina, en un formato que se
-  puede interrogar en vez de leer. Por ahora Argentina y Costa Rica, de a un país o lado a lado.
+  puede interrogar en vez de leer. Argentina, Brasil, Costa Rica y México, de a un país o lado a
+  lado.
 body_class: "listing"
 page_class: "page--wide"
 description: >-
-  Panel interactivo del empleo informal en América Latina: Argentina desde 2003 (INDEC, EPH) y
-  Costa Rica desde 2010 (INEC, ECE), con tasas por sector, región, sexo y edad y una comparación
-  entre países. Un proyecto independiente de Matías Golman.
+  Panel interactivo del empleo informal en América Latina: Argentina desde 2003 (INDEC, EPH),
+  México desde 2005 (INEGI, ENOE), Costa Rica desde 2010 (INEC, ECE) y Brasil desde 2012 (IBGE,
+  PNAD Contínua), con tasas por sector, región, sexo y edad y una comparación entre países. Un proyecto independiente de Matías Golman.
 ---
 
 <p>El empleo informal es uno de los problemas más persistentes de los mercados de trabajo de
@@ -20,10 +21,11 @@ América Latina, y la mayoría de los países lo mide todos los trimestres. La d
 medición vive en archivos de encuesta crudos que casi nadie fuera de una oficina de estadística abre.
 Este panel convierte esos archivos en algo que un equipo de política pública, un periodista o un
 investigador sindical puede usar de verdad: la informalidad abierta por sector, región, sexo y edad,
-de a un país o varios lado a lado. Empieza con Argentina y Costa Rica; van a seguir más países.</p>
+de a un país o varios lado a lado. Cubre Argentina, Brasil, Costa Rica y México; van a seguir más países.</p>
 
-<p class="tool__note">Fuentes: INDEC, Encuesta Permanente de Hogares (Argentina); INEC, Encuesta
-Continua de Empleo (Costa Rica). Un proyecto independiente, que nació de un trabajo de consultoría
+<p class="tool__note">Fuentes: INDEC, Encuesta Permanente de Hogares (Argentina); IBGE, Pesquisa
+Nacional por Amostra de Domicílios Contínua (Brasil); INEC, Encuesta Continua de Empleo (Costa
+Rica); INEGI, Encuesta Nacional de Ocupación y Empleo (México). Un proyecto independiente, que nació de un trabajo de consultoría
 sobre la informalidad laboral en Argentina. La medida oficial de cada país reproduce las
 tasas de informalidad que publica su instituto. Las definiciones no son iguales entre países, así
 que la comparación trabaja con tendencias y dice qué no es comparable.</p>

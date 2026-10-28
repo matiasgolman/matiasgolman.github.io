@@ -1,12 +1,12 @@
 - name: "Panel de informalidad en América Latina"
   url: "/es/panel/"
   shot: "/assets/img/shot-dashboard.jpg"
-  shot_alt: "Captura del panel de informalidad argentina, con gráficos y un mapa provincial"
+  shot_alt: "Captura del panel de informalidad, con la comparación de las tasas de Argentina, Costa Rica, México y Brasil"
   blurb: >-
     Una herramienta interactiva que convierte microdatos de encuestas de hogares en algo que un equipo de política pública puede usar de verdad. Cubre el empleo informal
-    en Argentina (desde 2003) y Costa Rica (desde 2010), abierto por sector, región, sexo y edad, de
+    en Argentina (desde 2003), México (desde 2005), Costa Rica (desde 2010) y Brasil (desde 2012), abierto por sector, región, sexo y edad, de
     a un país o lado a lado.
-  note: "Datos de la Encuesta Permanente de Hogares del INDEC y de la Encuesta Continua de Empleo del INEC."
+  note: "Datos de las encuestas de hogares nacionales: la EPH del INDEC (Argentina), la PNAD Contínua del IBGE (Brasil), la ECE del INEC (Costa Rica) y la ENOE del INEGI (México)."
 
 - name: "Araucaria Spotter"
   url: "https://araucaria-spotter.vercel.app/"

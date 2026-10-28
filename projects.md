@@ -9,7 +9,7 @@ body_class: "listing"
 page_class: "page--wide"
 description: >-
   The Latin America Informality Dashboard, built from household survey microdata of
-  Argentina and Costa Rica, and Araucaria Spotter, a community map of monkey puzzle trees growing outside their
+  Argentina, Brazil, Costa Rica and Mexico, and Araucaria Spotter, a community map of monkey puzzle trees growing outside their
   native range.
 lang: "en"
 alt_url: "/es/proyectos/"

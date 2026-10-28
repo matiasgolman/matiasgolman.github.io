@@ -83,7 +83,8 @@ published:
       usando los registros de clientes de la propia entidad y no una encuesta.
   - title: "Las transiciones laborales de los jóvenes NiNi. Una encuesta para Argentina"
     year: 2020
-    where: "Revista de Economía Política de Buenos Aires, 21"
+    where: "Revista de Economía Política de Buenos Aires, 14(21), 9–47"
+    url: "https://ojs.economicas.uba.ar/REPBA/article/view/1858"
     pdf: "/assets/pdf/golman-neets.pdf"
     text: >-
       Qué pasa después con los jóvenes argentinos que no estudian ni trabajan, y cuánto suele durar
@@ -91,12 +92,14 @@ published:
   - title: "Duración del desempleo en Argentina: un análisis dinámico, 2003–2018"
     year: 2020
     where: "Asociación Argentina de Economía Política, reunión anual"
+    url: "https://aaep.org.ar/works/works2020/Golman1.pdf"
     text: >-
       Cuánto duran los episodios de desempleo en Argentina, y si la probabilidad de salir de uno
       cae a medida que la persona lleva más tiempo sin trabajo.
   - title: "Impactos asimétricos del ciclo económico sobre el desempleo en Argentina"
     year: 2018
     where: "Asociación Argentina de Economía Política, reunión anual, UNLP"
+    url: "https://sedici.unlp.edu.ar/handle/10915/164964"
     text: >-
       El desempleo sube más rápido en una recesión de lo que baja en una recuperación. Este trabajo
       mide esa asimetría para Argentina.
@@ -104,7 +107,7 @@ published:
 policy:
   - title: "Informalidad laboral en Costa Rica"
     year: "2025–26"
-    org: "Organización Internacional del Trabajo"
+    org: "Organización Internacional del Trabajo, de próxima publicación"
     text: >-
       Un diagnóstico del empleo informal, escrito para alimentar el marco nacional de
       formalización. Sistematiza una década de estudios y normativa, sigue cómo se movió el empleo
@@ -115,6 +118,7 @@ policy:
     authors: "con Christoph Ernst"
     year: 2022
     org: "Organización Internacional del Trabajo"
+    url: "https://www.ilo.org/publications/future-work-emerging-sectors-and-potential-transition-formality"
     pdf: "/assets/pdf/ilo-future-of-work-formality.pdf"
     text: >-
       De dónde podrían salir nuevos empleos formales en la economía verde, la economía de
@@ -123,15 +127,15 @@ policy:
     authors: "con Carla Henry"
     year: 2021
     org: "OIT, Documento de Trabajo 34"
-    url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases"
+    url: "https://www.ilo.org/publications/old-age-work-and-income-security-middle-income-countries-comparing-cases-1"
     pdf: "/assets/pdf/ilo-wp34-old-age-income-security.pdf"
     text: >-
       Qué tan preparada está la gente para el paso del trabajo al retiro en países de ingreso
       medio, a partir de una base comparativa nueva y un índice de preparación.
   - title: "Liberar el potencial de crecimiento de las pymes"
-    year: 2024
+    year: 2025
     org: "OCDE"
-    url: "https://www.oecd.org/en/publications/unleashing-smes-potential-to-scale-up_b1150a27-en.html"
+    url: "https://www.oecd.org/en/publications/unleashing-sme-potential-to-scale-up_ea948a58-en.html"
     text: >-
       Informe en coautoría sobre qué frena el crecimiento de las empresas chicas. Mi parte fue el
       análisis econométrico y una evaluación de si el aprendizaje automático puede predecir el
@@ -139,13 +143,14 @@ policy:
   - title: "Boletín del mercado laboral argentino"
     year: 2023
     org: "OIT y CEPAL"
+    url: "https://repositorio.cepal.org/entities/publication/352bfe37-a1bb-4d86-bbcf-236c689a2bb8"
     text: >-
       Análisis y redacción sobre productividad, trayectorias laborales y condiciones de ingreso,
       para el boletín conjunto sobre el mercado de trabajo argentino.
   - title: "Perspectivas Sociales y del Empleo en el Mundo 2021: el papel de las plataformas digitales"
     year: 2021
     org: "Organización Internacional del Trabajo"
-    url: "https://www.ilo.org/publications/flagship-reports/world-employment-and-social-outlook-2021-role-digital-labour-platforms"
+    url: "https://www.ilo.org/publications/flagship-reports/role-digital-labour-platforms-transforming-world-work"
     text: >-
       Contribución al informe insignia, con datos de encuesta y análisis salarial comparado de
       trabajadores de plataformas en Chile, México, Argentina, India y Estados Unidos, además de

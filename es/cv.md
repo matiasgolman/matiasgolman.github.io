@@ -89,6 +89,15 @@ description: >-
     </div>
   </div>
   <div class="cv__row">
+    <div class="cv__when">2016–17</div>
+    <div class="cv__what">
+      <p style="margin-top:.25rem">Voluntario en la <a href="https://quieroayudar.org/organizaciones/asociacion-civil-avanzar-por-el-desarrollo-humano">Asociación Civil
+      Avanzar por el Desarrollo Humano</a>, Buenos Aires, una organización de microcrédito. Mejoré
+      sus bases de clientes para ajustar mejor los programas de préstamo, y di talleres de buenas
+      prácticas de emprendimiento a los prestatarios.</p>
+    </div>
+  </div>
+  <div class="cv__row">
     <div class="cv__when">2015–16</div>
     <div class="cv__what">
       <p style="margin-top:.25rem">Co-coordinador de un proyecto financiado por la UE de formación

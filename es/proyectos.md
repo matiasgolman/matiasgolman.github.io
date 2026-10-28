@@ -11,7 +11,7 @@ body_class: "listing"
 page_class: "page--wide"
 description: >-
   El Panel de informalidad en América Latina, hecho con microdatos de encuestas de
-  hogares de Argentina y Costa Rica, y Araucaria Spotter, un mapa comunitario de pehuenes fuera de su rango
+  hogares de Argentina, Brasil, Costa Rica y México, y Araucaria Spotter, un mapa comunitario de pehuenes fuera de su rango
   nativo.
 ---
 
