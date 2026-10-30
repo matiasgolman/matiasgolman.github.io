@@ -556,6 +556,12 @@ const T = {
                 en:"Establishment size and income quintile are not defined the same way in every survey: see the notes."},
   hours_inf:{es:"Horas trabajadas, informales (promedio)",en:"Hours worked, informal (mean)"},
   hours_for:{es:"Horas trabajadas, formales (promedio)",en:"Hours worked, formal (mean)"},
+  idx_media_inf:{es:"Ingreso real medio, informales (2016 = 100)",en:"Mean real income, informal (2016 = 100)"},
+  idx_media_for:{es:"Ingreso real medio, formales (2016 = 100)",en:"Mean real income, formal (2016 = 100)"},
+  idx_mediana_inf:{es:"Ingreso real mediano, informales (2016 = 100)",en:"Median real income, informal (2016 = 100)"},
+  idx_mediana_for:{es:"Ingreso real mediano, formales (2016 = 100)",en:"Median real income, formal (2016 = 100)"},
+  index_axis:{es:"Índice (2016 = 100)",en:"Index (2016 = 100)"},
+  idx_sin_base:{es:"Sin dato de 2016 (no entran en el índice): ",en:"No 2016 data (left out of the index): "},
   all_employed:{es:"Todas las personas ocupadas",en:"All employed people"}
 };
 const METRICS = {
@@ -564,7 +570,13 @@ const METRICS = {
   media_ingreso:{es:"Ingreso (promedio)",en:"Income (mean)"},
   mediana_ingreso:{es:"Ingreso (mediana)",en:"Income (median)"}
 };
-const CMP_METRICS = {tasa_informalidad:["t"], horas_inf:["h"], horas_for:["f"]};
+const CMP_METRICS = {tasa_informalidad:["t"], horas_inf:["h"], horas_for:["f"],
+  idx_media_inf:["i"], idx_media_for:["n"], idx_mediana_inf:["k"], idx_mediana_for:["l"]};
+/* Real income is in each country's own currency: across countries it is shown as
+   an index, 2016 = 100, of the same series (mean or median, informal or formal). */
+const IDX_BASE = 2016;
+const isIdx = metric => metric.indexOf("idx_")===0;
+const CMP_IDX = ["idx_media_inf","idx_media_for","idx_mediana_inf","idx_mediana_for"];
 const PARAMS_BASE = {
   all:{es:"Sin desagregar",en:"No breakdown"},
   genero:{es:"Género",en:"Gender"}, region:null,
@@ -876,6 +888,7 @@ function baseLab(x){
 }
 function axisTitle(metric){
   if(metric==="tasa_informalidad") return t("rate_axis");
+  if(isIdx(metric)) return t("index_axis");
   if(metric==="media_horas"||metric==="horas_inf"||metric==="horas_for") return t("hours_axis");
   const bl = baseLab();
   return t("income_axis").replace(")", bl ? (lang==="es"?" de ":" of ")+bl+")" : ")");
@@ -1259,8 +1272,15 @@ async function renderCmp(){
   try{
     const per = await Promise.all(REG.orden.map(async x=>{
       const r = await rowsForSelection(s, 2, x);
-      const p = pivot(r.sh, r.idx, r.brkCol, r.cols, s.from, s.to);
-      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol};
+      const p = pivot(r.sh, r.idx, r.brkCol, r.cols, isIdx(s.metric) ? Math.min(s.from, IDX_BASE) : s.from, s.to);
+      let sinBase = false;
+      if(isIdx(s.metric)) p.groups.forEach((g,k)=>{
+        const b = g[IDX_BASE] ? g[IDX_BASE][0] : null;
+        if(b==null || !(b>0)){ p.groups.set(k, {}); sinBase = true; return; }
+        const o = {}; Object.keys(g).forEach(y=>{ const v = g[y][0]; o[y] = [v==null ? null : +(100*v/b).toFixed(1)]; });
+        p.groups.set(k, o);
+      });
+      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol, sinBase};
     }));
     const brkCol = per[0].brkCol;
     const years = []; for(let y=s.from;y<=s.to;y++) years.push(y);
@@ -1269,9 +1289,10 @@ async function renderCmp(){
     const msgs = [];
     if(per.some(p=>p.low)) msgs.push(t("low_sample_warning"));
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
+    if(isIdx(s.metric) && per.some(p=>p.sinBase)) msgs.push(t("idx_sin_base") + per.filter(p=>p.sinBase).map(p=>cname(p.x)).join(", ") + ".");
     $("#cmpWarn").hidden = !msgs.length; $("#cmpWarn").textContent = msgs.join("  ");
     $("#cmpTitle").textContent = buildTitle(s, Object.assign({}, METRICS,
-      {horas_inf:{es:t("hours_inf"),en:t("hours_inf")}, horas_for:{es:t("hours_for"),en:t("hours_for")}}));
+      Object.fromEntries(["horas_inf","horas_for"].concat(CMP_IDX).map(k=>[k,{es:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k),en:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k)}]))));
     $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
     if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
     showMsg(null,"#cmpMsg","#cmpChart");
@@ -1359,7 +1380,8 @@ function buildControls(keepValues){
   $("#fRegionLab").textContent = t("region");
   // comparison controls
   const ck = keepValues && $("#cMetric").value ? cmpSel() : null;
-  fillSelect($("#cMetric"), [["tasa_informalidad",METRICS.tasa_informalidad[lang]],["horas_inf",t("hours_inf")],["horas_for",t("hours_for")]],
+  fillSelect($("#cMetric"), [["tasa_informalidad",METRICS.tasa_informalidad[lang]],["horas_inf",t("hours_inf")],["horas_for",t("hours_for")]]
+      .concat(CMP_IDX.map(k=>[k, t(k)])),
     ck?ck.metric:"tasa_informalidad");
   fillSelect($("#cParam"), CMP_PARAMS.map(k=>[k, P[k][lang]]), ck?ck.param:"all");
   fillSelect($("#cGender"), opts("g"), ck?ck.g:99);
