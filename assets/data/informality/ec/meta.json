@@ -1,0 +1,25 @@
+{
+  "pais": "Ecuador",
+  "iso": "ec",
+  "generado": "2026-10-30 02:07:04",
+  "fuente_calculo": "Python (cubo_py/pais_ecuador.py)",
+  "ultimo_trimestre": {
+    "y": 2026,
+    "q": 1
+  },
+  "inicio_oficial": {
+    "y": 2021,
+    "q": 3
+  },
+  "cubo_anual": "bases anuales del INEC (factor anual), representativas por provincia",
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2021,
+    "2": 2021
+  },
+  "base_deflactor": {
+    "y": 2026,
+    "q": 1
+  },
+  "validacion": "57 de 57 contrastes dentro de tolerancia, diferencia maxima 0.04 pp; anual por provincia: 126 de 126 dentro de 0.11 pp (max 0.00)"
+}
