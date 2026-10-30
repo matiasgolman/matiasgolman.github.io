@@ -961,7 +961,7 @@ async function render(){
       if(!g || !Object.keys(g).length) return null;
       return years.map(y=> g[y] ? g[y][0] : null); };
     const ovName = t("overlay_name");
-    lastRows = {s, keys, years, cols, labs:lb, groups};
+    lastRows = {s, keys, years, cols, labs:lb, groups, over, ovName};
 
     if(!useSmall){
       const traces = [];
@@ -1058,16 +1058,20 @@ async function render(){
 /* ---------- table / CSV ---------- */
 function tableRows(){
   if(!lastRows) return null;
-  const {s,keys,years,cols,labs:lb,groups} = lastRows;
+  const {s,keys,years,cols,labs:lb,groups,over,ovName} = lastRows;
+  /* The official measure shown over the long series also goes to the table and the CSV. */
+  const hasOv = k => { if(!over) return false; const g = over.get(k); return !!(g && Object.keys(g).length); };
   const head = [t("year")];
   keys.forEach(k=>{
     const base = lb ? (lb[k]||k) : METRICS[s.metric][lang];
     if(cols.length===2){ head.push(base+" · "+t("informal")); head.push(base+" · "+t("formal")); }
     else head.push(base);
+    if(hasOv(k)) head.push(base+" · "+ovName);
   });
   const body = years.map(y=>{
     const row = [y];
-    keys.forEach(k=>{ const g = groups.get(k)||{}; cols.forEach((_,ci)=> row.push(g[y]?g[y][ci]:null)); });
+    keys.forEach(k=>{ const g = groups.get(k)||{}; cols.forEach((_,ci)=> row.push(g[y]?g[y][ci]:null));
+      if(hasOv(k)){ const o = over.get(k); row.push(o[y]?o[y][0]:null); } });
     return row;
   });
   return {head, body, metric:s.metric, keys};
