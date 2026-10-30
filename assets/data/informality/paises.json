@@ -4,7 +4,8 @@
     "ar",
     "cr",
     "mx",
-    "br"
+    "br",
+    "ec"
   ],
   "paises": {
     "ar": {
@@ -636,10 +637,177 @@
           "en": "IBGE's Continuous National Household Sample Survey (PNAD Contínua)"
         }
       }
+    },
+    "ec": {
+      "nombre": {
+        "es": "Ecuador",
+        "en": "Ecuador"
+      },
+      "geo": "provincias.geo.json",
+      "geo_alto": false,
+      "v_iguales": false,
+      "moneda": {
+        "es": "dólares",
+        "en": "US dollars"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Urbana",
+            "2": "Rural",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Urban",
+            "2": "Rural",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Azuay",
+            "2": "Bolívar",
+            "3": "Cañar",
+            "4": "Carchi",
+            "5": "Cotopaxi",
+            "6": "Chimborazo",
+            "7": "El Oro",
+            "8": "Esmeraldas",
+            "9": "Guayas",
+            "10": "Imbabura",
+            "11": "Loja",
+            "12": "Los Ríos",
+            "13": "Manabí",
+            "14": "Morona Santiago",
+            "15": "Napo",
+            "16": "Pastaza",
+            "17": "Pichincha",
+            "18": "Tungurahua",
+            "19": "Zamora Chinchipe",
+            "20": "Galápagos",
+            "21": "Sucumbíos",
+            "22": "Orellana",
+            "23": "Santo Domingo",
+            "24": "Santa Elena",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Azuay",
+            "2": "Bolívar",
+            "3": "Cañar",
+            "4": "Carchi",
+            "5": "Cotopaxi",
+            "6": "Chimborazo",
+            "7": "El Oro",
+            "8": "Esmeraldas",
+            "9": "Guayas",
+            "10": "Imbabura",
+            "11": "Loja",
+            "12": "Los Ríos",
+            "13": "Manabí",
+            "14": "Morona Santiago",
+            "15": "Napo",
+            "16": "Pastaza",
+            "17": "Pichincha",
+            "18": "Tungurahua",
+            "19": "Zamora Chinchipe",
+            "20": "Galápagos",
+            "21": "Sucumbíos",
+            "22": "Orellana",
+            "23": "Santo Domingo",
+            "24": "Santa Elena",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 40",
+            "3": "41 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 40",
+            "3": "41 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "INEC · Encuesta Nacional de Empleo, Desempleo y Subempleo",
+          "en": "INEC · National Survey of Employment, Unemployment and Underemployment"
+        },
+        "meas_1": {
+          "es": "Sector informal (INEC)",
+          "en": "Informal sector (INEC)"
+        },
+        "meas_2": {
+          "es": "Empleo informal",
+          "en": "Informal employment"
+        },
+        "overlay_name": {
+          "es": "sector informal (INEC)",
+          "en": "informal sector (INEC)"
+        },
+        "overlay_note": {
+          "es": "Línea punteada: empleo en el sector informal, la medida oficial del INEC. Mide otra cosa que el empleo informal (la unidad productiva, no el puesto): la distancia entre las dos no es un cambio en la informalidad.",
+          "en": "Dotted line: employment in the informal sector, INEC's official measure. It measures something other than informal employment (the production unit, not the job): the gap between the two is not a change in informality."
+        },
+        "over_on": {
+          "es": "Superponer sector informal (INEC)",
+          "en": "Overlay informal sector (INEC)"
+        },
+        "over_off": {
+          "es": "Quitar sector informal (INEC)",
+          "en": "Remove informal sector (INEC)"
+        },
+        "kpi_meth": {
+          "es": "Con el empleo en el sector informal del INEC (acumulado trimestral, desde el 3.er trimestre de 2021), la medida oficial de sus publicaciones.",
+          "en": "Using INEC's employment in the informal sector (quarterly cumulative, since Q3 2021), the official measure in its releases."
+        },
+        "geo_meth": {
+          "es": "Sector informal (INEC), promedio anual · ",
+          "en": "Informal sector (INEC), annual average · "
+        },
+        "chart_meth": {
+          "es": "Empleo informal (2021–)",
+          "en": "Informal employment (2021–)"
+        },
+        "map_title": {
+          "es": "Por provincia",
+          "en": "By province"
+        },
+        "region": {
+          "es": "Área",
+          "en": "Area"
+        },
+        "provincia": {
+          "es": "Provincia",
+          "en": "Province"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (dólares constantes)",
+          "en": "Monthly income (constant US dollars)"
+        },
+        "informality_definition": {
+          "es": "Ecuador tiene dos medidas que no son la misma cosa.<br><br><strong>Sector informal (INEC)</strong>, la medida oficial: son informales los ocupados que trabajan en <strong>unidades productivas de menos de 100 personas sin Registro Único de Contribuyentes (RUC)</strong>, en su ocupación principal. El criterio es la <strong>unidad productiva</strong>, no el puesto: un asalariado sin seguro social en una empresa con RUC no cuenta, y el servicio doméstico va aparte. Reproduce las tasas que publica el INEC (nacional, urbano y rural, trimestrales, y por provincia, anuales) con una diferencia de cinco centésimas como máximo.<br><strong>Empleo informal</strong>, con el criterio del <strong>puesto de trabajo</strong>, como en los otros países: un <strong>asalariado</strong> o <strong>trabajador doméstico</strong> es informal si no está afiliado a la seguridad social; un <strong>patrón o cuentapropista</strong>, si su negocio está en el sector informal; los <strong>trabajadores no remunerados</strong> son informales siempre. El INEC no la publica: la arma este panel con las preguntas de la encuesta. Queda entre 14 y 18 puntos por encima del sector informal.<br><br>Los indicadores principales, el ranking por sector y el mapa usan el sector informal; el análisis interactivo y la comparación entre países usan el empleo informal, y permiten superponer el sector informal. Nunca se empalman.",
+          "en": "Ecuador has two measures that are not the same thing.<br><br><strong>Informal sector (INEC)</strong>, the official measure: employed people are informal if they work in <strong>production units of fewer than 100 people without a taxpayer registration (RUC)</strong>, in their main job. The criterion is the <strong>production unit</strong>, not the job: an employee without social security in a registered firm does not count, and domestic work is kept apart. It reproduces INEC's published rates (national, urban and rural, quarterly; and by province, annual) to within five hundredths of a point.<br><strong>Informal employment</strong>, on the <strong>job-based</strong> criterion, as for the other countries: an <strong>employee</strong> or <strong>domestic worker</strong> is informal without social-security affiliation; an <strong>employer or own-account worker</strong>, if the business is in the informal sector; <strong>unpaid workers</strong> are always informal. INEC does not publish it: this dashboard builds it from the survey questions. It sits 14 to 18 points above the informal sector.<br><br>Headline indicators, the sector ranking and the map use the informal sector; the interactive analysis and the cross-country comparison use informal employment and can overlay the informal sector. They are never spliced."
+        },
+        "availability_body": {
+          "es": "Los indicadores principales son <strong>trimestrales</strong> (el acumulado de tres meses que publica el INEC) y van del 3.er trimestre de 2021 al último trimestre publicado; antes, la encuesta era puntual y el INEC avisa que no es comparable, y las bases de comienzos de 2021 no reproducen sus cifras. El resto del panel usa las <strong>bases anuales</strong> del INEC (2021–2025), las únicas representativas por provincia; con el factor anual, el INEC publica tasas 1 a 2 puntos más bajas que el promedio de sus trimestres, y el panel muestra las suyas. El universo son los ocupados de 15 años y más. El <strong>quintil</strong> es de ingreso total per cápita del hogar (el del INEC). El tamaño del establecimiento corta en 40 personas, como en Argentina. Los ingresos son los de la ocupación principal, en <strong>dólares constantes</strong> del período indicado en el eje; el de enero incluye el décimo tercer sueldo. En el mapa, Galápagos está corrida hacia el continente. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "Headline indicators are <strong>quarterly</strong> (INEC's three-month cumulative estimate) and run from Q3 2021 to the latest quarter released; before that the survey was a point-in-time round that INEC flags as not comparable, and the early-2021 files do not reproduce its figures. The rest of the dashboard uses INEC's <strong>annual files</strong> (2021–2025), the only ones representative by province; with the annual weight, INEC publishes rates 1 to 2 points below the average of its quarters, and the dashboard shows its figures. The universe is employed people aged 15 and over. The <strong>quintile</strong> is of total household per-capita income (INEC's). Establishment size breaks at 40 people, as in Argentina. Incomes are from the main job, in <strong>constant US dollars</strong> of the period shown on the axis; January's include the thirteenth-month bonus. On the map, the Galápagos are shifted towards the mainland. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU) del INEC",
+          "en": "INEC's National Survey of Employment, Unemployment and Underemployment (ENEMDU)"
+        }
+      }
     }
   },
   "comparabilidad": {
-    "es": "Cada país se mide con la definición oficial de su instituto: todas siguen el criterio del puesto de trabajo, pero no son la misma regla para los independientes. Para comparar tendencias se usa la serie más larga de cada país (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México y Brasil son nacionales. Los ingresos no se comparan: están en monedas distintas.",
-    "en": "Each country is measured with its own statistics office's official definition: all follow the job-based criterion, but the rule for the self-employed is not the same. To compare trends, the longest series for each country is used (for Argentina, the long series, which sits about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican and Brazilian surveys are national. Incomes are not compared: they are in different currencies."
+    "es": "Cada país se mide con la definición oficial de su instituto: todas siguen el criterio del puesto de trabajo salvo la de Ecuador, que mide el sector informal. Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel, que el INEC no publica). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México, Brasil y Ecuador son nacionales. Los ingresos no se comparan: están en monedas distintas.",
+    "en": "Each country is measured with its own statistics office's official definition: all follow the job-based criterion except Ecuador's, which measures the informal sector. To compare trends, the longest job-based series for each country is used (for Argentina, the long series, which sits about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by this dashboard, which INEC does not publish). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican, Brazilian and Ecuadorian surveys are national. Incomes are not compared: they are in different currencies."
   }
 }
