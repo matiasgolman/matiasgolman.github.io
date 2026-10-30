@@ -787,6 +787,16 @@ function currentSel(){
     g:+$("#fGender").value, r:+$("#fRegion").value, e:+$("#fAge").value, c:+$("#fEmp").value
   };
 }
+/* Unpaid family workers (c = 5) are informal by definition (100 % in every
+   country) and have no income: they are offered only for hours worked. */
+const UNPAID = 5;
+const isHours = metric => metric==="media_horas" || metric==="horas_inf" || metric==="horas_for";
+function syncUnpaid(selId, metric){
+  const el = $(selId); if(!el) return;
+  const ok = isHours(metric);
+  Array.from(el.options).forEach(o=>{ if(+o.value===UNPAID){ o.disabled = !ok; o.hidden = !ok; } });
+  if(!ok && +el.value===UNPAID) el.value = "99";
+}
 async function rowsForSelection(s, m, x){
   if(m===undefined) m = CHART_V;
   x = x || iso;
@@ -801,7 +811,8 @@ async function rowsForSelection(s, m, x){
   const fixed = {g:s.g,r:s.r,e:s.e,c:s.c};
   delete fixed[col];
   fixed.v = m;
-  const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99);
+  const dropUnpaid = col==="c" && !isHours(s.metric);
+  const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99 && !(dropUnpaid && sh.cols[col][i]===UNPAID));
   return {sh, idx, brkCol:col, cols};
 }
 function pivot(sh, idx, brkCol, cols, from, to){
@@ -889,6 +900,7 @@ function showMsg(text, id, chart){
   $(chart||"#mainChart").style.display = text ? "none" : "";
 }
 async function render(){
+  syncUnpaid("#fEmp", $("#fMetric").value);
   const s = currentSel();
   if(s.from > s.to){ $("#fTo").value = s.from; s.to = s.from; }
   $("#mainLoad").hidden = false;
@@ -955,7 +967,9 @@ async function render(){
       const traces = [];
       keys.forEach((k,ki)=>{
         seriesAt(k).forEach((vals,ci)=>{
-          const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[ci];
+          /* dual metrics (hours, income) only reach this branch with one series:
+             informal and formal get their own colours */
+          const color = (brkCol && !dual) ? (slotColor(s.param,k) || colors[ki%8]) : colors[ci];
           const nm = (brkCol ? (lb[k]||k) : "") +
                      (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "") +
                      (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
@@ -1234,6 +1248,7 @@ function cmpSel(){
     g:+$("#cGender").value, e:+$("#cAge").value, c:+$("#cEmp").value, r:99};
 }
 async function renderCmp(){
+  syncUnpaid("#cEmp", $("#cMetric").value);
   const s = cmpSel();
   if(s.from > s.to){ $("#cTo").value = s.from; s.to = s.from; }
   $("#cmpLoad").hidden = false;
