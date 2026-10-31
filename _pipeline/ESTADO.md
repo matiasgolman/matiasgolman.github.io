@@ -13,18 +13,20 @@ scroll.
 
 ---
 
+<!-- TRACKER:INICIO -->
+> **Respuestas del tracker (cada sesión o corrida, antes de trabajar).** Si en esta misma carpeta existe
+> `RESPUESTAS_DEL_TRACKER.md` y dice `ESTADO: PENDIENTES`, son respuestas de Matías escritas en el Excel del
+> tracker: tratalas igual que el `COMENTARIO DE MATIAS` (archivalas en `_archivo/Comentarios_Matias.md` con
+> «vía tracker»), aplicalas y **cerrá en el To-Do el ítem al que responde cada una** (sacalo y dejá una línea
+> en el Changelog; si queda algo por decidir, reescribilo como pregunta nueva). Recién ahí cambiá esa línea a
+> `ESTADO: LEÍDAS`. Si el proyecto no lo hace en 36 h, lo despacha la corrida diaria del tracker. Pedidos que
+> deje el tracker: `### Pedidos de Matías (vía tracker)` al principio de la COLA, van primero. Esto reemplaza
+> cualquier otra instrucción sobre el tracker en este archivo (las rutas `$HOME/mnt/personal/...` ya no valen).
+<!-- TRACKER:FIN -->
+
 ## COMENTARIO DE MATIAS
 
-*(vacío — dejame acá lo que quieras que haga la próxima corrida. La corrida lo lee primero, lo
-archiva literal en `_archivo/Comentarios_Matias.md` y vuelve a vaciar el bloque.)*
-
-
-- he encontrado algunos cambios para hacer. Las actuales fotos que se muestran en google lay son de versiones viejas, en donde muchas de las features actuales no estaban. Puedes incorporar las fotos nuevas? creo que hay que cortar la parte superior en dnde se ve la hora del telefono
-
-- Por otro lado, en el daschboard the informalidad, estaba pensando que si podemos incorporar la parte de salario. Mas alla de que los salarios se miden en monedas distintas, podemos hacer todos los salarios en base 100 par ael anio 2016, y presentar la comparativa de crecimiento del salario. 
-
-Asimismo, la categoria "Traajador sin remuneracion" no tiene sentido, ya que siempre es informal. Solo ocupa espacio. Habria que sacarlo.
-
+*(vacío — dejá acá lo que quieras pedir)*
 
 ---
 
@@ -59,7 +61,15 @@ Asimismo, la categoria "Traajador sin remuneracion" no tiene sentido, ya que sie
 
 ## COLA DE TRABAJO
 
+### Pedidos de Matías (vía tracker) — van primero
+- [ ] Pedido de Matías (2026-10-30, comentario del ESTADO): (1) Fotos de Google Play (AraucariaSpotter): las actuales son de versiones viejas sin las funciones nuevas. Reemplazarlas por capturas nuevas (hay capturas de WhatsApp del 22/10 en este _pipeline), recortando la barra superior con la hora del teléfono. (2) Dashboard de informalidad: agregar salarios en base 100 = 2016 para comparar el crecimiento entre países (las monedas son distintas) y sacar la categoría «Trabajador sin remuneración», que siempre es informal y sólo ocupa espacio. La parte (2) también quedó como pedido en el ESTADO de Encuestas LATAM, que actualiza el dashboard.
+
+
 *(Abiertos arriba. Un ítem que se cierra se reduce a una línea y el detalle se archiva.)*
+
+- **30/10 tarde (tarea de bases LATAM): dashboard de informalidad, commit `a95ff56`** (sólo `assets/dashboards/argentina_informality_dashboard.html`): «Trabajador/familiar sin remuneración» queda sólo para horas trabajadas (fuera de la tasa y del ingreso, en el filtro y en el desglose, en país y en comparación); horas formal e informal de una sola serie, en dos colores. Lo del pedido (2) que falta (salarios base 100 = 2016) sigue en la cola de Encuestas LATAM.
+
+- **30/10 (tarea de bases LATAM): Ecuador entró al panel de informalidad** (commit `0286e31`: `assets/data/informality/ec/` y `paises.json`, quinto país; mapa por provincia). La miniatura y los textos del sitio que dicen «cuatro países» quedaron viejos: rehacerlos.
 
 - **CERRADO 28/10: textos y miniatura del panel con los cuatro países** (Brasil y México entraron
   el 20 y el 27/10). Ver Changelog.

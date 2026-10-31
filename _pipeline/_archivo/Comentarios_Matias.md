@@ -1,5 +1,9 @@
 # Comentarios de Matías — archivo (sitio personal)
 
+## 2026-10-30 — COMENTARIO DE MATIAS del ESTADO (despachado por el tracker)
+
+- he encontrado algunos cambios para hacer. Las actuales fotos que se muestran en google lay son de versiones viejas, en donde muchas de las features actuales no estaban. Puedes incorporar las fotos nuevas? creo que hay que cortar la parte superior en dnde se ve la hora del telefono - Por otro lado, en el daschboard the informalidad, estaba pensando que si podemos incorporar la parte de salario. M
+
 *Cada bloque `COMENTARIO DE MATIAS` de `ESTADO.md` se copia acá antes de procesarlo y vaciarlo,
 así queda el registro literal de lo que pediste y cuándo.*
 

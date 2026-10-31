@@ -1,5 +1,8 @@
 # Changelog / bitácora del sitio personal
 
+## 2026-10-30 — tracker (despacho de tus respuestas)
+- COMENTARIO DE MATIAS despachado (pedido): (1) Fotos de Google Play (AraucariaSpotter): las actuales son de versiones viejas sin las funciones nuevas. Reemplazarlas por capturas nuevas (hay capturas de WhatsApp del 22/10 en este _pipeline), recortando la barra superior con la hora del teléfono. (2) Dashboard de informalidad: agregar salarios en base 100 = 2016 para comparar el crecimiento entre países (las monedas son distintas) y sacar la categoría «Trabajador sin remuneración», que siempre es informal y sólo ocupa espacio. La parte (2) también quedó como pedido en el ESTADO de Encuestas LATAM, que actualiza el dashboard.
+
 *Registro de qué se hizo en cada corrida. Se escribe a medida que se completa cada ítem, no al
 final. Orden cronológico inverso (lo más nuevo arriba).*
 
