@@ -69,6 +69,7 @@ scroll.
 
 - **30/10 tarde (tarea de bases LATAM): dashboard de informalidad, commit `a95ff56`** (sólo `assets/dashboards/argentina_informality_dashboard.html`): «Trabajador/familiar sin remuneración» queda sólo para horas trabajadas (fuera de la tasa y del ingreso, en el filtro y en el desglose, en país y en comparación); horas formal e informal de una sola serie, en dos colores. Lo del pedido (2) que falta (salarios base 100 = 2016) sigue en la cola de Encuestas LATAM.
 
+- **01/11 (tarea de bases LATAM, pedido de Matías): Ecuador con 2020** (diciembre 2020, con aviso en «Disponibilidad»: pandemia y factores recalculados por el INEC; sector informal 0,5 pp debajo de lo publicado). `assets/data/informality/ec/` y `paises.json`.
 - **01/11 (tarea de bases LATAM, pedido de Matías): Ecuador muestra empleo informal en indicadores, ranking por sector, mapa y comparación** (no el sector informal del INEC, que queda como superposición con su aclaración). Cambio en el dashboard: `measOf(x)` lee `meas_main` de `paises.json` (por defecto 1). Commit en el Changelog del proyecto de bases.
 - **31/10 (tarea de bases LATAM): Ecuador ahora con serie larga 2007–** (commit `77a7a84`: `assets/data/informality/ec/` y `paises.json`; 2007–2019 = ronda de diciembre, 2021– = bases anuales, 2020 sin dato).
 - **30/10 (tarea de bases LATAM): Ecuador entró al panel de informalidad** (commit `0286e31`: `assets/data/informality/ec/` y `paises.json`, quinto país; mapa por provincia). La miniatura y los textos del sitio que dicen «cuatro países» quedaron viejos: rehacerlos.
