@@ -1,0 +1,24 @@
+{
+  "pais": "Paraguay",
+  "iso": "py",
+  "generado": "2026-11-01 22:07:40",
+  "fuente_calculo": "Python (cubo_py/pais_paraguay.py)",
+  "ultimo_trimestre": {
+    "y": 2026,
+    "q": 3
+  },
+  "inicio_oficial": {
+    "y": 2017,
+    "q": 1
+  },
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2017,
+    "2": 2017
+  },
+  "base_deflactor": {
+    "y": 2026,
+    "q": 1
+  },
+  "validacion": "171 de 183 contrastes dentro de tolerancia; diferencia maxima en los clave 0.43 pp; 12 avisos (edad o departamento del cuadro anual, que usa la base anual)"
+}
