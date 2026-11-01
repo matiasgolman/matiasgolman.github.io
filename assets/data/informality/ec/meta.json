@@ -1,7 +1,7 @@
 {
   "pais": "Ecuador",
   "iso": "ec",
-  "generado": "2026-10-31 17:39:07",
+  "generado": "2026-11-01 04:23:58",
   "fuente_calculo": "Python (cubo_py/pais_ecuador.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -11,7 +11,7 @@
     "y": 2021,
     "q": 3
   },
-  "cubo_anual": "diciembre 2007-2019 (puntual, nacional; sin provincia) y bases anuales del INEC (factor anual, representativas por provincia) desde 2021; 2020 sin dato (D-27)",
+  "cubo_anual": "diciembre 2007-2020 (puntual, nacional; sin provincia) y bases anuales del INEC (factor anual, representativas por provincia) desde 2021; diciembre 2020 con aviso (D-27/D-38)",
   "ultimo_anio": 2025,
   "primer_anio": {
     "1": 2007,
@@ -21,5 +21,5 @@
     "y": 2026,
     "q": 1
   },
-  "validacion": "57 de 57 contrastes dentro de tolerancia, diferencia maxima 0.04 pp; anual por provincia: 126 de 126 dentro de 0.11 pp (max 0.00); diciembre 2007-2019 (sector informal, TP y TD): 117 de 117 dentro de tolerancia (max 0.05 pp)"
+  "validacion": "57 de 57 contrastes dentro de tolerancia, diferencia maxima 0.04 pp; anual por provincia: 126 de 126 dentro de 0.11 pp (max 0.00); diciembre 2007-2019 (sector informal, TP y TD): 117 de 117 dentro de tolerancia (max 0.05 pp); diciembre 2020 (D-27/D-38, publicado con aviso): sector_informal r=1 -0.26 pp, sector_informal r=2 -0.93 pp, sector_informal r=99 -0.51 pp"
 }
