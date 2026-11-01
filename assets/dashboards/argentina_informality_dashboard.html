@@ -639,9 +639,12 @@ const geos = {}, snaps = {}, metas = {};
 let picked = {};              // param -> Set of selected values
 let lastRows = null, lastCmp = null;
 let lastForm = "", lastFormC = "";
-/* Headline indicators, sector ranking and map use the official measure (v=1);
-   the interactive chart uses the long series (v=2), with v=1 as an overlay. */
-const meas = 1;
+/* Headline indicators, sector ranking, map and the comparison cards use each
+   country's main measure: the official one (v=1) unless the registry sets
+   meas_main (Ecuador: 2 = job-based informal employment, because INEC only
+   publishes the informal sector). The interactive chart uses the long series
+   (v=2), with v=1 as an overlay. */
+const measOf = x => ((C(x)||{}).meas_main) || 1;
 const CHART_V = 2;
 let showOver = false;
 let geoView = "level";
@@ -766,7 +769,7 @@ async function kpiValues(x, cards){
   const sh = await load("trimestral", x), c = sh.cols;
   let latest = null;
   const vals = cards.map(cd=>{
-    const idx = select(sh, Object.assign({v:meas}, cd.f));
+    const idx = select(sh, Object.assign({v:measOf(x)}, cd.f));
     const byQ = {};
     idx.forEach(i=>{ byQ[c.y[i]*10+c.q[i]] = c.t[i]; });
     const ks = Object.keys(byQ).map(Number).sort((a,b)=>a-b);
@@ -1111,7 +1114,7 @@ function downloadCsv(){ const d = tableRows(); if(d) saveCsv(d.head, d.body, "in
 /* ---------- snapshot helpers ---------- */
 async function snapRows(kind){
   const sh = await loadSnap(), c = sh.cols;
-  const idx = []; for(let i=0;i<sh.n;i++) if(c.k[i]===kind && c.v[i]===meas) idx.push(i);
+  const idx = []; for(let i=0;i<sh.n;i++) if(c.k[i]===kind && c.v[i]===measOf()) idx.push(i);
   const y1 = Math.max.apply(null, idx.map(i=>c.y[i]));
   const cur = {}, prev = {};
   idx.forEach(i=>{ if(c.y[i]===y1) cur[c.id[i]] = c.t[i]; else if(c.y[i]===y1-1) prev[c.id[i]] = c.t[i]; });
@@ -1251,7 +1254,7 @@ async function renderCmpKpis(){
   }));
   $("#cmpKpis").innerHTML = rows.map(({x,vals,latest})=>{
     const head = `<div class="cmpk__name"><span><span class="cmpk__sw" style="background:${countryColor(x)}"></span>${cname(x)}</span>
-       <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t("meas_1", x)}</small></div>`;
+       <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t(measOf(x)===2 ? "meas_2" : "meas_1", x)}</small></div>`;
     if(!vals) return `<div class="cmpk__row">${head}</div>`;
     return `<div class="cmpk__row">${head}${vals.map(({cd,v,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p><p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>
