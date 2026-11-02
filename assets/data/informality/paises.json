@@ -199,13 +199,21 @@
       "labels": {
         "r": {
           "es": {
-            "1": "Urbana",
-            "2": "Rural",
+            "1": "Central",
+            "2": "Chorotega",
+            "3": "Pacífico Central",
+            "4": "Brunca",
+            "5": "Huetar Caribe",
+            "6": "Huetar Norte",
             "99": "Todas"
           },
           "en": {
-            "1": "Urban",
-            "2": "Rural",
+            "1": "Central",
+            "2": "Chorotega",
+            "3": "Central Pacific",
+            "4": "Brunca",
+            "5": "Huetar Caribe",
+            "6": "Huetar Norte",
             "99": "All"
           }
         },
@@ -274,8 +282,8 @@
           "en": "By planning region"
         },
         "region": {
-          "es": "Zona",
-          "en": "Area"
+          "es": "Región de planificación",
+          "en": "Planning region"
         },
         "provincia": {
           "es": "Región de planificación",
@@ -314,13 +322,17 @@
       "labels": {
         "r": {
           "es": {
-            "1": "Urbana",
-            "2": "Rural",
+            "1": "Norte",
+            "2": "Centro Norte",
+            "3": "Centro",
+            "4": "Sur",
             "99": "Todas"
           },
           "en": {
-            "1": "Urban",
-            "2": "Rural",
+            "1": "North",
+            "2": "Center-North",
+            "3": "Center",
+            "4": "South",
             "99": "All"
           }
         },
@@ -441,8 +453,8 @@
           "en": "By state"
         },
         "region": {
-          "es": "Zona",
-          "en": "Area"
+          "es": "Región (Banxico)",
+          "en": "Region (Banxico)"
         },
         "provincia": {
           "es": "Entidad federativa",
@@ -481,13 +493,19 @@
       "labels": {
         "r": {
           "es": {
-            "1": "Urbana",
-            "2": "Rural",
+            "1": "Norte",
+            "2": "Nordeste",
+            "3": "Sudeste",
+            "4": "Sur",
+            "5": "Centro-Oeste",
             "99": "Todas"
           },
           "en": {
-            "1": "Urban",
-            "2": "Rural",
+            "1": "North",
+            "2": "Northeast",
+            "3": "Southeast",
+            "4": "South",
+            "5": "Center-West",
             "99": "All"
           }
         },
@@ -614,8 +632,8 @@
           "en": "By state"
         },
         "region": {
-          "es": "Zona",
-          "en": "Area"
+          "es": "Región",
+          "en": "Region"
         },
         "provincia": {
           "es": "Unidad de la federación",
@@ -655,13 +673,19 @@
       "labels": {
         "r": {
           "es": {
-            "1": "Urbana",
-            "2": "Rural",
+            "1": "Sierra",
+            "2": "Costa",
+            "3": "Amazonía",
+            "4": "Insular (Galápagos)",
+            "9": "Zonas no delimitadas",
             "99": "Todas"
           },
           "en": {
-            "1": "Urban",
-            "2": "Rural",
+            "1": "Highlands (Sierra)",
+            "2": "Coast",
+            "3": "Amazon",
+            "4": "Galápagos",
+            "9": "Undelimited zones",
             "99": "All"
           }
         },
@@ -782,8 +806,8 @@
           "en": "By province"
         },
         "region": {
-          "es": "Área",
-          "en": "Area"
+          "es": "Región natural",
+          "en": "Natural region"
         },
         "provincia": {
           "es": "Provincia",
@@ -823,13 +847,21 @@
       "labels": {
         "r": {
           "es": {
-            "1": "Urbana",
-            "2": "Rural",
+            "1": "Asunción",
+            "2": "Central",
+            "3": "Norte",
+            "4": "Centro-Sur",
+            "5": "Este",
+            "6": "Chaco (Pdte. Hayes)",
             "99": "Todas"
           },
           "en": {
-            "1": "Urban",
-            "2": "Rural",
+            "1": "Asunción",
+            "2": "Central",
+            "3": "North",
+            "4": "Center-South",
+            "5": "East",
+            "6": "Chaco (Pdte. Hayes)",
             "99": "All"
           }
         },
@@ -934,8 +966,8 @@
           "en": "By department"
         },
         "region": {
-          "es": "Área",
-          "en": "Area"
+          "es": "Región",
+          "en": "Region"
         },
         "provincia": {
           "es": "Departamento",
@@ -950,8 +982,8 @@
           "en": "Both measures follow the <strong>job-based</strong> criterion. An <strong>employee</strong> (public, private or <strong>domestic</strong>) is informal without contributions to a pension fund; an <strong>employer or own-account worker</strong>, if the business has no tax ID (RUC); <strong>contributing family workers</strong> are always informal. People working abroad are left out.<br><br><strong>Official INE measure</strong>: <strong>non-agricultural</strong> informal employment, as published by INE. It reproduces INE's quarterly figures and its annual table by sex, area, age and department.<br><strong>All industries</strong>: the same rule applied to agricultural workers too. INE does not publish it; it sits 0.2 to 1 point below the informal employment rate the ILO computes from the same survey. So they are not spliced. Headline indicators, the sector ranking and the map use the official measure; the interactive analysis uses the all-industries series and can overlay the official one."
         },
         "availability_body": {
-          "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre en la base. El resto del panel usa <strong>promedios anuales</strong> de años completos (los cuatro trimestres). La encuesta trimestral empieza en 2017; en 2022 se renovó la muestra. En el 2.º y el 3.er trimestre de 2020 y en el 2.º de 2021 la encuesta se hizo por teléfono con un cuestionario reducido, sin ingresos. El universo son los ocupados de 15 años y más, como en el boletín del INE. El mapa es por departamento (Boquerón y Alto Paraguay no están en la muestra) y promedia los cuatro trimestres del año: puede diferir hasta 3 puntos del cuadro anual del INE, que sale de otra base con otro factor de expansión. El <strong>quintil</strong> es de ingreso per cápita del hogar. El tamaño del establecimiento corta en 50 personas y no en 40 como en Argentina. Los ingresos son los de la ocupación principal, en <strong>guaraníes constantes</strong> del período indicado en el eje. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
-          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years (four quarters). The quarterly survey starts in 2017; the sample was renewed in 2022. In Q2 and Q3 2020 and Q2 2021 the survey was run by phone with a shorter questionnaire and no income questions. The universe is employed people aged 15 and over, as in INE's bulletin. The map is by department (Boquerón and Alto Paraguay are not in the sample) and averages the four quarters of the year: it may differ by up to 3 points from INE's annual table, which comes from a separate file with its own weights. The <strong>quintile</strong> is of household per-capita income. Establishment size breaks at 50 people rather than 40 as in Argentina. Incomes are from the main job, in <strong>constant guaraníes</strong> of the period shown on the axis. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+          "es": "Los indicadores principales son <strong>trimestrales</strong> y llegan al último trimestre en la base. El resto del panel usa <strong>promedios anuales</strong> de años completos (los cuatro trimestres). La encuesta trimestral empieza en 2017; en 2022 se renovó la muestra. En el 2.º y el 3.er trimestre de 2020 y en el 2.º de 2021 la encuesta se hizo por teléfono con un cuestionario reducido, sin ingresos. El universo son los ocupados de 15 años y más, como en el boletín del INE. El mapa es por departamento (Boquerón y Alto Paraguay no están en la muestra) y promedia los cuatro trimestres del año: puede diferir hasta 3 puntos del cuadro anual del INE, que sale de otra base con otro factor de expansión. El <strong>quintil</strong> es de ingreso per cápita del hogar. El tamaño del establecimiento corta en 50 personas y no en 40 como en Argentina. Los ingresos son los de la ocupación principal, en <strong>guaraníes constantes</strong> del período indicado en el eje. El INE no tiene una regionalización oficial: el filtro <strong>Región</strong> agrupa departamentos (Norte: Concepción, San Pedro, Amambay y Canindeyú; Centro-Sur: Cordillera, Guairá, Caaguazú, Caazapá, Paraguarí, Misiones y Ñeembucú; Este: Alto Paraná e Itapúa; Chaco: Presidente Hayes, el único departamento del Chaco que cubre la encuesta). Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "Headline indicators are <strong>quarterly</strong> and run to the latest quarter in the data. The rest of the dashboard uses <strong>annual averages</strong> of complete years (four quarters). The quarterly survey starts in 2017; the sample was renewed in 2022. In Q2 and Q3 2020 and Q2 2021 the survey was run by phone with a shorter questionnaire and no income questions. The universe is employed people aged 15 and over, as in INE's bulletin. The map is by department (Boquerón and Alto Paraguay are not in the sample) and averages the four quarters of the year: it may differ by up to 3 points from INE's annual table, which comes from a separate file with its own weights. The <strong>quintile</strong> is of household per-capita income. Establishment size breaks at 50 people rather than 40 as in Argentina. Incomes are from the main job, in <strong>constant guaraníes</strong> of the period shown on the axis. INE has no official regional grouping: the <strong>Region</strong> filter groups departments (North: Concepción, San Pedro, Amambay and Canindeyú; Center-South: Cordillera, Guairá, Caaguazú, Caazapá, Paraguarí, Misiones and Ñeembucú; East: Alto Paraná and Itapúa; Chaco: Presidente Hayes, the only Chaco department the survey covers). Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
         },
         "fuente": {
           "es": "la Encuesta Permanente de Hogares Continua (EPHC) del INE de Paraguay",
