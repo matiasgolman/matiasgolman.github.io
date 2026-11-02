@@ -1,7 +1,7 @@
 {
   "pais": "Costa Rica",
   "iso": "cr",
-  "generado": "2026-10-19 11:54:01",
+  "generado": "2026-11-02 20:18:48",
   "fuente_calculo": "Stata (mapa_informalidad.do)",
   "ultimo_trimestre": {"y": 2026, "q": 2},
   "inicio_oficial": {"y": 2010, "q": 3},
