@@ -93,7 +93,7 @@ body.is-embedded .bar{display:none}
 .meas{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;padding:.2rem 0 1rem;
   font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft)}
 .meas__lab{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.055em}
-.meas__note{max-width:62ch;margin:0}
+.meas__note{margin:0}
 .kpi__delta + .kpi__delta{margin-top:.1rem}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
   gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
@@ -163,8 +163,10 @@ body.is-embedded .bar{display:none}
 .plot-foot{display:flex;flex-wrap:wrap;gap:.5rem .7rem;align-items:center;
   padding:0 1.1rem 1rem}
 .warn{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
-  border-left:2px solid var(--s4);padding:.3rem 0 .3rem .7rem;margin:0 1.1rem 1rem;max-width:68ch}
+  border-left:2px solid var(--s4);padding:.3rem 0 .3rem .7rem;margin:0 1.1rem 1rem}
 .warn[hidden]{display:none}
+.chartnote{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);margin:-.2rem 1.1rem .8rem}
+.chartnote[hidden]{display:none}
 /* --- small-sample call-out (corner of the chart) --- */
 .plot-acts{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
 .nflag{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--sans);font-size:.72rem;
@@ -173,7 +175,7 @@ body.is-embedded .bar{display:none}
 .nflag:hover,.nflag[aria-expanded="true"]{background:var(--s4);color:var(--paper)}
 .nflag[hidden]{display:none}
 .nbox{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
-  border-left:2px solid var(--s4);padding:.4rem 0 .4rem .8rem;margin:.4rem 1.1rem 1rem;max-width:80ch}
+  border-left:2px solid var(--s4);padding:.4rem 0 .4rem .8rem;margin:.4rem 1.1rem 1rem}
 .nbox[hidden]{display:none}
 .nbox p{margin:0 0 .4rem}
 .nbox ul{margin:0;padding-left:1.1rem;max-height:14rem;overflow-y:auto}
@@ -243,12 +245,12 @@ details.note summary::-webkit-details-marker{display:none}
 details.note summary::before{content:"+ ";font-weight:600}
 details.note[open] summary::before{content:"– "}
 .note__body{font-size:var(--fs-s);line-height:1.62;color:var(--ink-soft);
-  margin:.6rem 0 0;max-width:62ch}
+  margin:.6rem 0 0}
 .note__body strong{color:var(--ink);font-weight:600}
 
 /* --- attribution --- */
 .attrib{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
-  border-top:1px solid var(--rule);margin-top:2.2rem;padding-top:1rem;max-width:68ch}
+  border-top:1px solid var(--rule);margin-top:2.2rem;padding-top:1rem}
 .attrib a{color:var(--green);text-decoration:underline;text-underline-offset:.16em;
   text-decoration-color:var(--ink-dim)}
 .attrib a:hover{text-decoration-color:currentColor}
@@ -401,6 +403,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       <div class="plot"><div id="mainChart"></div>
         <div class="loading" id="mainLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
       </div>
+      <p class="chartnote" id="mainNote" hidden></p>
       <div class="plot-foot">
         <button class="btn" id="btnTable" type="button" data-t="show_table">Ver tabla</button>
         <button class="btn" id="btnCsv"   type="button" data-t="download_data">Descargar datos (CSV)</button>
@@ -592,16 +595,16 @@ const T = {
   nflag_intro:{es:"Estas estimaciones se calculan con menos de 30 observaciones (sin ponderar) y son poco precisas; las de menos de 10 no se muestran.",
     en:"These estimates rest on fewer than 30 (unweighted) observations and are imprecise; those with fewer than 10 are not shown."},
   count_axis:{es:"Ocupados (miles)",en:"Employed (thousands)"},
-  count_note:{es:"Ocupados estimados con el ponderador de cada encuesta (promedio de los trimestres del año). Los saltos de nivel pueden venir de cambios en las proyecciones de población del instituto, aunque la tasa no se mueva.",
-    en:"Employed people estimated with each survey's weights (average of the year's quarters). Level jumps can come from changes in the institute's population projections even when the rate does not move."},
-  count_note_urban:{es:"La EPH cubre sólo los 31 aglomerados urbanos: no es el total del país.",
-    en:"The EPH covers only the 31 urban agglomerations: this is not the national total."},
+  count_jump:{es:"Salto de nivel en {y}: puede reflejar un cambio en las proyecciones de población del instituto y no sólo del empleo.",
+    en:"Level jump in {y}: it may reflect a change in the institute's population projections, not only in employment."},
+  count_note_urban:{es:"Sólo los 31 aglomerados urbanos de la EPH.",
+    en:"The EPH's 31 urban agglomerations only."},
   nflag_all:{es:"toda la serie",en:"whole series"},
   tab_data:{es:"Datos",en:"Data"},
   tab_n:{es:"Observaciones",en:"Observations"},
   tbl_low:{es:"* menos de 30 observaciones: estimación poco precisa.",en:"* fewer than 30 observations: imprecise estimate."},
-  tbl_n_cap:{es:"Observaciones sin ponderar con que se calculó cada dato (en horas e ingresos, las de informales o formales con dato). En ámbar, menos de 30; con menos de 10 el dato no se muestra.",
-    en:"Unweighted observations behind each estimate (for hours and income, the informal or formal workers reporting them). In amber, fewer than 30; with fewer than 10 the estimate is not shown."},
+  tbl_n_cap:{es:"Observaciones sin ponderar con que se calculó cada dato. En ámbar, menos de 30; con menos de 10 el dato no se muestra.",
+    en:"Unweighted observations behind each estimate. In amber, fewer than 30; with fewer than 10 the estimate is not shown."},
   prices_of:{es:"a precios de ",en:"in prices of "},
   low_sample_warning:{
     es:"Algunas estimaciones de este gráfico se apoyan en menos de 30 observaciones y son imprecisas.",
@@ -948,8 +951,7 @@ function pivot(sh, idx, brkCol, cols, from, to){
 }
 const isLow = n => n!=null && n<N_LOW;
 const fmtN = n => n==null ? "–" : Math.round(n).toLocaleString(lang==="es"?"es-AR":"en-US");
-/* hover suffix and open-circle markers for the points that rest on few observations */
-function nHover(nArr){ return nArr.map(n=> n==null ? "" : " · n = "+fmtN(n)+(isLow(n)?" ⚠":"")); }
+/* open-circle markers for the points that rest on few observations */
 function lowMarker(nArr, color){ return {color, size:nArr.map(n=>isLow(n)?7:0), symbol:"circle-open", line:{width:1.6, color}}; }
 /* entries: [{label, years:[y...], n:{y:n}}] -> the call-out in the corner of the chart */
 function nEntries(label, years, nmap, ncols, sub){
@@ -1087,7 +1089,6 @@ async function render(){
 
     const msgs = [];
     if(over && t("overlay_note")) msgs.push(t("overlay_note"));
-    if(s.metric==="ocupados"){ msgs.push(t("count_note")); if(C().sin_area) msgs.push(t("count_note_urban")); }
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
       Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null); lastRows=null; setNflag("main", []);
@@ -1114,6 +1115,19 @@ async function render(){
     const ovName = t("overlay_name");
     const nAt = (k,ci) => { const g = nobs.get(k)||{}; return years.map(y=> g[y] ? g[y][ci||0] : null); };
     lastRows = {s, keys, years, cols, labs:lb, groups, over, ovName, nobs};
+    /* number of workers: a note under the chart only when the total of a series jumps
+       more than 8% in a year outside the pandemic (typically a new population projection) */
+    { const notes = [];
+      if(s.metric==="ocupados"){
+        const jy = new Set();
+        keys.forEach(k=>{ const g = groups.get(k)||{}; let prev = null;
+          years.forEach(y=>{ const v = g[y]; const tot = v && v[0]!=null && v[1]!=null ? v[0]+v[1] : null;
+            /* 2020-2021: the pandemic moved employment itself; not flagged */
+            if(tot!=null && prev!=null && Math.abs(tot/prev-1) > 0.08 && y!==2020 && y!==2021) jy.add(y); prev = tot; }); });
+        if(jy.size) notes.push(t("count_jump").replace("{y}", Array.from(jy).sort().join(", ")));
+        if(C().sin_area) notes.push(t("count_note_urban"));
+      }
+      $("#mainNote").hidden = !notes.length; $("#mainNote").textContent = notes.join(" "); }
     setNflag("main", [].concat(...keys.map(k=>nEntries(brkCol ? (lb[k]||k) : METRICS[s.metric][lang], years, nobs.get(k), cols.length))));
 
     if(!useSmall){
@@ -1128,12 +1142,12 @@ async function render(){
                      (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
           const nn = nAt(k, ci);
           traces.push(s.type==="bar" ? {
-            type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}}, customdata:nHover(nn),
-            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`
+            type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}},
+            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           } : {
-            type:"scatter", mode:"lines+markers", x:years, y:vals, name:nm, customdata:nHover(nn),
+            type:"scatter", mode:"lines+markers", x:years, y:vals, name:nm,
             line:{color, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, color), connectgaps:false,
-            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`
+            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           });
         });
         const ov = overAt(k);
@@ -1177,8 +1191,8 @@ async function render(){
           traces.push({type:"scatter",mode:"lines+markers",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
             line:{color: cl, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, cl), connectgaps:false,
             name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
-            showlegend: dual && ki===0, customdata:nHover(nn),
-            hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`});
+            showlegend: dual && ki===0,
+            hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         });
         const ov = overAt(k);
         if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov, xaxis:"x"+ax, yaxis:"y"+ax,
@@ -1557,8 +1571,8 @@ async function renderCmp(){
     if(!brkCol){
       const traces = per.map(p=>({type:"scatter", mode:"lines+markers", x:years, y:valsAt(p,"_"), name:cname(p.x),
         line:{color:countryColor(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
-        marker:lowMarker(nAtC(p,"_"), countryColor(p.x)), customdata:nHover(nAtC(p,"_")),
-        hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`}));
+        marker:lowMarker(nAtC(p,"_"), countryColor(p.x)),
+        hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
       reactOrRedraw("cmpChart", traces, baseLayout({
         height: 420,
         xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
@@ -1581,8 +1595,8 @@ async function renderCmp(){
         const ax = ki===0?"":String(ki+1);
         per.forEach(p=>traces.push({type:"scatter",mode:"lines+markers",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
           line:{color:countryColor(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
-          marker:lowMarker(nAtC(p,k), countryColor(p.x)), customdata:nHover(nAtC(p,k)),
-          hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`}));
+          marker:lowMarker(nAtC(p,k), countryColor(p.x)),
+          hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
         anns.push({text:(lb[k]||k)+ZOOM_MARK, xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
           xanchor:"left", yanchor:"bottom", captureevents:true, font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
