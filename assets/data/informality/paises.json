@@ -306,7 +306,8 @@
           "es": "la Encuesta Continua de Empleo del INEC",
           "en": "INEC's Continuous Employment Survey"
         }
-      }
+      },
+      "area": true
     },
     "mx": {
       "nombre": {
