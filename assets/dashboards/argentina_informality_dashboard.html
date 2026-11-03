@@ -165,6 +165,29 @@ body.is-embedded .bar{display:none}
 .warn{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
   border-left:2px solid var(--s4);padding:.3rem 0 .3rem .7rem;margin:0 1.1rem 1rem;max-width:68ch}
 .warn[hidden]{display:none}
+/* --- small-sample call-out (corner of the chart) --- */
+.plot-acts{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.nflag{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--sans);font-size:.72rem;
+  color:var(--s4);background:transparent;border:1px solid var(--s4);border-radius:999px;
+  padding:.18rem .6rem;cursor:pointer;line-height:1.3;white-space:nowrap}
+.nflag:hover,.nflag[aria-expanded="true"]{background:var(--s4);color:var(--paper)}
+.nflag[hidden]{display:none}
+.nbox{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
+  border-left:2px solid var(--s4);padding:.4rem 0 .4rem .8rem;margin:.4rem 1.1rem 1rem;max-width:80ch}
+.nbox[hidden]{display:none}
+.nbox p{margin:0 0 .4rem}
+.nbox ul{margin:0;padding-left:1.1rem;max-height:14rem;overflow-y:auto}
+.nbox li{margin:.12rem 0}
+.nbox b{color:var(--ink);font-weight:500}
+/* --- table tabs --- */
+.tabs{display:flex;gap:0;padding:0 1.1rem;margin-bottom:.5rem;border-bottom:1px solid var(--rule)}
+.tabs[hidden]{display:none}
+.tab{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);background:transparent;border:0;
+  border-bottom:2px solid transparent;padding:.4rem .8rem;margin-bottom:-1px;cursor:pointer}
+.tab:hover{color:var(--green)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green);font-weight:500}
+.tblcap{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);margin:0 0 .45rem}
+table.data td.low{color:var(--s4)}
 .plotmsg{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
   text-align:center;padding:2.6rem 1rem;margin:0}
 .plotmsg[hidden]{display:none}
@@ -357,9 +380,13 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       </div>
       <div class="plot-head">
         <div><h3 class="plot-title" id="plotTitle"></h3><p class="plot-sub" id="plotSub"></p></div>
-        <button type="button" class="ovbtn" id="btnOver" aria-pressed="false">
-          <span class="ovbtn__sw" aria-hidden="true"></span><span id="btnOverTxt"></span></button>
+        <div class="plot-acts">
+          <button type="button" class="nflag" id="mainNflag" aria-expanded="false" aria-controls="mainNbox" hidden></button>
+          <button type="button" class="ovbtn" id="btnOver" aria-pressed="false">
+            <span class="ovbtn__sw" aria-hidden="true"></span><span id="btnOverTxt"></span></button>
+        </div>
       </div>
+      <div class="nbox" id="mainNbox" hidden></div>
       <p class="warn" id="warnBox" hidden></p>
       <p class="plotmsg" id="mainMsg" hidden></p>
       <p class="zhint" id="mainZoomHint" hidden></p>
@@ -378,6 +405,10 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
         <button class="btn" id="btnTable" type="button" data-t="show_table">Ver tabla</button>
         <button class="btn" id="btnCsv"   type="button" data-t="download_data">Descargar datos (CSV)</button>
         <button class="btn" id="btnPng"   type="button" data-t="download_chart">Descargar gráfico (PNG)</button>
+      </div>
+      <div class="tabs" id="tblTabs" role="tablist" hidden>
+        <button class="tab" type="button" role="tab" id="tabData" data-tab="data" aria-selected="true" data-t="tab_data">Datos</button>
+        <button class="tab" type="button" role="tab" id="tabN" data-tab="n" aria-selected="false" data-t="tab_n">Observaciones</button>
       </div>
       <div class="tablewrap" id="tableWrap" hidden></div>
     </div>
@@ -452,7 +483,9 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
         <div class="ctl"><label for="cEmp" data-t="emp_category">Categoría ocupacional</label><select id="cEmp"></select></div>
         <div class="ctl ctl--act"><button class="btn" id="cReset" data-t="reset_filters" type="button">Reiniciar</button></div>
       </div>
-      <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div></div>
+      <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div>
+        <div class="plot-acts"><button type="button" class="nflag" id="cmpNflag" aria-expanded="false" aria-controls="cmpNbox" hidden></button></div></div>
+      <div class="nbox" id="cmpNbox" hidden></div>
       <p class="warn" id="cmpWarn" hidden></p>
       <p class="plotmsg" id="cmpMsg" hidden></p>
       <p class="zhint" id="cmpZoomHint" hidden></p>
@@ -555,6 +588,18 @@ const T = {
   how_it_works_text:{
     es:"Elegí una métrica y, si querés, una dimensión para desagregar; los filtros de abajo acotan la población.",
     en:"Pick a metric and, optionally, a dimension to break it down; the filters below narrow the population."},
+  nflag_btn:{es:"Muestra chica",en:"Small sample"},
+  nflag_intro:{es:"Estas estimaciones se calculan con menos de 30 observaciones (sin ponderar) y son poco precisas; las de menos de 10 no se muestran.",
+    en:"These estimates rest on fewer than 30 (unweighted) observations and are imprecise; those with fewer than 10 are not shown."},
+  nflag_sub:{es:"En horas e ingresos, la cuenta es la de todos los ocupados de la celda: la base de informales o formales con dato es menor.",
+    en:"For hours and income the count is all employed people in the cell: the base of informal or formal workers with data is smaller."},
+  nflag_all:{es:"toda la serie",en:"whole series"},
+  tab_data:{es:"Datos",en:"Data"},
+  tab_n:{es:"Observaciones",en:"Observations"},
+  tbl_low:{es:"* menos de 30 observaciones: estimación poco precisa.",en:"* fewer than 30 observations: imprecise estimate."},
+  tbl_n_cap:{es:"Observaciones sin ponderar con que se calculó cada dato (todos los ocupados de la celda). En ámbar, menos de 30; «–», menos de 10 (no se muestra).",
+    en:"Unweighted observations behind each estimate (all employed people in the cell). In amber, fewer than 30; “–”, fewer than 10 (not shown)."},
+  prices_of:{es:"a precios de ",en:"in prices of "},
   low_sample_warning:{
     es:"Algunas estimaciones de este gráfico se apoyan en menos de 30 observaciones y son imprecisas.",
     en:"Some estimates in this chart rest on fewer than 30 observations and are imprecise."},
@@ -868,17 +913,43 @@ async function rowsForSelection(s, m, x){
   const idx = select(sh, fixed).filter(i=> sh.cols[col][i] !== 99 && !(dropUnpaid && sh.cols[col][i]===UNPAID));
   return {sh, idx, brkCol:col, cols};
 }
+/* N_LOW: estimates on fewer observations are flagged (the cube drops cells under 10). */
+const N_LOW = 30;
 function pivot(sh, idx, brkCol, cols, from, to){
-  const c = sh.cols, out = new Map(); let lowSample = false;
+  const c = sh.cols, out = new Map(), nobs = new Map(); let lowSample = false;
   for(const i of idx){
     const y = c.y[i];
     if(y<from || y>to) continue;
     const key = brkCol==null ? "_" : c[brkCol][i];
-    if(!out.has(key)) out.set(key,{});
+    if(!out.has(key)){ out.set(key,{}); nobs.set(key,{}); }
     out.get(key)[y] = cols.map(k=>c[k][i]);
-    if(c.o[i]===1) lowSample = true;
+    const n = c.nobs ? c.nobs[i] : null;
+    nobs.get(key)[y] = n;
+    if(c.o[i]===1 || (n!=null && n<N_LOW)) lowSample = true;
   }
-  return {groups:out, lowSample};
+  return {groups:out, lowSample, nobs};
+}
+const isLow = n => n!=null && n<N_LOW;
+const fmtN = n => n==null ? "–" : Math.round(n).toLocaleString(lang==="es"?"es-AR":"en-US");
+/* hover suffix and open-circle markers for the points that rest on few observations */
+function nHover(nArr){ return nArr.map(n=> n==null ? "" : " · n = "+fmtN(n)+(isLow(n)?" ⚠":"")); }
+function lowMarker(nArr, color){ return {color, size:nArr.map(n=>isLow(n)?7:0), symbol:"circle-open", line:{width:1.6, color}}; }
+/* entries: [{label, years:[y...], n:{y:n}}] -> the call-out in the corner of the chart */
+function setNflag(w, entries, allYears){
+  const btn = $("#"+w+"Nflag"), box = $("#"+w+"Nbox");
+  const rows = entries.map(e=>{
+    const ys = e.years.filter(y=>isLow(e.n[y]));
+    if(!ys.length) return null;
+    const have = e.years.filter(y=>e.n[y]!=null);
+    const all = ys.length===have.length && have.length>1;
+    return `<li><b>${e.label}</b>: ${all ? t("nflag_all")+" (n = "+fmtN(Math.min(...ys.map(y=>e.n[y])))+"–"+fmtN(Math.max(...ys.map(y=>e.n[y])))+")"
+      : ys.map(y=>y+" (n = "+fmtN(e.n[y])+")").join(", ")}</li>`;
+  }).filter(Boolean);
+  btn.hidden = !rows.length;
+  if(!rows.length){ box.hidden = true; btn.setAttribute("aria-expanded","false"); box.innerHTML=""; return; }
+  btn.innerHTML = `<span aria-hidden="true">⚠</span><span>${t("nflag_btn")} · ${rows.length}</span>`;
+  box.innerHTML = `<p>${t("nflag_intro")}</p><ul>${rows.join("")}</ul>${w==="main"&&lastRows&&lastRows.cols.length===2?`<p style="margin-top:.4rem">${t("nflag_sub")}</p>`:""}`;
+  box.hidden = btn.getAttribute("aria-expanded")!=="true";
 }
 const slots = {};
 function syncSlots(param, sel){
@@ -946,7 +1017,10 @@ function buildTitle(s, metrics){
   const by = s.param==="all" ? "" : (lang==="es"?", por ":", by ")+PARAMS()[s.param][lang].toLowerCase();
   return (metrics||METRICS)[s.metric][lang] + by;
 }
-const subTitle = s => t("chart_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
+const isIncome = metric => ["media_ingreso","mediana_ingreso"].includes(metric);
+const pricesTxt = () => { const bl = baseLab(); return bl ? t("prices_of")+bl : ""; };
+const subTitle = s => t("chart_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to
+  + (isIncome(s.metric) && pricesTxt() ? " · " + pricesTxt() : "");
 
 function showMsg(text, id, chart){
   const el = $(id||"#mainMsg");
@@ -960,7 +1034,7 @@ async function render(){
   $("#mainLoad").hidden = false;
   try{
     const {sh, idx, brkCol, cols} = await rowsForSelection(s);
-    const {groups, lowSample} = pivot(sh, idx, brkCol, cols, s.from, s.to);
+    const {groups, nobs} = pivot(sh, idx, brkCol, cols, s.from, s.to);
     /* Long series + rate: overlay the official measure wherever it exists, as a
        dotted line in the same colour, instead of splicing the two. Not offered
        where both measures are the same (Costa Rica). */
@@ -989,11 +1063,10 @@ async function render(){
     $("#plotSub").textContent   = subTitle(s);
 
     const msgs = [];
-    if(lowSample) msgs.push(t("low_sample_warning"));
     if(over && t("overlay_note")) msgs.push(t("overlay_note"));
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
-      Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null);
+      Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null); lastRows=null; setNflag("main", []);
       showMsg(brkCol ? t("pick_one") : t("no_data"));
       $("#warnBox").hidden = true; $("#mainLoad").hidden = true; lastRows=null; return;
     }
@@ -1015,7 +1088,9 @@ async function render(){
       if(!g || !Object.keys(g).length) return null;
       return years.map(y=> g[y] ? g[y][0] : null); };
     const ovName = t("overlay_name");
-    lastRows = {s, keys, years, cols, labs:lb, groups, over, ovName};
+    const nAt = k => { const g = nobs.get(k)||{}; return years.map(y=> g[y]!=null ? g[y] : null); };
+    lastRows = {s, keys, years, cols, labs:lb, groups, over, ovName, nobs};
+    setNflag("main", keys.map(k=>({label: brkCol ? (lb[k]||k) : METRICS[s.metric][lang], years, n: nobs.get(k)||{}})));
 
     if(!useSmall){
       const traces = [];
@@ -1027,13 +1102,14 @@ async function render(){
           const nm = (brkCol ? (lb[k]||k) : "") +
                      (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "") +
                      (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
+          const nn = nAt(k);
           traces.push(s.type==="bar" ? {
-            type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}},
-            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
+            type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}}, customdata:nHover(nn),
+            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`
           } : {
-            type:"scatter", mode:"lines", x:years, y:vals, name:nm,
-            line:{color, width:2, shape:"spline", smoothing:0.7}, connectgaps:false,
-            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
+            type:"scatter", mode:"lines+markers", x:years, y:vals, name:nm, customdata:nHover(nn),
+            line:{color, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, color), connectgaps:false,
+            hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`
           });
         });
         const ov = overAt(k);
@@ -1073,11 +1149,12 @@ async function render(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         seriesAt(k).forEach((vals,ci)=>{
-          traces.push({type:"scatter",mode:"lines",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
-            line:{color: dual ? colors[ci] : colors[0], width:2, shape:"spline", smoothing:0.7}, connectgaps:false,
+          const nn = nAt(k), cl = dual ? colors[ci] : colors[0];
+          traces.push({type:"scatter",mode:"lines+markers",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
+            line:{color: cl, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, cl), connectgaps:false,
             name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
-            showlegend: dual && ki===0,
-            hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+            showlegend: dual && ki===0, customdata:nHover(nn),
+            hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`});
         });
         const ov = overAt(k);
         if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov, xaxis:"x"+ax, yaxis:"y"+ax,
@@ -1181,9 +1258,10 @@ function zoomPng(w){
 }
 
 /* ---------- table / CSV ---------- */
-function tableRows(){
+let tblTab = "data";
+function tableRows(withN){
   if(!lastRows) return null;
-  const {s,keys,years,cols,labs:lb,groups,over,ovName} = lastRows;
+  const {s,keys,years,cols,labs:lb,groups,over,ovName,nobs} = lastRows;
   /* The official measure shown over the long series also goes to the table and the CSV. */
   const hasOv = k => { if(!over) return false; const g = over.get(k); return !!(g && Object.keys(g).length); };
   const head = [t("year")];
@@ -1193,21 +1271,46 @@ function tableRows(){
     else head.push(base);
     if(hasOv(k)) head.push(base+" · "+ovName);
   });
+  if(withN) keys.forEach(k=> head.push((lb ? (lb[k]||k) : METRICS[s.metric][lang])+" · n"));
+  const low = [];
   const body = years.map(y=>{
-    const row = [y];
-    keys.forEach(k=>{ const g = groups.get(k)||{}; cols.forEach((_,ci)=> row.push(g[y]?g[y][ci]:null));
-      if(hasOv(k)){ const o = over.get(k); row.push(o[y]?o[y][0]:null); } });
+    const row = [y], lw = [false];
+    keys.forEach(k=>{ const g = groups.get(k)||{}, n = (nobs.get(k)||{})[y];
+      cols.forEach((_,ci)=>{ row.push(g[y]?g[y][ci]:null); lw.push(isLow(n)); });
+      if(hasOv(k)){ const o = over.get(k); row.push(o[y]?o[y][0]:null); lw.push(false); } });
+    if(withN) keys.forEach(k=> row.push((nobs.get(k)||{})[y] ?? null));
+    low.push(lw);
     return row;
   });
-  return {head, body, metric:s.metric, keys};
+  return {head, body, low, metric:s.metric, keys};
+}
+/* Observations tab: one column per series (informal and formal share the cell count). */
+function nRows(){
+  if(!lastRows) return null;
+  const {s,keys,years,labs:lb,nobs} = lastRows;
+  const head = [t("year")].concat(keys.map(k=> lb ? (lb[k]||k) : METRICS[s.metric][lang]));
+  const body = years.map(y=>[y].concat(keys.map(k=>(nobs.get(k)||{})[y] ?? null)));
+  return {head, body, keys};
 }
 function drawTable(){
-  const d = tableRows(); if(!d) return;
+  $$("#tblTabs .tab").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===tblTab)));
   const colors = seriesColors();
+  if(tblTab==="n"){
+    const d = nRows(); if(!d){ $("#tableWrap").innerHTML=""; return; }
+    $("#tableWrap").innerHTML = `<p class="tblcap">${t("tbl_n_cap")}</p><table class="data"><thead><tr>${
+      d.head.map((h,i)=>`<th>${i===0?h:`<span class="sw" style="background:${colors[(i-1)%8]}"></span>`+h}</th>`).join("")}</tr></thead><tbody>${
+      d.body.map(r=>`<tr>${r.map((v,i)=>i===0?`<td>${v}</td>`:`<td class="${isLow(v)?"low":""}">${fmtN(v)}</td>`).join("")}</tr>`).join("")
+    }</tbody></table>`;
+    return;
+  }
+  const d = tableRows(); if(!d){ $("#tableWrap").innerHTML=""; return; }
   const sw = i => `<span class="sw" style="background:${colors[Math.floor(i/(d.head.length-1>d.keys.length?2:1))%8]}"></span>`;
-  $("#tableWrap").innerHTML = `<table class="data"><thead><tr>${
+  const anyLow = d.low.some(r=>r.some(Boolean));
+  const cap = [axisTitle(d.metric)].concat(anyLow ? [t("tbl_low")] : []).join(" · ");
+  $("#tableWrap").innerHTML = `<p class="tblcap">${cap}</p><table class="data"><thead><tr>${
     d.head.map((h,i)=>`<th>${i===0?h:sw(i-1)+h}</th>`).join("")}</tr></thead><tbody>${
-    d.body.map(r=>`<tr>${r.map((v,i)=>`<td>${i===0?v:fmt(v,d.metric)}</td>`).join("")}</tr>`).join("")
+    d.body.map((r,ri)=>`<tr>${r.map((v,i)=>i===0?`<td>${v}</td>`:
+      `<td class="${d.low[ri][i]&&v!=null?"low":""}">${fmt(v,d.metric)}${d.low[ri][i]&&v!=null?"*":""}</td>`).join("")}</tr>`).join("")
   }</tbody></table>`;
 }
 function saveCsv(head, body, name){
@@ -1218,7 +1321,13 @@ function saveCsv(head, body, name){
   a.download = name; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
 }
-function downloadCsv(){ const d = tableRows(); if(d) saveCsv(d.head, d.body, "informalidad_"+iso+".csv"); }
+function downloadCsv(){
+  const d = tableRows(true); if(!d) return;
+  /* income columns carry their prices in the header */
+  const pr = isIncome(d.metric) && pricesTxt() ? " ("+pricesTxt()+")" : "";
+  const head = d.head.map((h,i)=> i>0 && pr && !/ · n$/.test(h) ? h+pr : h);
+  saveCsv(head, d.body, "informalidad_"+iso+".csv");
+}
 
 /* ---------- snapshot helpers ---------- */
 async function snapRows(kind){
@@ -1386,7 +1495,7 @@ async function renderCmp(){
       const soloUrb = s.param==="area" && C(x).sin_area;
       let r;
       try{ r = await rowsForSelection(soloUrb ? Object.assign({}, s, {param:"all"}) : s, 2, x); }
-      catch(e){ console.error(e); return {x, groups:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, falta:true}; }
+      catch(e){ console.error(e); return {x, groups:new Map(), nobs:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, falta:true}; }
       const p = pivot(r.sh, r.idx, r.brkCol, r.cols, isIdx(s.metric) ? Math.min(s.from, IDX_BASE) : s.from, s.to);
       if(soloUrb){ const g = p.groups.get("_"); p.groups = new Map(g ? [[1, g]] : []); r.brkCol = "u"; }
       let sinBase = false;
@@ -1396,14 +1505,14 @@ async function renderCmp(){
         const o = {}; Object.keys(g).forEach(y=>{ const v = g[y][0]; o[y] = [v==null ? null : +(100*v/b).toFixed(1)]; });
         p.groups.set(k, o);
       });
-      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol, sinBase, soloUrb};
+      if(soloUrb){ const g = p.nobs.get("_"); p.nobs = new Map(g ? [[1, g]] : []); }
+      return {x, groups:p.groups, nobs:p.nobs, low:p.lowSample, brkCol:r.brkCol, sinBase, soloUrb};
     }));
     const brkCol = (per.find(p=>!p.falta)||per[0]).brkCol;
     const years = []; for(let y=s.from;y<=s.to;y++) years.push(y);
     const keysSet = new Set(); per.forEach(p=>p.groups.forEach((_,k)=>keysSet.add(k)));
     const keys = Array.from(keysSet).sort((a,b)=>a-b);
     const msgs = [];
-    if(per.some(p=>p.low)) msgs.push(t("low_sample_warning"));
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
     if(per.some(p=>p.falta)) msgs.push(t("cmp_falta") + per.filter(p=>p.falta).map(p=>cname(p.x)).join(", ") + ".");
     if(per.some(p=>p.soloUrb)) msgs.push(t("cmp_area_only_urban") + per.filter(p=>p.soloUrb).map(p=>cname(p.x)).join(", ") + ".");
@@ -1412,15 +1521,18 @@ async function renderCmp(){
     $("#cmpTitle").textContent = buildTitle(s, Object.assign({}, METRICS,
       Object.fromEntries(["horas_inf","horas_for"].concat(CMP_IDX).map(k=>[k,{es:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k),en:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k)}]))));
     $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
-    if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; setPanels("cmp", null); showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
+    if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; setPanels("cmp", null); setNflag("cmp", []); showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
     showMsg(null,"#cmpMsg","#cmpChart");
     const valsAt = (p,k) => { const g = p.groups.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
     const lb = brkCol ? L[brkCol][lang] : null;   // harmonized dims: shared labels
     lastCmp = {s, years, keys, per, lb};
+    const nAtC = (p,k) => { const g = p.nobs.get(k)||{}; return years.map(y=> g[y]!=null ? g[y] : null); };
+    setNflag("cmp", [].concat(...keys.map(k=>per.map(p=>({label: cname(p.x)+(k==="_"?"":" · "+(lb[k]||k)), years, n:p.nobs.get(k)||{}})))));
     if(!brkCol){
-      const traces = per.map(p=>({type:"scatter", mode:"lines", x:years, y:valsAt(p,"_"), name:cname(p.x),
+      const traces = per.map(p=>({type:"scatter", mode:"lines+markers", x:years, y:valsAt(p,"_"), name:cname(p.x),
         line:{color:countryColor(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
-        hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
+        marker:lowMarker(nAtC(p,"_"), countryColor(p.x)), customdata:nHover(nAtC(p,"_")),
+        hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`}));
       reactOrRedraw("cmpChart", traces, baseLayout({
         height: 420,
         xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
@@ -1441,9 +1553,10 @@ async function renderCmp(){
       const tick = yearAxis(years, ncol>=4 ? 3 : ncol===3 ? 4 : 6);
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
-        per.forEach(p=>traces.push({type:"scatter",mode:"lines",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
+        per.forEach(p=>traces.push({type:"scatter",mode:"lines+markers",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
           line:{color:countryColor(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
-          hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
+          marker:lowMarker(nAtC(p,k), countryColor(p.x)), customdata:nHover(nAtC(p,k)),
+          hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
         anns.push({text:(lb[k]||k)+ZOOM_MARK, xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
           xanchor:"left", yanchor:"bottom", captureevents:true, font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
@@ -1656,12 +1769,17 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
   });
   $("#btnNone").addEventListener("click", ()=>{ const p = $("#fParam").value; if(p==="all") return; picked[p] = new Set(); render(); });
   $("#btnTable").addEventListener("click", ()=>{
-    const w = $("#tableWrap"); w.hidden = !w.hidden;
+    const w = $("#tableWrap"); w.hidden = !w.hidden; $("#tblTabs").hidden = w.hidden;
     $("#btnTable").textContent = w.hidden ? t("show_table") : t("hide_table");
     if(!w.hidden) drawTable();
     postHeight();
   });
   $("#btnCsv").addEventListener("click", downloadCsv);
+  $$("#tblTabs .tab").forEach(b=>b.addEventListener("click", ()=>{ tblTab = b.dataset.tab; drawTable(); postHeight(); }));
+  ["main","cmp"].forEach(w=>$("#"+w+"Nflag").addEventListener("click", ()=>{
+    const b = $("#"+w+"Nflag"), open = b.getAttribute("aria-expanded")!=="true";
+    b.setAttribute("aria-expanded", String(open)); $("#"+w+"Nbox").hidden = !open; postHeight();
+  }));
   $("#btnPng").addEventListener("click", ()=>Plotly.downloadImage("mainChart",
     {format:"png", scale:2, width:1200, height:560, filename:"informalidad_"+iso}));
   $("#cCsv").addEventListener("click", downloadCmpCsv);
