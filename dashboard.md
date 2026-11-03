@@ -6,7 +6,7 @@ standfirst: >-
   Household survey microdata on informal employment in Latin America, in a form you can
   interrogate rather than read about, one country at a time or side by side.
 body_class: "listing"
-page_class: "page--wide"
+page_class: "page--wide page--dash"
 description: >-
   Interactive dashboard of informal employment in Latin America, built from each country's official
   household survey, with rates by sector, region, urban and rural areas, sex and age, and a country

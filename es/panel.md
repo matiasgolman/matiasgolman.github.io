@@ -8,7 +8,7 @@ standfirst: >-
   Microdatos de encuestas de hogares sobre empleo informal en América Latina, en un formato que se
   puede interrogar en vez de leer, de a un país o lado a lado.
 body_class: "listing"
-page_class: "page--wide"
+page_class: "page--wide page--dash"
 description: >-
   Panel interactivo del empleo informal en América Latina, hecho con la encuesta de hogares oficial
   de cada país, con tasas por sector, región, área urbana y rural, sexo y edad, y una comparación
