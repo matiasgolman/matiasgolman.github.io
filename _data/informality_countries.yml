@@ -1,0 +1,37 @@
+# Generado por sitio_paises_jekyll.py desde assets/data/informality/paises.json: no editar a mano.
+- iso: ar
+  name_en: "Argentina"
+  name_es: "Argentina"
+  since: 2003
+  source_en: "INDEC's Permanent Household Survey"
+  source_es: "la Encuesta Permanente de Hogares del INDEC"
+- iso: cr
+  name_en: "Costa Rica"
+  name_es: "Costa Rica"
+  since: 2010
+  source_en: "INEC's Continuous Employment Survey"
+  source_es: "la Encuesta Continua de Empleo del INEC"
+- iso: mx
+  name_en: "Mexico"
+  name_es: "México"
+  since: 2005
+  source_en: "INEGI's National Occupation and Employment Survey"
+  source_es: "la Encuesta Nacional de Ocupación y Empleo del INEGI"
+- iso: br
+  name_en: "Brazil"
+  name_es: "Brasil"
+  since: 2012
+  source_en: "IBGE's Continuous National Household Sample Survey (PNAD Contínua)"
+  source_es: "la Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua) del IBGE"
+- iso: ec
+  name_en: "Ecuador"
+  name_es: "Ecuador"
+  since: 2007
+  source_en: "INEC's National Survey of Employment, Unemployment and Underemployment (ENEMDU)"
+  source_es: "la Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU) del INEC"
+- iso: py
+  name_en: "Paraguay"
+  name_es: "Paraguay"
+  since: 2008
+  source_en: "the Continuous Permanent Household Survey (EPHC) of Paraguay's INE"
+  source_es: "la Encuesta Permanente de Hogares Continua (EPHC) del INE de Paraguay"

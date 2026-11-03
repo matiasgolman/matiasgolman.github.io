@@ -4,14 +4,13 @@ title: "Latin America Informality Dashboard"
 permalink: /dashboard/
 standfirst: >-
   Household survey microdata on informal employment in Latin America, in a form you can
-  interrogate rather than read about. Argentina, Brazil, Costa Rica and Mexico, one country at a
-  time or side by side.
+  interrogate rather than read about, one country at a time or side by side.
 body_class: "listing"
 page_class: "page--wide"
 description: >-
-  Interactive dashboard of informal employment in Latin America: Argentina from 2003 (INDEC, EPH),
-  Mexico from 2005 (INEGI, ENOE), Costa Rica from 2010 (INEC, ECE) and Brazil from 2012 (IBGE,
-  PNAD Contínua), with rates by sector, region, sex and age and a country comparison. An independent project by Matías Golman.
+  Interactive dashboard of informal employment in Latin America, built from each country's official
+  household survey, with rates by sector, region, urban and rural areas, sex and age, and a country
+  comparison. An independent project by Matías Golman.
 lang: "en"
 alt_url: "/es/panel/"
 ---
@@ -20,12 +19,11 @@ alt_url: "/es/panel/"
 and most countries measure it every quarter. The trouble is that the measurement sits in raw survey
 files that almost nobody outside a statistics office opens. This dashboard turns those files into
 something a policy officer, a journalist or a union researcher can actually use: informality broken
-down by sector, region, sex and age, one country at a time, or several side by side. It covers
-Argentina, Brazil, Costa Rica and Mexico; more countries will follow.</p>
+down by sector, region, sex and age, one country at a time, or several side by side. It grows one
+country at a time, each from the earliest year its survey allows.</p>
 
-<p class="tool__note">Sources: INDEC, Encuesta Permanente de Hogares (Argentina); IBGE, Pesquisa
-Nacional por Amostra de Domicílios Contínua (Brazil); INEC, Encuesta Continua de Empleo (Costa
-Rica); INEGI, Encuesta Nacional de Ocupación y Empleo (Mexico). An independent project, which grew out of consultancy work on
+<p class="tool__note">Countries and sources so far: {% for c in site.data.informality_countries %}{{ c.name_en }}
+(from {{ c.since }}; {{ c.source_en }}){% unless forloop.last %}; {% endunless %}{% endfor %}. An independent project, which grew out of consultancy work on
 labour informality in Argentina. Each country's official measure reproduces the
 informality rates its statistics office publishes. Definitions differ between countries, so the
 comparison view works with trends and says what is not comparable.</p>
