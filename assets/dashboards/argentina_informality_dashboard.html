@@ -504,9 +504,15 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
         <div class="loading" id="cmpLoad" hidden><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
       </div>
       <div class="plot-foot">
+        <button class="btn" id="cTable" type="button" data-t="show_table">Ver tabla</button>
         <button class="btn" id="cCsv" type="button" data-t="download_data">Descargar datos (CSV)</button>
         <button class="btn" id="cPng" type="button" data-t="download_chart">Descargar gráfico (PNG)</button>
       </div>
+      <div class="tabs" id="cTblTabs" role="tablist" hidden>
+        <button class="tab" type="button" role="tab" data-tab="data" aria-selected="true" data-t="tab_data">Datos</button>
+        <button class="tab" type="button" role="tab" data-tab="n" aria-selected="false" data-t="tab_n">Observaciones</button>
+      </div>
+      <div class="tablewrap" id="cTableWrap" hidden></div>
     </div>
   </section>
 
@@ -1611,20 +1617,46 @@ async function renderCmp(){
       setPanels("cmp", keys.map(k=>lb[k]||k), $("#cmpTitle").textContent, $("#cmpSub").textContent, axisTitle(s.metric));
     }
     if(!brkCol) setPanels("cmp", null);
+    if($("#cTableWrap").hidden===false) drawCmpTable();
   }catch(err){
     console.error(err); Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("load_failed"),"#cmpMsg","#cmpChart");
   }finally{ $("#cmpLoad").hidden = true; postHeight(); }
 }
-function downloadCmpCsv(){
-  if(!lastCmp) return;
+/* comparison table: one column per country (and breakdown category), values or observations */
+let cTblTab = "data";
+function cmpRows(withN){
+  if(!lastCmp) return null;
   const {years, keys, per, lb} = lastCmp;
-  const head = [t("year")], body = years.map(y=>[y]);
-  keys.forEach(k=>per.forEach(p=>{
-    head.push(cname(p.x) + (k==="_" ? "" : " · "+(lb[k]||k)));
-    const g = p.groups.get(k)||{};
-    years.forEach((y,i)=>body[i].push(g[y]?g[y][0]:null));
-  }));
-  saveCsv(head, body, "informalidad_comparacion.csv");
+  const head = [t("year")], body = years.map(y=>[y]), low = years.map(()=>[false]), cols = [];
+  keys.forEach(k=>per.forEach(p=>{ if(!p.groups.get(k) || !Object.keys(p.groups.get(k)).length) return;
+    cols.push({k, p, name: cname(p.x) + (k==="_" ? "" : " · "+(lb[k]||k))}); }));
+  cols.forEach(c=>{ head.push(c.name); const g = c.p.groups.get(c.k)||{}, n = c.p.nobs.get(c.k)||{};
+    years.forEach((y,i)=>{ body[i].push(g[y]?g[y][0]:null); low[i].push(isLow(n[y]?n[y][0]:null)); }); });
+  if(withN) cols.forEach(c=>{ head.push(c.name+" · n"); const n = c.p.nobs.get(c.k)||{};
+    years.forEach((y,i)=>body[i].push(n[y]?n[y][0]:null)); });
+  return {head, body, low, cols, metric:lastCmp.s.metric};
+}
+function drawCmpTable(){
+  $$("#cTblTabs .tab").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===cTblTab)));
+  const d = cmpRows(); if(!d){ $("#cTableWrap").innerHTML=""; return; }
+  const sw = c => `<span class="sw" style="background:${countryColor(c.p.x)}"></span>`;
+  const th = `<tr>${d.head.map((h,i)=>`<th>${i===0?h:sw(d.cols[i-1])+h}</th>`).join("")}</tr>`;
+  if(cTblTab==="n"){
+    const rows = lastCmp.years.map(y=>`<tr><td>${y}</td>${d.cols.map(c=>{ const n=(c.p.nobs.get(c.k)||{})[y]; const v=n?n[0]:null;
+      return `<td class="${isLow(v)?"low":""}">${fmtN(v)}</td>`; }).join("")}</tr>`).join("");
+    $("#cTableWrap").innerHTML = `<p class="tblcap">${t("tbl_n_cap")}</p><table class="data"><thead>${th}</thead><tbody>${rows}</tbody></table>`;
+    return;
+  }
+  const anyLow = d.low.some(r=>r.some(Boolean));
+  const cap = [axisTitle(d.metric)].concat(anyLow ? [t("tbl_low")] : []).join(" · ");
+  $("#cTableWrap").innerHTML = `<p class="tblcap">${cap}</p><table class="data"><thead>${th}</thead><tbody>${
+    d.body.map((r,ri)=>`<tr>${r.map((v,i)=>i===0?`<td>${v}</td>`:
+      `<td class="${d.low[ri][i]&&v!=null?"low":""}">${fmt(v,d.metric)}${d.low[ri][i]&&v!=null?"*":""}</td>`).join("")}</tr>`).join("")
+  }</tbody></table>`;
+}
+function downloadCmpCsv(){
+  const d = cmpRows(true); if(!d) return;
+  saveCsv(d.head, d.body, "informalidad_comparacion.csv");
 }
 function cmpYears(){
   const lo = Math.min.apply(null, REG.orden.map(x=>META[x] ? META[x].primer_anio["2"] : 9999));
@@ -1693,6 +1725,7 @@ function applyI18n(){
   $("#attrib").innerHTML = t("attrib").replace("{src}", src);
   $("#cmpCaveat").innerHTML = REG.comparabilidad[lang];
   $("#btnTable").textContent = $("#tableWrap").hidden ? t("show_table") : t("hide_table");
+  $("#cTable").textContent = $("#cTableWrap").hidden ? t("show_table") : t("hide_table");
   $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
   document.title = title + " · Matías Golman";
   buildCountryBar();
@@ -1823,6 +1856,13 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
   $("#btnPng").addEventListener("click", ()=>Plotly.downloadImage("mainChart",
     {format:"png", scale:2, width:1200, height:560, filename:"informalidad_"+iso}));
   $("#cCsv").addEventListener("click", downloadCmpCsv);
+  $("#cTable").addEventListener("click", ()=>{
+    const w = $("#cTableWrap"); w.hidden = !w.hidden; $("#cTblTabs").hidden = w.hidden;
+    $("#cTable").textContent = w.hidden ? t("show_table") : t("hide_table");
+    if(!w.hidden) drawCmpTable();
+    postHeight();
+  });
+  $$("#cTblTabs .tab").forEach(b=>b.addEventListener("click", ()=>{ cTblTab = b.dataset.tab; drawCmpTable(); postHeight(); }));
   ["main","cmp"].forEach(w=>{
     $("#"+w+"ZoomClose").addEventListener("click", ()=>{ closeZoom(w); $("#"+w+"Chart").scrollIntoView({block:"nearest"}); });
     $("#"+w+"ZoomCsv").addEventListener("click", ()=>zoomCsv(w));
