@@ -1,0 +1,25 @@
+{
+  "pais": "Chile",
+  "iso": "cl",
+  "generado": "2026-11-03 17:27:09",
+  "fuente_calculo": "Python (cubo_py/pais_chile.py)",
+  "ultimo_trimestre": {
+    "y": 2026,
+    "q": 3
+  },
+  "inicio_oficial": {
+    "y": 2017,
+    "q": 3
+  },
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2018,
+    "2": 2017
+  },
+  "base_deflactor": {
+    "y": 2026,
+    "q": 1
+  },
+  "sin_ingresos": true,
+  "validacion": "703 de 703 contrastes dentro de tolerancia, diferencia maxima 0.00 pp"
+}

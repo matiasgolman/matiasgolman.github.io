@@ -35,3 +35,9 @@
   since: 2008
   source_en: "the Continuous Permanent Household Survey (EPHC) of Paraguay's INE"
   source_es: "la Encuesta Permanente de Hogares Continua (EPHC) del INE de Paraguay"
+- iso: cl
+  name_en: "Chile"
+  name_es: "Chile"
+  since: 2017
+  source_en: "the National Employment Survey (ENE) of Chile's INE"
+  source_es: "la Encuesta Nacional de Empleo (ENE) del INE de Chile"
