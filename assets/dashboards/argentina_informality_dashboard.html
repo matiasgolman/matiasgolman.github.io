@@ -168,6 +168,15 @@ body.is-embedded .bar{display:none}
 .plotmsg{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);
   text-align:center;padding:2.6rem 1rem;margin:0}
 .plotmsg[hidden]{display:none}
+/* --- one panel enlarged (click on a small multiple) --- */
+.zhint{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:0 1.1rem .6rem}
+.zhint[hidden]{display:none}
+.zoom{margin:.2rem 1.1rem 1rem;border:1px solid var(--rule);background:var(--paper-2)}
+.zoom[hidden]{display:none}
+.zoom__head{display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:baseline;justify-content:space-between;padding:.7rem .9rem .1rem}
+.zoom__title{font-family:var(--serif);font-size:var(--fs-1);font-weight:600;margin:0}
+.zoom__sub{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:.1rem 0 0}
+.zoom__foot{display:flex;flex-wrap:wrap;gap:.5rem .7rem;padding:0 .9rem .9rem}
 .loading{position:absolute;inset:0;display:grid;place-items:center;
   background:color-mix(in srgb,var(--paper-2) 78%,transparent);z-index:5;
   font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft)}
@@ -353,6 +362,15 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       </div>
       <p class="warn" id="warnBox" hidden></p>
       <p class="plotmsg" id="mainMsg" hidden></p>
+      <p class="zhint" id="mainZoomHint" hidden></p>
+      <div class="zoom" id="mainZoom" hidden>
+        <div class="zoom__head"><div><h4 class="zoom__title" id="mainZoomTitle"></h4><p class="zoom__sub" id="mainZoomSub"></p></div>
+          <button class="btn" type="button" id="mainZoomClose" data-t="zoom_close">Volver a todos los paneles</button></div>
+        <div id="mainZoomChart"></div>
+        <div class="zoom__foot">
+          <button class="btn" type="button" id="mainZoomCsv" data-t="zoom_csv">Descargar datos de este panel (CSV)</button>
+          <button class="btn" type="button" id="mainZoomPng" data-t="zoom_png">Descargar este panel (PNG)</button></div>
+      </div>
       <div class="plot"><div id="mainChart"></div>
         <div class="loading" id="mainLoad"><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
       </div>
@@ -437,6 +455,15 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div></div>
       <p class="warn" id="cmpWarn" hidden></p>
       <p class="plotmsg" id="cmpMsg" hidden></p>
+      <p class="zhint" id="cmpZoomHint" hidden></p>
+      <div class="zoom" id="cmpZoom" hidden>
+        <div class="zoom__head"><div><h4 class="zoom__title" id="cmpZoomTitle"></h4><p class="zoom__sub" id="cmpZoomSub"></p></div>
+          <button class="btn" type="button" id="cmpZoomClose" data-t="zoom_close">Volver a todos los paneles</button></div>
+        <div id="cmpZoomChart"></div>
+        <div class="zoom__foot">
+          <button class="btn" type="button" id="cmpZoomCsv" data-t="zoom_csv">Descargar datos de este panel (CSV)</button>
+          <button class="btn" type="button" id="cmpZoomPng" data-t="zoom_png">Descargar este panel (PNG)</button></div>
+      </div>
       <div class="plot"><div id="cmpChart"></div>
         <div class="loading" id="cmpLoad" hidden><div><div class="spin"></div><span data-t="loading">Cargando…</span></div></div>
       </div>
@@ -538,6 +565,15 @@ const T = {
   load_failed:{es:"No se pudieron cargar los datos. Probá cambiar un filtro o recargar la página.",
                en:"The data could not be loaded. Try changing a filter or reloading the page."},
   pick_one:{es:"Elegí al menos una serie.",en:"Select at least one series."},
+  zoom_hint:{es:"Hacé clic en el título de un panel (o sobre una de sus líneas) para verlo más grande y descargar sus datos o la imagen.",
+             en:"Click a panel's title (or one of its lines) to see it larger and download its data or image."},
+  zoom_close:{es:"Volver a todos los paneles",en:"Back to all panels"},
+  zoom_csv:{es:"Descargar datos de este panel (CSV)",en:"Download this panel's data (CSV)"},
+  zoom_png:{es:"Descargar este panel (PNG)",en:"Download this panel (PNG)"},
+  cmp_sources:{es:"Encuestas de hogares de los institutos de estadística de {n} países de América Latina · la fuente de cada país, en su propia vista",
+               en:"Household surveys from the statistics offices of {n} Latin American countries · each country's source is on its own view"},
+  cmp_falta:{es:"Sin datos para este desglose: ",en:"No data for this breakdown: "},
+  cmp_area_only_urban:{es:"Encuesta sólo urbana (aparece únicamente en «Urbana»): ",en:"Urban-only survey (shown only under «Urban»): "},
   pp:{es:"pp",en:"pp"},
   informality_info:{es:"Definición de informalidad",en:"Definition of informal employment"},
   data_availability_notes:{es:"Disponibilidad de datos",en:"Data availability"},
@@ -580,6 +616,7 @@ const CMP_IDX = ["idx_media_inf","idx_media_for","idx_mediana_inf","idx_mediana_
 const PARAMS_BASE = {
   all:{es:"Sin desagregar",en:"No breakdown"},
   genero:{es:"Género",en:"Gender"}, region:null,
+  area:{es:"Área (urbana / rural)",en:"Area (urban / rural)"},
   edad_tramos:{es:"Grupo de edad",en:"Age group"},
   categoria_empleo:{es:"Categoría ocupacional",en:"Occupational category"},
   educr:{es:"Educación",en:"Education"},
@@ -590,7 +627,7 @@ const PARAMS_BASE = {
   jefe_hogar:{es:"Posición en el hogar",en:"Position in household"},
   provincia:null
 };
-const CMP_PARAMS = ["all","genero","edad_tramos","categoria_empleo","educr","miembros_hogar","rama_actividad","jefe_hogar","tam","quintil"];
+const CMP_PARAMS = ["all","genero","area","edad_tramos","categoria_empleo","educr","miembros_hogar","rama_actividad","jefe_hogar","tam","quintil"];
 const CMP_WARN_PARAMS = ["tam","quintil"];
 const CHARTS = {line:{es:"Líneas",en:"Line"},bar:{es:"Barras",en:"Bar"},small:{es:"Paneles",en:"Small multiples"}};
 
@@ -617,13 +654,14 @@ const L = {
         8:"Public administration and defence",9:"Education",10:"Health services",
         11:"Other social and community services",12:"Domestic service in households",99:"All"}},
   /* fallbacks; every country overrides these in paises.json */
+  u:{es:{1:"Urbana",2:"Rural",99:"Todas"},en:{1:"Urban",2:"Rural",99:"All"}},
   r:{es:{99:"Todas"},en:{99:"All"}}, p:{es:{99:"Todas"},en:{99:"All"}},
   s:{es:{1:"Hasta 5 personas",2:"Mediano",3:"Grande",99:"Todos"},en:{1:"Up to 5 people",2:"Medium",3:"Large",99:"All"}}
 };
 
-const PARAM_COL = {genero:"g",region:"r",edad_tramos:"e",categoria_empleo:"c",
+const PARAM_COL = {genero:"g",region:"r",area:"u",edad_tramos:"e",categoria_empleo:"c",
   educr:"d",miembros_hogar:"m",rama_actividad:"a",tam:"s",quintil:"q",jefe_hogar:"j",provincia:"p"};
-const PARAM_SHARD = {genero:"base",region:"base",edad_tramos:"base",categoria_empleo:"base",
+const PARAM_SHARD = {genero:"base",region:"base",area:"area",edad_tramos:"base",categoria_empleo:"base",
   educr:"educr",miembros_hogar:"miembros_hogar",rama_actividad:"rama_actividad",tam:"tam",
   quintil:"quintil",jefe_hogar:"jefe_hogar",provincia:"provincia"};
 const METRIC_COLS = {tasa_informalidad:["t"],media_horas:["h","f"],media_ingreso:["i","n"],mediana_ingreso:["k","l"]};
@@ -955,7 +993,7 @@ async function render(){
     if(over && t("overlay_note")) msgs.push(t("overlay_note"));
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
-      Plotly.purge("mainChart"); lastForm = "";
+      Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null);
       showMsg(brkCol ? t("pick_one") : t("no_data"));
       $("#warnBox").hidden = true; $("#mainLoad").hidden = true; lastRows=null; return;
     }
@@ -1047,8 +1085,8 @@ async function render(){
             name:ovName, showlegend:false,
             hovertemplate:`<b>${lb?(lb[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         const row = Math.floor(ki/ncol), col = ki%ncol;
-        anns.push({text:(lb?(lb[k]||k):""), xref:"x"+ax+" domain", yref:"y"+ax+" domain",
-          x:0, y:1.05, showarrow:false, xanchor:"left", yanchor:"bottom",
+        anns.push({text:(lb?(lb[k]||k):"")+ZOOM_MARK, xref:"x"+ax+" domain", yref:"y"+ax+" domain",
+          x:0, y:1.05, showarrow:false, xanchor:"left", yanchor:"bottom", captureevents:true,
           font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
         lay["xaxis"+ax] = Object.assign({}, baseLayout().xaxis, tick, {showticklabels: row===nrow-1 || ki>=panels-ncol});
         lay["yaxis"+ax] = Object.assign({}, baseLayout().yaxis, {range, showticklabels: col===0});
@@ -1059,7 +1097,9 @@ async function render(){
         showlegend: dual, legend:{orientation:"h",yanchor:"top",y:-0.08,x:0,
           font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"}
       }, lay)), "small|"+nrow+"x"+ncol+"|"+traces.length);
+      setPanels("main", keys.map(k=>lb?(lb[k]||k):""), buildTitle(s), subTitle(s), axisTitle(s.metric));
     }
+    if(!useSmall) setPanels("main", null);
     if($("#tableWrap").hidden===false) drawTable();
   }catch(err){
     console.error(err);
@@ -1069,6 +1109,75 @@ async function render(){
     $("#mainLoad").hidden = true;
     postHeight();
   }
+}
+
+/* ---------- one panel, enlarged ----------
+   In small multiples every panel title (and every line) is clickable: the panel
+   opens larger above the grid, with its own CSV and PNG. The traces are copied
+   from the figure on screen, so what is enlarged is exactly what was drawn. */
+const ZOOM_MARK = "  \u2197";
+const PANELS = {main:null, cmp:null};
+const ZOOM_OPEN = {main:null, cmp:null};
+function setPanels(w, labels, title, sub, yTitle){
+  PANELS[w] = labels ? {labels, title, sub, yTitle} : null;
+  $("#"+w+"ZoomHint").hidden = !labels;
+  $("#"+w+"ZoomHint").textContent = t("zoom_hint");
+  const div = $("#"+w+"Chart");
+  if(labels && div.on){                                        // re-bound on every draw: Plotly.purge drops the listeners
+    if(div.removeAllListeners){ div.removeAllListeners("plotly_clickannotation"); div.removeAllListeners("plotly_click"); }
+    div.on("plotly_clickannotation", ev=>openZoom(w, ev.index));
+    div.on("plotly_click", ev=>{ const pt = ev && ev.points && ev.points[0]; if(!pt) return;
+      const ax = (pt.data.xaxis||"x").slice(1); openZoom(w, ax ? (+ax)-1 : 0); });
+  }
+  if(!labels) closeZoom(w);
+  else if(ZOOM_OPEN[w]!=null){                                 // re-render with the zoom open: follow the same panel
+    const i = labels.indexOf(ZOOM_OPEN[w].label);
+    i>=0 ? openZoom(w, i, true) : closeZoom(w);
+  }
+}
+function closeZoom(w){
+  ZOOM_OPEN[w] = null;
+  const box = $("#"+w+"Zoom"); if(!box || box.hidden) return;
+  box.hidden = true; Plotly.purge(w+"ZoomChart"); postHeight();
+}
+function openZoom(w, i, quiet){
+  const P = PANELS[w]; if(!P || i<0 || i>=P.labels.length) return;
+  const div = $("#"+w+"Chart"), ax = i===0 ? "x" : "x"+(i+1);
+  const src = (div.data||[]).filter(tr=>(tr.xaxis||"x")===ax);
+  if(!src.length) return;
+  const traces = src.map(tr=>{ const o = {type:"scatter", mode:tr.mode, x:tr.x.slice(), y:tr.y.slice(), name:tr.name,
+    line:Object.assign({}, tr.line, {width:2.6}), connectgaps:false, showlegend:true,
+    hovertemplate:`<b>${tr.name||P.labels[i]}</b><br>%{x}: %{y:.1f}<extra></extra>`};
+    if(tr.marker && /markers/.test(tr.mode||"")) o.marker = {color:tr.marker.color, size:7};
+    return o; });
+  const names = new Set(traces.map(tr=>tr.name));
+  const years = traces[0].x;
+  $("#"+w+"ZoomTitle").textContent = P.title + " · " + P.labels[i];
+  $("#"+w+"ZoomSub").textContent = P.sub;
+  const box = $("#"+w+"Zoom"); box.hidden = false;
+  Plotly.react(w+"ZoomChart", traces, baseLayout({
+    height: 440,
+    xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
+    yaxis: Object.assign(baseLayout().yaxis, {title:{text:P.yTitle,font:{size:11,color:css("--ink-soft")},standoff:12}}),
+    showlegend: names.size>1, legend:{orientation:"h", yanchor:"bottom", y:1.02, xanchor:"left", x:0,
+      font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"},
+    hovermode:"x unified"
+  }), PLOT_CFG);
+  ZOOM_OPEN[w] = {label:P.labels[i], traces, years};
+  if(!quiet) box.scrollIntoView({behavior:"smooth", block:"start"});
+  postHeight();
+}
+const slug = v => String(v).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"");
+function zoomFile(w){ const z = ZOOM_OPEN[w]; return "informalidad_"+(w==="cmp"?"comparacion":iso)+"_"+slug(z.label); }
+function zoomCsv(w){
+  const z = ZOOM_OPEN[w]; if(!z) return;
+  const head = [t("year")].concat(z.traces.map(tr=>tr.name||z.label));
+  const body = z.years.map((y,yi)=>[y].concat(z.traces.map(tr=>tr.y[yi])));
+  saveCsv(head, body, zoomFile(w)+".csv");
+}
+function zoomPng(w){
+  if(!ZOOM_OPEN[w]) return;
+  Plotly.downloadImage(w+"ZoomChart", {format:"png", filename:zoomFile(w), width:1100, height:560, scale:2});
 }
 
 /* ---------- table / CSV ---------- */
@@ -1274,8 +1383,12 @@ async function renderCmp(){
   $("#cmpLoad").hidden = false;
   try{
     const per = await Promise.all(REG.orden.map(async x=>{
-      const r = await rowsForSelection(s, 2, x);
+      const soloUrb = s.param==="area" && C(x).sin_area;
+      let r;
+      try{ r = await rowsForSelection(soloUrb ? Object.assign({}, s, {param:"all"}) : s, 2, x); }
+      catch(e){ console.error(e); return {x, groups:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, falta:true}; }
       const p = pivot(r.sh, r.idx, r.brkCol, r.cols, isIdx(s.metric) ? Math.min(s.from, IDX_BASE) : s.from, s.to);
+      if(soloUrb){ const g = p.groups.get("_"); p.groups = new Map(g ? [[1, g]] : []); r.brkCol = "u"; }
       let sinBase = false;
       if(isIdx(s.metric)) p.groups.forEach((g,k)=>{
         const b = g[IDX_BASE] ? g[IDX_BASE][0] : null;
@@ -1283,21 +1396,23 @@ async function renderCmp(){
         const o = {}; Object.keys(g).forEach(y=>{ const v = g[y][0]; o[y] = [v==null ? null : +(100*v/b).toFixed(1)]; });
         p.groups.set(k, o);
       });
-      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol, sinBase};
+      return {x, groups:p.groups, low:p.lowSample, brkCol:r.brkCol, sinBase, soloUrb};
     }));
-    const brkCol = per[0].brkCol;
+    const brkCol = (per.find(p=>!p.falta)||per[0]).brkCol;
     const years = []; for(let y=s.from;y<=s.to;y++) years.push(y);
     const keysSet = new Set(); per.forEach(p=>p.groups.forEach((_,k)=>keysSet.add(k)));
     const keys = Array.from(keysSet).sort((a,b)=>a-b);
     const msgs = [];
     if(per.some(p=>p.low)) msgs.push(t("low_sample_warning"));
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
+    if(per.some(p=>p.falta)) msgs.push(t("cmp_falta") + per.filter(p=>p.falta).map(p=>cname(p.x)).join(", ") + ".");
+    if(per.some(p=>p.soloUrb)) msgs.push(t("cmp_area_only_urban") + per.filter(p=>p.soloUrb).map(p=>cname(p.x)).join(", ") + ".");
     if(isIdx(s.metric) && per.some(p=>p.sinBase)) msgs.push(t("idx_sin_base") + per.filter(p=>p.sinBase).map(p=>cname(p.x)).join(", ") + ".");
     $("#cmpWarn").hidden = !msgs.length; $("#cmpWarn").textContent = msgs.join("  ");
     $("#cmpTitle").textContent = buildTitle(s, Object.assign({}, METRICS,
       Object.fromEntries(["horas_inf","horas_for"].concat(CMP_IDX).map(k=>[k,{es:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k),en:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k)}]))));
     $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
-    if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
+    if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; setPanels("cmp", null); showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
     showMsg(null,"#cmpMsg","#cmpChart");
     const valsAt = (p,k) => { const g = p.groups.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
     const lb = brkCol ? L[brkCol][lang] : null;   // harmonized dims: shared labels
@@ -1330,8 +1445,8 @@ async function renderCmp(){
           line:{color:countryColor(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
           hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
-        anns.push({text:(lb[k]||k), xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
-          xanchor:"left", yanchor:"bottom", font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
+        anns.push({text:(lb[k]||k)+ZOOM_MARK, xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
+          xanchor:"left", yanchor:"bottom", captureevents:true, font:{size:11,color:css("--ink"),family:'"Plex Sans",system-ui,sans-serif'}});
         lay["xaxis"+ax] = Object.assign({}, baseLayout().xaxis, tick, {showticklabels: row===nrow-1 || ki>=panels-ncol});
         lay["yaxis"+ax] = Object.assign({}, baseLayout().yaxis, {range, showticklabels: col===0});
       });
@@ -1340,7 +1455,9 @@ async function renderCmp(){
         height: Math.max(290, nrow*168+112), annotations:anns, margin:{t:44,r:14,b:62,l:54},
         showlegend:true, legend:{orientation:"h",yanchor:"top",y:-0.08,x:0, font:{size:11,color:css("--ink-soft")}, itemsizing:"constant"}
       }, lay)), "csmall|"+nrow+"x"+ncol+"|"+traces.length, "c");
+      setPanels("cmp", keys.map(k=>lb[k]||k), $("#cmpTitle").textContent, $("#cmpSub").textContent, axisTitle(s.metric));
     }
+    if(!brkCol) setPanels("cmp", null);
   }catch(err){
     console.error(err); Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("load_failed"),"#cmpMsg","#cmpChart");
   }finally{ $("#cmpLoad").hidden = true; postHeight(); }
@@ -1374,7 +1491,8 @@ function buildControls(keepValues){
   const P = PARAMS();
   const dictEntries = (d) => Object.keys(d).map(k=>[k, d[k][lang]]);
   fillSelect($("#fMetric"), dictEntries(METRICS), keep?keep.metric:"tasa_informalidad");
-  fillSelect($("#fParam"),  dictEntries(P), keep?keep.param:"all");
+  const Pp = Object.assign({}, P); if(!C().area) delete Pp.area;   // only countries whose cube has area.csv (paises.json: "area": true); Argentina's EPH is urban only
+  fillSelect($("#fParam"),  dictEntries(Pp), keep && Pp[keep.param] ? keep.param : "all");
   fillSelect($("#fType"),   dictEntries(CHARTS), keep?keep.type:"line");
   fillSelect($("#fGender"), opts("g"), keep?keep.g:99);
   fillSelect($("#fRegion"), opts("r"), keep && labs("r")[keep.r]!=null ? keep.r : 99);
@@ -1399,7 +1517,9 @@ function buildCountryBar(){
   $("#ctrySeg [data-mode]").addEventListener("click", ()=>setMode("comp"));
 }
 function sourceLine(){
-  if(mode==="comp") return REG.orden.map(x=>cname(x)+": "+t("subtitle",x)).join(" · ");
+  /* comparison: one generic line instead of every country's source (unreadable with many countries;
+     the sources stay on each country's view and in the notes) */
+  if(mode==="comp") return (T.cmp_sources[lang]).replace("{n}", REG.orden.length);
   const md = META[iso];
   return t("subtitle") + (md ? " · " + md.primer_anio["2"] + "–" + md.ultimo_trimestre.y : "");
 }
@@ -1545,6 +1665,11 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
   $("#btnPng").addEventListener("click", ()=>Plotly.downloadImage("mainChart",
     {format:"png", scale:2, width:1200, height:560, filename:"informalidad_"+iso}));
   $("#cCsv").addEventListener("click", downloadCmpCsv);
+  ["main","cmp"].forEach(w=>{
+    $("#"+w+"ZoomClose").addEventListener("click", ()=>{ closeZoom(w); $("#"+w+"Chart").scrollIntoView({block:"nearest"}); });
+    $("#"+w+"ZoomCsv").addEventListener("click", ()=>zoomCsv(w));
+    $("#"+w+"ZoomPng").addEventListener("click", ()=>zoomPng(w));
+  });
   $("#cPng").addEventListener("click", ()=>Plotly.downloadImage("cmpChart",
     {format:"png", scale:2, width:1200, height:560, filename:"informalidad_comparacion"}));
   $$("[data-lang]").forEach(b=>b.addEventListener("click", ()=>{ lang=b.dataset.lang; relang(); }));

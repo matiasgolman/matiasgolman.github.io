@@ -182,7 +182,8 @@
           "es": "la Encuesta Permanente de Hogares del INDEC",
           "en": "INDEC's Permanent Household Survey"
         }
-      }
+      },
+      "sin_area": true
     },
     "cr": {
       "nombre": {
@@ -476,7 +477,8 @@
           "es": "la Encuesta Nacional de Ocupación y Empleo del INEGI",
           "en": "INEGI's National Occupation and Employment Survey"
         }
-      }
+      },
+      "area": true
     },
     "br": {
       "nombre": {
@@ -655,7 +657,8 @@
           "es": "la Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua) del IBGE",
           "en": "IBGE's Continuous National Household Sample Survey (PNAD Contínua)"
         }
-      }
+      },
+      "area": true
     },
     "ec": {
       "nombre": {
@@ -829,7 +832,8 @@
           "es": "la Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU) del INEC",
           "en": "INEC's National Survey of Employment, Unemployment and Underemployment (ENEMDU)"
         }
-      }
+      },
+      "area": true
     },
     "py": {
       "nombre": {
@@ -989,7 +993,8 @@
           "es": "la Encuesta Permanente de Hogares Continua (EPHC) del INE de Paraguay",
           "en": "the Continuous Permanent Household Survey (EPHC) of Paraguay's INE"
         }
-      }
+      },
+      "area": true
     }
   },
   "comparabilidad": {
