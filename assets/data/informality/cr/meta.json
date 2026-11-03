@@ -1,12 +1,24 @@
 {
   "pais": "Costa Rica",
   "iso": "cr",
-  "generado": "2026-11-02 20:18:48",
-  "fuente_calculo": "Stata (mapa_informalidad.do)",
-  "ultimo_trimestre": {"y": 2026, "q": 2},
-  "inicio_oficial": {"y": 2010, "q": 3},
+  "generado": "2026-11-03 13:04:10",
+  "fuente_calculo": "Python (cubo_py/pais_desde_stata.py, sobre el cross_paneles.dta de Stata)",
+  "ultimo_trimestre": {
+    "y": 2026,
+    "q": 2
+  },
+  "inicio_oficial": {
+    "y": 2010,
+    "q": 3
+  },
   "ultimo_anio": 2025,
-  "primer_anio": {"1": 2011, "2": 2010},
-  "base_deflactor": {"y": 2025, "q": 3},
+  "primer_anio": {
+    "1": 2011,
+    "2": 2010
+  },
+  "base_deflactor": {
+    "y": 2025,
+    "q": 3
+  },
   "validacion": "10 de 10 contrastes dentro de tolerancia, diferencia maxima 0.05 pp"
 }

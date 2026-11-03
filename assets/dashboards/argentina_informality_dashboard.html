@@ -591,14 +591,17 @@ const T = {
   nflag_btn:{es:"Muestra chica",en:"Small sample"},
   nflag_intro:{es:"Estas estimaciones se calculan con menos de 30 observaciones (sin ponderar) y son poco precisas; las de menos de 10 no se muestran.",
     en:"These estimates rest on fewer than 30 (unweighted) observations and are imprecise; those with fewer than 10 are not shown."},
-  nflag_sub:{es:"En horas e ingresos, la cuenta es la de todos los ocupados de la celda: la base de informales o formales con dato es menor.",
-    en:"For hours and income the count is all employed people in the cell: the base of informal or formal workers with data is smaller."},
+  count_axis:{es:"Ocupados (miles)",en:"Employed (thousands)"},
+  count_note:{es:"Ocupados estimados con el ponderador de cada encuesta (promedio de los trimestres del año). Los saltos de nivel pueden venir de cambios en las proyecciones de población del instituto, aunque la tasa no se mueva.",
+    en:"Employed people estimated with each survey's weights (average of the year's quarters). Level jumps can come from changes in the institute's population projections even when the rate does not move."},
+  count_note_urban:{es:"La EPH cubre sólo los 31 aglomerados urbanos: no es el total del país.",
+    en:"The EPH covers only the 31 urban agglomerations: this is not the national total."},
   nflag_all:{es:"toda la serie",en:"whole series"},
   tab_data:{es:"Datos",en:"Data"},
   tab_n:{es:"Observaciones",en:"Observations"},
   tbl_low:{es:"* menos de 30 observaciones: estimación poco precisa.",en:"* fewer than 30 observations: imprecise estimate."},
-  tbl_n_cap:{es:"Observaciones sin ponderar con que se calculó cada dato (todos los ocupados de la celda). En ámbar, menos de 30; «–», menos de 10 (no se muestra).",
-    en:"Unweighted observations behind each estimate (all employed people in the cell). In amber, fewer than 30; “–”, fewer than 10 (not shown)."},
+  tbl_n_cap:{es:"Observaciones sin ponderar con que se calculó cada dato (en horas e ingresos, las de informales o formales con dato). En ámbar, menos de 30; con menos de 10 el dato no se muestra.",
+    en:"Unweighted observations behind each estimate (for hours and income, the informal or formal workers reporting them). In amber, fewer than 30; with fewer than 10 the estimate is not shown."},
   prices_of:{es:"a precios de ",en:"in prices of "},
   low_sample_warning:{
     es:"Algunas estimaciones de este gráfico se apoyan en menos de 30 observaciones y son imprecisas.",
@@ -649,7 +652,8 @@ const METRICS = {
   tasa_informalidad:{es:"Tasa de informalidad",en:"Informality rate"},
   media_horas:{es:"Horas trabajadas (promedio)",en:"Hours worked (mean)"},
   media_ingreso:{es:"Ingreso (promedio)",en:"Income (mean)"},
-  mediana_ingreso:{es:"Ingreso (mediana)",en:"Income (median)"}
+  mediana_ingreso:{es:"Ingreso (mediana)",en:"Income (median)"},
+  ocupados:{es:"Cantidad de ocupados (miles)",en:"Number of employed (thousands)"}
 };
 const CMP_METRICS = {tasa_informalidad:["t"], horas_inf:["h"], horas_for:["f"],
   idx_media_inf:["i"], idx_media_for:["n"], idx_mediana_inf:["k"], idx_mediana_for:["l"]};
@@ -709,7 +713,14 @@ const PARAM_COL = {genero:"g",region:"r",area:"u",edad_tramos:"e",categoria_empl
 const PARAM_SHARD = {genero:"base",region:"base",area:"area",edad_tramos:"base",categoria_empleo:"base",
   educr:"educr",miembros_hogar:"miembros_hogar",rama_actividad:"rama_actividad",tam:"tam",
   quintil:"quintil",jefe_hogar:"jefe_hogar",provincia:"provincia"};
-const METRIC_COLS = {tasa_informalidad:["t"],media_horas:["h","f"],media_ingreso:["i","n"],mediana_ingreso:["k","l"]};
+const METRIC_COLS = {tasa_informalidad:["t"],media_horas:["h","f"],media_ingreso:["i","n"],mediana_ingreso:["k","l"],ocupados:["wi","wf"]};
+/* The observations behind each column (2026-11-03): the rate rests on every employed person
+   in the cell; hours and income on the informal or formal workers who report them; the
+   number of workers on the informal or formal observations. Older cubes only have nobs. */
+const N_COL = {t:"nobs", h:"nhi", f:"nhf", i:"nyi", n:"nyf", k:"nyi", l:"nyf", wi:"ni", wf:"nf"};
+const N_MIN = 10;
+/* values shown in another unit than the cube's */
+const COL_SCALE = {wi:1/1000, wf:1/1000};
 
 /* ---------- state ---------- */
 let lang = (document.documentElement.lang === "en") ? "en" : "es";
@@ -798,7 +809,7 @@ function select(sh, fixed){
 }
 const fmt = (v,metric) => v==null ? "–"
   : metric==="tasa_informalidad" ? v.toFixed(1)+"%"
-  : (metric==="media_horas" || metric==="horas_inf" || metric==="horas_for") ? v.toFixed(1)
+  : (metric==="media_horas" || metric==="horas_inf" || metric==="horas_for" || metric==="ocupados") ? v.toLocaleString(lang==="es"?"es-AR":"en-GB",{minimumFractionDigits:1,maximumFractionDigits:1})
   : Math.round(v).toLocaleString(lang==="es"?"es-AR":"en-GB");
 
 function reactOrRedraw(div, traces, layout, sig, which){
@@ -916,16 +927,22 @@ async function rowsForSelection(s, m, x){
 /* N_LOW: estimates on fewer observations are flagged (the cube drops cells under 10). */
 const N_LOW = 30;
 function pivot(sh, idx, brkCol, cols, from, to){
+  /* nobs.get(key)[y] is an array parallel to cols: the observations behind each value.
+     A value resting on fewer than N_MIN observations is not shown (the cube already drops
+     cells with fewer than N_MIN people; this applies the same rule to each measure). */
   const c = sh.cols, out = new Map(), nobs = new Map(); let lowSample = false;
+  const nc = cols.map(k=> c[N_COL[k]] ? N_COL[k] : "nobs");
   for(const i of idx){
     const y = c.y[i];
     if(y<from || y>to) continue;
     const key = brkCol==null ? "_" : c[brkCol][i];
     if(!out.has(key)){ out.set(key,{}); nobs.set(key,{}); }
-    out.get(key)[y] = cols.map(k=>c[k][i]);
-    const n = c.nobs ? c.nobs[i] : null;
-    nobs.get(key)[y] = n;
-    if(c.o[i]===1 || (n!=null && n<N_LOW)) lowSample = true;
+    const ns = nc.map(k=> c[k] ? c[k][i] : null);
+    out.get(key)[y] = cols.map((k,j)=>{ const v = c[k] ? c[k][i] : null;
+      if(v==null || (ns[j]!=null && ns[j]<N_MIN)) return null;
+      return COL_SCALE[k] ? v*COL_SCALE[k] : v; });
+    nobs.get(key)[y] = ns;
+    if(ns.some(isLow)) lowSample = true;
   }
   return {groups:out, lowSample, nobs};
 }
@@ -935,10 +952,15 @@ const fmtN = n => n==null ? "–" : Math.round(n).toLocaleString(lang==="es"?"es
 function nHover(nArr){ return nArr.map(n=> n==null ? "" : " · n = "+fmtN(n)+(isLow(n)?" ⚠":"")); }
 function lowMarker(nArr, color){ return {color, size:nArr.map(n=>isLow(n)?7:0), symbol:"circle-open", line:{width:1.6, color}}; }
 /* entries: [{label, years:[y...], n:{y:n}}] -> the call-out in the corner of the chart */
+function nEntries(label, years, nmap, ncols, sub){
+  /* one entry per value column: {label, years, n:{y:n}} */
+  return Array.from({length:ncols}, (_,j)=>({label: label + (ncols===2 ? " · "+(j===0?t("informal"):t("formal")) : ""),
+    years, n: Object.fromEntries(Object.entries(nmap||{}).map(([y,a])=>[y, a ? a[j] : null]))}));
+}
 function setNflag(w, entries, allYears){
   const btn = $("#"+w+"Nflag"), box = $("#"+w+"Nbox");
   const rows = entries.map(e=>{
-    const ys = e.years.filter(y=>isLow(e.n[y]));
+    const ys = e.years.filter(y=>isLow(e.n[y]) && e.n[y]>=N_MIN);
     if(!ys.length) return null;
     const have = e.years.filter(y=>e.n[y]!=null);
     const all = ys.length===have.length && have.length>1;
@@ -948,7 +970,7 @@ function setNflag(w, entries, allYears){
   btn.hidden = !rows.length;
   if(!rows.length){ box.hidden = true; btn.setAttribute("aria-expanded","false"); box.innerHTML=""; return; }
   btn.innerHTML = `<span aria-hidden="true">⚠</span><span>${t("nflag_btn")} · ${rows.length}</span>`;
-  box.innerHTML = `<p>${t("nflag_intro")}</p><ul>${rows.join("")}</ul>${w==="main"&&lastRows&&lastRows.cols.length===2?`<p style="margin-top:.4rem">${t("nflag_sub")}</p>`:""}`;
+  box.innerHTML = `<p>${t("nflag_intro")}</p><ul>${rows.join("")}</ul>`;
   box.hidden = btn.getAttribute("aria-expanded")!=="true";
 }
 const slots = {};
@@ -1002,6 +1024,7 @@ function axisTitle(metric){
   if(metric==="tasa_informalidad") return t("rate_axis");
   if(isIdx(metric)) return t("index_axis");
   if(metric==="media_horas"||metric==="horas_inf"||metric==="horas_for") return t("hours_axis");
+  if(metric==="ocupados") return t("count_axis");
   const bl = baseLab();
   return t("income_axis").replace(")", bl ? (lang==="es"?" de ":" of ")+bl+")" : ")");
 }
@@ -1064,6 +1087,7 @@ async function render(){
 
     const msgs = [];
     if(over && t("overlay_note")) msgs.push(t("overlay_note"));
+    if(s.metric==="ocupados"){ msgs.push(t("count_note")); if(C().sin_area) msgs.push(t("count_note_urban")); }
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
       Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null); lastRows=null; setNflag("main", []);
@@ -1088,9 +1112,9 @@ async function render(){
       if(!g || !Object.keys(g).length) return null;
       return years.map(y=> g[y] ? g[y][0] : null); };
     const ovName = t("overlay_name");
-    const nAt = k => { const g = nobs.get(k)||{}; return years.map(y=> g[y]!=null ? g[y] : null); };
+    const nAt = (k,ci) => { const g = nobs.get(k)||{}; return years.map(y=> g[y] ? g[y][ci||0] : null); };
     lastRows = {s, keys, years, cols, labs:lb, groups, over, ovName, nobs};
-    setNflag("main", keys.map(k=>({label: brkCol ? (lb[k]||k) : METRICS[s.metric][lang], years, n: nobs.get(k)||{}})));
+    setNflag("main", [].concat(...keys.map(k=>nEntries(brkCol ? (lb[k]||k) : METRICS[s.metric][lang], years, nobs.get(k), cols.length))));
 
     if(!useSmall){
       const traces = [];
@@ -1102,7 +1126,7 @@ async function render(){
           const nm = (brkCol ? (lb[k]||k) : "") +
                      (dual ? (brkCol?" · ":"") + (ci===0?t("informal"):t("formal")) : "") +
                      (over && !dual && !brkCol ? t("meas_2").toLowerCase() : "");
-          const nn = nAt(k);
+          const nn = nAt(k, ci);
           traces.push(s.type==="bar" ? {
             type:"bar", x:years, y:vals, name:nm, marker:{color, line:{width:0}}, customdata:nHover(nn),
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}%{customdata}<extra></extra>`
@@ -1149,7 +1173,7 @@ async function render(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         seriesAt(k).forEach((vals,ci)=>{
-          const nn = nAt(k), cl = dual ? colors[ci] : colors[0];
+          const nn = nAt(k, ci), cl = dual ? colors[ci] : colors[0];
           traces.push({type:"scatter",mode:"lines+markers",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
             line:{color: cl, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, cl), connectgaps:false,
             name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
@@ -1271,14 +1295,15 @@ function tableRows(withN){
     else head.push(base);
     if(hasOv(k)) head.push(base+" · "+ovName);
   });
-  if(withN) keys.forEach(k=> head.push((lb ? (lb[k]||k) : METRICS[s.metric][lang])+" · n"));
+  const sfx = ci => cols.length===2 ? " · "+(ci===0?t("informal"):t("formal")) : "";
+  if(withN) keys.forEach(k=> cols.forEach((_,ci)=> head.push((lb ? (lb[k]||k) : METRICS[s.metric][lang])+sfx(ci)+" · n")));
   const low = [];
   const body = years.map(y=>{
     const row = [y], lw = [false];
-    keys.forEach(k=>{ const g = groups.get(k)||{}, n = (nobs.get(k)||{})[y];
-      cols.forEach((_,ci)=>{ row.push(g[y]?g[y][ci]:null); lw.push(isLow(n)); });
+    keys.forEach(k=>{ const g = groups.get(k)||{}, n = (nobs.get(k)||{})[y] || [];
+      cols.forEach((_,ci)=>{ row.push(g[y]?g[y][ci]:null); lw.push(isLow(n[ci])); });
       if(hasOv(k)){ const o = over.get(k); row.push(o[y]?o[y][0]:null); lw.push(false); } });
-    if(withN) keys.forEach(k=> row.push((nobs.get(k)||{})[y] ?? null));
+    if(withN) keys.forEach(k=> cols.forEach((_,ci)=> row.push(((nobs.get(k)||{})[y]||[])[ci] ?? null)));
     low.push(lw);
     return row;
   });
@@ -1287,10 +1312,11 @@ function tableRows(withN){
 /* Observations tab: one column per series (informal and formal share the cell count). */
 function nRows(){
   if(!lastRows) return null;
-  const {s,keys,years,labs:lb,nobs} = lastRows;
-  const head = [t("year")].concat(keys.map(k=> lb ? (lb[k]||k) : METRICS[s.metric][lang]));
-  const body = years.map(y=>[y].concat(keys.map(k=>(nobs.get(k)||{})[y] ?? null)));
-  return {head, body, keys};
+  const {s,keys,years,cols,labs:lb,nobs} = lastRows;
+  const sfx = ci => cols.length===2 ? " · "+(ci===0?t("informal"):t("formal")) : "";
+  const head = [t("year")]; keys.forEach(k=> cols.forEach((_,ci)=> head.push((lb ? (lb[k]||k) : METRICS[s.metric][lang])+sfx(ci))));
+  const body = years.map(y=>{ const r=[y]; keys.forEach(k=> cols.forEach((_,ci)=> r.push(((nobs.get(k)||{})[y]||[])[ci] ?? null))); return r; });
+  return {head, body, keys, per: cols.length};
 }
 function drawTable(){
   $$("#tblTabs .tab").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===tblTab)));
@@ -1298,7 +1324,7 @@ function drawTable(){
   if(tblTab==="n"){
     const d = nRows(); if(!d){ $("#tableWrap").innerHTML=""; return; }
     $("#tableWrap").innerHTML = `<p class="tblcap">${t("tbl_n_cap")}</p><table class="data"><thead><tr>${
-      d.head.map((h,i)=>`<th>${i===0?h:`<span class="sw" style="background:${colors[(i-1)%8]}"></span>`+h}</th>`).join("")}</tr></thead><tbody>${
+      d.head.map((h,i)=>`<th>${i===0?h:`<span class="sw" style="background:${colors[Math.floor((i-1)/d.per)%8]}"></span>`+h}</th>`).join("")}</tr></thead><tbody>${
       d.body.map(r=>`<tr>${r.map((v,i)=>i===0?`<td>${v}</td>`:`<td class="${isLow(v)?"low":""}">${fmtN(v)}</td>`).join("")}</tr>`).join("")
     }</tbody></table>`;
     return;
@@ -1526,8 +1552,8 @@ async function renderCmp(){
     const valsAt = (p,k) => { const g = p.groups.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
     const lb = brkCol ? L[brkCol][lang] : null;   // harmonized dims: shared labels
     lastCmp = {s, years, keys, per, lb};
-    const nAtC = (p,k) => { const g = p.nobs.get(k)||{}; return years.map(y=> g[y]!=null ? g[y] : null); };
-    setNflag("cmp", [].concat(...keys.map(k=>per.map(p=>({label: cname(p.x)+(k==="_"?"":" · "+(lb[k]||k)), years, n:p.nobs.get(k)||{}})))));
+    const nAtC = (p,k) => { const g = p.nobs.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
+    setNflag("cmp", [].concat(...keys.map(k=>per.map(p=>nEntries(cname(p.x)+(k==="_"?"":" · "+(lb[k]||k)), years, p.nobs.get(k), 1)[0]))));
     if(!brkCol){
       const traces = per.map(p=>({type:"scatter", mode:"lines+markers", x:years, y:valsAt(p,"_"), name:cname(p.x),
         line:{color:countryColor(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
