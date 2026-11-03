@@ -284,8 +284,13 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
 .ctry{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;margin:0 0 1.4rem}
 .ctry__lab{font-family:var(--sans);font-size:.7rem;font-weight:500;color:var(--ink-soft);
   text-transform:uppercase;letter-spacing:.055em}
-.ctry .seg button{padding:.38rem .9rem}
-.ctry .seg button[data-mode="comp"]{font-style:italic}
+.ctry .seg button{padding:.6rem 1.25rem;font-size:1rem}
+/* the comparison sits on its own line, centred (Matias, 2026-11-03) */
+.ctry__cmp{flex-basis:100%;display:flex;justify-content:center;margin-top:.4rem}
+.ctry__cmp button{font-family:var(--sans);font-size:1rem;font-style:italic;color:var(--ink-soft);background:var(--paper-2);
+  border:1px solid var(--rule);padding:.6rem 2.4rem;cursor:pointer}
+.ctry__cmp button:hover{color:var(--green);border-color:var(--green)}
+.ctry__cmp button[aria-pressed="true"]{background:var(--green);color:var(--paper);border-color:var(--green)}
 .ctry__src{font-family:var(--sans);font-size:var(--fs-s);color:var(--ink-soft);margin:0}
 [hidden]{display:none !important}
 
@@ -332,6 +337,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
   <nav class="ctry" aria-label="Country">
     <span class="ctry__lab" data-t="country">País</span>
     <div class="seg" role="group" id="ctrySeg"></div>
+    <div class="ctry__cmp" id="ctryCmp"></div>
     <p class="ctry__src" id="ctrySrc" hidden></p>
   </nav>
 
@@ -601,6 +607,7 @@ const T = {
   nflag_intro:{es:"Estas estimaciones se calculan con menos de 30 observaciones (sin ponderar) y son poco precisas; las de menos de 10 no se muestran.",
     en:"These estimates rest on fewer than 30 (unweighted) observations and are imprecise; those with fewer than 10 are not shown."},
   count_axis:{es:"Ocupados (miles)",en:"Employed (thousands)"},
+  cmp_sin_ingresos:{es:"Sin ingresos en la encuesta (no entra en ingresos ni quintil): ",en:"No income in the survey (left out of income and quintile): "},
   count_jump:{es:"Salto de nivel en {y}: puede reflejar un cambio en las proyecciones de población del instituto y no sólo del empleo.",
     en:"Level jump in {y}: it may reflect a change in the institute's population projections, not only in employment."},
   count_note_urban:{es:"Sólo los 31 aglomerados urbanos de la EPH.",
@@ -1539,6 +1546,8 @@ async function renderCmp(){
   try{
     const per = await Promise.all(REG.orden.map(async x=>{
       const soloUrb = s.param==="area" && C(x).sin_area;
+      if(C(x).sin_ingresos && (isIdx(s.metric) || s.param==="quintil"))
+        return {x, groups:new Map(), nobs:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, sinIng:true};
       let r;
       try{ r = await rowsForSelection(soloUrb ? Object.assign({}, s, {param:"all"}) : s, 2, x); }
       catch(e){ console.error(e); return {x, groups:new Map(), nobs:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, falta:true}; }
@@ -1560,6 +1569,7 @@ async function renderCmp(){
     const keys = Array.from(keysSet).sort((a,b)=>a-b);
     const msgs = [];
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
+    if(per.some(p=>p.sinIng)) msgs.push(t("cmp_sin_ingresos") + per.filter(p=>p.sinIng).map(p=>cname(p.x)).join(", ") + ".");
     if(per.some(p=>p.falta)) msgs.push(t("cmp_falta") + per.filter(p=>p.falta).map(p=>cname(p.x)).join(", ") + ".");
     if(per.some(p=>p.soloUrb)) msgs.push(t("cmp_area_only_urban") + per.filter(p=>p.soloUrb).map(p=>cname(p.x)).join(", ") + ".");
     if(isIdx(s.metric) && per.some(p=>p.sinBase)) msgs.push(t("idx_sin_base") + per.filter(p=>p.sinBase).map(p=>cname(p.x)).join(", ") + ".");
@@ -1675,8 +1685,10 @@ function buildControls(keepValues){
   const keep = keepValues ? currentSel() : null;
   const P = PARAMS();
   const dictEntries = (d) => Object.keys(d).map(k=>[k, d[k][lang]]);
-  fillSelect($("#fMetric"), dictEntries(METRICS), keep?keep.metric:"tasa_informalidad");
-  const Pp = Object.assign({}, P); if(!C().area) delete Pp.area;   // only countries whose cube has area.csv (paises.json: "area": true); Argentina's EPH is urban only
+  /* surveys without income (Chile's ENE): no income metrics and no quintile */
+  const M = Object.assign({}, METRICS); if(C().sin_ingresos){ delete M.media_ingreso; delete M.mediana_ingreso; }
+  fillSelect($("#fMetric"), dictEntries(M), keep && M[keep.metric] ? keep.metric : "tasa_informalidad");
+  const Pp = Object.assign({}, P); if(!C().area) delete Pp.area; if(C().sin_ingresos) delete Pp.quintil;   // only countries whose cube has area.csv (paises.json: "area": true); Argentina's EPH is urban only
   fillSelect($("#fParam"),  dictEntries(Pp), keep && Pp[keep.param] ? keep.param : "all");
   fillSelect($("#fType"),   dictEntries(CHARTS), keep?keep.type:"line");
   fillSelect($("#fGender"), opts("g"), keep?keep.g:99);
@@ -1695,11 +1707,10 @@ function buildControls(keepValues){
   fillSelect($("#cEmp"),    opts("c"), ck?ck.c:99);
 }
 function buildCountryBar(){
-  const b = REG.orden.map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("")
-    + `<button type="button" data-mode="comp" aria-pressed="${mode==="comp"}">${t("compare")}</button>`;
-  $("#ctrySeg").innerHTML = b;
+  $("#ctrySeg").innerHTML = REG.orden.map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("");
+  $("#ctryCmp").innerHTML = `<button type="button" data-mode="comp" aria-pressed="${mode==="comp"}">${t("compare")}</button>`;
   $$("#ctrySeg [data-iso]").forEach(el=>el.addEventListener("click", ()=>setCountry(el.dataset.iso)));
-  $("#ctrySeg [data-mode]").addEventListener("click", ()=>setMode("comp"));
+  $("#ctryCmp [data-mode]").addEventListener("click", ()=>setMode("comp"));
 }
 function sourceLine(){
   /* comparison: one generic line instead of every country's source (unreadable with many countries;

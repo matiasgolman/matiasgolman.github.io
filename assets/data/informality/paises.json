@@ -6,7 +6,8 @@
     "mx",
     "br",
     "ec",
-    "py"
+    "py",
+    "cl"
   ],
   "paises": {
     "ar": {
@@ -996,10 +997,158 @@
         }
       },
       "area": true
+    },
+    "cl": {
+      "nombre": {
+        "es": "Chile",
+        "en": "Chile"
+      },
+      "geo": "regiones.geo.json",
+      "geo_alto": true,
+      "v_iguales": true,
+      "area": true,
+      "sin_ingresos": true,
+      "meas_main": 1,
+      "moneda": {
+        "es": "pesos chilenos",
+        "en": "Chilean pesos"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Norte Grande",
+            "2": "Norte Chico",
+            "3": "Centro",
+            "4": "Metropolitana",
+            "5": "Centro-Sur",
+            "6": "Sur",
+            "7": "Austral",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Far North",
+            "2": "Near North",
+            "3": "Center",
+            "4": "Metropolitan",
+            "5": "Center-South",
+            "6": "South",
+            "7": "Far South",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "15": "Arica y Parinacota",
+            "1": "Tarapacá",
+            "2": "Antofagasta",
+            "3": "Atacama",
+            "4": "Coquimbo",
+            "5": "Valparaíso",
+            "13": "Metropolitana",
+            "6": "O'Higgins",
+            "7": "Maule",
+            "16": "Ñuble",
+            "8": "Biobío",
+            "9": "La Araucanía",
+            "14": "Los Ríos",
+            "10": "Los Lagos",
+            "11": "Aysén",
+            "12": "Magallanes",
+            "99": "Todas"
+          },
+          "en": {
+            "15": "Arica y Parinacota",
+            "1": "Tarapacá",
+            "2": "Antofagasta",
+            "3": "Atacama",
+            "4": "Coquimbo",
+            "5": "Valparaíso",
+            "13": "Metropolitana",
+            "6": "O'Higgins",
+            "7": "Maule",
+            "16": "Ñuble",
+            "8": "Biobío",
+            "9": "La Araucanía",
+            "14": "Los Ríos",
+            "10": "Los Lagos",
+            "11": "Aysén",
+            "12": "Magallanes",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 49",
+            "3": "50 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 49",
+            "3": "50 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "INE · Encuesta Nacional de Empleo",
+          "en": "INE · National Employment Survey"
+        },
+        "meas_1": {
+          "es": "Medida oficial INE",
+          "en": "Official INE measure"
+        },
+        "meas_2": {
+          "es": "Medida oficial INE",
+          "en": "Official INE measure"
+        },
+        "kpi_meth": {
+          "es": "Con la tasa de ocupación informal del INE (desde el 3.er trimestre de 2017), la misma de sus boletines trimestrales.",
+          "en": "Using INE's informal employment rate (since Q3 2017), the one in its quarterly bulletins."
+        },
+        "geo_meth": {
+          "es": "Medida oficial INE, promedio de los cuatro trimestres · ",
+          "en": "Official INE measure, average of the four quarters · "
+        },
+        "chart_meth": {
+          "es": "Medida oficial INE (2017–)",
+          "en": "Official INE measure (2017–)"
+        },
+        "map_title": {
+          "es": "Por región",
+          "en": "By region"
+        },
+        "region": {
+          "es": "Macrozona",
+          "en": "Macro-zone"
+        },
+        "provincia": {
+          "es": "Región",
+          "en": "Region"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (pesos constantes)",
+          "en": "Monthly income (constant pesos)"
+        },
+        "informality_definition": {
+          "es": "La medida es la del INE, con el criterio del <strong>puesto de trabajo</strong>. Un <strong>asalariado</strong> (incluido el <strong>servicio doméstico</strong>) es informal si su empleador no cotiza por él a salud <strong>y</strong> a previsión social; un <strong>empleador o cuentapropista</strong>, si su unidad productiva pertenece al sector informal (no está registrada en el Servicio de Impuestos Internos <strong>y</strong> no lleva una contabilidad que separe los gastos del negocio de los del hogar); los <strong>familiares no remunerados</strong> son informales siempre. Incluye a los ocupados en el agro. El panel reproduce exactamente la tasa de ocupación informal que publica el INE, nacional, por sexo y por región.",
+          "en": "The measure is INE's, under the <strong>job-based</strong> criterion. An <strong>employee</strong> (including <strong>domestic workers</strong>) is informal if the employer does not pay health <strong>and</strong> pension contributions for them; an <strong>employer or own-account worker</strong>, if the business belongs to the informal sector (not registered with the tax office, SII, <strong>and</strong> without accounts that separate business and household expenses); <strong>contributing family workers</strong> are always informal. Agricultural workers are included. The dashboard reproduces exactly the informal employment rate INE publishes, nationally, by sex and by region."
+        },
+        "availability_body": {
+          "es": "Los indicadores principales son <strong>trimestrales</strong> (trimestres calendario: enero–marzo, abril–junio, julio–septiembre y octubre–diciembre; el INE publica además trimestres móviles) y llegan al último trimestre publicado. El resto del panel usa <strong>promedios anuales</strong> de años completos (los cuatro trimestres); 2017 tiene sólo el 3.º y el 4.º trimestre. <strong>La serie empieza en el 3.er trimestre de 2017</strong>, cuando la encuesta incorpora las preguntas de informalidad: antes no hay una medida comparable. Las cifras usan el factor de expansión calibrado con el Censo 2017 y la revisión de julio de 2026. Entre marzo de 2020 y 2021 la encuesta se hizo por teléfono, con una muestra más chica. La <strong>ENE no releva ingresos</strong> (se miden en otra encuesta, la ESI): Chile no tiene ingreso medio, mediano ni quintil en el panel. El universo son los ocupados de 15 años y más. El tamaño de la empresa corta en 50 personas y no en 40 como en Argentina, porque la encuesta lo pregunta en tramos. La rama sale de la sección de la CAENES (no hay más detalle), así que la asignación a las ramas del panel es aproximada en información y comunicaciones y en electricidad y agua. El INE no tiene una regionalización por encima de las regiones: el filtro <strong>Macrozona</strong> las agrupa (Norte Grande: Arica y Parinacota, Tarapacá y Antofagasta; Norte Chico: Atacama y Coquimbo; Centro: Valparaíso y O'Higgins; Metropolitana; Centro-Sur: Maule, Ñuble y Biobío; Sur: La Araucanía, Los Ríos y Los Lagos; Austral: Aysén y Magallanes). Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "Headline indicators are <strong>quarterly</strong> (calendar quarters: January–March, April–June, July–September and October–December; INE also publishes rolling quarters) and run to the latest published quarter. The rest of the dashboard uses <strong>annual averages</strong> of complete years (four quarters); 2017 has only Q3 and Q4. <strong>The series starts in Q3 2017</strong>, when the survey added the informality questions: there is no comparable measure before. Figures use the expansion factor calibrated to the 2017 Census and the July 2026 revision. Between March 2020 and 2021 the survey was run by phone, with a smaller sample. <strong>The ENE collects no income</strong> (income is measured in a separate survey, the ESI): Chile has no mean or median income and no quintile in the dashboard. The universe is employed people aged 15 and over. Firm size breaks at 50 people rather than 40 as in Argentina, because the survey asks it in brackets. Industry comes from the CAENES section (there is no finer detail), so the mapping to the dashboard's industries is approximate for information and communication and for utilities. INE has no grouping above the regions: the <strong>Macro-zone</strong> filter groups them (Far North: Arica y Parinacota, Tarapacá and Antofagasta; Near North: Atacama and Coquimbo; Center: Valparaíso and O'Higgins; Metropolitan; Center-South: Maule, Ñuble and Biobío; South: La Araucanía, Los Ríos and Los Lagos; Far South: Aysén and Magallanes). Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Nacional de Empleo (ENE) del INE de Chile",
+          "en": "the National Employment Survey (ENE) of Chile's INE"
+        }
+      }
     }
   },
   "comparabilidad": {
-    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Paraguay los indicadores principales usan la medida oficial de su instituto (en Paraguay, la no agropecuaria); en Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel, que el INEC no publica; en Paraguay, la misma regla del INE con el agro incluido, que el INE no publica). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México, Brasil, Ecuador y Paraguay son nacionales. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno.",
-    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Paraguay the headline indicators use the statistics office's official measure (in Paraguay, the non-agricultural one); in Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard, which INEC does not publish; for Paraguay, INE's rule with agriculture included, which INE does not publish). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican, Brazilian, Ecuadorian and Paraguayan surveys are national. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew."
+    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Paraguay los indicadores principales usan la medida oficial de su instituto (en Paraguay, la no agropecuaria); en Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel, que el INEC no publica; en Paraguay, la misma regla del INE con el agro incluido, que el INE no publica). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México, Brasil, Ecuador, Paraguay y Chile son nacionales. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso.",
+    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Paraguay the headline indicators use the statistics office's official measure (in Paraguay, the non-agricultural one); in Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard, which INEC does not publish; for Paraguay, INE's rule with agriculture included, which INE does not publish). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican, Brazilian, Ecuadorian, Paraguayan and Chilean surveys are national. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons."
   }
 }
