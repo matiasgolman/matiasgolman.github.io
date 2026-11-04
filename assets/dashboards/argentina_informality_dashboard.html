@@ -1749,6 +1749,7 @@ function setTheme(th, quiet){
   if(!quiet) redrawAll();
 }
 function redrawAll(){
+  if(!iso) return;                 /* a theme message can arrive before init picks the country */
   lastForm = ""; lastFormC = "";
   if(mode==="comp"){ renderCmpKpis(); renderCmp(); }
   else { render(); renderSector(); renderMap(); renderKpis(); }
