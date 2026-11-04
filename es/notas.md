@@ -1,9 +1,9 @@
 ---
 layout: page
-title: "Notas"
+title: "Notas de interés"
 permalink: /es/notas/
 lang: "es"
-alt_url: "/commentary/"
+alt_url: "/articles/"
 standfirst: >-
   Notas que escribo para diarios, sobre todo en la Argentina, cada una con un reporte técnico que explica los datos,
   los métodos y los supuestos detrás de cada cifra.

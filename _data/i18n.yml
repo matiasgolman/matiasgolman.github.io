@@ -4,7 +4,7 @@ en:
   nav:
     - { label: "About",                   url: "/about/",       match: "/about" }
     - { label: "Work",                    url: "/work/",        match: "/work" }
-    - { label: "Commentary",              url: "/commentary/",  match: "/commentary" }
+    - { label: "News articles",           url: "/articles/",    match: "/articles" }
     - { label: "Teaching",                url: "/teaching/",    match: "/teaching" }
     - { label: "CV",                      url: "/cv/",          match: "/cv" }
     - { label: "Things I&rsquo;ve built", url: "/projects/",    match: "/projects" }
@@ -31,7 +31,7 @@ es:
   nav:
     - { label: "Sobre mí",       url: "/es/sobre-mi/",     match: "/es/sobre-mi" }
     - { label: "Investigación",  url: "/es/investigacion/", match: "/es/investigacion" }
-    - { label: "Notas",          url: "/es/notas/",        match: "/es/notas" }
+    - { label: "Notas de interés", url: "/es/notas/",      match: "/es/notas" }
     - { label: "Docencia",       url: "/es/docencia/",     match: "/es/docencia" }
     - { label: "CV",             url: "/es/cv/",           match: "/es/cv" }
     - { label: "Lo que construí", url: "/es/proyectos/",   match: "/es/proyectos" }

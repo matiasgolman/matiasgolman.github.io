@@ -11,7 +11,7 @@ layout: default
 {%- assign m = page.date | date: "%-m" | minus: 1 -%}
 <article class="frame page nota">
   <p class="nota__kicker">
-    <a href="{% if es %}{{ '/es/notas/' | relative_url }}{% else %}{{ '/commentary/' | relative_url }}{% endif %}">{% if es %}Notas{% else %}Commentary{% endif %}</a>
+    <a href="{% if es %}{{ '/es/notas/' | relative_url }}{% else %}{{ '/articles/' | relative_url }}{% endif %}">{% if es %}Notas de interés{% else %}News articles{% endif %}</a>
     {%- if page.series %} · {{ page.series }}{% endif %}
   </p>
   <h1 class="page__title nota__title">{{ page.title }}</h1>

@@ -1,6 +1,6 @@
 ---
 layout: redirect
 permalink: /blog/
-redirect_to: /commentary/
+redirect_to: /articles/
 sitemap: false
 ---

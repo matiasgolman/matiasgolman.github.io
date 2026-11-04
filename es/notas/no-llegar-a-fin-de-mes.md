@@ -2,12 +2,13 @@
 layout: nota
 title: "«No llegar a fin de mes»: lo que hacen los hogares cuando el ingreso no alcanza"
 standfirst: >-
-  La encuesta de hogares no muestra gente que deja de comer el día 20. Muestra hogares que gastan ahorros, se
-  endeudan, suman un segundo empleo y se quedan sin prepaga. Y muestra que la presión más fuerte la sufre la clase media.
+  En octubre, el Presidente se preguntó cómo vive diez días sin comer alguien que se queda sin plata el día 20. Los
+  datos del INDEC cuentan otra cosa: no llegar a fin de mes es gastar ahorros, endeudarse, sumar un segundo empleo o
+  dejar la prepaga. Y la clase media es la que más lo sufre.
 date: 2026-11-04 12:00:00 +0100
 lang: "es"
 permalink: /es/notas/no-llegar-a-fin-de-mes/
-alt_url: "/commentary/making-ends-meet/"
+alt_url: "/articles/making-ends-meet/"
 outlet:
   name: "El Economista"
   url: ""
@@ -19,10 +20,12 @@ description: >-
   endeudamiento, pluriempleo, transferencias, cobertura de salud y precios por quintil, con la EPH 2011–2026.
 ---
 
-«No llegar a fin de mes» no describe a alguien que deja de comer el día 20. Describe un hogar cuyo ingreso no cubre su
-gasto habitual y que cierra esa brecha con ajustes que no tenía previstos. La nota parte de una frase del Presidente en
-octubre de 2026 y mira esos ajustes en los microdatos de la Encuesta Permanente de Hogares del INDEC, de 2011 al primer
-trimestre de 2026, a través de cuatro mecanismos: financiarse, trabajar más, recibir ayuda y consumir menos o peor.
+El 19 de octubre de 2026, en Neuquén, el presidente Javier Milei se preguntó cómo haría alguien que se queda sin
+plata el día 20 para vivir diez días sin comer ni beber. La nota le responde que «no llegar a fin de mes» no describe a
+alguien que deja de comer, sino a un hogar cuyo ingreso no cubre su gasto habitual y que cierra esa brecha con ajustes
+que no tenía previstos. Esos ajustes se pueden ver en los microdatos de la Encuesta Permanente de Hogares del INDEC, de
+2011 al primer trimestre de 2026, a través de cuatro mecanismos: financiarse, trabajar más, recibir ayuda y consumir
+menos o peor.
 
 La conclusión es que la presión se concentra en la clase media. Los hogares más pobres tienen la AUH, que subió por
 encima de la inflación; los más ricos, un colchón de ingresos y ahorros. La clase media no tiene ninguna de las dos

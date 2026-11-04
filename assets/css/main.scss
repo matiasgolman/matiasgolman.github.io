@@ -208,7 +208,10 @@ details.abstract p{font-size:var(--step-s);line-height:1.6;color:var(--ink-soft)
 @media (prefers-reduced-motion:no-preference){.embed--auto iframe{transition:height .15s ease}}
 
 /* --- commentary: column + technical report (2026-11-04) -------------------- */
-.nota{width:min(100% - 2rem,64rem)}
+/* one centred column: text, figures, tables and the map share the same width (Matías, 2026-11-04) */
+.nota{width:min(100% - 2rem,48rem);margin-inline:auto}
+.nota .prose,.nota p,.nota ul,.nota ol,.nota blockquote,.nota .nota-toc,.nota .nota__outlet,.nota .nota-fig figcaption,
+.nota .nota__report-title,.nota .tnote,.nota .ix .how,.nota .nota__title,.nota .page__standfirst{max-width:none}
 .nota__kicker{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin:0 0 .8rem}
 .nota__kicker a{color:var(--green);text-decoration:none}
 .nota__title{font-size:clamp(1.9rem,1.3rem + 2.2vw,2.7rem);line-height:1.15;max-width:30ch}
@@ -228,7 +231,7 @@ details.abstract p{font-size:var(--step-s);line-height:1.6;color:var(--ink-soft)
 .nota-toc a{color:var(--ink);text-decoration:none}
 .nota-toc a:hover{color:var(--green)}
 @media (max-width:46rem){.nota-toc ul{columns:1}}
-.nota-fig{margin:2rem 0;max-width:64rem}
+.nota-fig{margin:2rem 0;max-width:none}
 .nota-fig img{display:block;width:100%;height:auto;border-radius:2px}
 .nota-fig figcaption{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin-top:.5rem;max-width:var(--measure)}
 .nota-fig img.fig-light{display:none}

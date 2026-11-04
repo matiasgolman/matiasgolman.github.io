@@ -2,12 +2,12 @@
 layout: nota
 title: "Not making ends meet: what Argentine households do when income falls short"
 standfirst: >-
-  The household survey does not show people who stop eating on the 20th of the month. It shows households that spend
-  their savings, borrow, take a second job and drop their private health plan. And it shows that the middle class is
-  under the most pressure.
+  In October, Argentina's President asked how someone who runs out of money on the 20th could go ten days without
+  eating. Official survey data tell a different story: not making ends meet means spending savings, borrowing, taking a
+  second job or dropping private health cover. And the middle class is hit hardest.
 date: 2026-11-04 12:00:00 +0100
 lang: "en"
-permalink: /commentary/making-ends-meet/
+permalink: /articles/making-ends-meet/
 alt_url: "/es/notas/no-llegar-a-fin-de-mes/"
 outlet:
   name: "El Economista"
@@ -20,12 +20,13 @@ description: >-
   multiple jobholding, transfers, health coverage and quintile-specific prices, using the EPH 2011–2026.
 ---
 
-In Argentina, “not making it to the end of the month” is a common way of saying that money runs out before the next pay
-cheque. It does not describe someone who stops eating on the 20th. It describes a household whose income no longer
-covers its usual spending, and which closes the gap with adjustments it had not planned for. The column, written in
-Spanish for El Economista in response to a remark by the President in October 2026, looks at those adjustments in the
-microdata of INDEC's Permanent Household Survey from 2011 to the first quarter of 2026, through four channels: borrowing
-and dissaving, working more, receiving help, and consuming less or worse.
+In Argentina, “not making it to the end of the month” is the everyday way of saying that money runs out before the
+next pay cheque. On 19 October 2026, President Javier Milei took the phrase literally, asking how someone who runs out
+of money on the 20th could live ten days without eating or drinking. The column, written in Spanish for El Economista,
+answers that the phrase does not describe someone who stops eating. It describes a household whose income no longer
+covers its usual spending, and which closes the gap with adjustments it had not planned for. Those adjustments can be
+traced in the microdata of INDEC's Permanent Household Survey from 2011 to the first quarter of 2026, through four
+channels: borrowing and dissaving, working more, receiving help, and consuming less or worse.
 
 Its conclusion is that the pressure is concentrated in the middle class. The poorest households have the Universal Child
 Allowance (AUH), which has risen faster than inflation; the richest have a cushion of income and savings. The middle

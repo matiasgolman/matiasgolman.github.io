@@ -8,7 +8,7 @@ standfirst: >-
 date: 2026-11-04 10:00:00 +0100
 lang: "en"
 series: "Bariloche in data"
-permalink: /commentary/bariloche-schools/
+permalink: /articles/bariloche-schools/
 alt_url: "/es/notas/bariloche-escuelas/"
 report: "notas/bariloche-escuelas_reporte_en.html"
 report_title: "Schools and demography in San Carlos de Bariloche: births, school supply and where school-age children live."

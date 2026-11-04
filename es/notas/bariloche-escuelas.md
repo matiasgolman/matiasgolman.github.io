@@ -9,7 +9,7 @@ date: 2026-11-04 10:00:00 +0100
 lang: "es"
 series: "Bariloche en datos"
 permalink: /es/notas/bariloche-escuelas/
-alt_url: "/commentary/bariloche-schools/"
+alt_url: "/articles/bariloche-schools/"
 report: "notas/bariloche-escuelas_reporte_es.html"
 report_title: "Escuelas y demografía en San Carlos de Bariloche: natalidad, oferta educativa y distribución territorial de los chicos en edad escolar."
 pdf: "/assets/pdf/notas/golman-bariloche-escuelas-reporte.pdf"
