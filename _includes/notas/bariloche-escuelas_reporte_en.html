@@ -1,0 +1,458 @@
+{% raw %}
+<nav class="nota-toc" aria-label="Report contents"><ul>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
+<li><a href="#question-and-context"
+id="toc-question-and-context">Question and context</a></li>
+<li><a href="#data" id="toc-data">Data</a></li>
+<li><a href="#methods" id="toc-methods">Methods</a></li>
+<li><a href="#results" id="toc-results">Results</a></li>
+<li><a href="#discussion" id="toc-discussion">Discussion</a></li>
+<li><a href="#limitations" id="toc-limitations">Limitations</a></li>
+<li><a href="#next-steps" id="toc-next-steps">Next steps</a></li>
+<li><a href="#sources" id="toc-sources">Sources</a></li>
+</ul></nav>
+<section id="summary" class="level2">
+<h3>Summary</h3>
+<p>This report asks whether the supply of schools in San Carlos de Bariloche (Río Negro, Argentina) matches the number and the location of school-age children, today and towards 2035. It combines public sources: births by mother’s residence (RENAPER and the Río Negro Ministry of Health), the 2010 and 2022 censuses by census tract, the official school register 2011–2026, the municipal map of neighbourhoods and districts («delegaciones»), the municipality’s population projection by district, its register of hotel establishments and its map of bus stops.</p>
+<p>We document four facts. First, births in the department fell from 2,460 in 2012 to 1,316 in 2025 (−47%), and 2026 data show no rebound. Second, the number of mainstream schools grew by 21% between 2011 and 2026. Third, the city grew outwards: of the 22,300 inhabitants it added between 2010 and 2022, none ended up in the Urbana district (the centre and its surroundings), which lost population and 18% of its children aged 0–17. Schools, however, remain concentrated in the centre: El Cóndor has 811 children aged 6–12 per primary school and Urbana, 164. Fourth, a cohort projection shows that the primary-age population has already peaked and the secondary-age population will peak around 2029. Combined with the municipal projection, the territorial gap widens: without new schools, in 2035 there would be 760 children per primary school in El Cóndor and 101 in Urbana.</p>
+<p>The main limitation is that we do not observe enrolment by school: we measure schools, not places.</p>
+</section>
+<section id="question-and-context" class="level2">
+<h3>Question and context</h3>
+<p>The question has two parts. Is the supply of schools, by level and by area, where children live? And which areas will need more or fewer places in the coming years, given falling births and the uneven growth of the city?</p>
+<p>The national context is well known. Births in Argentina have been falling since 2014, with a particularly sharp drop in births to adolescent mothers. A study by Argentinos por la Educación projects a 27% fall in national primary enrolment between 2023 and 2030, and places Río Negro among the provinces with the largest share of small classes by 2030 (<a href="https://chequeado.com/nota/aulas-con-menos-alumnos-se-estima-que-caera-un-27-la-matricula-escolar-para-2030-en-la-argentina">Chequeado, 28/01/2026</a>). In the city of Buenos Aires, first-grade entrants to public schools fell by about 25% between 2020 and 2025, and the city government began closing classes (<a href="https://www.infobae.com/sociedad/2025/10/15/baja-de-natalidad-y-educacion-las-escuelas-portenas-cierran-grados-y-docentes-y-familias-toman-medidas-para-evitarlo/">Infobae, 15/10/2025</a>).</p>
+<p>What these studies do not show is the territorial dimension within a city. In cities that grow at the edges, an aggregate fall in demand can coexist with shortages in new neighbourhoods. In Bariloche this meets a mobility problem: the city is long and narrow, with few trunk roads that jam at rush hour (<a href="https://www.anbariloche.com.ar/noticias/2024/07/12/94535-zona-centro-y-avenidas-colapsadas-en-horas-pico">ANBariloche, 12/7/2024</a>). Distance to school matters in itself. In Norway, each additional half hour of travel to the nearest upper-secondary school lowers the probability of on-time graduation by about 2.3 percentage points, with larger effects among average students (Falch, Lujala and Strøm, 2013). In Baltimore, a Johns Hopkins University study associated each additional ten minutes of public-transit commute with a third of a day more of absence per year in high school (<a href="https://www.k12dive.com/news/study-using-public-transit-for-school-commute-linked-to-higher-absenteeism/550735">K-12 Dive, 20/3/2019</a>).</p>
+</section>
+<section id="data" class="level2">
+<h3>Data</h3>
+<section id="births" class="level3">
+<h4>Births</h4>
+<p>We use two sources of births by mother’s residence, at the department level:</p>
+<ul>
+<li><strong>RENAPER</strong>, «Births by department and year 2012–2022» (datos.gob.ar).</li>
+<li><strong>Río Negro Ministry of Health</strong>, Provincial Statistics Office, Vital Statistics yearbooks 2020 and 2022–2025 (the 2021 yearbook is a scanned image). Table 2 gives live births by department of residence; another table gives them by health area («Área Programa»), which for Bariloche roughly corresponds to the city.</li>
+</ul>
+<p>In the years they overlap, the two sources differ little for the department: in 2020 RENAPER records 1,670 and the Ministry 1,650 (−1.2%); in 2022, 1,539 and 1,567 (+1.8%). For the province the gap is larger (−6.7% in 2020 and +3.0% in 2022). The series uses RENAPER up to 2022 and the Ministry from 2023, without adjustment.</p>
+<p>Bariloche department also includes El Bolsón, Dina Huapi and other towns. There is no long series of births by town of residence. For 2026 there are only Civil Registry press releases with births registered by place of registration, which are not comparable with births by residence.</p>
+</section>
+<section id="population-by-age-and-area" class="level3">
+<h4>Population by age and area</h4>
+<p>The 2010 and 2022 censuses by census tract come from INDEC’s processing published with CONICET’s cartography (Rodríguez and de Grande) on source.coop. We keep the tracts within the municipal boundary. Three corrections:</p>
+<ol type="1">
+<li><strong>The 2010 census was de facto and the 2022 census de jure.</strong> In 2010 people were counted where they spent the night of 27 October, in the middle of the school-trip season. In six central tracts, hundreds of 17- and 18-year-olds staying in hotels appear. We correct ages 16–19 in those tracts.</li>
+<li><strong>2010 ages come from the long-form sample.</strong> We expand them to each tract’s total population. Tracts without age data are imputed with the city’s age structure.</li>
+<li><strong>The 1991 census uses a different province coding by variable.</strong> For 1991 we only use total population by tract.</li>
+</ol>
+<p>From the 2022 census we also use dwelling occupancy (people present or not) and the reason for absence.</p>
+</section>
+<section id="schools" class="level3">
+<h4>Schools</h4>
+<p>The official school register of the Ministry of Human Capital (2011–2026 editions) identifies each service unit by its CUE code and annex, with level, sector and address. We keep mainstream education (kindergarten, primary and secondary). We filter by a list of localities within the municipal boundary, because the register records Colonia Suiza, Península San Pedro or Villa Los Coihues separately.</p>
+<p>In 2026 there are 123 mainstream units, 115 of them with kindergarten, primary or secondary (69 public, 43 private and 11 community or cooperative, counting all levels). One institution can register several levels under different codes: private schools often register kindergarten and primary under one CUE and secondary under another, and public buildings often host a kindergarten and a primary school. We group units less than 20 metres apart: the 115 units with a mainstream level are 103 institutions in 90 buildings. On the map, each dot is a building with all the levels taught there. Counts by level barely change with this grouping, so ratios of children per school use units.</p>
+</section>
+<section id="cartography-projection-hotels-and-buses" class="level3">
+<h4>Cartography, projection, hotels and buses</h4>
+<p>Neighbourhood (140) and district polygons come from the Municipality’s zoning map. The population projection by district 1991–2035 comes from the «Population projection» dashboard the Municipality publishes on Tableau Public; the method is not documented. Hotel beds come from the «Map of hotel establishments in the city» dashboard (published in 2022, with coordinates and beds of each registered establishment). Urban bus stops (526) come from the municipal map of the urban passenger transport system (November 2026).</p>
+</section>
+</section>
+<section id="methods" class="level2">
+<h3>Methods</h3>
+<section id="locating-schools" class="level3">
+<h4>Locating schools</h4>
+<p>Register addresses are free text. We geocode them with the national Georef API and accept only house-number or intersection matches. When the address failed, we matched by name with the Municipality’s map of schools, and located the remaining 12 by hand with OpenStreetMap, Georef and the municipal map. This locates all 115 units with kindergarten, primary or secondary.</p>
+</section>
+<section id="from-census-tracts-to-neighbourhoods-and-districts" class="level3">
+<h4>From census tracts to neighbourhoods and districts</h4>
+<p>We allocate each tract’s population to neighbourhoods in proportion to the share of its area in each (areal interpolation). This assumes even population within each tract; at the edges tracts are large and the assumption matters more. Municipal neighbourhoods do not cover the whole municipal area. For districts, interpolated totals almost match the municipality’s, but the split does not: Urbana is larger according to the municipality and Pampa de Huenuleo smaller. We use municipal growth (not levels) for projections.</p>
+</section>
+<section id="decomposing-the-change-in-children-by-district" class="level3">
+<h4>Decomposing the change in children by district</h4>
+<p>To separate how much of the change in children aged 0–17 in each district between 2010 and 2022 is due to population change and how much to a change in the share of children, we use the standard decomposition: Δchildren = (P₂₀₂₂ − P₂₀₁₀) × s₂₀₁₀ + P₂₀₂₂ × (s₂₀₂₂ − s₂₀₁₀), where P is population and s the share of children. The first term is the population effect and the second the share effect. Census tract data cannot distinguish moves within the city from arrivals from elsewhere.</p>
+</section>
+<section id="school-age-children-20012022" class="level3">
+<h4>School-age children, 2001–2022</h4>
+<p><strong>Cohort interpolation between censuses.</strong> To give the projection a history, we rebuild the number of children aged 3–17 in the city year by year between the 2001, 2010 and 2022 censuses. Each cohort (year of birth) is observed in two consecutive censuses; in between, whatever it gained or lost (moves, mortality) is spread linearly, so the series matches all three censuses exactly. A cohort born after a census takes the value of the next census. Census dates (November 2001, October 2010, May 2022) are treated as mid-year, and 2010 uses the expanded sample corrected for school trips (previous section). Result: primary-age children numbered 14,000 in 2001, 11,400 in 2010 and 14,400 in 2022; the secondary-age population bottomed out around 2017 (8,100). Code: <code>analisis.py historia</code> → <code>datos_intermedios/chicos_ciudad_historia_2001_2022.csv</code>.</p>
+</section>
+<section id="projecting-school-age-children" class="level3">
+<h4>Projecting school-age children</h4>
+<p><strong>City, by cohorts (2022–2040).</strong> Each single year of age in the 2022 census within the city ages one year per year, with no migration or mortality. Cohorts born from 2023 enter with the department’s births multiplied by the ratio between children living in the city and the department’s births in their years of birth (average of ages 0–9 in 2022: 0.84). From 2026 we assume births equal to 2025, consistent with 2026 Civil Registry data. As a sensitivity check, a variant extends the 2022–2025 decline (−5.1% per year): the population aged 6–12 in 2035 would then be 49% lower than in 2022, instead of 45%. Secondary-age population in 2035 does not change, because those cohorts are already born.</p>
+<p><strong>Districts (2035).</strong> For each district d and age group g: children₍d,g,2035₎ = children₍d,g,2022₎ × (P₍d,2035₎ / P₍d,2022₎) × r₍g₎, where P is the municipal projection and r₍g₎ the ratio between children in group g in 2035 and in 2022 in the city cohort projection. It assumes that newcomers to each area have the same age structure as current residents, adjusted for current fertility. It is a scenario, not a forecast: if new neighbourhoods mainly attract young families, it underestimates children at the edges.</p>
+</section>
+<section id="other-indicators" class="level3">
+<h4>Other indicators</h4>
+<ul>
+<li><strong>Children per school</strong>: children of the level’s age (3–5, 6–12, 13–17) over units of that level within the area. Río Negro has seven years of primary and five of secondary.</li>
+<li><strong>Next cohort</strong>: children aged 0–4 over children aged 5–9 in 2022.</li>
+<li><strong>Distance</strong>: straight line from each tract’s centre to the nearest school of the level, weighted by the tract’s children. It ignores slopes, streets and transport.</li>
+<li><strong>Distance to the bus stop</strong>: from each tract’s centre to the nearest stop.</li>
+<li><strong>Hotel beds by district</strong>: registered establishments located within each district.</li>
+</ul>
+</section>
+</section>
+<section id="results" class="level2">
+<h3>Results</h3>
+<section id="births-fell-by-almost-half" class="level3">
+<h4>Births fell by almost half</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Births per year and the year each cohort starts first grade." src="/assets/img/notas/bariloche-escuelas/f1_nacimientos_en_oscuro.png"><img class="fig-light" alt="Births per year and the year each cohort starts first grade." src="/assets/img/notas/bariloche-escuelas/f1_nacimientos_en_claro.png">
+<figcaption>
+Births per year and the year each cohort starts first grade.
+</figcaption>
+</figure>
+<p>Births in the department were stable until 2015 and have fallen every year since. In 2025 there were 1,316, 47% fewer than in 2012. Between 2012 and 2022 the fall was 37%, the same as in Río Negro (38%) and in Argentina (38%). In the Bariloche health area, which approximates the city, births fell from 1,321 in 2022 to 1,097 in 2025. Civil Registry press releases suggest the decline stopped in 2026: between January and September 4,798 births were registered in the province, against 4,834 in the same period of 2025.</p>
+<p>Children of each age living in the city equal between 0.79 and 0.88 births in the department in their years of birth, 84% on average. That the ratio is even across ages indicates that the city is a stable share of the department in every cohort.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Children by single year of age within the municipal boundary, 2010 and 2022 censuses." src="/assets/img/notas/bariloche-escuelas/f6_chicos_por_edad_2010_2022_en_oscuro.png"><img class="fig-light" alt="Children by single year of age within the municipal boundary, 2010 and 2022 censuses." src="/assets/img/notas/bariloche-escuelas/f6_chicos_por_edad_2010_2022_en_claro.png">
+<figcaption>
+Children by single year of age within the municipal boundary, 2010 and 2022 censuses.
+</figcaption>
+</figure>
+</section>
+<section id="supply-grew-at-every-level" class="level3">
+<h4>Supply grew at every level</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Mainstream schools by level, 2011–2026." src="/assets/img/notas/bariloche-escuelas/f2_escuelas_por_nivel_en_oscuro.png"><img class="fig-light" alt="Mainstream schools by level, 2011–2026." src="/assets/img/notas/bariloche-escuelas/f2_escuelas_por_nivel_en_claro.png">
+<figcaption>
+Mainstream schools by level, 2011–2026.
+</figcaption>
+</figure>
+<p>Between 2011 and 2026, kindergartens went from 42 to 50 (19%), primary schools from 45 to 52 (16%) and secondary schools from 32 to 38 (19%). In 2012 the register started to record the community/cooperative sector separately, so series by sector have a break that year.</p>
+</section>
+<section id="primary-has-passed-its-peak-secondary-will-reach-it-around-2029" class="level3">
+<h4>Primary has passed its peak; secondary will reach it around 2029</h4>
+<p>Because the large cohorts were born between 2012 and 2015, the primary-age population grew between censuses: children aged 6–12 in the city went from 11,391 to 14,371 (+26%), while those aged 0–5 were already falling (−5%).</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="School-age children living in the city: 2001, 2010 and 2022 censuses, and projection to 2040." src="/assets/img/notas/bariloche-escuelas/f3_chicos_por_edad_escolar_en_oscuro.png"><img class="fig-light" alt="School-age children living in the city: 2001, 2010 and 2022 censuses, and projection to 2040." src="/assets/img/notas/bariloche-escuelas/f3_chicos_por_edad_escolar_en_claro.png">
+<figcaption>
+School-age children living in the city: 2001, 2010 and 2022 censuses, and projection to 2040.
+</figcaption>
+</figure>
+<p>The cohort projection indicates that the population aged 6–12 peaked around 2022 and has been falling since: about 9,800 in 2030 (32% fewer than in 2022) and about 7,900 in 2035 (45% fewer). The population aged 13–17 keeps growing until 2029, reaching about 10,400 (6% more than in 2022), and then falls by 28% until 2035. The largest cohort enters the first year of secondary in 2028. The cohort entering first grade in 2026 is 32% smaller than in 2018, and the 2031 one will be 47% smaller.</p>
+</section>
+<section id="the-city-grew-outwards-the-centre-lost-children" class="level3">
+<h4>The city grew outwards; the centre lost children</h4>
+<p>The six municipal districts («delegaciones») do not always match the names people use: Urbana is downtown and the surrounding neighbourhoods; Cerro Otto, the inner «kilómetros» along Bustillo and Pioneros avenues plus Lago Gutiérrez; Lago Moreno, the outer kilómetros up to Llao Llao and Colonia Suiza; Cerro Catedral, Villa Los Coihues and the ski base; Pampa de Huenuleo, much of El Alto (the upper southern neighbourhoods); El Cóndor, the east of the city.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="The six municipal districts and how each area is known locally." src="/assets/img/notas/bariloche-escuelas/m0_delegaciones_en_oscuro.png"><img class="fig-light" alt="The six municipal districts and how each area is known locally." src="/assets/img/notas/bariloche-escuelas/m0_delegaciones_en_claro.png">
+<figcaption>
+The six municipal districts and how each area is known locally.
+</figcaption>
+</figure>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Change in children aged 0–17 by neighbourhood, 2010–2022. Lines are municipal districts." src="/assets/img/notas/bariloche-escuelas/m1_cambio_chicos_2010_2022_en_oscuro.png"><img class="fig-light" alt="Change in children aged 0–17 by neighbourhood, 2010–2022. Lines are municipal districts." src="/assets/img/notas/bariloche-escuelas/m1_cambio_chicos_2010_2022_en_claro.png">
+<figcaption>
+Change in children aged 0–17 by neighbourhood, 2010–2022. Lines are municipal districts.
+</figcaption>
+</figure>
+<p>Between 2010 and 2022 the city’s population grew by 20% (about 22,300 people), but the Urbana district lost 4% (from about 55,500 to 53,200). Growth was concentrated in El Cóndor (+77%) and Pampa de Huenuleo (+50%).</p>
+<p>The decomposition shows two different mechanisms. In Urbana, children aged 0–17 fell by about 2,500: about 2,000 because of the lower share of children (from 25% to 21% of the population) and about 600 because of the smaller population. In El Cóndor they rose by about 1,900: the population effect added about 2,900 and the share effect subtracted about 1,000. In Pampa de Huenuleo, the population effect added about 3,300 and the share effect subtracted about 1,500. The share of children fell in every district except Lago Moreno, as expected with fewer births. What sets the edges apart is the arrival of people. Within Urbana, the older social-housing neighbourhoods lost up to 58% of their children.</p>
+<p>In 71 of the 73 neighbourhoods with enough children to measure it, the cohort aged 0–4 is smaller than the one aged 5–9 (median: 7 children aged 0–4 for every 10 aged 5–9). Because of births alone, no neighbourhood will need more primary places; only those that receive new residents.</p>
+</section>
+<section id="the-centre-concentrates-tourism-and-schools" class="level3">
+<h4>The centre concentrates tourism and schools</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Share of the city's children, primary schools and hotel beds in each district." src="/assets/img/notas/bariloche-escuelas/f5_chicos_escuelas_turismo_en_oscuro.png"><img class="fig-light" alt="Share of the city's children, primary schools and hotel beds in each district." src="/assets/img/notas/bariloche-escuelas/f5_chicos_escuelas_turismo_en_claro.png">
+<figcaption>
+Share of the city’s children, primary schools and hotel beds in each district.
+</figcaption>
+</figure>
+<p>The Urbana district has 34% of children aged 0–17, 54% of primary schools and 57% of the 26,000 registered hotel beds: about 28 per 100 inhabitants, against 0.8 in El Cóndor and 0.7 in Pampa de Huenuleo. El Cóndor and Pampa de Huenuleo together have 42% of children, 17% of primary schools and 1% of hotel beds. The 2022 census found nobody present in 12% of Urbana’s dwellings, against 5% in El Cóndor and 5% in Pampa de Huenuleo. The hotel register excludes informal short-term rentals, so it understates tourist use of the centre.</p>
+</section>
+<section id="supply-did-not-follow-population" class="level3">
+<h4>Supply did not follow population</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Children aged 6–12 per km² (2022) and primary schools (2026)." src="/assets/img/notas/bariloche-escuelas/m2_chicos_6a12_y_primarias_en_oscuro.png"><img class="fig-light" alt="Children aged 6–12 per km² (2022) and primary schools (2026)." src="/assets/img/notas/bariloche-escuelas/m2_chicos_6a12_y_primarias_en_claro.png">
+<figcaption>
+Children aged 6–12 per km² (2022) and primary schools (2026).
+</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>District</th>
+<th style="text-align: right;">Children 0–17 (2022)</th>
+<th style="text-align: right;">Kindergartens</th>
+<th style="text-align: right;">Primary</th>
+<th style="text-align: right;">Secondary</th>
+<th style="text-align: right;">Children 3–5 per kindergarten</th>
+<th style="text-align: right;">Children 6–12 per primary</th>
+<th style="text-align: right;">Children 13–17 per secondary</th>
+<th style="text-align: right;">Population 2022–2035 (municipality)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>El Cóndor</td>
+<td style="text-align: right;">5,600</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">877</td>
+<td style="text-align: right;">811</td>
+<td style="text-align: right;">552</td>
+<td style="text-align: right;">+71%</td>
+</tr>
+<tr class="even">
+<td>Pampa de Huenuleo</td>
+<td style="text-align: right;">8,400</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">619</td>
+<td style="text-align: right;">585</td>
+<td style="text-align: right;">+44%</td>
+</tr>
+<tr class="odd">
+<td>Lago Moreno</td>
+<td style="text-align: right;">3,100</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;">no school</td>
+<td style="text-align: right;">+36%</td>
+</tr>
+<tr class="even">
+<td>Cerro Catedral</td>
+<td style="text-align: right;">700</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">no school</td>
+<td style="text-align: right;">+159%</td>
+</tr>
+<tr class="odd">
+<td>Cerro Otto</td>
+<td style="text-align: right;">4,300</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">+24%</td>
+</tr>
+<tr class="even">
+<td>Urbana</td>
+<td style="text-align: right;">11,200</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">+13%</td>
+</tr>
+</tbody>
+</table>
+<p><em>Children: 2022 census interpolated to districts. Schools: located mainstream units, 2026. «No school»: there is no unit of that level within the district (children may attend one elsewhere).</em></p>
+<p>At primary level, the ratio of children to schools is 5 times higher in El Cóndor than in Urbana, and the gap is larger for kindergarten. Large neighbourhoods have no primary school within their limits: Nahuel Hue (about 640 children aged 6–12), 645 Viviendas (500) and Las Victorias (360). El Frutillar has about 1,020 children of that age and 2 primary schools.</p>
+<p>The average distance to the nearest primary school is 0.7 km, but about 1,400 of the 14,400 children aged 6–12 (10%) live more than 1.5 km away. For kindergarten it is about 500 of 5,400 (10%); for secondary, about 1,000 of 9,800 live more than 3 km away (10%). Bus coverage is not the main bottleneck in the south: in Pampa de Huenuleo and El Cóndor the large majority of children live within 500 metres of a stop. It is in the west: 31% of children aged 6–17 in Lago Moreno and 23% in Cerro Otto live farther away (8% citywide). The south’s problem is distance and route: reaching central schools means using the same avenues that jam at rush hour.</p>
+</section>
+<section id="the-2035-projection-widens-the-gap" class="level3">
+<h4>The 2035 projection widens the gap</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Population projected by the municipality by district, index 2022 = 100." src="/assets/img/notas/bariloche-escuelas/f7_proyeccion_municipal_en_oscuro.png"><img class="fig-light" alt="Population projected by the municipality by district, index 2022 = 100." src="/assets/img/notas/bariloche-escuelas/f7_proyeccion_municipal_en_claro.png">
+<figcaption>
+Population projected by the municipality by district, index 2022 = 100.
+</figcaption>
+</figure>
+<p>The municipality projects the city to grow from 135,775 inhabitants in 2022 to 183,891 in 2035 (35%), with 84% of the increase outside Urbana: El Cóndor +71%, Pampa de Huenuleo +44% and Cerro Catedral +159%.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Primary- and secondary-age children by district, 2022 and 2035." src="/assets/img/notas/bariloche-escuelas/f4_chicos_delegacion_2022_2035_en_oscuro.png"><img class="fig-light" alt="Primary- and secondary-age children by district, 2022 and 2035." src="/assets/img/notas/bariloche-escuelas/f4_chicos_delegacion_2022_2035_en_claro.png">
+<figcaption>
+Primary- and secondary-age children by district, 2022 and 2035.
+</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>District</th>
+<th style="text-align: right;">6–12 (2022)</th>
+<th style="text-align: right;">6–12 (2035)</th>
+<th style="text-align: right;">Change</th>
+<th style="text-align: right;">13–17 (2022)</th>
+<th style="text-align: right;">13–17 (2035)</th>
+<th style="text-align: right;">Change</th>
+<th style="text-align: right;">Primary schools (2026)</th>
+<th style="text-align: right;">Per school, 2022 → 2035</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cerro Catedral (Los Coihues)</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;">460</td>
+<td style="text-align: right;">+42 %</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">420</td>
+<td style="text-align: right;">+96 %</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">324 → 460</td>
+</tr>
+<tr class="even">
+<td>El Cóndor (east)</td>
+<td style="text-align: right;">2,430</td>
+<td style="text-align: right;">2,280</td>
+<td style="text-align: right;">−6 %</td>
+<td style="text-align: right;">1,660</td>
+<td style="text-align: right;">2,150</td>
+<td style="text-align: right;">+30 %</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">811 → 760</td>
+</tr>
+<tr class="odd">
+<td>Pampa de Huenuleo (El Alto)</td>
+<td style="text-align: right;">3,720</td>
+<td style="text-align: right;">2,920</td>
+<td style="text-align: right;">−21 %</td>
+<td style="text-align: right;">2,340</td>
+<td style="text-align: right;">2,550</td>
+<td style="text-align: right;">+9 %</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">619 → 487</td>
+</tr>
+<tr class="even">
+<td>Lago Moreno (outer kilómetros)</td>
+<td style="text-align: right;">1,370</td>
+<td style="text-align: right;">1,020</td>
+<td style="text-align: right;">−25 %</td>
+<td style="text-align: right;">880</td>
+<td style="text-align: right;">910</td>
+<td style="text-align: right;">+3 %</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">456 → 340</td>
+</tr>
+<tr class="odd">
+<td>Cerro Otto (inner kilómetros)</td>
+<td style="text-align: right;">1,850</td>
+<td style="text-align: right;">1,250</td>
+<td style="text-align: right;">−32 %</td>
+<td style="text-align: right;">1,300</td>
+<td style="text-align: right;">1,220</td>
+<td style="text-align: right;">−6 %</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">168 → 114</td>
+</tr>
+<tr class="even">
+<td>Urbana (downtown)</td>
+<td style="text-align: right;">4,590</td>
+<td style="text-align: right;">2,830</td>
+<td style="text-align: right;">−38 %</td>
+<td style="text-align: right;">3,340</td>
+<td style="text-align: right;">2,850</td>
+<td style="text-align: right;">−15 %</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">164 → 101</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">14,280</td>
+<td style="text-align: right;">10,770</td>
+<td style="text-align: right;">−25 %</td>
+<td style="text-align: right;">9,740</td>
+<td style="text-align: right;">10,100</td>
+<td style="text-align: right;">+4 %</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p><em>Author’s projection (see Methods). Primary schools: mainstream units in 2026; the last column assumes no new schools.</em></p>
+<p>Combining both projections, the city’s population aged 6–12 would fall by 25% between 2022 and 2035 and the population aged 13–17 would rise by 4%. But the distribution is very uneven. In Urbana, primary-age children would fall by 38% and secondary-age ones by 15%. In El Cóndor, primary-age children would fall by only 6% and secondary-age ones would rise by 30%; in Cerro Catedral, which has no secondary school, they would rise by 96%. Without new schools, children per primary school would go from 811 to 760 in El Cóndor and from 164 to 101 in Urbana: the gap, now 5 to one, would be 7.5 to one. At secondary level, El Cóndor would have about 716 adolescents per school and Urbana 136.</p>
+</section>
+<section id="explore" class="level3">
+<h4>Explore</h4>
+<div class="ix nota-fig">
+<iframe class="mapa" title="Interactive map of schools and children" src="/assets/dashboards/bariloche_escuelas_mapa_en.html" style="height:900px">
+</iframe>
+<p class="how">
+<strong>How to use it.</strong> At the top, choose what to show: neighbourhoods or districts, and the indicator that colours the map (for example, the change in children between 2010 and 2022, or how many children aged 6–12 there are per primary school). Each dot is a mainstream school building; when a building hosts kindergarten, primary or secondary, the dot carries the colour of each level, and the «Schools» buttons let you keep only one. Click a neighbourhood, a district or a school to see its numbers and the list of schools on the right. «Highlight neighbourhoods» marks, for example, the neighbourhoods without their own primary school. The mouse wheel (or two fingers on a phone) zooms in down to street level; «No colour» leaves just the street map.
+</p>
+</div>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h3>Discussion</h3>
+<p>The data describe a city with two problems pulling in opposite directions. In aggregate, primary demand is already falling and secondary demand will fall after 2029. Spatially, demand concentrates at the edges, where supply is scarce and where the municipal projection places almost all future growth, while the centre concentrates schools, tourism and a population with ever fewer children.</p>
+<p>There are three implications for planning. First, falling births will not solve the shortage at the edges: even with smaller cohorts, a district growing like El Cóndor (+71%) will need more places, especially in secondary. Second, the centre will probably have small classes, as is already happening in Buenos Aires; this opens room to extend the school day, open classes for three-year-olds or support students who fall behind, if the resources are not lost. Third, where schools are is also a mobility policy: each class opened close to where children live is one trip fewer along the trunk avenues at rush hour, and bus routes and timetables can be planned together with the school map.</p>
+</section>
+<section id="limitations" class="level2">
+<h3>Limitations</h3>
+<ul>
+<li><strong>We do not observe enrolment.</strong> Everything we call supply is units. We do not know how many pupils or classes each school has. The public school-level database of the Annual Survey is anonymised.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><strong>Children do not necessarily attend the nearest school.</strong> There are private schools, school choice and parents’ work. Ratios by area describe nearby supply, not where each child studies.</li>
+<li><strong>Areal interpolation</strong> assumes even population within each tract. In the large tracts at the edges the error can be important.</li>
+<li><strong>Distances are straight lines</strong>, without slopes, lakes or road network.</li>
+<li><strong>The municipal projection has no published method</strong>, and our projection of children inherits its assumptions and adds its own (newcomers with the same age structure as residents; constant births from 2026).</li>
+<li><strong>The department is not the city.</strong> Births are by department; the census check suggests the city is a stable share.</li>
+<li><strong>The hotel register dates from 2022</strong> and excludes informal short-term rentals.</li>
+</ul>
+</section>
+<section id="next-steps" class="level2">
+<h3>Next steps</h3>
+<ol type="1">
+<li><strong>Enrolment by school</strong>, once the request is answered: pupils per class and occupancy by area.</li>
+<li><strong>Level attended by tract</strong> (2022 census), to measure demand by level actually attended and not only by age.</li>
+<li><strong>Building permits and subdivisions</strong>: allocate new floor area to areas to anticipate where families will settle.</li>
+<li><strong>Tourist accommodation</strong>: match the municipal register with platform listings to measure tourist use of the central housing stock.</li>
+</ol>
+</section>
+<section id="sources" class="level2">
+<h3>Sources</h3>
+<ul>
+<li>RENAPER, «Nacimientos por departamento y año 2012–2022», datos.gob.ar.</li>
+<li>Río Negro Ministry of Health, Provincial Statistics Office, <em>Estadísticas Vitales</em> 2020 and 2022–2025.</li>
+<li>Río Negro Civil Registry, press releases on registered births, January–September 2026.</li>
+<li>INDEC, National Population, Household and Housing Censuses 1991, 2010 and 2022, by census tract (processing with CONICET cartography, Rodríguez and de Grande, on source.coop).</li>
+<li>Ministry of Human Capital, Padrón Oficial de Establecimientos Educativos, 2011–2026 editions.</li>
+<li>Municipality of San Carlos de Bariloche: zoning map (neighbourhoods and districts), map of schools, «Proyección Población» dashboard, «Mapa de establecimientos hoteleros de la ciudad» dashboard (2022) and map of the urban bus system.</li>
+<li>Georef geographic data normalisation service, datos.gob.ar.</li>
+<li>Falch, T., Lujala, P. and Strøm, B. (2013). «Geographical constraints and educational attainment». <em>Regional Science and Urban Economics</em>, 43(1), 164–176.</li>
+<li>K-12 Dive, «Study: Using public transit for school commute linked to higher absenteeism», 20/3/2019 (Johns Hopkins University study on Baltimore).</li>
+<li>De Simone, M., Alzú, M. S. and Nistal, M., «Presente y futuro de la cantidad de alumnos por docente y por grado», Observatorio Argentinos por la Educación, 2026 (reviewed by Chequeado).</li>
+<li>Infobae, «Baja de natalidad y educación: las escuelas porteñas cierran grados…», 15/10/2025.</li>
+<li>ANBariloche, «Zona centro y avenidas colapsadas en horas pico», 12/7/2024.</li>
+</ul>
+</section>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Anonymised enrolment by school was requested from the national and Río Negro ministries of education under the access-to-information law (November 2026). At the time of writing the request was within the legal deadline and no answer had been received yet.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+
+<script>
+(function(){var root=document.documentElement;function fr(){return Array.prototype.slice.call(document.querySelectorAll('iframe.mapa'));}
+function send(){var t=root.getAttribute('data-theme')||'dark';fr().forEach(function(f){try{f.contentWindow.postMessage({type:'dashboard:theme',theme:t},'*');}catch(e){}});}
+window.addEventListener('message',function(e){var d=e.data;if(!d||d.type!=='dashboard:height')return;fr().forEach(function(f){if(e.source===f.contentWindow)f.style.height=Math.max(600,Math.min(3000,+d.height||0))+'px';});});
+fr().forEach(function(f){f.addEventListener('load',send);});new MutationObserver(send).observe(root,{attributes:true,attributeFilter:['data-theme']});})();
+</script>
+
+{% endraw %}

@@ -3,15 +3,15 @@ layout: page
 title: "Notas"
 permalink: /es/notas/
 lang: "es"
-alt_url: "/notes/"
+alt_url: "/commentary/"
 standfirst: >-
-  Textos cortos sobre mercados de trabajo, datos y lo que me voy cruzando mientras trabajo. Cada
-  tanto, no con regularidad.
+  Notas que escribo para diarios, sobre todo en la Argentina, cada una con un reporte técnico que explica los datos,
+  los métodos y los supuestos detrás de cada cifra.
 body_class: "listing"
 description: >-
-  Notas de Matías Golman sobre mercados de trabajo, empleo informal, habilidades y trabajo con
-  datos.
-sitemap: false
+  Notas de Matías Golman en diarios sobre mercado de trabajo, hogares y políticas públicas, cada una con su reporte
+  técnico: datos, métodos y supuestos.
 ---
 
-<p>Todavía no hay nada publicado acá.</p>
+{%- assign notas = site.pages | where: "layout", "nota" | where: "lang", "es" | sort: "date" | reverse %}
+{% include notas-list.html items=notas %}

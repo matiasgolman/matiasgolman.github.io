@@ -1,0 +1,459 @@
+{% raw %}
+<nav class="nota-toc" aria-label="Contenido del reporte"><ul>
+<li><a href="#resumen" id="toc-resumen">Resumen</a></li>
+<li><a href="#pregunta-y-contexto" id="toc-pregunta-y-contexto">Pregunta
+y contexto</a></li>
+<li><a href="#datos" id="toc-datos">Datos</a></li>
+<li><a href="#métodos" id="toc-métodos">Métodos</a></li>
+<li><a href="#resultados" id="toc-resultados">Resultados</a></li>
+<li><a href="#discusión" id="toc-discusión">Discusión</a></li>
+<li><a href="#limitaciones" id="toc-limitaciones">Limitaciones</a></li>
+<li><a href="#próximos-pasos" id="toc-próximos-pasos">Próximos
+pasos</a></li>
+<li><a href="#fuentes" id="toc-fuentes">Fuentes</a></li>
+</ul></nav>
+<section id="resumen" class="level2">
+<h3>Resumen</h3>
+<p>Este reporte estudia si la oferta de escuelas de San Carlos de Bariloche acompaña la cantidad y la ubicación de los chicos en edad escolar, hoy y hacia 2035. Combina fuentes públicas: los nacimientos por residencia de la madre (RENAPER y Ministerio de Salud de Río Negro), los censos de 2010 y 2022 por radio censal, el padrón oficial de establecimientos educativos 2011–2026, la cartografía municipal de barrios y delegaciones, la proyección de población por delegación del municipio, su registro de establecimientos hoteleros y su mapa de paradas de colectivo.</p>
+<p>Encontramos cuatro hechos. Primero, los nacimientos del departamento cayeron de 2.460 en 2012 a 1.316 en 2025 (−47 %), y los datos de 2026 no muestran un rebote. Segundo, la cantidad de establecimientos de educación común creció un 21 % entre 2011 y 2026. Tercero, la ciudad creció hacia la periferia: de los 22.300 habitantes que sumó entre 2010 y 2022, ninguno quedó en la delegación Urbana, que perdió población y un 18 % de sus chicos de 0 a 17 años. Las escuelas, en cambio, siguen concentradas en el centro: El Cóndor tiene 811 chicos de 6 a 12 años por primaria y Urbana, 164. Cuarto, una proyección propia por cohortes indica que la población en edad de primaria ya pasó su pico y que la de secundaria lo alcanza hacia 2029. Combinada con la proyección municipal, la brecha territorial se amplía: en 2035 habría 760 chicos por primaria en El Cóndor y 101 en Urbana si no se abren escuelas.</p>
+<p>La principal limitación es que no observamos la matrícula por escuela: medimos establecimientos, no vacantes.</p>
+</section>
+<section id="pregunta-y-contexto" class="level2">
+<h3>Pregunta y contexto</h3>
+<p>La pregunta es doble. ¿La oferta de escuelas, por nivel y por zona, está donde viven los chicos? ¿Y qué zonas van a necesitar más o menos lugares en los próximos años, dada la caída de la natalidad y el crecimiento desigual de la ciudad?</p>
+<p>El contexto nacional es conocido. La natalidad cae en la Argentina desde 2014, con una baja especialmente fuerte en los nacimientos de madres adolescentes. Un estudio de Argentinos por la Educación proyecta una caída del 27 % en la matrícula primaria del país entre 2023 y 2030, y ubica a Río Negro entre las provincias con mayor proporción de grados pequeños hacia 2030 (<a href="https://chequeado.com/nota/aulas-con-menos-alumnos-se-estima-que-caera-un-27-la-matricula-escolar-para-2030-en-la-argentina">Chequeado, 28/01/2026</a>). En la ciudad de Buenos Aires los ingresantes a primer grado de escuelas estatales bajaron cerca de un 25 % entre 2020 y 2025, y el gobierno porteño empezó a cerrar secciones (<a href="https://www.infobae.com/sociedad/2025/10/15/baja-de-natalidad-y-educacion-las-escuelas-portenas-cierran-grados-y-docentes-y-familias-toman-medidas-para-evitarlo/">Infobae, 15/10/2025</a>).</p>
+<p>Lo que esos trabajos no muestran es la dimensión territorial dentro de una ciudad. En ciudades que crecen hacia la periferia, la caída agregada de la demanda puede convivir con faltantes en los barrios nuevos. En Bariloche eso se cruza con un problema de movilidad: la ciudad es larga y angosta, con pocas vías troncales que se congestionan en horas pico (<a href="https://www.anbariloche.com.ar/noticias/2024/07/12/94535-zona-centro-y-avenidas-colapsadas-en-horas-pico">ANBariloche, 12/7/2024</a>). La distancia a la escuela importa por sí misma. En Noruega, cada media hora adicional de viaje hasta la secundaria más cercana reduce en unos 2,3 puntos porcentuales la probabilidad de terminarla a tiempo, con efectos más grandes entre los alumnos de rendimiento medio (Falch, Lujala y Strøm, 2013). En Baltimore, un estudio de la Universidad Johns Hopkins asoció cada diez minutos adicionales de viaje en transporte público con un tercio de día más de inasistencias por año en la secundaria (<a href="https://www.k12dive.com/news/study-using-public-transit-for-school-commute-linked-to-higher-absenteeism/550735">K-12 Dive, 20/3/2019</a>).</p>
+</section>
+<section id="datos" class="level2">
+<h3>Datos</h3>
+<section id="nacimientos" class="level3">
+<h4>Nacimientos</h4>
+<p>Usamos dos fuentes de nacimientos por residencia de la madre, a nivel de departamento:</p>
+<ul>
+<li><strong>RENAPER</strong>, «Nacimientos por departamento y año 2012–2022» (datos.gob.ar).</li>
+<li><strong>Ministerio de Salud de Río Negro</strong>, Coordinación Provincial de Estadística, anuarios de Estadísticas Vitales 2020 y 2022–2025 (el de 2021 es una imagen escaneada). El Cuadro N° 2 da los nacidos vivos por departamento de residencia; otro cuadro, por Área Programa, que en el caso de Bariloche corresponde aproximadamente a la ciudad.</li>
+</ul>
+<p>En los años en que se solapan, las dos fuentes difieren poco para el departamento: en 2020 RENAPER registra 1.670 y Salud 1.650 (−1,2 %); en 2022, 1.539 y 1.567 (+1,8 %). Para el total provincial la diferencia es mayor (−6,7 % en 2020 y +3,0 % en 2022). La serie empalma RENAPER hasta 2022 y Salud desde 2023, sin ajuste.</p>
+<p>El departamento Bariloche incluye El Bolsón, Dina Huapi y otras localidades. No hay nacimientos por localidad de residencia con una serie larga. Para 2026 sólo hay gacetillas del Registro Civil con nacimientos inscriptos por localidad de inscripción, que no son comparables con los nacimientos por residencia.</p>
+</section>
+<section id="población-por-edad-y-por-zona" class="level3">
+<h4>Población por edad y por zona</h4>
+<p>Los censos 2010 y 2022 por radio censal vienen del procesamiento de INDEC publicado con la cartografía de CONICET (Rodríguez y de Grande) en source.coop. Nos quedamos con los radios que caen dentro del ejido municipal. Tres correcciones:</p>
+<ol type="1">
+<li><strong>El censo 2010 fue «de hecho» y el de 2022 «de derecho».</strong> El de 2010 contó a las personas donde pasaron la noche del 27 de octubre, en plena temporada de viajes de egresados. En seis radios del centro aparecen cientos de jóvenes de 17 y 18 años alojados en hoteles. Corregimos las edades de 16 a 19 años de esos radios.</li>
+<li><strong>Las edades de 2010 vienen de la muestra del cuestionario ampliado.</strong> Las expandimos a la población total de cada radio. Los radios sin datos de edad se imputan con la estructura de edades de la ciudad.</li>
+<li><strong>El censo 1991 por variable usa otra numeración de provincias.</strong> Para 1991 sólo usamos la población total por radio.</li>
+</ol>
+<p>Del censo 2022 usamos además la condición de ocupación de las viviendas (con o sin personas presentes) y el motivo de ausencia.</p>
+</section>
+<section id="escuelas" class="level3">
+<h4>Escuelas</h4>
+<p>El padrón oficial de establecimientos educativos del Ministerio de Capital Humano (versiones 2011–2026) identifica cada unidad de servicio por su CUE y anexo, con su nivel, sector y domicilio. Nos quedamos con la educación común (inicial, primaria y secundaria). Filtramos por una lista de localidades del ejido, porque el padrón anota aparte Colonia Suiza, Península San Pedro o Villa Los Coihues.</p>
+<p>En 2026 hay 123 establecimientos de educación común, 115 de ellos con jardín, primaria o secundaria (69 estatales, 43 privados y 11 de gestión social o cooperativa, contando todos los niveles). Una misma institución puede inscribir varios niveles con códigos distintos: es común en los colegios privados que inscriben el jardín y la primaria con un CUE y la secundaria con otro, y en los edificios estatales que comparten un jardín y una primaria. Agrupamos las unidades que están a menos de 20 metros entre sí: los 115 establecimientos con algún nivel común son 103 instituciones en 90 edificios. En el mapa, cada punto es un edificio con todos los niveles que se dictan ahí. Los conteos por nivel casi no cambian con este agrupamiento, así que los cocientes de chicos por escuela usan establecimientos.</p>
+</section>
+<section id="cartografía-proyección-hoteles-y-colectivos" class="level3">
+<h4>Cartografía, proyección, hoteles y colectivos</h4>
+<p>Los polígonos de barrios (140) y de delegaciones vienen del mapa de zonificaciones de la Municipalidad. La proyección de población por delegación 1991–2035 viene del tablero «Proyección Población» que la Municipalidad publica en Tableau Public; el municipio no documenta su método. Las plazas hoteleras vienen del tablero «Mapa de establecimientos hoteleros de la ciudad» (publicado en 2022, con coordenadas y plazas de cada establecimiento registrado). Las paradas del transporte urbano (526) vienen del mapa del Transporte Urbano de Pasajeros del municipio (noviembre de 2026).</p>
+</section>
+</section>
+<section id="métodos" class="level2">
+<h3>Métodos</h3>
+<section id="ubicación-de-las-escuelas" class="level3">
+<h4>Ubicación de las escuelas</h4>
+<p>El domicilio del padrón es texto libre. Lo geocodificamos con la API Georef del Estado nacional y aceptamos sólo los resultados a nivel de altura o esquina. Cuando la dirección no funcionó, emparejamos por nombre con el mapa de establecimientos educativos de la Municipalidad, y las 12 que quedaban las ubicamos a mano con OpenStreetMap, Georef y el mapa municipal. Así quedan ubicadas las 115 unidades con jardín, primaria o secundaria.</p>
+</section>
+<section id="de-radios-censales-a-barrios-y-delegaciones" class="level3">
+<h4>De radios censales a barrios y delegaciones</h4>
+<p>Repartimos la población de cada radio entre los barrios según la proporción de su superficie que cae en cada uno (interpolación areal). Supone población pareja dentro de cada radio; en la periferia los radios son grandes y el supuesto pesa más. Los barrios del mapa municipal no cubren todo el ejido. Para las delegaciones, los totales interpolados casi coinciden con los del municipio, pero el reparto no: Urbana tiene más población según el municipio y Pampa de Huenuleo, menos. Usamos el crecimiento municipal (no su nivel) para proyectar.</p>
+</section>
+<section id="descomposición-del-cambio-en-los-chicos-de-cada-delegación" class="level3">
+<h4>Descomposición del cambio en los chicos de cada delegación</h4>
+<p>Para separar cuánto del cambio en los chicos de 0 a 17 años de cada delegación entre 2010 y 2022 se debe a que cambió la población y cuánto a que cambió la proporción de chicos, usamos la descomposición habitual: Δchicos = (P₂₀₂₂ − P₂₀₁₀) × s₂₀₁₀ + P₂₀₂₂ × (s₂₀₂₂ − s₂₀₁₀), donde P es la población y s la proporción de chicos. El primer término es el efecto población y el segundo, el efecto proporción. Los censos por radio no permiten distinguir mudanzas dentro de la ciudad de llegadas desde afuera.</p>
+</section>
+<section id="serie-de-chicos-en-edad-escolar-20012022" class="level3">
+<h4>Serie de chicos en edad escolar, 2001–2022</h4>
+<p><strong>Interpolación por camadas entre censos.</strong> Para ver la proyección con historia, reconstruimos los chicos de 3 a 17 años del ejido año por año entre los censos 2001, 2010 y 2022. Cada camada (año de nacimiento) se observa en dos censos consecutivos; entre ellos, lo que ganó o perdió (mudanzas, mortalidad) se reparte en línea recta, de modo que la serie pasa exactamente por los tres censos. Una camada nacida después de un censo toma el valor del censo siguiente. Las fechas de los censos (noviembre 2001, octubre 2010, mayo 2022) se tratan como mitad de año, y en 2010 se usa la muestra expandida y corregida por egresados (sección anterior). Resultado: en edad de primaria, 14.000 en 2001, 11.400 en 2010 y 14.400 en 2022; la secundaria tocó su piso hacia 2017 (8.100). Código: <code>analisis.py historia</code> → <code>datos_intermedios/chicos_ciudad_historia_2001_2022.csv</code>.</p>
+</section>
+<section id="proyección-de-chicos-en-edad-escolar" class="level3">
+<h4>Proyección de chicos en edad escolar</h4>
+<p><strong>Ciudad, por cohortes (2022–2040).</strong> Cada edad simple del censo 2022 dentro del ejido envejece un año por año, sin migración ni mortalidad. Las camadas nacidas desde 2023 entran con los nacimientos del departamento multiplicados por la razón entre los chicos que viven en el ejido y los nacimientos del departamento en sus años de nacimiento (promedio de las edades 0 a 9 en 2022: 0,84). Desde 2026 suponemos nacimientos iguales a los de 2025, coherente con los datos del Registro Civil para 2026. Como sensibilidad, una variante prolonga la caída de 2022–2025 (−5,1 % por año): con ella, la población de 6 a 12 años de 2035 sería un 49 % menor que la de 2022, en lugar de un 45 %. La secundaria de 2035 no cambia, porque esas camadas ya nacieron.</p>
+<p><strong>Delegaciones (2035).</strong> Para cada delegación d y grupo de edad g: chicos₍d,g,2035₎ = chicos₍d,g,2022₎ × (P₍d,2035₎ / P₍d,2022₎) × r₍g₎, donde P es la población proyectada por el municipio y r₍g₎ el cociente entre los chicos del grupo g en 2035 y en 2022 en la proyección por cohortes de la ciudad. Supone que la población nueva de cada zona tiene la misma estructura de edades que la existente, ajustada por la natalidad actual. Es un ejercicio de escenarios, no un pronóstico: si los barrios nuevos atraen sobre todo familias jóvenes, la proyección subestima a los chicos de la periferia.</p>
+</section>
+<section id="otros-indicadores" class="level3">
+<h4>Otros indicadores</h4>
+<ul>
+<li><strong>Chicos por escuela</strong>: chicos de la edad del nivel (3 a 5, 6 a 12, 13 a 17 años) sobre los establecimientos de ese nivel dentro de la zona. Río Negro tiene primaria de siete años y secundaria de cinco.</li>
+<li><strong>Camada que viene</strong>: chicos de 0 a 4 años sobre chicos de 5 a 9 en 2022.</li>
+<li><strong>Distancia</strong>: en línea recta desde el centro de cada radio a la escuela más cercana del nivel, ponderada por los chicos del radio. No considera pendientes, calles ni transporte.</li>
+<li><strong>Distancia a la parada de colectivo</strong>: desde el centro de cada radio a la parada más cercana.</li>
+<li><strong>Plazas hoteleras por delegación</strong>: establecimientos del registro municipal ubicados dentro de cada delegación.</li>
+</ul>
+</section>
+</section>
+<section id="resultados" class="level2">
+<h3>Resultados</h3>
+<section id="los-nacimientos-cayeron-casi-a-la-mitad" class="level3">
+<h4>Los nacimientos cayeron casi a la mitad</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Nacimientos por año y año en que esa camada empieza primer grado." src="/assets/img/notas/bariloche-escuelas/f1_nacimientos_es_oscuro.png"><img class="fig-light" alt="Nacimientos por año y año en que esa camada empieza primer grado." src="/assets/img/notas/bariloche-escuelas/f1_nacimientos_es_claro.png">
+<figcaption>
+Nacimientos por año y año en que esa camada empieza primer grado.
+</figcaption>
+</figure>
+<p>Los nacimientos del departamento se mantuvieron estables hasta 2015 y desde ahí bajaron sin interrupción. En 2025 fueron 1.316, un 47 % menos que en 2012. Entre 2012 y 2022 la caída fue del 37 %, igual a la de Río Negro (38 %) y a la del país (38 %). En el Área Programa Bariloche, que aproxima la ciudad, bajaron de 1.321 en 2022 a 1.097 en 2025. Las gacetillas del Registro Civil sugieren que en 2026 la caída se frenó: entre enero y septiembre se inscribieron 4.798 nacimientos en la provincia, contra 4.834 en el mismo período de 2025.</p>
+<p>Los chicos de cada edad que viven en el ejido equivalen a entre 0,79 y 0,88 nacimientos del departamento en sus años de nacimiento, con un promedio del 84 %. Que la razón sea pareja entre edades indica que la ciudad es una proporción estable del departamento en todas las camadas.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Chicos por edad simple dentro del ejido, censos 2010 y 2022." src="/assets/img/notas/bariloche-escuelas/f6_chicos_por_edad_2010_2022_es_oscuro.png"><img class="fig-light" alt="Chicos por edad simple dentro del ejido, censos 2010 y 2022." src="/assets/img/notas/bariloche-escuelas/f6_chicos_por_edad_2010_2022_es_claro.png">
+<figcaption>
+Chicos por edad simple dentro del ejido, censos 2010 y 2022.
+</figcaption>
+</figure>
+</section>
+<section id="la-oferta-creció-en-todos-los-niveles" class="level3">
+<h4>La oferta creció en todos los niveles</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Establecimientos de educación común por nivel, 2011–2026." src="/assets/img/notas/bariloche-escuelas/f2_escuelas_por_nivel_es_oscuro.png"><img class="fig-light" alt="Establecimientos de educación común por nivel, 2011–2026." src="/assets/img/notas/bariloche-escuelas/f2_escuelas_por_nivel_es_claro.png">
+<figcaption>
+Establecimientos de educación común por nivel, 2011–2026.
+</figcaption>
+</figure>
+<p>Entre 2011 y 2026 los jardines pasaron de 42 a 50 (19 %), las primarias de 45 a 52 (16 %) y las secundarias de 32 a 38 (19 %). En 2012 el padrón empezó a separar el sector social o cooperativo, así que las series por sector tienen un quiebre ese año.</p>
+</section>
+<section id="la-primaria-ya-pasó-su-pico-la-secundaria-lo-alcanza-hacia-2029" class="level3">
+<h4>La primaria ya pasó su pico; la secundaria lo alcanza hacia 2029</h4>
+<p>Como las camadas grandes nacieron entre 2012 y 2015, la población en edad de primaria creció entre los censos: los chicos de 6 a 12 años dentro del ejido pasaron de 11.391 a 14.371 (+26 %), mientras los de 0 a 5 ya bajaban (−5 %).</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Chicos en edad escolar que viven en el ejido: censos 2001, 2010 y 2022, y proyección hasta 2040." src="/assets/img/notas/bariloche-escuelas/f3_chicos_por_edad_escolar_es_oscuro.png"><img class="fig-light" alt="Chicos en edad escolar que viven en el ejido: censos 2001, 2010 y 2022, y proyección hasta 2040." src="/assets/img/notas/bariloche-escuelas/f3_chicos_por_edad_escolar_es_claro.png">
+<figcaption>
+Chicos en edad escolar que viven en el ejido: censos 2001, 2010 y 2022, y proyección hasta 2040.
+</figcaption>
+</figure>
+<p>La proyección por cohortes indica que la población de 6 a 12 años tocó su máximo alrededor de 2022 y baja desde entonces: sería de unos 9.800 en 2030 (32 % menos que en 2022) y de unos 7.900 en 2035 (45 % menos). La de 13 a 17 años sigue creciendo hasta 2029, cuando llega a unos 10.400 (6 % más que en 2022), y después cae un 28 % hasta 2035. La camada más grande entra a primer año de la secundaria en 2028. La camada que entra a primer grado en 2026 es un 32 % más chica que la de 2018, y la de 2031 lo será un 47 %.</p>
+</section>
+<section id="la-ciudad-creció-hacia-afuera-el-centro-perdió-chicos" class="level3">
+<h4>La ciudad creció hacia afuera; el centro perdió chicos</h4>
+<p>Las seis delegaciones municipales no siempre coinciden con los nombres que usa la gente: Urbana es el centro y sus barrios vecinos; Cerro Otto, los primeros kilómetros y Lago Gutiérrez; Lago Moreno, los kilómetros más lejanos hasta Llao Llao y Colonia Suiza; Cerro Catedral, Villa Los Coihues y la base del cerro; Pampa de Huenuleo, buena parte del Alto; El Cóndor, el este de la ciudad.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Las seis delegaciones municipales y cómo se conoce cada zona en la ciudad." src="/assets/img/notas/bariloche-escuelas/m0_delegaciones_es_oscuro.png"><img class="fig-light" alt="Las seis delegaciones municipales y cómo se conoce cada zona en la ciudad." src="/assets/img/notas/bariloche-escuelas/m0_delegaciones_es_claro.png">
+<figcaption>
+Las seis delegaciones municipales y cómo se conoce cada zona en la ciudad.
+</figcaption>
+</figure>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Cambio en los chicos de 0 a 17 años por barrio, 2010–2022. Las líneas son las delegaciones municipales." src="/assets/img/notas/bariloche-escuelas/m1_cambio_chicos_2010_2022_es_oscuro.png"><img class="fig-light" alt="Cambio en los chicos de 0 a 17 años por barrio, 2010–2022. Las líneas son las delegaciones municipales." src="/assets/img/notas/bariloche-escuelas/m1_cambio_chicos_2010_2022_es_claro.png">
+<figcaption>
+Cambio en los chicos de 0 a 17 años por barrio, 2010–2022. Las líneas son las delegaciones municipales.
+</figcaption>
+</figure>
+<p>Entre 2010 y 2022 la población del ejido creció un 20 % (unos 22.300 habitantes), pero la delegación Urbana perdió un 4 % (de unos 55.500 a 53.200). El crecimiento se concentró en El Cóndor (+77 %) y Pampa de Huenuleo (+50 %).</p>
+<p>La descomposición muestra dos mecanismos distintos. En Urbana, los chicos de 0 a 17 años bajaron en unos 2.500: unos 2.000 por la menor proporción de chicos (del 25 % al 21 % de la población) y unos 600 por la menor población. En El Cóndor subieron en unos 1.900: el efecto población sumó unos 2.900 y el efecto proporción restó unos 1.000. En Pampa de Huenuleo, el efecto población sumó unos 3.300 y el de proporción restó unos 1.500. En todas las delegaciones salvo Lago Moreno la proporción de chicos bajó, como era de esperar con menos nacimientos. Lo que distingue a la periferia es la llegada de población. Dentro de Urbana, los barrios de vivienda social más antiguos perdieron hasta un 58 % de sus chicos.</p>
+<p>En 71 de los 73 barrios con suficientes chicos para medirlo, la camada de 0 a 4 años es más chica que la de 5 a 9 (mediana: 7 chicos de 0 a 4 por cada 10 de 5 a 9). Por la natalidad, ningún barrio va a necesitar más lugares en primaria; sólo los que reciban población nueva.</p>
+</section>
+<section id="el-centro-concentra-el-turismo-y-las-escuelas" class="level3">
+<h4>El centro concentra el turismo y las escuelas</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Parte de los chicos, de las primarias y de las plazas hoteleras de la ciudad en cada delegación." src="/assets/img/notas/bariloche-escuelas/f5_chicos_escuelas_turismo_es_oscuro.png"><img class="fig-light" alt="Parte de los chicos, de las primarias y de las plazas hoteleras de la ciudad en cada delegación." src="/assets/img/notas/bariloche-escuelas/f5_chicos_escuelas_turismo_es_claro.png">
+<figcaption>
+Parte de los chicos, de las primarias y de las plazas hoteleras de la ciudad en cada delegación.
+</figcaption>
+</figure>
+<p>La delegación Urbana tiene el 34 % de los chicos de 0 a 17 años, el 54 % de las primarias y el 57 % de las 26.000 plazas hoteleras registradas: unas 28 por cada 100 habitantes, contra 0,8 en El Cóndor y 0,7 en Pampa de Huenuleo. El Cóndor y Pampa de Huenuleo juntan el 42 % de los chicos, el 17 % de las primarias y el 1 % de las plazas. El censo 2022 encontró sin personas presentes el 12 % de las viviendas de Urbana, contra el 5 % en El Cóndor y el 5 % en Pampa de Huenuleo. El registro hotelero no incluye los alquileres temporarios informales, así que subestima el uso turístico del centro.</p>
+</section>
+<section id="la-oferta-no-siguió-a-la-población" class="level3">
+<h4>La oferta no siguió a la población</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Chicos de 6 a 12 años por km² (2022) y escuelas primarias (2026)." src="/assets/img/notas/bariloche-escuelas/m2_chicos_6a12_y_primarias_es_oscuro.png"><img class="fig-light" alt="Chicos de 6 a 12 años por km² (2022) y escuelas primarias (2026)." src="/assets/img/notas/bariloche-escuelas/m2_chicos_6a12_y_primarias_es_claro.png">
+<figcaption>
+Chicos de 6 a 12 años por km² (2022) y escuelas primarias (2026).
+</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Delegación</th>
+<th style="text-align: right;">Chicos 0–17 (2022)</th>
+<th style="text-align: right;">Jardines</th>
+<th style="text-align: right;">Primarias</th>
+<th style="text-align: right;">Secundarias</th>
+<th style="text-align: right;">Chicos 3–5 por jardín</th>
+<th style="text-align: right;">Chicos 6–12 por primaria</th>
+<th style="text-align: right;">Chicos 13–17 por secundaria</th>
+<th style="text-align: right;">Población 2022–2035 (municipio)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>El Cóndor</td>
+<td style="text-align: right;">5.600</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">877</td>
+<td style="text-align: right;">811</td>
+<td style="text-align: right;">552</td>
+<td style="text-align: right;">+71 %</td>
+</tr>
+<tr class="even">
+<td>Pampa de Huenuleo</td>
+<td style="text-align: right;">8.400</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">619</td>
+<td style="text-align: right;">585</td>
+<td style="text-align: right;">+44 %</td>
+</tr>
+<tr class="odd">
+<td>Lago Moreno</td>
+<td style="text-align: right;">3.100</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;">sin escuela</td>
+<td style="text-align: right;">+36 %</td>
+</tr>
+<tr class="even">
+<td>Cerro Catedral</td>
+<td style="text-align: right;">700</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">sin escuela</td>
+<td style="text-align: right;">+159 %</td>
+</tr>
+<tr class="odd">
+<td>Cerro Otto</td>
+<td style="text-align: right;">4.300</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">+24 %</td>
+</tr>
+<tr class="even">
+<td>Urbana</td>
+<td style="text-align: right;">11.200</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">+13 %</td>
+</tr>
+</tbody>
+</table>
+<p><em>Chicos: censo 2022 interpolado a delegaciones. Escuelas: establecimientos de educación común ubicados, 2026. «Sin escuela»: no hay ningún establecimiento de ese nivel dentro de la delegación (los chicos pueden ir a otra).</em></p>
+<p>En primaria, la relación entre chicos y escuelas es 5 veces más alta en El Cóndor que en la delegación Urbana, y la diferencia es mayor en inicial. Hay barrios grandes sin ninguna primaria dentro de sus límites: Nahuel Hue (unos 640 chicos de 6 a 12 años), 645 Viviendas (500) y Las Victorias (360). El Frutillar tiene unos 1.020 chicos de esa edad y 2 primarias.</p>
+<p>La distancia media a la primaria más cercana es de 0,7 km, pero unos 1.400 de los 14.400 chicos de 6 a 12 años (10 %) viven a más de 1,5 km. En inicial son unos 500 de 5.400 (10 %); en secundaria, unos 1.000 de 9.800 viven a más de 3 km (10 %). La cobertura del colectivo no es el cuello de botella principal en el sur: en Pampa de Huenuleo y El Cóndor la gran mayoría de los chicos vive a menos de 500 metros de una parada. Sí lo es en el oeste: el 31 % de los chicos de 6 a 17 años de Lago Moreno y el 23 % de los de Cerro Otto viven más lejos (8 % en toda la ciudad). El problema del sur es la distancia y el recorrido: para llegar a las escuelas del centro hay que usar las mismas avenidas que se congestionan en hora pico.</p>
+</section>
+<section id="la-proyección-a-2035-amplía-la-brecha" class="level3">
+<h4>La proyección a 2035 amplía la brecha</h4>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Población proyectada por el municipio por delegación, índice 2022 = 100." src="/assets/img/notas/bariloche-escuelas/f7_proyeccion_municipal_es_oscuro.png"><img class="fig-light" alt="Población proyectada por el municipio por delegación, índice 2022 = 100." src="/assets/img/notas/bariloche-escuelas/f7_proyeccion_municipal_es_claro.png">
+<figcaption>
+Población proyectada por el municipio por delegación, índice 2022 = 100.
+</figcaption>
+</figure>
+<p>El municipio proyecta que la ciudad pasa de 135.775 habitantes en 2022 a 183.891 en 2035 (35 %), con el 84 % del aumento fuera de Urbana: El Cóndor +71 %, Pampa de Huenuleo +44 % y Cerro Catedral +159 %.</p>
+<figure class="nota-fig">
+<img class="fig-dark" alt="Chicos en edad de primaria y de secundaria por delegación, 2022 y 2035." src="/assets/img/notas/bariloche-escuelas/f4_chicos_delegacion_2022_2035_es_oscuro.png"><img class="fig-light" alt="Chicos en edad de primaria y de secundaria por delegación, 2022 y 2035." src="/assets/img/notas/bariloche-escuelas/f4_chicos_delegacion_2022_2035_es_claro.png">
+<figcaption>
+Chicos en edad de primaria y de secundaria por delegación, 2022 y 2035.
+</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Delegación</th>
+<th style="text-align: right;">6 a 12 (2022)</th>
+<th style="text-align: right;">6 a 12 (2035)</th>
+<th style="text-align: right;">Cambio</th>
+<th style="text-align: right;">13 a 17 (2022)</th>
+<th style="text-align: right;">13 a 17 (2035)</th>
+<th style="text-align: right;">Cambio</th>
+<th style="text-align: right;">Primarias (2026)</th>
+<th style="text-align: right;">Por primaria, 2022 → 2035</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cerro Catedral (Los Coihues)</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;">460</td>
+<td style="text-align: right;">+42 %</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">420</td>
+<td style="text-align: right;">+96 %</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">324 → 460</td>
+</tr>
+<tr class="even">
+<td>El Cóndor (este)</td>
+<td style="text-align: right;">2.430</td>
+<td style="text-align: right;">2.280</td>
+<td style="text-align: right;">−6 %</td>
+<td style="text-align: right;">1.660</td>
+<td style="text-align: right;">2.150</td>
+<td style="text-align: right;">+30 %</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">811 → 760</td>
+</tr>
+<tr class="odd">
+<td>Pampa de Huenuleo (el Alto)</td>
+<td style="text-align: right;">3.720</td>
+<td style="text-align: right;">2.920</td>
+<td style="text-align: right;">−21 %</td>
+<td style="text-align: right;">2.340</td>
+<td style="text-align: right;">2.550</td>
+<td style="text-align: right;">+9 %</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">619 → 487</td>
+</tr>
+<tr class="even">
+<td>Lago Moreno (km lejanos)</td>
+<td style="text-align: right;">1.370</td>
+<td style="text-align: right;">1.020</td>
+<td style="text-align: right;">−25 %</td>
+<td style="text-align: right;">880</td>
+<td style="text-align: right;">910</td>
+<td style="text-align: right;">+3 %</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">456 → 340</td>
+</tr>
+<tr class="odd">
+<td>Cerro Otto (primeros km)</td>
+<td style="text-align: right;">1.850</td>
+<td style="text-align: right;">1.250</td>
+<td style="text-align: right;">−32 %</td>
+<td style="text-align: right;">1.300</td>
+<td style="text-align: right;">1.220</td>
+<td style="text-align: right;">−6 %</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">168 → 114</td>
+</tr>
+<tr class="even">
+<td>Urbana (centro)</td>
+<td style="text-align: right;">4.590</td>
+<td style="text-align: right;">2.830</td>
+<td style="text-align: right;">−38 %</td>
+<td style="text-align: right;">3.340</td>
+<td style="text-align: right;">2.850</td>
+<td style="text-align: right;">−15 %</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">164 → 101</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">14.280</td>
+<td style="text-align: right;">10.770</td>
+<td style="text-align: right;">−25 %</td>
+<td style="text-align: right;">9.740</td>
+<td style="text-align: right;">10.100</td>
+<td style="text-align: right;">+4 %</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p><em>Proyección propia (ver Métodos). Primarias: establecimientos de educación común en 2026; la última columna supone que no se abren escuelas nuevas.</em></p>
+<p>Combinando las dos proyecciones, la población de 6 a 12 años de la ciudad bajaría un 25 % entre 2022 y 2035 y la de 13 a 17 subiría un 4 %. Pero el reparto es muy desigual. En Urbana, los chicos en edad de primaria caerían un 38 % y los de secundaria un 15 %. En El Cóndor, los de primaria bajarían apenas un 6 % y los de secundaria subirían un 30 %; en Cerro Catedral, que no tiene secundaria, subirían un 96 %. Sin escuelas nuevas, la relación de chicos por primaria pasaría de 811 a 760 en El Cóndor y de 164 a 101 en Urbana: la brecha, hoy de 5 a uno, sería de 7,5 a uno. En secundaria, El Cóndor tendría unos 716 adolescentes por escuela y Urbana, 136.</p>
+</section>
+<section id="para-explorar" class="level3">
+<h4>Para explorar</h4>
+<div class="ix nota-fig">
+<iframe class="mapa" title="Mapa interactivo de escuelas y chicos" src="/assets/dashboards/bariloche_escuelas_mapa_es.html" style="height:900px">
+</iframe>
+<p class="how">
+<strong>Cómo se usa.</strong> Arriba elegís qué mirar: por barrios o por delegaciones, y el indicador con el que se colorea el mapa (por ejemplo, el cambio en los chicos entre 2010 y 2022, o cuántos chicos de 6 a 12 hay por primaria). Cada punto es un edificio escolar de educación común; si en el mismo edificio hay jardín, primaria o secundaria, el punto lleva los colores de cada nivel, y con los botones de «Escuelas» podés dejar sólo uno. Tocá un barrio, una delegación o una escuela para ver sus números y la lista de escuelas a la derecha. Con «Resaltar barrios» quedan marcados, por ejemplo, los barrios sin primaria propia. La rueda del mouse (o dos dedos en el celular) acerca el mapa hasta ver las calles; «Sin color» deja sólo el mapa de calles.
+</p>
+</div>
+</section>
+</section>
+<section id="discusión" class="level2">
+<h3>Discusión</h3>
+<p>Los datos describen una ciudad con dos problemas que van en sentidos opuestos. En el agregado, la demanda de primaria ya está bajando y la de secundaria lo hará después de 2029. En el territorio, la demanda se concentra en la periferia, donde la oferta es escasa y donde la proyección municipal pone casi todo el crecimiento futuro, mientras el centro concentra escuelas, turismo y una población con cada vez menos chicos.</p>
+<p>Hay tres implicancias para la planificación. La primera es que la caída de la natalidad no alcanza para resolver el déficit de la periferia: aun con camadas más chicas, una delegación que crece como El Cóndor (+71 %) va a necesitar más lugares, sobre todo en secundaria. La segunda es que el centro probablemente va a tener grados con pocos alumnos, como ya pasa en la ciudad de Buenos Aires; eso abre margen para extender la jornada, abrir salas de tres años o reforzar trayectorias, si los recursos no se pierden. La tercera es que la localización de la oferta es también una política de movilidad: cada sección que se abre cerca de donde viven los chicos es un viaje menos por las avenidas troncales en hora pico, y los recorridos y horarios del colectivo pueden pensarse junto con el mapa escolar.</p>
+</section>
+<section id="limitaciones" class="level2">
+<h3>Limitaciones</h3>
+<ul>
+<li><strong>No observamos la matrícula.</strong> Todo lo que llamamos oferta son establecimientos. No sabemos cuántos alumnos tiene cada escuela ni cuántas secciones. La base pública del Relevamiento Anual por escuela está anonimizada.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><strong>Los chicos no van necesariamente a la escuela más cercana.</strong> Hay escuelas privadas, elección de escuela y traslados por el trabajo de los padres. Los cocientes por zona describen la oferta cercana, no dónde estudia cada chico.</li>
+<li><strong>La interpolación areal</strong> supone población pareja dentro de cada radio. En los radios grandes de la periferia el error puede ser importante.</li>
+<li><strong>Las distancias son en línea recta</strong>, sin pendientes, lagos ni red vial.</li>
+<li><strong>La proyección municipal no tiene método publicado</strong>, y nuestra proyección de chicos hereda sus supuestos y agrega los propios (estructura de edades de los recién llegados igual a la de los residentes; nacimientos constantes desde 2026).</li>
+<li><strong>El departamento no es la ciudad.</strong> Los nacimientos son del departamento; la validación con el censo sugiere que la ciudad es una proporción estable de ellos.</li>
+<li><strong>El registro hotelero es de 2022</strong> y no incluye alquileres temporarios informales.</li>
+</ul>
+</section>
+<section id="próximos-pasos" class="level2">
+<h3>Próximos pasos</h3>
+<ol type="1">
+<li><strong>Matrícula por escuela</strong>, cuando llegue la respuesta al pedido: alumnos por sección y ocupación por zona.</li>
+<li><strong>Nivel que cursa por radio</strong> (censo 2022), para medir la demanda por nivel efectivamente cursado y no sólo por edad.</li>
+<li><strong>Obras particulares y loteos</strong>: asignar los metros cuadrados de obra nueva a zonas para anticipar dónde se van a instalar las familias.</li>
+<li><strong>Alojamientos turísticos</strong>: cruzar el registro municipal con la oferta en plataformas para medir el uso turístico del stock de viviendas del centro.</li>
+</ol>
+</section>
+<section id="fuentes" class="level2">
+<h3>Fuentes</h3>
+<ul>
+<li>RENAPER, «Nacimientos por departamento y año 2012–2022», datos.gob.ar.</li>
+<li>Ministerio de Salud de Río Negro, Coordinación Provincial de Estadística, <em>Estadísticas Vitales</em> 2020 y 2022–2025.</li>
+<li>Registro Civil de Río Negro, gacetillas de nacimientos inscriptos, enero–septiembre de 2026.</li>
+<li>INDEC, Censos Nacionales de Población, Hogares y Viviendas 1991, 2010 y 2022, por radio censal (procesamiento con cartografía de CONICET, Rodríguez y de Grande, en source.coop).</li>
+<li>Ministerio de Capital Humano, Padrón Oficial de Establecimientos Educativos, versiones 2011–2026.</li>
+<li>Municipalidad de San Carlos de Bariloche: mapa de zonificaciones (barrios y delegaciones), mapa de establecimientos educativos, tablero «Proyección Población», tablero «Mapa de establecimientos hoteleros de la ciudad» (2022) y mapa del Transporte Urbano de Pasajeros (Tableau Public y mapas georreferenciados).</li>
+<li>Servicio de Normalización de Datos Geográficos (Georef), datos.gob.ar.</li>
+<li>Falch, T., Lujala, P. y Strøm, B. (2013). «Geographical constraints and educational attainment». <em>Regional Science and Urban Economics</em>, 43(1), 164–176.</li>
+<li>K-12 Dive, «Study: Using public transit for school commute linked to higher absenteeism», 20/3/2019 (estudio de la Universidad Johns Hopkins sobre Baltimore).</li>
+<li>De Simone, M., Alzú, M. S. y Nistal, M., «Presente y futuro de la cantidad de alumnos por docente y por grado», Observatorio Argentinos por la Educación, 2026 (reseñado por Chequeado).</li>
+<li>Infobae, «Baja de natalidad y educación: las escuelas porteñas cierran grados…», 15/10/2025.</li>
+<li>ANBariloche, «Zona centro y avenidas colapsadas en horas pico», 12/7/2024.</li>
+</ul>
+</section>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>La matrícula por escuela, anonimizada, fue pedida al Ministerio de Educación de la Nación y al de Río Negro por la ley de acceso a la información pública (noviembre de 2026). Al cierre de este reporte el pedido estaba dentro del plazo legal y todavía no había respuesta.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+
+<script>
+(function(){var root=document.documentElement;function fr(){return Array.prototype.slice.call(document.querySelectorAll('iframe.mapa'));}
+function send(){var t=root.getAttribute('data-theme')||'dark';fr().forEach(function(f){try{f.contentWindow.postMessage({type:'dashboard:theme',theme:t},'*');}catch(e){}});}
+window.addEventListener('message',function(e){var d=e.data;if(!d||d.type!=='dashboard:height')return;fr().forEach(function(f){if(e.source===f.contentWindow)f.style.height=Math.max(600,Math.min(3000,+d.height||0))+'px';});});
+fr().forEach(function(f){f.addEventListener('load',send);});new MutationObserver(send).observe(root,{attributes:true,attributeFilter:['data-theme']});})();
+</script>
+
+{% endraw %}

@@ -1,0 +1,45 @@
+---
+layout: default
+---
+{%- comment -%}
+  One piece of commentary: the newspaper column (summary + link to the outlet) and its technical report.
+  Front matter: title, standfirst, date, lang, alt_url, outlet {name, url} (url empty until published),
+  report (include under _includes/notas/), pdf, series (optional), report_title.
+{%- endcomment -%}
+{%- assign es = false -%}{%- if page.lang == "es" -%}{%- assign es = true -%}{%- endif -%}
+{%- assign months_es = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre" | split: "," -%}
+{%- assign m = page.date | date: "%-m" | minus: 1 -%}
+<article class="frame page nota">
+  <p class="nota__kicker">
+    <a href="{% if es %}{{ '/es/notas/' | relative_url }}{% else %}{{ '/commentary/' | relative_url }}{% endif %}">{% if es %}Notas{% else %}Commentary{% endif %}</a>
+    {%- if page.series %} · {{ page.series }}{% endif %}
+  </p>
+  <h1 class="page__title nota__title">{{ page.title }}</h1>
+  {%- if page.standfirst %}<p class="page__standfirst nota__dek">{{ page.standfirst }}</p>{% endif %}
+  <p class="nota__meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{% if es %}{{ page.date | date: "%-d" }} de {{ months_es[m] }} de {{ page.date | date: "%Y" }}{% else %}{{ page.date | date: "%-d %B %Y" }}{% endif %}</time>
+    · <a href="{{ page.alt_url | relative_url }}" hreflang="{% if es %}en{% else %}es{% endif %}">{% if es %}English version{% else %}Versión en castellano{% endif %}</a>
+  </p>
+
+  <aside class="nota__outlet">
+    {%- if page.outlet.url and page.outlet.url != "" %}
+      <a class="btn" href="{{ page.outlet.url }}" rel="noopener">{% if es %}Leer la nota en {{ page.outlet.name }}{% else %}Read the column in {{ page.outlet.name }} (Spanish){% endif %}</a>
+    {%- elsif page.outlet.name %}
+      <p>{% if es %}La nota sale en <strong>{{ page.outlet.name }}</strong>. Cuando se publique, el enlace va a estar acá.{% else %}The column (in Spanish) is forthcoming in <strong>{{ page.outlet.name }}</strong>. The link will appear here once it is out.{% endif %}</p>
+    {%- else %}
+      <p>{% if es %}La nota todavía no está publicada en un medio. Acá está el reporte técnico completo.{% else %}The column has not been published in a newspaper yet. The full technical report is below.{% endif %}</p>
+    {%- endif %}
+    {%- if page.pdf %}<p class="nota__pdf"><a href="{{ page.pdf | relative_url }}">{% if es %}Descargar el reporte técnico (PDF){% else %}Download the technical report (PDF){% endif %}</a></p>{% endif %}
+  </aside>
+
+  <section class="nota__summary prose">
+    <h2>{% if es %}La nota, en breve{% else %}The column in brief{% endif %}</h2>
+    {{ content }}
+  </section>
+
+  <section class="nota__report">
+    <h2>{% if es %}Reporte técnico{% else %}Technical report{% endif %}</h2>
+    {%- if page.report_title %}<p class="nota__report-title">{{ page.report_title }}</p>{% endif %}
+    <div class="nota__report-body">{% include {{ page.report }} %}</div>
+  </section>
+</article>

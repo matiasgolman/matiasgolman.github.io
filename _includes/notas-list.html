@@ -1,0 +1,28 @@
+{%- assign es = false -%}{%- if page.lang == "es" -%}{%- assign es = true -%}{%- endif -%}
+{%- assign months_es = "ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic." | split: "," -%}
+{%- if include.items.size > 0 %}
+<ul class="entries">
+  {%- for n in include.items %}
+  {%- assign m = n.date | date: "%-m" | minus: 1 %}
+  <li class="entry">
+    <div class="entry__when">{% if es %}{{ months_es[m] }} {{ n.date | date: "%Y" }}{% else %}{{ n.date | date: "%b %Y" }}{% endif %}</div>
+    <div>
+      <h3 class="entry__title"><a href="{{ n.url | relative_url }}">{{ n.title }}</a></h3>
+      <p class="entry__meta">
+        {%- if n.series %}{{ n.series }} · {% endif -%}
+        {%- if n.outlet.url and n.outlet.url != "" -%}
+          {% if es %}Publicada en <a href="{{ n.outlet.url }}" rel="noopener">{{ n.outlet.name }}</a>{% else %}Published in <a href="{{ n.outlet.url }}" rel="noopener">{{ n.outlet.name }}</a> (Spanish){% endif %}
+        {%- elsif n.outlet.name -%}
+          {% if es %}Próximamente en {{ n.outlet.name }}{% else %}Forthcoming in {{ n.outlet.name }} (Spanish){% endif %}
+        {%- else -%}
+          {% if es %}Nota inédita{% else %}Unpublished column{% endif %}
+        {%- endif %} · {% if es %}con reporte técnico{% else %}with technical report{% endif %}
+      </p>
+      <p class="entry__text">{{ n.standfirst }}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p>{% if es %}Todavía no hay nada publicado acá.{% else %}Nothing published here yet.{% endif %}</p>
+{%- endif %}

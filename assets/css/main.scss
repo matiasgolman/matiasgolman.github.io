@@ -206,3 +206,43 @@ details.abstract p{font-size:var(--step-s);line-height:1.6;color:var(--ink-soft)
 .embed--auto{background:transparent;border:0}
 .embed--auto iframe{height:1600px}
 @media (prefers-reduced-motion:no-preference){.embed--auto iframe{transition:height .15s ease}}
+
+/* --- commentary: column + technical report (2026-11-04) -------------------- */
+.nota{width:min(100% - 2rem,64rem)}
+.nota__kicker{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin:0 0 .8rem}
+.nota__kicker a{color:var(--green);text-decoration:none}
+.nota__title{font-size:clamp(1.9rem,1.3rem + 2.2vw,2.7rem);line-height:1.15;max-width:30ch}
+.nota__dek{font-size:var(--step-1);line-height:1.55;margin-bottom:1rem}
+.nota__meta{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin:0 0 2rem}
+.nota__outlet{border:1px solid var(--rule);border-left:3px solid var(--green);background:var(--paper-2);padding:1.1rem 1.4rem;margin:0 0 1rem;max-width:var(--measure)}
+.nota__outlet p{margin:0;font-family:var(--sans);font-size:var(--step-s)}
+.nota__outlet .btn+.nota__pdf,.nota__outlet p+.nota__pdf{margin-top:.8rem}
+.nota .prose h2,.nota__report>h2{border-top:2px solid var(--ink);padding-top:1.1rem;margin-top:3rem;font-size:var(--step-1)}
+.nota__report-title{font-style:italic;color:var(--ink-soft);max-width:var(--measure)}
+.nota__report-body{max-width:none}
+.nota__report-body h3{font-size:var(--step-1);margin-top:2.6rem}
+.nota__report-body h4{font-size:var(--step-0);margin-top:1.8rem}
+.nota-toc{font-family:var(--sans);font-size:var(--step-s);border:1px solid var(--rule);padding:.9rem 1.2rem;margin:1.2rem 0 2rem;max-width:var(--measure)}
+.nota-toc ul{margin:0;padding-left:1.1rem;columns:2;column-gap:2rem}
+.nota-toc ul ul{display:none}
+.nota-toc a{color:var(--ink);text-decoration:none}
+.nota-toc a:hover{color:var(--green)}
+@media (max-width:46rem){.nota-toc ul{columns:1}}
+.nota-fig{margin:2rem 0;max-width:64rem}
+.nota-fig img{display:block;width:100%;height:auto;border-radius:2px}
+.nota-fig figcaption{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin-top:.5rem;max-width:var(--measure)}
+.nota-fig img.fig-light{display:none}
+:root[data-theme="light"] .nota-fig img.fig-light{display:block}
+:root[data-theme="light"] .nota-fig img.fig-dark{display:none}
+.nota__report-body table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;width:max-content;font-family:var(--sans);font-size:.85rem;margin:1.4rem 0 .4rem;font-variant-numeric:tabular-nums}
+.nota__report-body caption{caption-side:top;text-align:left;font-weight:600;color:var(--ink);font-size:.95rem;padding-bottom:.5rem}
+.nota__report-body thead th{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink-soft);padding:.45rem .6rem;text-align:right;font-weight:600;vertical-align:bottom}
+.nota__report-body tbody td{border-bottom:1px solid var(--rule);padding:.38rem .6rem;text-align:right}
+.nota__report-body th:first-child,.nota__report-body td:first-child{text-align:left;min-width:10rem}
+.nota__report-body tbody td:not(:first-child),.nota__report-body thead th:not(:first-child){white-space:nowrap}
+.nota__report-body tbody tr:last-child td{border-bottom:2px solid var(--ink)}
+.nota__report-body .tnote{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);margin:.2rem 0 1.8rem;max-width:var(--measure)}
+.nota__report-body .footnotes{font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--rule);margin-top:3rem;padding-top:1rem}
+.nota__report-body .footnotes hr{display:none}
+.nota__report-body .ix iframe{width:100%;border:0;display:block;min-height:600px}
+.nota__report-body .ix .how{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);max-width:var(--measure)}
