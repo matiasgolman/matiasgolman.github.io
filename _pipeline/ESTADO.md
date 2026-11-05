@@ -4,8 +4,12 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-10-19 (corrida 8)
+**Última actualización:** 2026-11-01 (barrido semanal; el panel lo tocó la tarea de Encuestas LATAM el 30/10–1/11)
 **Actualizado por:** Claude
+**Avance:** 90%
+**Fase:** Mantenimiento — sitio en línea; el panel de informalidad lo actualiza la tarea de Encuestas LATAM
+**Próximo hito:** Capturas nuevas de AraucariaSpotter y textos/miniatura del panel con Ecuador (pedido 30/10)
+**Tarea agendada:** manual (el panel lo toca la tarea de Encuestas LATAM)
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
 del HTML, interfaz con la tipografía y la paleta del sitio, y el embebido que ya no atrapa el
@@ -31,6 +35,15 @@ scroll.
 ---
 
 ## En una pantalla
+
+> **Panel de informalidad, 2026-11-03 (Encuestas LATAM, con Matías):** commits `0b383da` y `13a4a57` — año base de los ingresos visible,
+> llamado «Muestra chica» (n < 30) en la esquina del gráfico, solapa «Observaciones», métrica «Cantidad de ocupados (miles)»; los datos de
+> los seis países tienen columnas nuevas de n y ocupados; Costa Rica ya tiene urbano/rural. Detalle en el ESTADO de Encuestas LATAM.
+
+> **Lo primero en la próxima sesión (barrido 01/11):** el Pedido de Matías del 30/10 que está arriba de la COLA:
+> (1) reemplazar las capturas de Google Play de AraucariaSpotter por las de WhatsApp del 22/10 que están en este
+> `_pipeline/`, recortando la barra de la hora; (2) la parte de salarios base 100 = 2016 la tiene Encuestas LATAM.
+> Además: Ecuador entró al panel (30/10–1/11, serie 2007–) → los textos y la miniatura que dicen «cuatro países» quedaron viejos.
 
 > **CORRIDA 8 — CERRADA (19/10).** Costa Rica arreglada y al día, el panel separado del sitio.
 
@@ -62,10 +75,17 @@ scroll.
 ## COLA DE TRABAJO
 
 ### Pedidos de Matías (vía tracker) — van primero
+- [x] 2026-11-04 (tarea Encuestas LATAM): versión en castellano del panel revisada con Playwright: mismas funciones que la inglesa (tabla y Observaciones incluidas). Commit `191fd2a`: el panel embebido ya no pide `null/…` al cargar.
 - [ ] Pedido de Matías (2026-10-30, comentario del ESTADO): (1) Fotos de Google Play (AraucariaSpotter): las actuales son de versiones viejas sin las funciones nuevas. Reemplazarlas por capturas nuevas (hay capturas de WhatsApp del 22/10 en este _pipeline), recortando la barra superior con la hora del teléfono. (2) Dashboard de informalidad: agregar salarios en base 100 = 2016 para comparar el crecimiento entre países (las monedas son distintas) y sacar la categoría «Trabajador sin remuneración», que siempre es informal y sólo ocupa espacio. La parte (2) también quedó como pedido en el ESTADO de Encuestas LATAM, que actualiza el dashboard.
 
+- [ ] (2026-11-01, Encuestas LATAM) El panel de informalidad suma **Paraguay** (`assets/data/informality/py/`, entrada `py` de `paises.json`; commit `b084243`). Si la página del dashboard o su miniatura listan los países a mano, sumar Paraguay (seis países).
 
 *(Abiertos arriba. Un ítem que se cierra se reduce a una línea y el detalle se archiva.)*
+
+- **03/11 (bases LATAM, con Matías): textos del panel y miniatura sin lista de países a mano** (commit `b1bd473`): `dashboard.md`, `es/panel.md`, `projects.md`, `es/proyectos.md`, `_data/projects*.yml` y `assets/img/shot-dashboard.jpg`, pedido explícito de Matías aunque está fuera de D-01. La lista de países y fuentes sale de `_data/informality_countries.yml` (generado desde `paises.json`: no editar a mano).
+
+- **03/11 (tarea de bases LATAM): Paraguay, series anuales del panel desde 2008** (EPH anual 2008–2016 + EPHC; quiebre 2016|2017 explicado en el texto; commit `6314685`, sólo `assets/data/informality/**`). Si la página del dashboard dice que Paraguay empieza en 2017, actualizarla.
+- **02/11 (tarea de bases LATAM, pedido de Matías): el filtro «Región» del panel muestra regiones geopolíticas** en vez de urbano/rural (Brasil, México, Costa Rica, Ecuador, Paraguay; commit `a034dab`, sólo `assets/data/informality/**`). Si la página del dashboard describe el filtro como urbano/rural, actualizarla.
 
 - **30/10 tarde (tarea de bases LATAM): dashboard de informalidad, commit `a95ff56`** (sólo `assets/dashboards/argentina_informality_dashboard.html`): «Trabajador/familiar sin remuneración» queda sólo para horas trabajadas (fuera de la tasa y del ingreso, en el filtro y en el desglose, en país y en comparación); horas formal e informal de una sola serie, en dos colores. Lo del pedido (2) que falta (salarios base 100 = 2016) sigue en la cola de Encuestas LATAM.
 
@@ -121,7 +141,7 @@ scroll.
   (2026T2). Lo que queda (correr Stata, México y los demás, la ECH de 2027) vive desde el 19/10
   en el `ESTADO.md` de `mercado_trabajo_latam\_pipeline\ (mudado el 2026-10-19)`. Acá sólo queda **la
   miniatura** cuando entre el tercer país, y cualquier texto de página que ese proyecto pida.
-- **S4 — Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
+- **S4 — CERRADO 04/11: la sección existe como «Notas / Commentary»** (notas en diarios + reporte técnico; ver D-26). Lo de abajo queda como idea: **Primera nota para `/notes/`.** Las conclusiones del meta-análisis en castellano llano,
   600-900 palabras. Faltan otras dos para encender la sección.
 
 ### Cerrados
@@ -153,6 +173,10 @@ scroll.
 ## DECISIONES TOMADAS
 
 *(Se anotan acá para no rediscutirlas. Cada una con fecha y de quién salió.)*
+
+**2026-11-04, con Matías (reemplaza D-15):**
+
+- **D-26 · Notas.** La sección se llama «Notas de interés» en castellano y «News articles» en inglés (elección de Matías, 4/11; URLs `/es/notas/` y `/articles/`, con `/commentary/` y `/notes/` redirigidas). Una sola columna centrada de 48rem: texto, figuras, cuadros y mapa del mismo ancho y va en el menú desde ya, con dos piezas. Cada pieza: resumen de la nota + enlace al diario + reporte técnico completo + PDF, en los dos idiomas. El texto completo de la nota en el sitio (y su traducción al inglés) sólo después de que salga en el diario y si el medio lo acepta. Cuando salga en El Economista: completar `outlet.url` en las dos páginas de fin de mes.
 
 **2026-10-13, respondidas por Matías en el chat (preguntas 1, 16, 3 y 19 del cuestionario):**
 
