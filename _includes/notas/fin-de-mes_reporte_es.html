@@ -96,18 +96,20 @@ del ingreso no laboral, que no se busca aquí.</p>
 </section>
 <section id="r-datos-y-definiciones" class="level2">
 <h2>Datos y definiciones</h2>
-<p><strong>Fuentes de microdatos.</strong> Se usan los microdatos
-originales del INDEC, tal como se publican en su sitio (bases usuarias
-de la EPH: archivos .dta de 2011T1 a 2015T2 y .txt desde 2016T2; 59
-trimestres, 3,13 millones de registros individuales). Para 2011–2015 son
-los mismos archivos que guarda el proyecto Encuestas LATAM; para 2016 en
-adelante, las variables usadas son las originales del INDEC, por lo que
-el resultado coincide con el que se obtenía con las bases armonizadas
-(verificado: las cifras de la versión anterior se reproducen). La base
-hogar (estrategias V1–V19) es la armonizada por Encuestas LATAM a partir
-de las mismas bases del INDEC. El INDEC no publicó 2007T3 ni
-2015T3–2016T1. Esta versión incorpora el segundo trimestre de 2026, el
-último publicado por el INDEC al cierre (5 de noviembre de 2026).</p>
+<p><strong>Fuentes de microdatos.</strong> Se usan las bases de la EPH
+limpias y armonizadas por el proyecto Encuestas LATAM, construidas con
+código propio en Stata a partir de los microdatos originales del INDEC
+(59 trimestres desde 2011T1, 3,13 millones de registros individuales).
+La limpieza aplica, entre otras cosas, el empalme de ponderadores de
+2016T2–2018T4 que publicó el INDEC en la nota metodológica del primer
+trimestre de 2019 (11 aglomerados; aquí se aplica también a la base
+hogar), trata la no respuesta del ingreso de la ocupación principal y
+homogeneiza códigos que el INDEC cambia entre trimestres. Con los
+microdatos crudos del INDEC las cifras de este reporte cambian menos de
+una décima de punto. La base hogar (estrategias V1–V19) es la armonizada
+por Encuestas LATAM. El INDEC no publicó 2007T3 ni 2015T3–2016T1. Esta
+versión incorpora el segundo trimestre de 2026, el último publicado por
+el INDEC al cierre (5 de noviembre de 2026).</p>
 <p><strong>Quintiles.</strong> Las personas se ordenan por el ingreso
 per cápita familiar de su hogar (decil DECCFR de la EPH, total de
 aglomerados) y se agrupan en cinco grupos del mismo tamaño. En el texto,
@@ -192,6 +194,147 @@ publicó 2015T3–2016T1) y el último trimestre por separado. Las figuras
 marcan diciembre de 2023, cuando asumió el gobierno actual. Las cifras
 de 2011 a 2015 corresponden al período en que el propio INDEC recomienda
 leer sus estadísticas con cautela; se muestran como contexto.</p>
+<p><strong>Estacionalidad del último año.</strong> 2026 tiene sólo el
+primer y el segundo trimestre, y las figuras lo comparan con años
+completos. Para descartar que el punto 2026* refleje el calendario y no
+una tendencia, todas las comparaciones se rehicieron usando sólo
+primeros semestres (84 combinaciones de serie y grupo, total y
+quintiles). La estacionalidad es chica: en 2017–2025 el primer semestre
+se aparta del promedio anual a lo sumo 0,4 puntos en promedio en las
+series del total, salvo el pluriempleo, que en el primer semestre es 0,5
+puntos más bajo, de manera sistemática (desvío entre años: 0,2 puntos).
+Donde el punto 2026* difiere del de primeros semestres, la diferencia es
+menor a un punto y viene de series que se movieron dentro de 2025, no
+del calendario; ninguna conclusión del texto cambia. Por quintil los
+saltos son mayores, pero del mismo tamaño que el ruido entre años.</p>
+<table>
+<caption>Estacionalidad del punto 2026*: años completos contra primeros
+semestres, total de hogares u ocupados</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Serie</th>
+<th style="text-align: right;">Sesgo del 1.er semestre (media
+2017–2025)</th>
+<th style="text-align: right;">Desvío entre años</th>
+<th style="text-align: right;">2026* contra 2025 (gráficos)</th>
+<th style="text-align: right;">1.er sem. 2026 contra 1.er sem. 2025</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Gastó ahorros</td>
+<td style="text-align: right;">−0,2</td>
+<td style="text-align: right;">0,8</td>
+<td style="text-align: right;">+0,1</td>
+<td style="text-align: right;">−0,6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Préstamos de bancos o financieras</td>
+<td style="text-align: right;">−0,3</td>
+<td style="text-align: right;">0,5</td>
+<td style="text-align: right;">+0,8</td>
+<td style="text-align: right;">+1,3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Préstamos de familiares o amigos</td>
+<td style="text-align: right;">−0,2</td>
+<td style="text-align: right;">0,2</td>
+<td style="text-align: right;">+1,2</td>
+<td style="text-align: right;">+1,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vendió pertenencias</td>
+<td style="text-align: right;">−0,1</td>
+<td style="text-align: right;">0,3</td>
+<td style="text-align: right;">+0,9</td>
+<td style="text-align: right;">+1,2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compras en cuotas o al fiado</td>
+<td style="text-align: right;">−0,1</td>
+<td style="text-align: right;">0,5</td>
+<td style="text-align: right;">−1,5</td>
+<td style="text-align: right;">−1,7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Más de un empleo</td>
+<td style="text-align: right;">−0,5</td>
+<td style="text-align: right;">0,2</td>
+<td style="text-align: right;">−0,4</td>
+<td style="text-align: right;">−0,2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quiere trabajar más horas</td>
+<td style="text-align: right;">−0,4</td>
+<td style="text-align: right;">0,4</td>
+<td style="text-align: right;">+0,2</td>
+<td style="text-align: right;">+0,6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Horas semanales en todos los empleos
+(h)</td>
+<td style="text-align: right;">−0,1</td>
+<td style="text-align: right;">0,1</td>
+<td style="text-align: right;">−0,4</td>
+<td style="text-align: right;">−0,2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Más de 45 horas</td>
+<td style="text-align: right;">−0,2</td>
+<td style="text-align: right;">0,3</td>
+<td style="text-align: right;">−0,4</td>
+<td style="text-align: right;">+0,2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Recibe un subsidio o plan del Estado</td>
+<td style="text-align: right;">−0,1</td>
+<td style="text-align: right;">0,2</td>
+<td style="text-align: right;">+0,2</td>
+<td style="text-align: right;">+0,1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Recibe mercadería</td>
+<td style="text-align: right;">−0,3</td>
+<td style="text-align: right;">0,3</td>
+<td style="text-align: right;">0,0</td>
+<td style="text-align: right;">+0,6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ayuda de familiares o vecinos</td>
+<td style="text-align: right;">0,0</td>
+<td style="text-align: right;">0,2</td>
+<td style="text-align: right;">+0,1</td>
+<td style="text-align: right;">+0,3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sin obra social ni prepaga</td>
+<td style="text-align: right;">0,0</td>
+<td style="text-align: right;">0,5</td>
+<td style="text-align: right;">+1,5</td>
+<td style="text-align: right;">+1,9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Con prepaga o mutual</td>
+<td style="text-align: right;">0,0</td>
+<td style="text-align: right;">0,2</td>
+<td style="text-align: right;">+0,5</td>
+<td style="text-align: right;">+0,3</td>
+</tr>
+</tbody>
+</table>
+<div class="tnote">
+Puntos porcentuales; (h): horas semanales. Sesgo del 1.er semestre:
+promedio de T1–T2 menos promedio anual, en los años completos 2017–2025
+sin 2020–2021. El detalle por quintil está en
+robustez_estacionalidad.md.
+</div>
 </section>
 <section id="r-financiarse" class="level2">
 <h2>Financiarse</h2>
@@ -320,7 +463,7 @@ perceptor, 2023 → 2025 (% de hogares)</caption>
 <td style="text-align: right;">30,6 → 34,1</td>
 <td style="text-align: right;">33,3 → 35,7</td>
 <td style="text-align: right;">28,9 → 33,4</td>
-<td style="text-align: right;">33,2 → 35,5</td>
+<td style="text-align: right;">33,3 → 35,5</td>
 <td style="text-align: right;">35,4 → 36,4</td>
 </tr>
 <tr class="even">
@@ -333,9 +476,9 @@ perceptor, 2023 → 2025 (% de hogares)</caption>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Préstamos de bancos o financieras</td>
-<td style="text-align: right;">10,0 → 13,8</td>
-<td style="text-align: right;">10,1 → 14,1</td>
-<td style="text-align: right;">10,3 → 13,5</td>
+<td style="text-align: right;">10,1 → 13,8</td>
+<td style="text-align: right;">10,1 → 14,0</td>
+<td style="text-align: right;">10,3 → 13,6</td>
 <td style="text-align: right;">10,2 → 14,7</td>
 <td style="text-align: right;">9,5 → 13,2</td>
 </tr>
@@ -344,24 +487,24 @@ perceptor, 2023 → 2025 (% de hogares)</caption>
 <td style="text-align: right;">7,9 → 9,6</td>
 <td style="text-align: right;">8,3 → 9,3</td>
 <td style="text-align: right;">8,9 → 10,9</td>
-<td style="text-align: right;">8,3 → 9,3</td>
+<td style="text-align: right;">8,4 → 9,3</td>
 <td style="text-align: right;">6,2 → 7,4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Recibe un subsidio o plan del Estado</td>
-<td style="text-align: right;">17,2 → 17,1</td>
-<td style="text-align: right;">14,1 → 13,1</td>
+<td style="text-align: right;">17,1 → 17,1</td>
+<td style="text-align: right;">14,2 → 13,1</td>
 <td style="text-align: right;">23,8 → 23,3</td>
-<td style="text-align: right;">14,6 → 14,0</td>
+<td style="text-align: right;">14,6 → 14,1</td>
 <td style="text-align: right;">3,1 → 3,0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Recibe ayuda de familiares o vecinos</td>
 <td style="text-align: right;">8,1 → 10,2</td>
 <td style="text-align: right;">5,8 → 6,6</td>
-<td style="text-align: right;">7,8 → 10,6</td>
+<td style="text-align: right;">7,7 → 10,6</td>
 <td style="text-align: right;">7,7 → 8,3</td>
-<td style="text-align: right;">3,8 → 4,3</td>
+<td style="text-align: right;">3,9 → 4,3</td>
 </tr>
 </tbody>
 </table>
@@ -507,7 +650,7 @@ o el aumento es demasiado chico para moverse en el promedio.</p>
 <td style="text-align: right;">18,2</td>
 <td style="text-align: right;">28,4</td>
 <td style="text-align: right;">23,7</td>
-<td style="text-align: right;">22,3</td>
+<td style="text-align: right;">22,4</td>
 <td style="text-align: right;">7,4</td>
 </tr>
 <tr class="even">
@@ -553,7 +696,7 @@ o el aumento es demasiado chico para moverse en el promedio.</p>
 <tr class="odd">
 <td style="text-align: left;">Q3 · 2017</td>
 <td style="text-align: right;">8,5</td>
-<td style="text-align: right;">26,1</td>
+<td style="text-align: right;">26,2</td>
 <td style="text-align: right;">33,0</td>
 <td style="text-align: right;">25,2</td>
 <td style="text-align: right;">7,2</td>
@@ -577,7 +720,7 @@ o el aumento es demasiado chico para moverse en el promedio.</p>
 <tr class="even">
 <td style="text-align: left;">Q4 · 2017</td>
 <td style="text-align: right;">6,0</td>
-<td style="text-align: right;">24,6</td>
+<td style="text-align: right;">24,7</td>
 <td style="text-align: right;">38,1</td>
 <td style="text-align: right;">24,2</td>
 <td style="text-align: right;">7,1</td>
@@ -601,7 +744,7 @@ o el aumento es demasiado chico para moverse en el promedio.</p>
 <tr class="odd">
 <td style="text-align: left;">Q5 · 2017</td>
 <td style="text-align: right;">3,9</td>
-<td style="text-align: right;">20,0</td>
+<td style="text-align: right;">20,1</td>
 <td style="text-align: right;">45,8</td>
 <td style="text-align: right;">23,8</td>
 <td style="text-align: right;">6,3</td>
@@ -718,30 +861,30 @@ del principal perceptor (%)</caption>
 <tr class="odd">
 <td style="text-align: left;">Cae más de 10%</td>
 <td style="text-align: right;">16,7</td>
-<td style="text-align: right;">44.553</td>
+<td style="text-align: right;">44.548</td>
 <td style="text-align: right;">23,4</td>
-<td style="text-align: right;">41.851</td>
+<td style="text-align: right;">41.863</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Entre −10% y +10%</td>
 <td style="text-align: right;">14,2</td>
-<td style="text-align: right;">25.217</td>
+<td style="text-align: right;">25.218</td>
 <td style="text-align: right;">21,7</td>
-<td style="text-align: right;">17.474</td>
+<td style="text-align: right;">17.473</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Sube más de 10%</td>
-<td style="text-align: right;">17,4</td>
-<td style="text-align: right;">44.047</td>
+<td style="text-align: right;">17,3</td>
+<td style="text-align: right;">44.048</td>
 <td style="text-align: right;">23,5</td>
-<td style="text-align: right;">34.776</td>
+<td style="text-align: right;">34.773</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">El perceptor pierde el empleo</td>
-<td style="text-align: right;">13,5</td>
-<td style="text-align: right;">15.299</td>
+<td style="text-align: right;">13,4</td>
+<td style="text-align: right;">15.303</td>
 <td style="text-align: right;">15,8</td>
-<td style="text-align: right;">14.770</td>
+<td style="text-align: right;">14.764</td>
 </tr>
 </tbody>
 </table>
@@ -754,8 +897,8 @@ efecto causal.
 </div>
 <p>La entrada a la actividad es algo mayor cuando el ingreso del
 principal perceptor cae más de 10% (16,7% al trimestre siguiente) que
-cuando se mantiene (14,2%), pero es igual de alta cuando sube (17,4%), y
-menor cuando el principal perceptor pierde el empleo (13,5%). Un año
+cuando se mantiene (14,2%), pero es igual de alta cuando sube (17,3%), y
+menor cuando el principal perceptor pierde el empleo (13,4%). Un año
 después el patrón es el mismo (23,4%, 21,7%, 23,5% y 15,8%). La lectura
 es que la descripción no muestra un efecto de trabajador adicional
 limpio: los hogares con ingresos volátiles entran y salen más del
@@ -1100,7 +1243,7 @@ salud.</p>
 <tr class="odd">
 <td style="text-align: left;">De privada a pública en un año ·
 Total</td>
-<td style="text-align: right;">22,4</td>
+<td style="text-align: right;">22,5</td>
 <td style="text-align: right;">21,2</td>
 <td style="text-align: right;">17,5</td>
 <td style="text-align: right;">23,7</td>
@@ -1112,7 +1255,7 @@ Total</td>
 <tr class="even">
 <td style="text-align: left;">De privada a pública en un año ·
 Mujer</td>
-<td style="text-align: right;">23,2</td>
+<td style="text-align: right;">23,3</td>
 <td style="text-align: right;">22,1</td>
 <td style="text-align: right;">17,3</td>
 <td style="text-align: right;">22,5</td>
@@ -1124,9 +1267,9 @@ Mujer</td>
 <tr class="odd">
 <td style="text-align: left;">De privada a pública en un año ·
 Varón</td>
-<td style="text-align: right;">21,5</td>
-<td style="text-align: right;">20,2</td>
-<td style="text-align: right;">17,6</td>
+<td style="text-align: right;">21,6</td>
+<td style="text-align: right;">20,3</td>
+<td style="text-align: right;">17,7</td>
 <td style="text-align: right;">24,7</td>
 <td style="text-align: right;">18,3</td>
 <td style="text-align: right;">16,7</td>
@@ -1136,7 +1279,7 @@ Varón</td>
 <tr class="even">
 <td style="text-align: left;">Alumnos en escuela privada · Total</td>
 <td style="text-align: right;">29,2</td>
-<td style="text-align: right;">29,3</td>
+<td style="text-align: right;">29,2</td>
 <td style="text-align: right;">31,5</td>
 <td style="text-align: right;">27,2</td>
 <td style="text-align: right;">30,2</td>
@@ -1147,8 +1290,8 @@ Varón</td>
 <tr class="odd">
 <td style="text-align: left;">Alumnos en escuela privada · Mujer</td>
 <td style="text-align: right;">30,9</td>
-<td style="text-align: right;">30,0</td>
-<td style="text-align: right;">34,2</td>
+<td style="text-align: right;">29,9</td>
+<td style="text-align: right;">34,1</td>
 <td style="text-align: right;">27,0</td>
 <td style="text-align: right;">30,3</td>
 <td style="text-align: right;">29,7</td>
@@ -1158,8 +1301,8 @@ Varón</td>
 <tr class="even">
 <td style="text-align: left;">Alumnos en escuela privada · Varón</td>
 <td style="text-align: right;">27,5</td>
-<td style="text-align: right;">28,6</td>
-<td style="text-align: right;">28,9</td>
+<td style="text-align: right;">28,5</td>
+<td style="text-align: right;">28,8</td>
 <td style="text-align: right;">27,4</td>
 <td style="text-align: right;">30,0</td>
 <td style="text-align: right;">27,2</td>
@@ -1191,7 +1334,7 @@ Varón</td>
 <tr class="odd">
 <td style="text-align: left;">Dejan la escuela, 13–16 años · Varón</td>
 <td style="text-align: right;">6,4</td>
-<td style="text-align: right;">5,8</td>
+<td style="text-align: right;">5,7</td>
 <td style="text-align: right;">3,7</td>
 <td style="text-align: right;">3,3</td>
 <td style="text-align: right;">3,1</td>
@@ -1454,7 +1597,7 @@ orden.</p>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q2</td>
-<td style="text-align: right;">128,3</td>
+<td style="text-align: right;">128,4</td>
 <td style="text-align: right;">109,6</td>
 <td style="text-align: right;">89,5</td>
 <td style="text-align: right;">109,7</td>
@@ -1490,7 +1633,7 @@ orden.</p>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Total</td>
-<td style="text-align: right;">124,9</td>
+<td style="text-align: right;">125,0</td>
 <td style="text-align: right;">110,3</td>
 <td style="text-align: right;">92,3</td>
 <td style="text-align: right;">110,5</td>
@@ -1510,7 +1653,7 @@ quinto y entre 9,7% y 9,9% en los tres del medio. En el segundo
 trimestre de 2026, contra el mismo trimestre de 2023: primer quintil
 6,1%, segundo 2,6%, tercero 1,1%, cuarto 1,1% y quinto 7,2%. Comparado
 con 2017 todos siguen abajo, y más los del medio (14,6% el segundo,
-14,0% el tercero y 13,6% el cuarto, contra 9,7% el primero y 9,2% el
+14,0% el tercero y 13,6% el cuarto, contra 9,7% el primero y 9,3% el
 quinto). El perfil es una U: los extremos se recuperaron más que el
 medio. En el primer quintil, la suba del monto real de las
 transferencias explica unos 3,5 puntos de la mejora entre 2023 y 2025
@@ -1539,7 +1682,7 @@ del salario real a los trabajadores informales. En la EPH, el ingreso
 real de la ocupación principal (P21, deflactado por el IPC oficial)
 subió entre 2023 y 2025 24,3% entre los asalariados no registrados,
 29,4% entre los cuentapropistas y 12,7% entre los asalariados
-registrados; contra 2017, los tres grupos siguen abajo (6,8%, 7,9% y
+registrados; contra 2017, los tres grupos siguen abajo (6,7%, 7,9% y
 12,9%). Los niveles de este cálculo coinciden con los publicados por el
 INDEC para el primer trimestre de 2026 (ingreso medio de $727.000 y
 $1.372.000 para no registrados y registrados, contra $731.000 y
@@ -1552,11 +1695,17 @@ C-P); hereda la mejora de captación de la encuesta, que para los no
 asalariados registra 70,0% interanual a fines de 2025 (Equilibra); y no
 se condice con otros indicadores de empleo y consumo (Maito,
 CETyD-UNSAM; Campos, CTA Autónoma). Del lado administrativo, el empleo
-asalariado registrado cayó en 205.000 puestos entre noviembre de 2023 y
-julio de 2025 (IIEP-EDIL, UBA). La parte robusta es que el ingreso
-informal se recuperó más que el formal contra 2023, desde un piso muy
-bajo, sigue siendo la mitad (48% del registrado en 2025) y no volvió al
-nivel de 2017.</p>
+asalariado formal privado cayó en 246.000 puestos entre noviembre de
+2023 y junio de 2026, casi 4% (IIEP-EDIL, 2026b), mientras la tasa de
+informalidad de los ocupados subió a 45% en el segundo trimestre de
+2026, 1,8 puntos más que un año antes, con los cuentapropistas
+explicando el 91% del aumento (IIEP-EDIL, 2026a). El mismo informe
+estima la penalidad salarial de la informalidad, comparando trabajadores
+con iguales características, en 34% en el primer trimestre de 2026,
+contra 39% un año antes. La parte robusta es que el ingreso informal se
+recuperó más que el formal contra 2023, desde un piso muy bajo, sigue
+siendo la mitad (48% del registrado en 2025) y no volvió al nivel de
+2017.</p>
 <p><strong>Por qué contra 2017.</strong> 2023 es una base baja
 (inflación de tres dígitos y subdeclaración de ingresos). 2017 es el
 último año con una inflación del orden de la actual antes de la crisis
@@ -1682,9 +1831,13 @@ Economics</em>, 3(1), 11–37.</li>
 <li>McKenzie, D. y Schargrodsky, E. (2011). Buying less but shopping
 more: The use of nonmarket labor during a crisis. <em>Economía</em>,
 11(2), 1–43.</li>
-<li>IIEP-EDIL (2025). <em>Panorama del empleo asalariado formal y de las
-remuneraciones</em>. Instituto Interdisciplinario de Economía Política,
-UBA, octubre.</li>
+<li>IIEP-EDIL (2026a). <em>Panorama del empleo informal y la pobreza
+laboral</em>. Instituto Interdisciplinario de Economía Política
+(UBA-CONICET), septiembre. Coord.: R. Maurizio y L. Beccaria.</li>
+<li>IIEP-EDIL (2026b). <em>Panorama del empleo asalariado formal y de
+las remuneraciones</em>. Instituto Interdisciplinario de Economía
+Política (UBA-CONICET), septiembre. Coord.: R. Maurizio y L.
+Beccaria.</li>
 <li>Paz, J. A. (2009). El efecto del trabajador adicional. Evidencia
 para Argentina (2003–2007). <em>Cuadernos de Economía</em>, 46(134),
 225–241.</li>
