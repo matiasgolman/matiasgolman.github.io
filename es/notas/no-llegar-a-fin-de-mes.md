@@ -24,7 +24,7 @@ El 19 de octubre de 2026, en Neuquén, el presidente Javier Milei se preguntó c
 plata el día 20 para vivir diez días sin comer ni beber. La nota le responde que «no llegar a fin de mes» no describe a
 alguien que deja de comer, sino a un hogar cuyo ingreso no cubre su gasto habitual y que cierra esa brecha con ajustes
 que no tenía previstos. Esos ajustes se pueden ver en los microdatos de la Encuesta Permanente de Hogares del INDEC, de
-2011 al primer trimestre de 2026, a través de cuatro mecanismos: financiarse, trabajar más, recibir ayuda y consumir
+2011 al segundo trimestre de 2026, a través de cuatro mecanismos: financiarse, trabajar más, recibir ayuda y consumir
 menos o peor.
 
 La conclusión es que la presión se concentra en la clase media. Los hogares más pobres tienen la AUH, que subió por

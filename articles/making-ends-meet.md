@@ -25,7 +25,7 @@ next pay cheque. On 19 October 2026, President Javier Milei took the phrase lite
 of money on the 20th could live ten days without eating or drinking. The column, written in Spanish for El Economista,
 answers that the phrase does not describe someone who stops eating. It describes a household whose income no longer
 covers its usual spending, and which closes the gap with adjustments it had not planned for. Those adjustments can be
-traced in the microdata of INDEC's Permanent Household Survey from 2011 to the first quarter of 2026, through four
+traced in the microdata of INDEC's Permanent Household Survey from 2011 to the second quarter of 2026, through four
 channels: borrowing and dissaving, working more, receiving help, and consuming less or worse.
 
 Its conclusion is that the pressure is concentrated in the middle class. The poorest households have the Universal Child
