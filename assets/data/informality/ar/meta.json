@@ -1,11 +1,11 @@
 {
   "pais": "Argentina",
   "iso": "ar",
-  "generado": "2026-11-03 13:10:18",
+  "generado": "2026-11-06 01:56:00",
   "fuente_calculo": "Python (cubo_py/pais_desde_stata.py, sobre el cross_paneles.dta de Stata)",
   "ultimo_trimestre": {
     "y": 2026,
-    "q": 1
+    "q": 2
   },
   "inicio_oficial": {
     "y": 2023,
@@ -20,5 +20,5 @@
     "y": 2026,
     "q": 1
   },
-  "validacion": "127 de 135 contrastes dentro de tolerancia, diferencia maxima 1.87 pp"
+  "validacion": "133 de 141 contrastes dentro de tolerancia, diferencia maxima 1.87 pp"
 }
