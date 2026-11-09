@@ -1,5 +1,9 @@
 # Changelog / bitácora del sitio personal
 
+## 2026-11-09 — Araucaria Spotter en Google Play (commit `afb36f5`, con Matías, desde la sesión de la app)
+- `/araucariaspotter/` y `/es/araucaria/`: botón «Get it on Google Play / Descargala en Google Play», botón secundario a la app web y un código QR desplegable (`assets/img/qr-araucaria-google-play.png`, apunta a la ficha de Play; verificado al decodificarlo). Notas de `projects.yml` y `projects_es.yml`: «disponible en Google Play y como app web». Estilos `.btn--ghost`, `.app-links` y `details.qr` en `main.scss`.
+- Se hizo desde un clon en la nube porque `git status` en la copia local da «index file open failed» (OneDrive): **hacer Pull en GitHub Desktop** antes de tocar el repo.
+
 ## 2026-11-05 — tracker (despacho de tus respuestas)
 - COMENTARIO DE MATIAS despachado (hecho): Sección Bariloche publicada como nota el 04/11 con OK de Matías
 
