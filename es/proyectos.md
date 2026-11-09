@@ -23,6 +23,9 @@ description: >-
       <h2 class="tool__name" style="margin-top:0"><a href="{% if t.external %}{{ t.url }}{% else %}{{ t.url | relative_url }}{% endif %}">{{ t.name }}</a></h2>
       <p>{{ t.blurb }}</p>
       <p class="tool__note">{{ t.note }}</p>
+      {%- if t.play %}
+      <p class="app-links" style="margin-top:.8rem"><a class="btn" href="{{ t.play }}">{{ t.play_label }}</a></p>
+      {%- endif %}
     </div>
   </article>
   {%- endfor %}

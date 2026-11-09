@@ -186,6 +186,7 @@ details.qr summary::before{content:"+ ";font-weight:600}
 details.qr[open] summary::before{content:"– "}
 details.qr img{display:block;width:200px;height:200px;margin:.8rem 0 .3rem;background:#fff;padding:8px;border:1px solid var(--rule);image-rendering:pixelated}
 details.qr p{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin:0}
+@media (pointer:coarse) and (max-width:46rem){details.qr{display:none}}
 
 /* --- prose pages ---------------------------------------------------------- */
 .prose{max-width:var(--measure)}
