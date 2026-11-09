@@ -1,5 +1,8 @@
 # Changelog / bitácora del sitio personal
 
+## 2026-11-09 — Araucaria Spotter en Google Play (commit `afb36f5`, con Matías, desde la sesión de la app)
+- `/araucariaspotter/` y `/es/araucaria/`: botón «Get it on Google Play / Descargala en Google Play», botón secundario a la app web y un código QR desplegable (`assets/img/qr-araucaria-google-play.png`, apunta a la ficha de Play; verificado al decodificarlo). Notas de `projects.yml` y `projects_es.yml`: «disponible en Google Play y como app web». Estilos `.btn--ghost`, `.app-links` y `details.qr` en `main.scss`.
+- Se hizo desde un clon en la nube porque `git status` en la copia local da «index file open failed» (OneDrive): **hacer Pull en GitHub Desktop** antes de tocar el repo.
 
 ## 2026-11-04 — desde el proyecto «Trabajador adicional» (sesión con Matías)
 - Nueva carpeta `notas/no-llegar-a-fin-de-mes/`: reporte técnico ES (`index.html`) y EN (`en/index.html`), autocontenidos (fuentes y figuras embebidas, sin front matter: Jekyll los copia tal cual), `interactivo.html` (gráfico solo, para embeber por iframe; `?tema=oscuro`), `reporte_es.pdf`, `reporte_en.pdf`, `datos_graficos.xlsx`. Entrada en `es/notas.md`. Se generan en `Investigacion/Notas nacionales/2026-10_fin-de-mes/` (código `11_render.py`); si cambian, se vuelven a copiar. Falta el push (To-Do).
