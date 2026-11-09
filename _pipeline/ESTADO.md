@@ -4,11 +4,11 @@
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-11-01 (barrido semanal; el panel lo tocó la tarea de Encuestas LATAM el 30/10–1/11)
+**Última actualización:** 2026-11-08 (barrido semanal; esta semana: sección «Notas de interés» con Matías el 4/11 y el panel lo tocó la tarea de Encuestas LATAM hasta el 6/11)
 **Actualizado por:** Claude
 **Avance:** 90%
-**Fase:** Mantenimiento — sitio en línea; el panel de informalidad lo actualiza la tarea de Encuestas LATAM
-**Próximo hito:** Capturas nuevas de AraucariaSpotter y textos/miniatura del panel con Ecuador (pedido 30/10)
+**Fase:** Mantenimiento — sitio en línea con sección «Notas de interés / News articles» (4/11); el panel (siete países con Chile) lo actualiza la tarea de Encuestas LATAM
+**Próximo hito:** Capturas nuevas de AraucariaSpotter (pedido 30/10) y subir la actualización de «No llegar a fin de mes»
 **Tarea agendada:** manual (el panel lo toca la tarea de Encuestas LATAM)
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
@@ -40,10 +40,14 @@ scroll.
 > llamado «Muestra chica» (n < 30) en la esquina del gráfico, solapa «Observaciones», métrica «Cantidad de ocupados (miles)»; los datos de
 > los seis países tienen columnas nuevas de n y ocupados; Costa Rica ya tiene urbano/rural. Detalle en el ESTADO de Encuestas LATAM.
 
-> **Lo primero en la próxima sesión (barrido 01/11):** el Pedido de Matías del 30/10 que está arriba de la COLA:
-> (1) reemplazar las capturas de Google Play de AraucariaSpotter por las de WhatsApp del 22/10 que están en este
-> `_pipeline/`, recortando la barra de la hora; (2) la parte de salarios base 100 = 2016 la tiene Encuestas LATAM.
-> Además: Ecuador entró al panel (30/10–1/11, serie 2007–) → los textos y la miniatura que dicen «cuatro países» quedaron viejos.
+> **Lo primero en la próxima sesión (barrido 08/11):** (1) el Pedido de Matías del 30/10 arriba de la COLA: reemplazar las capturas
+> de Google Play de AraucariaSpotter por las de WhatsApp del 22/10 que están en este `_pipeline/`, recortando la barra de la hora
+> (la parte de salarios base 100 = 2016 la tiene Encuestas LATAM); (2) **dos changelogs por un conflicto de OneDrive**: `Changelog.md`
+> (hasta el 4/11) no se puede leer desde la VM del puente y `Changelog-MatiPC.md` tiene las entradas del 4–8/11. Unirlos en
+> `Changelog.md` y borrar la copia. (3) Ojo: `git` desde la VM da «index file open failed» (mismo problema de sincronización).
+> Semana del 1–8/11 (sin sesión manual salvo la del 4/11): sección «Notas de interés / News articles» con dos piezas (commits `4b48976`, `645c2f4`);
+> el panel sumó Paraguay (desde 2008), Chile (`d1da4ce`), regiones geopolíticas, urbano/rural, n y ocupados, y el 2T2026 de Argentina (`41c81ea`).
+> Textos y miniatura ya no listan países a mano (`b1bd473`), así que lo de «cuatro países» y Paraguay quedó resuelto.
 
 > **CORRIDA 8 — CERRADA (19/10).** Costa Rica arreglada y al día, el panel separado del sitio.
 
@@ -75,10 +79,11 @@ scroll.
 ## COLA DE TRABAJO
 
 ### Pedidos de Matías (vía tracker) — van primero
+- [x] 2026-11-06 (tarea Encuestas LATAM): el panel de informalidad suma el 2T2026 de Argentina (EPH; 45,0 % = INDEC). Commit `41c81ea`. Nada que hacer en el sitio.
 - [x] 2026-11-04 (tarea Encuestas LATAM): versión en castellano del panel revisada con Playwright: mismas funciones que la inglesa (tabla y Observaciones incluidas). Commit `191fd2a`: el panel embebido ya no pide `null/…` al cargar.
 - [ ] Pedido de Matías (2026-10-30, comentario del ESTADO): (1) Fotos de Google Play (AraucariaSpotter): las actuales son de versiones viejas sin las funciones nuevas. Reemplazarlas por capturas nuevas (hay capturas de WhatsApp del 22/10 en este _pipeline), recortando la barra superior con la hora del teléfono. (2) Dashboard de informalidad: agregar salarios en base 100 = 2016 para comparar el crecimiento entre países (las monedas son distintas) y sacar la categoría «Trabajador sin remuneración», que siempre es informal y sólo ocupa espacio. La parte (2) también quedó como pedido en el ESTADO de Encuestas LATAM, que actualiza el dashboard.
 
-- [ ] (2026-11-01, Encuestas LATAM) El panel de informalidad suma **Paraguay** (`assets/data/informality/py/`, entrada `py` de `paises.json`; commit `b084243`). Si la página del dashboard o su miniatura listan los países a mano, sumar Paraguay (seis países).
+- [x] (2026-11-01, Encuestas LATAM) Paraguay en el panel: resuelto por `b1bd473` (3/11), las páginas y la miniatura toman la lista de `_data/informality_countries.yml`. Cerrado en el barrido del 08/11.
 
 *(Abiertos arriba. Un ítem que se cierra se reduce a una línea y el detalle se archiva.)*
 

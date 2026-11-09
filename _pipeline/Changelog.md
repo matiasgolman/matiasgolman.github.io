@@ -1,18 +1,8 @@
 # Changelog / bitácora del sitio personal
 
-## 2026-11-05 — tracker (despacho de tus respuestas)
-- COMENTARIO DE MATIAS despachado (hecho): Sección Bariloche publicada como nota el 04/11 con OK de Matías
 
-## 2026-11-04 (2) — «Notas de interés / News articles» (commit `645c2f4`, con Matías)
-- Nombres nuevos; las páginas en inglés pasan a `/articles/` (redirecciones desde `/commentary/`). Columna única centrada (48rem) para texto, figuras, cuadros y mapa. El copete y el resumen de fin de mes explican que la nota responde a la frase del Presidente del 19/10.
-- El commit anterior se reescribió con autor Claude (`a94f597` → `4b48976`) y se forzó el push, con OK de Matías.
-- Pedido en el ESTADO de Bariloche: generar `m0_delegaciones` en las cuatro versiones (hoy va la clara sacada del PDF).
-
-## 2026-11-04 — sección «Notas / Commentary» (commit `4b48976`, antes `a94f597`, con Matías)
-- Nueva sección para las notas en diarios, cada una con su reporte técnico, en castellano e inglés. Layout `_layouts/nota.html`: resumen de la nota, enlace al medio (o «sale en…» mientras no se publica), reporte completo (figuras en los dos temas, cuadros, notas al pie) y PDF.
-- Piezas: «No llegar a fin de mes» (`/es/notas/no-llegar-a-fin-de-mes/`, `/commentary/making-ends-meet/`; El Economista, por salir) y Bariloche escuelas (`/es/notas/bariloche-escuelas/`, `/commentary/bariloche-schools/`; inédita, con el mapa interactivo).
-- Menú: «Notas» / «Commentary». `/notes/` y `/blog/` redirigen a `/commentary/`; `/notas/no-llegar-a-fin-de-mes/` redirige a la página en castellano (era el enlace viejo de la nota).
-- Los reportes salen de los proyectos: fin de mes con `Investigacion/Notas nacionales/2026-10_fin-de-mes/codigo/13_sitio.py RAIZ REPO` (escribe `_includes/notas/fin-de-mes_reporte_*.html` y las figuras); Bariloche con el script de conversión del sitio/ del proyecto (incluido en el commit como `_includes/notas/bariloche-escuelas_reporte_*.html`). El mapa m0 de delegaciones no estaba en el disco: se sacó del PDF del reporte (sólo versión clara).
+## 2026-11-04 — desde el proyecto «Trabajador adicional» (sesión con Matías)
+- Nueva carpeta `notas/no-llegar-a-fin-de-mes/`: reporte técnico ES (`index.html`) y EN (`en/index.html`), autocontenidos (fuentes y figuras embebidas, sin front matter: Jekyll los copia tal cual), `interactivo.html` (gráfico solo, para embeber por iframe; `?tema=oscuro`), `reporte_es.pdf`, `reporte_en.pdf`, `datos_graficos.xlsx`. Entrada en `es/notas.md`. Se generan en `Investigacion/Notas nacionales/2026-10_fin-de-mes/` (código `11_render.py`); si cambian, se vuelven a copiar. Falta el push (To-Do).
 
 ## 2026-11-01 — barrido semanal
 - Sin comentarios ni respuestas nuevas de Matías. Cabecera del ESTADO con las cuatro líneas del estándar (Avance 90%, Fase, Próximo hito, Tarea) y aviso arriba de `En una pantalla`: el pedido del 30/10 (capturas de Google Play) y los textos/miniatura del panel con Ecuador quedan para la próxima sesión.
