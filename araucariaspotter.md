@@ -19,13 +19,21 @@ Chile and Argentina, and yet, planted, it turns up in parks and front gardens al
 Araucaria Spotter is a free, community-made map of where it has ended up. People record the trees
 they find, and the map shows how far the species has travelled.</p>
 
-<p><a class="btn" href="https://araucaria-spotter.vercel.app/">Open the map</a></p>
+<p class="app-links"><a class="btn" href="https://play.google.com/store/apps/details?id=com.araucariaspotter.app">Get it on Google Play</a>
+<a class="btn btn--ghost" href="https://araucaria-spotter.vercel.app/">Open the web app</a></p>
+
+<details class="qr">
+  <summary>Show the QR code to install it on your phone</summary>
+  <img src="{{ '/assets/img/qr-araucaria-google-play.png' | relative_url }}"
+       alt="QR code that opens Araucaria Spotter on Google Play" width="240" height="240" loading="lazy">
+  <p>Scan it with your phone’s camera to open the app on Google Play.</p>
+</details>
 
 <p><img src="{{ '/assets/img/shot-araucaria.jpg' | relative_url }}"
         alt="The Araucaria Spotter map, showing recorded trees clustered across western Europe"
         loading="lazy" width="864" height="648" style="border:1px solid var(--rule);margin-top:1.6rem"></p>
 
 <p class="tool__note">More than 500 trees recorded around the world so far, and more coming in
-every day. It is a web app today, and an Android version is on Google Play soon. I grew up in
+every day. It is available on Google Play for Android, and as a web app that works in any browser. I grew up in
 Bariloche, where the tree is native, and this started as a game of spotting them on the street and
 seeing how far they had got.</p>

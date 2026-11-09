@@ -176,6 +176,16 @@ details.abstract p{font-size:var(--step-s);line-height:1.6;color:var(--ink-soft)
 .btn{display:inline-block;font-family:var(--sans);font-size:var(--step-s);font-weight:500;
   color:var(--paper);background:var(--green);padding:.55rem 1.1rem;text-decoration:none;border-radius:2px}
 .btn:hover{background:var(--green-deep);color:var(--paper)}
+.btn--ghost{background:transparent;color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.btn--ghost:hover{background:var(--green);color:var(--paper)}
+.app-links{display:flex;flex-wrap:wrap;gap:.6rem}
+details.qr{margin:.9rem 0 0}
+details.qr summary{font-family:var(--sans);font-size:var(--step-s);color:var(--green);cursor:pointer;list-style:none}
+details.qr summary::-webkit-details-marker{display:none}
+details.qr summary::before{content:"+ ";font-weight:600}
+details.qr[open] summary::before{content:"– "}
+details.qr img{display:block;width:200px;height:200px;margin:.8rem 0 .3rem;background:#fff;padding:8px;border:1px solid var(--rule);image-rendering:pixelated}
+details.qr p{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);margin:0}
 
 /* --- prose pages ---------------------------------------------------------- */
 .prose{max-width:var(--measure)}
