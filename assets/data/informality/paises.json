@@ -184,7 +184,11 @@
           "en": "INDEC's Permanent Household Survey"
         }
       },
-      "sin_area": true
+      "sin_area": true,
+      "cobertura": {
+        "es": "31 aglomerados urbanos",
+        "en": "31 urban agglomerations"
+      }
     },
     "cr": {
       "nombre": {
@@ -308,7 +312,11 @@
           "en": "INEC's Continuous Employment Survey"
         }
       },
-      "area": true
+      "area": true,
+      "cobertura": {
+        "es": "Nacional",
+        "en": "National"
+      }
     },
     "mx": {
       "nombre": {
@@ -480,7 +488,11 @@
           "en": "INEGI's National Occupation and Employment Survey"
         }
       },
-      "area": true
+      "area": true,
+      "cobertura": {
+        "es": "Nacional",
+        "en": "National"
+      }
     },
     "br": {
       "nombre": {
@@ -660,7 +672,11 @@
           "en": "IBGE's Continuous National Household Sample Survey (PNAD Contínua)"
         }
       },
-      "area": true
+      "area": true,
+      "cobertura": {
+        "es": "Nacional · ocupados de 14 años y más",
+        "en": "National · employed aged 14 and over"
+      }
     },
     "ec": {
       "nombre": {
@@ -835,7 +851,11 @@
           "en": "INEC's National Survey of Employment, Unemployment and Underemployment (ENEMDU)"
         }
       },
-      "area": true
+      "area": true,
+      "cobertura": {
+        "es": "Nacional",
+        "en": "National"
+      }
     },
     "py": {
       "nombre": {
@@ -845,7 +865,7 @@
       "geo": "departamentos.geo.json",
       "geo_alto": false,
       "v_iguales": false,
-      "meas_main": 1,
+      "meas_main": 2,
       "moneda": {
         "es": "guaraníes",
         "en": "guaraníes"
@@ -956,12 +976,12 @@
           "en": "Remove official INE measure"
         },
         "kpi_meth": {
-          "es": "Con la tasa de ocupación informal no agropecuaria del INE (desde el 1.er trimestre de 2017), la misma de sus boletines trimestrales.",
-          "en": "Using INE's non-agricultural informal employment rate (since Q1 2017), the one in its quarterly bulletins."
+          "es": "Empleo informal con el criterio del puesto de trabajo en todas las ramas, con el agro, como en los demás países (desde el 1.er trimestre de 2017). Es la regla del INE aplicada también a los ocupados agropecuarios. El INE publica sólo la tasa no agropecuaria, unos 5 puntos más baja (entre 3 y 7 según el trimestre): se puede superponer en el análisis interactivo.",
+          "en": "Job-based informal employment across all industries, agriculture included, as for the other countries (since Q1 2017). It is INE's rule applied to agricultural workers too. INE only publishes the non-agricultural rate, about 5 points lower (3 to 7 depending on the quarter): it can be overlaid in the interactive analysis."
         },
         "geo_meth": {
-          "es": "Medida oficial INE, promedio de los cuatro trimestres · ",
-          "en": "Official INE measure, average of the four quarters · "
+          "es": "Todas las ramas (con el agro), promedio de los cuatro trimestres · ",
+          "en": "All industries (incl. agriculture), average of the four quarters · "
         },
         "chart_meth": {
           "es": "Todas las ramas (2008–; EPH anual hasta 2016, EPHC desde 2017)",
@@ -996,7 +1016,11 @@
           "en": "the Continuous Permanent Household Survey (EPHC) of Paraguay's INE"
         }
       },
-      "area": true
+      "area": true,
+      "cobertura": {
+        "es": "Nacional, sin Boquerón ni Alto Paraguay",
+        "en": "National, excluding Boquerón and Alto Paraguay"
+      }
     },
     "cl": {
       "nombre": {
@@ -1144,11 +1168,15 @@
           "es": "la Encuesta Nacional de Empleo (ENE) del INE de Chile",
           "en": "the National Employment Survey (ENE) of Chile's INE"
         }
+      },
+      "cobertura": {
+        "es": "Nacional",
+        "en": "National"
       }
     }
   },
   "comparabilidad": {
-    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Paraguay los indicadores principales usan la medida oficial de su instituto (en Paraguay, la no agropecuaria); en Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel, que el INEC no publica; en Paraguay, la misma regla del INE con el agro incluido, que el INE no publica). El tamaño del establecimiento y el quintil no se definen igual en las encuestas, y la EPH de Argentina es urbana, mientras que las de Costa Rica, México, Brasil, Ecuador, Paraguay y Chile son nacionales. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso.",
-    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Paraguay the headline indicators use the statistics office's official measure (in Paraguay, the non-agricultural one); in Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard, which INEC does not publish; for Paraguay, INE's rule with agriculture included, which INE does not publish). Establishment size and income quintile are not defined the same way across surveys, and Argentina's EPH covers urban areas while the Costa Rican, Mexican, Brazilian, Ecuadorian, Paraguayan and Chilean surveys are national. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons."
+    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso.",
+    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons."
   }
 }
