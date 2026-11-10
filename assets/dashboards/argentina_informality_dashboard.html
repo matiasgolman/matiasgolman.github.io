@@ -490,6 +490,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
         <div class="ctl"><label for="cGender" data-t="gender">Género</label><select id="cGender"></select></div>
         <div class="ctl"><label for="cAge" data-t="age">Edad</label><select id="cAge"></select></div>
         <div class="ctl"><label for="cEmp" data-t="emp_category">Categoría ocupacional</label><select id="cEmp"></select></div>
+        <div class="ctl"><label for="cArea" data-t="cmp_area_lab">Cobertura</label><select id="cArea"></select></div>
         <div class="ctl ctl--act"><button class="btn" id="cReset" data-t="reset_filters" type="button">Reiniciar</button></div>
       </div>
       <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div>
@@ -646,7 +647,15 @@ const T = {
   and:{es:" y ",en:" and "},
   /* comparison view */
   cmp_kpi_title:{es:"El último trimestre, país por país",en:"The latest quarter, country by country"},
-  cmp_kpi_note:{es:"Tasa de empleo informal con la medida oficial de cada instituto",en:"Informal employment rate on each statistics office's official measure"},
+  cmp_kpi_note:{es:"Empleo informal por puesto de trabajo, en la cobertura de cada encuesta (indicada bajo cada país)",en:"Job-based informal employment, on each survey's own coverage (shown under each country)"},
+  coverage:{es:"Cobertura",en:"Coverage"},
+  cmp_area_lab:{es:"Cobertura",en:"Coverage"},
+  cmp_area_tot:{es:"Total de cada encuesta",en:"Each survey's full coverage"},
+  cmp_area_urb:{es:"Sólo urbano",en:"Urban only"},
+  cmp_urb_note:{es:"Sólo urbano: el área urbana como la define cada instituto, que no es idéntica entre países (los aglomerados de la EPH argentina son ciudades grandes). Argentina entra con toda su encuesta, que es urbana.",
+                en:"Urban only: urban areas as each statistics office defines them, which is not identical across countries (the agglomerations in Argentina's EPH are large cities). Argentina enters with its whole survey, which is urban."},
+  cmp_urb_na:{es:"«Sólo urbano» se puede usar sin desagregar o al desagregar por género, edad o categoría ocupacional: con este desglose se muestra el total de cada encuesta.",
+              en:"«Urban only» works with no breakdown or with gender, age or employment category: with this breakdown each survey's full coverage is shown."},
   cmp_title:{es:"Comparar países",en:"Compare countries"},
   cmp_how:{es:"Promedios anuales, una línea por país. Al desagregar, un panel por grupo con la misma escala.",
            en:"Annual averages, one line per country. With a breakdown, one panel per group on a shared scale."},
@@ -694,6 +703,7 @@ const PARAMS_BASE = {
 };
 const CMP_PARAMS = ["all","genero","area","edad_tramos","categoria_empleo","educr","miembros_hogar","rama_actividad","jefe_hogar","tam","quintil"];
 const CMP_WARN_PARAMS = ["tam","quintil"];
+const URB_PARAMS = ["all","genero","edad_tramos","categoria_empleo"];   // breakdowns the «urban only» comparison can show
 const CHARTS = {line:{es:"Líneas",en:"Line"},bar:{es:"Barras",en:"Bar"},small:{es:"Paneles",en:"Small multiples"}};
 
 /* ---------- value labels shared by every country (harmonized codes) ----------
@@ -755,6 +765,9 @@ let lastForm = "", lastFormC = "";
    publishes the informal sector). The interactive chart uses the long series
    (v=2), with v=1 as an overlay. */
 const measOf = x => ((C(x)||{}).meas_main) || 1;
+/* One-line coverage label of each survey (paises.json: "cobertura"), shown with the headline
+   indicators so the reader sees at once why levels are not comparable point by point. */
+const coverOf = x => { const c = (C(x)||{}).cobertura; return c ? (c[lang]||"") : ""; };
 const CHART_V = 2;
 let showOver = false;
 let geoView = "level";
@@ -900,7 +913,8 @@ async function renderKpis(){
   $("#kpis").innerHTML = vals.map(({cd,v,pq,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p>
       <p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>${delta(v,pq,t("vs_prev_q"))}${delta(v,py,t("vs_year_ago"))}</div>`).join("");
-  if(latest!=null) $("#kpiNote").textContent = t("latest_q") + ": " + qName(Math.floor(latest/10), latest%10);
+  if(latest!=null) $("#kpiNote").textContent = t("latest_q") + ": " + qName(Math.floor(latest/10), latest%10)
+    + (coverOf(iso) ? " · " + t("coverage") + ": " + coverOf(iso) : "");
   return latest;
 }
 
@@ -926,6 +940,16 @@ async function rowsForSelection(s, m, x){
   if(m===undefined) m = CHART_V;
   x = x || iso;
   const cols = METRIC_COLS[s.metric] || CMP_METRICS[s.metric];
+  if(s.urb){
+    /* comparison, «urban only» (2026-11-10): the area shard also carries g r e c, so the
+       urban rows (u = 1) can be read with no breakdown or broken down by one of those. */
+    const sh = await load("area", x), col = s.param==="all" ? null : PARAM_COL[s.param];
+    const fixed = {v:m,g:s.g,r:s.r,e:s.e,c:s.c,u:1};
+    if(col) delete fixed[col];
+    const dropUnpaid = col==="c" && !isHours(s.metric);
+    const idx = select(sh, fixed).filter(i=> !col || (sh.cols[col][i] !== 99 && !(dropUnpaid && sh.cols[col][i]===UNPAID)));
+    return {sh, idx, brkCol:col, cols};
+  }
   if(s.param==="all"){
     const sh = await load("base", x);
     const idx = select(sh,{v:m,g:s.g,r:s.r,e:s.e,c:s.c});
@@ -1525,7 +1549,7 @@ async function renderCmpKpis(){
   }));
   $("#cmpKpis").innerHTML = rows.map(({x,vals,latest})=>{
     const head = `<div class="cmpk__name"><span><span class="cmpk__sw" style="background:${countryColor(x)}"></span>${cname(x)}</span>
-       <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t(measOf(x)===2 ? "meas_2" : "meas_1", x)}</small></div>`;
+       <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t(measOf(x)===2 ? "meas_2" : "meas_1", x)}</small>${coverOf(x) ? `<small class="cmpk__cov">${t("coverage")}: ${coverOf(x)}</small>` : ""}</div>`;
     if(!vals) return `<div class="cmpk__row">${head}</div>`;
     return `<div class="cmpk__row">${head}${vals.map(({cd,v,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p><p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>
@@ -1536,20 +1560,26 @@ async function renderCmpKpis(){
 function cmpSel(){
   return {metric:$("#cMetric").value, param:$("#cParam").value,
     from:+$("#cFrom").value, to:+$("#cTo").value,
-    g:+$("#cGender").value, e:+$("#cAge").value, c:+$("#cEmp").value, r:99};
+    g:+$("#cGender").value, e:+$("#cAge").value, c:+$("#cEmp").value, r:99, area:$("#cArea").value||"tot"};
 }
 async function renderCmp(){
   syncUnpaid("#cEmp", $("#cMetric").value);
   const s = cmpSel();
   if(s.from > s.to){ $("#cTo").value = s.from; s.to = s.from; }
+  /* «Urban only»: the closest thing to Argentina's urban survey that the national surveys allow.
+     Only where the area shard has the breakdown (none, gender, age, employment category). */
+  const urbOk = URB_PARAMS.includes(s.param), urbNa = s.area==="urb" && !urbOk;
+  if(urbNa) s.area = "tot";
+  const urb = s.area==="urb";
   $("#cmpLoad").hidden = false;
   try{
     const per = await Promise.all(REG.orden.map(async x=>{
       const soloUrb = s.param==="area" && C(x).sin_area;
+      const sx = urb && C(x).area && !C(x).sin_area ? Object.assign({}, s, {urb:true}) : s;
       if(C(x).sin_ingresos && (isIdx(s.metric) || s.param==="quintil"))
         return {x, groups:new Map(), nobs:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, sinIng:true};
       let r;
-      try{ r = await rowsForSelection(soloUrb ? Object.assign({}, s, {param:"all"}) : s, 2, x); }
+      try{ r = await rowsForSelection(soloUrb ? Object.assign({}, s, {param:"all"}) : sx, 2, x); }
       catch(e){ console.error(e); return {x, groups:new Map(), nobs:new Map(), low:false, brkCol:PARAM_COL[s.param]||null, sinBase:false, falta:true}; }
       const p = pivot(r.sh, r.idx, r.brkCol, r.cols, isIdx(s.metric) ? Math.min(s.from, IDX_BASE) : s.from, s.to);
       if(soloUrb){ const g = p.groups.get("_"); p.groups = new Map(g ? [[1, g]] : []); r.brkCol = "u"; }
@@ -1571,12 +1601,14 @@ async function renderCmp(){
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
     if(per.some(p=>p.sinIng)) msgs.push(t("cmp_sin_ingresos") + per.filter(p=>p.sinIng).map(p=>cname(p.x)).join(", ") + ".");
     if(per.some(p=>p.falta)) msgs.push(t("cmp_falta") + per.filter(p=>p.falta).map(p=>cname(p.x)).join(", ") + ".");
+    if(urb) msgs.push(t("cmp_urb_note"));
+    if(urbNa) msgs.push(t("cmp_urb_na"));
     if(per.some(p=>p.soloUrb)) msgs.push(t("cmp_area_only_urban") + per.filter(p=>p.soloUrb).map(p=>cname(p.x)).join(", ") + ".");
     if(isIdx(s.metric) && per.some(p=>p.sinBase)) msgs.push(t("idx_sin_base") + per.filter(p=>p.sinBase).map(p=>cname(p.x)).join(", ") + ".");
     $("#cmpWarn").hidden = !msgs.length; $("#cmpWarn").textContent = msgs.join("  ");
     $("#cmpTitle").textContent = buildTitle(s, Object.assign({}, METRICS,
       Object.fromEntries(["horas_inf","horas_for"].concat(CMP_IDX).map(k=>[k,{es:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k),en:t(k==="horas_inf"?"hours_inf":k==="horas_for"?"hours_for":k)}]))));
-    $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + " · " + s.from + "–" + s.to;
+    $("#cmpSub").textContent = t("cmp_meth") + " · " + whoText(s) + (urb ? " · " + t("cmp_area_urb").toLowerCase() : "") + " · " + s.from + "–" + s.to;
     if(!keys.length){ Plotly.purge("cmpChart"); lastFormC=""; setPanels("cmp", null); setNflag("cmp", []); showMsg(t("no_data"),"#cmpMsg","#cmpChart"); lastCmp=null; return; }
     showMsg(null,"#cmpMsg","#cmpChart");
     const valsAt = (p,k) => { const g = p.groups.get(k)||{}; return years.map(y=> g[y] ? g[y][0] : null); };
@@ -1705,6 +1737,7 @@ function buildControls(keepValues){
   fillSelect($("#cGender"), opts("g"), ck?ck.g:99);
   fillSelect($("#cAge"),    opts("e"), ck?ck.e:99);
   fillSelect($("#cEmp"),    opts("c"), ck?ck.c:99);
+  fillSelect($("#cArea"), [["tot",t("cmp_area_tot")],["urb",t("cmp_area_urb")]], ck?ck.area:"tot");
 }
 function buildCountryBar(){
   $("#ctrySeg").innerHTML = REG.orden.map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("");
@@ -1842,7 +1875,7 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
 
   ["fMetric","fType","fFrom","fTo","fGender","fRegion","fAge","fEmp","fParam"]
     .forEach(id=>$("#"+id).addEventListener("change", render));
-  ["cMetric","cParam","cFrom","cTo","cGender","cAge","cEmp"]
+  ["cMetric","cParam","cFrom","cTo","cGender","cAge","cEmp","cArea"]
     .forEach(id=>$("#"+id).addEventListener("change", renderCmp));
   $("#btnReset").addEventListener("click", ()=>{ picked = {}; buildControls(false); fillYears(true); render(); });
   $("#cReset").addEventListener("click", ()=>{ $("#cMetric").value=""; buildControls(false); fillCmpYears(); renderCmp(); });

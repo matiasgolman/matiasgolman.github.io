@@ -1,7 +1,7 @@
 {
   "pais": "Paraguay",
   "iso": "py",
-  "generado": "2026-11-03 13:38:02",
+  "generado": "2026-11-10 08:47:34",
   "fuente_calculo": "Python (cubo_py/pais_paraguay.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -18,7 +18,7 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 1
+    "q": 3
   },
   "validacion": "198 de 210 contrastes dentro de tolerancia; diferencia maxima en los clave 0.90 pp; 12 avisos (edad o departamento del cuadro anual, que usa la base anual)"
 }

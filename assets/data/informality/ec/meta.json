@@ -1,7 +1,7 @@
 {
   "pais": "Ecuador",
   "iso": "ec",
-  "generado": "2026-11-03 13:45:44",
+  "generado": "2026-11-10 09:11:05",
   "fuente_calculo": "Python (cubo_py/pais_ecuador.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -19,7 +19,7 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 1
+    "q": 2
   },
   "validacion": "57 de 57 contrastes dentro de tolerancia, diferencia maxima 0.04 pp; anual por provincia: 126 de 126 dentro de 0.11 pp (max 0.00); diciembre 2007-2019 (sector informal, TP y TD): 117 de 117 dentro de tolerancia (max 0.05 pp); diciembre 2020 (D-27/D-38, publicado con aviso): sector_informal r=1 -0.26 pp, sector_informal r=2 -0.93 pp, sector_informal r=99 -0.51 pp"
 }
