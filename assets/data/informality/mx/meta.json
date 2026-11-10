@@ -1,7 +1,7 @@
 {
   "pais": "México",
   "iso": "mx",
-  "generado": "2026-11-03 13:54:29",
+  "generado": "2026-11-10 10:28:31",
   "fuente_calculo": "Python (cubo_py/pais_mexico.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -18,7 +18,7 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 1
+    "q": 2
   },
   "validacion": "70 de 70 contrastes dentro de tolerancia, diferencia maxima 0.17 pp"
 }
