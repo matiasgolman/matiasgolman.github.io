@@ -3,8 +3,8 @@ layout: nota
 title: "Not making ends meet: what Argentine households do when income falls short"
 standfirst: >-
   In October, Argentina's President asked how someone who runs out of money on the 20th could go ten days without
-  eating. Official survey data tell a different story: not making ends meet means spending savings, borrowing, taking a
-  second job or dropping private health cover. And the middle class is hit hardest.
+  eating. Official survey data tell a different story: not making ends meet means spending savings, borrowing, looking for more
+  hours of work without finding them or dropping private health cover. And the middle class is hit hardest.
 date: 2026-11-04 12:00:00 +0100
 lang: "en"
 permalink: /articles/making-ends-meet/
@@ -29,10 +29,10 @@ traced in the microdata of INDEC's Permanent Household Survey from 2011 to the s
 channels: borrowing and dissaving, working more, receiving help, and consuming less or worse.
 
 Its conclusion is that the pressure is concentrated in the middle class. The poorest households have the Universal Child
-Allowance (AUH), which has risen faster than inflation; the richest have a cushion of income and savings. The middle
+Allowance (AUH) and the Food Benefit, which have risen faster than inflation; the richest have a cushion of income and savings. The middle
 class has neither: it receives no transfers, and its basket has become almost as expensive as that of the rich. It is the
-group that borrows most from banks and finance companies, that lost health coverage most often, and that took on second
-jobs. None of this shows up in the poverty rate, which measures the distance to a line and not the cost of staying above it.
+group that borrows most from banks and finance companies and that lost health coverage most often. None of this shows up in
+the poverty rate, which measures whether a household can buy a basic basket, not the cost of keeping what it used to consume.
 
 The report below documents where every number comes from: sources, definitions, full tables by quintile, gender and
 education, and the limits of what these data can say.
