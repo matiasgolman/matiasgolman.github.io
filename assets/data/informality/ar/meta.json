@@ -1,7 +1,7 @@
 {
   "pais": "Argentina",
   "iso": "ar",
-  "generado": "2026-11-06 01:56:00",
+  "generado": "2026-11-12 22:01:46",
   "fuente_calculo": "Python (cubo_py/pais_desde_stata.py, sobre el cross_paneles.dta de Stata)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -18,7 +18,7 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 1
+    "q": 2
   },
   "validacion": "133 de 141 contrastes dentro de tolerancia, diferencia maxima 1.87 pp"
 }

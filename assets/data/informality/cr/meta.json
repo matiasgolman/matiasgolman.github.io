@@ -1,7 +1,7 @@
 {
   "pais": "Costa Rica",
   "iso": "cr",
-  "generado": "2026-11-03 13:04:10",
+  "generado": "2026-11-12 22:00:49",
   "fuente_calculo": "Python (cubo_py/pais_desde_stata.py, sobre el cross_paneles.dta de Stata)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -17,8 +17,8 @@
     "2": 2010
   },
   "base_deflactor": {
-    "y": 2025,
-    "q": 3
+    "y": 2026,
+    "q": 2
   },
   "validacion": "10 de 10 contrastes dentro de tolerancia, diferencia maxima 0.05 pp"
 }
