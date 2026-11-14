@@ -258,5 +258,10 @@ details.qr p{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-sof
 .nota__report-body .tnote{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);margin:.2rem 0 1.8rem;max-width:var(--measure)}
 .nota__report-body .footnotes{font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--rule);margin-top:3rem;padding-top:1rem}
 .nota__report-body .footnotes hr{display:none}
+.nota__source{font-family:var(--sans);font-size:var(--step-s);color:var(--ink-soft);font-style:italic}
+.nota__column .footnotes{font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--rule);margin-top:3rem;padding-top:1rem}
+.nota-ix{margin:1.4rem 0 2rem}
+.nota-ix iframe{width:100%;border:0;display:block;min-height:640px}
+.nota-ix__how{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft)}
 .nota__report-body .ix iframe{width:100%;border:0;display:block;min-height:600px}
 .nota__report-body .ix .how{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);max-width:var(--measure)}

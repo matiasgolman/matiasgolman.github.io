@@ -3,7 +3,8 @@ layout: default
 ---
 {%- comment -%}
   One piece of commentary: the newspaper column (summary + link to the outlet) and its technical report.
-  Front matter: title, standfirst, date, lang, alt_url, outlet {name, url} (url empty until published),
+  Front matter: title, standfirst, date, lang, alt_url, outlet {name, url, date} (url empty until published),
+  full_text (true: the body is the whole column, or its English translation, instead of a summary),
   report (include under _includes/notas/), pdf, series (optional), report_title.
 {%- endcomment -%}
 {%- assign es = false -%}{%- if page.lang == "es" -%}{%- assign es = true -%}{%- endif -%}
@@ -32,10 +33,20 @@ layout: default
     {%- if page.pdf %}<p class="nota__pdf"><a href="{{ page.pdf | relative_url }}">{% if es %}Descargar el reporte técnico (PDF){% else %}Download the technical report (PDF){% endif %}</a></p>{% endif %}
   </aside>
 
+  {%- if page.full_text %}
+  <section class="nota__summary nota__column prose">
+    <h2>{% if es %}La nota{% else %}The column (English translation){% endif %}</h2>
+    {%- if page.outlet.url and page.outlet.url != "" %}
+    <p class="nota__source">{% if es %}Publicada en <a href="{{ page.outlet.url }}" rel="noopener">{{ page.outlet.name }}</a>{% if page.outlet.date %} el {{ page.outlet.date | date: "%-d" }} de {% assign om = page.outlet.date | date: "%-m" | minus: 1 %}{{ months_es[om] }} de {{ page.outlet.date | date: "%Y" }}{% endif %}. Versión del autor.{% else %}Translated by the author from the Spanish original published in <a href="{{ page.outlet.url }}" rel="noopener">{{ page.outlet.name }}</a>{% if page.outlet.date %} on {{ page.outlet.date | date: "%-d %B %Y" }}{% endif %}.{% endif %}</p>
+    {%- endif %}
+    {{ content }}
+  </section>
+  {%- else %}
   <section class="nota__summary prose">
     <h2>{% if es %}La nota, en breve{% else %}The column in brief{% endif %}</h2>
     {{ content }}
   </section>
+  {%- endif %}
 
   <section class="nota__report">
     <h2>{% if es %}Reporte técnico{% else %}Technical report{% endif %}</h2>
