@@ -564,7 +564,7 @@ const T = {
   view_level:{es:"Nivel",en:"Level"}, view_change:{es:"Cambio interanual",en:"Year-on-year change"},
   rate_year:{es:"Tasa de informalidad, ",en:"Informality rate, "},
   change_year:{es:"Cambio en la tasa, en puntos porcentuales, ",en:"Change in the rate, percentage points, "},
-  latest_q:{es:"Último trimestre",en:"Latest quarter"},
+  latest_q:{es:"Último trimestre",en:"Latest quarter"}, latest_y:{es:"Último año",en:"Latest year"},
   vs_prev_q:{es:"vs. trimestre anterior",en:"vs. previous quarter"},
   vs_year_ago:{es:"vs. un año antes",en:"vs. a year earlier"},
   kpi_title:{es:"Indicadores principales",en:"Headline indicators"},
@@ -880,7 +880,8 @@ function yearAxis(years, maxLabels){
 }
 
 /* ---------- KPI strip ---------- */
-const qName = (y,q) => lang==="es" ? `${q}.º trim. ${y}` : `Q${q} ${y}`;
+/* q = 0: annual-only survey (Peru's ENAHO; meta.frecuencia = "anual"): the label is the year. */
+const qName = (y,q) => !q ? `${y}` : lang==="es" ? `${q}.º trim. ${y}` : `Q${q} ${y}`;
 const KPI_CARDS = [
   {lab:{es:"Total",en:"Total"},             f:{g:99,e:99,c:99}, lead:true},
   {lab:{es:"Mujeres",en:"Women"},           f:{g:0,e:99,c:99}},
@@ -898,7 +899,7 @@ async function kpiValues(x, cards){
     const ks = Object.keys(byQ).map(Number).sort((a,b)=>a-b);
     const k1 = ks[ks.length-1];
     if(latest==null || k1>latest) latest = k1;
-    const prevQ = ks.length>1 ? ks[ks.length-2] : null;
+    const prevQ = ks.length>1 && k1%10!==0 ? ks[ks.length-2] : null;   // annual series (q = 0): only the year-ago change
     return {cd, v:byQ[k1], pq: prevQ!=null ? byQ[prevQ] : null, py: byQ[k1-10]};
   });
   return {vals, latest};
@@ -913,7 +914,7 @@ async function renderKpis(){
   $("#kpis").innerHTML = vals.map(({cd,v,pq,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
       <p class="kpi__label">${cd.lab[lang]}</p>
       <p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>${delta(v,pq,t("vs_prev_q"))}${delta(v,py,t("vs_year_ago"))}</div>`).join("");
-  if(latest!=null) $("#kpiNote").textContent = t("latest_q") + ": " + qName(Math.floor(latest/10), latest%10)
+  if(latest!=null) $("#kpiNote").textContent = t(latest%10===0 ? "latest_y" : "latest_q") + ": " + qName(Math.floor(latest/10), latest%10)
     + (coverOf(iso) ? " · " + t("coverage") + ": " + coverOf(iso) : "");
   return latest;
 }
