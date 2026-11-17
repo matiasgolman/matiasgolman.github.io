@@ -7,7 +7,8 @@
     "br",
     "ec",
     "py",
-    "cl"
+    "cl",
+    "pe"
   ],
   "paises": {
     "ar": {
@@ -1173,10 +1174,189 @@
         "es": "Nacional",
         "en": "National"
       }
+    },
+    "pe": {
+      "nombre": {
+        "es": "Perú",
+        "en": "Peru"
+      },
+      "geo": "departamentos.geo.json",
+      "geo_alto": true,
+      "cobertura": {
+        "es": "Nacional (datos anuales)",
+        "en": "National (annual data)"
+      },
+      "v_iguales": false,
+      "area": true,
+      "meas_main": 2,
+      "moneda": {
+        "es": "soles",
+        "en": "soles"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Costa (sin Lima Metropolitana)",
+            "2": "Sierra",
+            "3": "Selva",
+            "4": "Lima Metropolitana",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Coast (excl. Metropolitan Lima)",
+            "2": "Highlands (Sierra)",
+            "3": "Amazon (Selva)",
+            "4": "Metropolitan Lima",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Amazonas",
+            "2": "Áncash",
+            "3": "Apurímac",
+            "4": "Arequipa",
+            "5": "Ayacucho",
+            "6": "Cajamarca",
+            "7": "Callao",
+            "8": "Cusco",
+            "9": "Huancavelica",
+            "10": "Huánuco",
+            "11": "Ica",
+            "12": "Junín",
+            "13": "La Libertad",
+            "14": "Lambayeque",
+            "15": "Lima (sin Callao)",
+            "16": "Loreto",
+            "17": "Madre de Dios",
+            "18": "Moquegua",
+            "19": "Pasco",
+            "20": "Piura",
+            "21": "Puno",
+            "22": "San Martín",
+            "23": "Tacna",
+            "24": "Tumbes",
+            "25": "Ucayali",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Amazonas",
+            "2": "Áncash",
+            "3": "Apurímac",
+            "4": "Arequipa",
+            "5": "Ayacucho",
+            "6": "Cajamarca",
+            "7": "Callao",
+            "8": "Cusco",
+            "9": "Huancavelica",
+            "10": "Huánuco",
+            "11": "Ica",
+            "12": "Junín",
+            "13": "La Libertad",
+            "14": "Lambayeque",
+            "15": "Lima (excl. Callao)",
+            "16": "Loreto",
+            "17": "Madre de Dios",
+            "18": "Moquegua",
+            "19": "Pasco",
+            "20": "Piura",
+            "21": "Puno",
+            "22": "San Martín",
+            "23": "Tacna",
+            "24": "Tumbes",
+            "25": "Ucayali",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 40",
+            "3": "41 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 40",
+            "3": "41 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "INEI · Encuesta Nacional de Hogares (ENAHO)",
+          "en": "INEI · National Household Survey (ENAHO)"
+        },
+        "meas_1": {
+          "es": "Empleo informal (INEI, oficial; hasta 2023)",
+          "en": "Informal employment (INEI, official; to 2023)"
+        },
+        "meas_2": {
+          "es": "Empleo informal (regla del INEI reproducida; 2007–)",
+          "en": "Informal employment (INEI rule reproduced; 2007–)"
+        },
+        "overlay_name": {
+          "es": "oficial del INEI",
+          "en": "INEI official"
+        },
+        "overlay_note": {
+          "es": "Línea punteada: la tasa oficial del INEI, que viene en los microdatos de la ENAHO hasta 2023. La línea llena aplica la misma regla con las preguntas de la encuesta y sigue en 2024 y 2025; entre las dos hay una décima como máximo.",
+          "en": "Dotted line: INEI's official rate, included in the ENAHO microdata up to 2023. The solid line applies the same rule to the survey questions and continues in 2024 and 2025; the two differ by a tenth of a point at most."
+        },
+        "over_on": {
+          "es": "Superponer la oficial del INEI",
+          "en": "Overlay INEI official"
+        },
+        "over_off": {
+          "es": "Quitar la oficial del INEI",
+          "en": "Remove INEI official"
+        },
+        "kpi_meth": {
+          "es": "Empleo informal con el criterio del puesto de trabajo, como en los demás países. La ENAHO es anual: estos indicadores comparan años, no trimestres. Es la regla del INEI aplicada a las preguntas de la encuesta, porque la variable oficial deja de venir en los microdatos en 2024; entre 2007 y 2023 coincide con la oficial a una décima.",
+          "en": "Job-based informal employment, as for the other countries. The ENAHO is annual: these indicators compare years, not quarters. It is INEI's rule applied to the survey questions, because the official variable is no longer in the microdata from 2024; between 2007 and 2023 it matches the official rate to within a tenth of a point."
+        },
+        "geo_meth": {
+          "es": "Empleo informal, promedio anual · ",
+          "en": "Informal employment, annual average · "
+        },
+        "chart_meth": {
+          "es": "Empleo informal (2007–; cambio de cuestionario en 2012)",
+          "en": "Informal employment (2007–; questionnaire change in 2012)"
+        },
+        "map_title": {
+          "es": "Por departamento",
+          "en": "By department"
+        },
+        "region": {
+          "es": "Región natural",
+          "en": "Natural region"
+        },
+        "provincia": {
+          "es": "Departamento",
+          "en": "Department"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (soles constantes)*",
+          "en": "Monthly income (constant soles)*"
+        },
+        "informality_definition": {
+          "es": "Perú usa el criterio del <strong>puesto de trabajo</strong>, como los demás países. Un <strong>asalariado</strong> o <strong>trabajador del hogar</strong> es informal si su centro de trabajo no le paga el seguro de salud (desde 2012; hasta 2011, si no le descuentan aportes a pensiones); un <strong>empleador o independiente</strong>, si su negocio está en el sector informal (no registrado en la SUNAT; las unidades agropecuarias, pesqueras y mineras de los hogares cuentan siempre como sector informal); los <strong>trabajadores familiares no remunerados</strong> son informales siempre. Se mide en la ocupación principal.<br><br>La tasa oficial del INEI viene en los microdatos de la ENAHO de 2007 a 2023 y el panel la reproduce exactamente: total, por sexo, edad, área y departamento, contra la Cuenta Satélite de la Economía Informal del INEI (2007–2021). Como en 2024 y 2025 la variable ya no viene, la serie principal aplica la misma regla con las preguntas de la encuesta: en 2007–2023 coincide con la oficial a una décima, y la oficial se puede superponer. En 2012 cambian las preguntas de registro y seguro y la regla se adapta: es un quiebre declarado que el panel no corrige. Nunca se empalman medidas distintas.",
+          "en": "Peru uses the <strong>job-based</strong> criterion, like the other countries. An <strong>employee</strong> or <strong>domestic worker</strong> is informal if the workplace does not pay their health insurance (since 2012; up to 2011, if no pension contributions are deducted); an <strong>employer or own-account worker</strong>, if the business is in the informal sector (not registered with SUNAT; household farming, fishing and mining units always count as informal sector); <strong>unpaid family workers</strong> are always informal. It refers to the main job.<br><br>INEI's official rate is included in the ENAHO microdata from 2007 to 2023 and the dashboard reproduces it exactly: total, by sex, age, area and department, against INEI's Satellite Account of the Informal Economy (2007–2021). Because the variable is missing in 2024 and 2025, the main series applies the same rule to the survey questions: over 2007–2023 it matches the official rate to within a tenth of a point, and the official one can be overlaid. In 2012 the registration and insurance questions change and the rule adapts: a declared break that the dashboard does not correct. Different measures are never spliced."
+        },
+        "availability_body": {
+          "es": "La ENAHO es una encuesta <strong>anual</strong> (continua a lo largo del año, con un factor anual), así que en Perú todo el panel, incluidos los indicadores principales, es anual, de 2007 a 2025. Es nacional; el universo son los ocupados de 14 años y más, residentes habituales del hogar. <strong>2020</strong> es un año excepcional: por la pandemia, el INEI hizo parte de la encuesta por teléfono, con un cuestionario corto. La región es la región natural del INEI, con Lima Metropolitana aparte; el área urbana son los centros poblados de 2.000 habitantes y más. En el mapa, Lima no incluye al Callao, que va por separado. El tamaño del establecimiento corta en 40 personas, como en Argentina, y el <strong>quintil</strong> es de ingreso total per cápita del hogar. <strong>* Ingresos:</strong> los de la ocupación principal, por mes, en <strong>soles constantes</strong> del último año con microdatos (promedio anual, con el deflactor temporal y espacial del INEI). <strong>Incluyen el pago en especie y el autoconsumo</strong>, como el ingreso por trabajo del INEI (igual que en Ecuador y Brasil; Argentina, México y Paraguay miden sólo el monetario): pesan entre 6 y 8 % del ingreso medio y alrededor del 11 % entre los informales, y no cambian su evolución. Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "The ENAHO is an <strong>annual</strong> survey (fielded continuously over the year, with an annual weight), so for Peru the whole dashboard, headline indicators included, is annual, from 2007 to 2025. It is national; the universe is employed usual residents aged 14 and over. <strong>2020</strong> is an exceptional year: because of the pandemic, INEI ran part of the survey by telephone with a short questionnaire. Region is INEI's natural region, with Metropolitan Lima shown separately; urban areas are localities of 2,000 inhabitants or more. On the map, Lima excludes Callao, which is shown on its own. Establishment size breaks at 40 people, as in Argentina, and the <strong>quintile</strong> is of total household per-capita income. <strong>* Incomes:</strong> from the main job, monthly, in <strong>constant soles</strong> of the latest year with microdata (annual average, with INEI's temporal and spatial deflator). <strong>They include payment in kind and own consumption</strong>, as INEI's labour income does (as for Ecuador and Brazil; Argentina, Mexico and Paraguay measure cash income only): they are 6 to 8 % of mean income and about 11 % among informal workers, and do not change its trend. Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Nacional de Hogares (ENAHO) del INEI",
+          "en": "INEI's National Household Survey (ENAHO)"
+        }
+      }
     }
   },
   "comparabilidad": {
-    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso.",
-    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons."
+    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso. Perú usa la ENAHO, una encuesta anual: sus valores son anuales también en los indicadores principales, y su serie es la regla del INEI reproducida (coincide con la oficial a una décima entre 2007 y 2023 y sigue en 2024 y 2025); sus ingresos incluyen el pago en especie y el autoconsumo.",
+    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons. Peru uses the ENAHO, an annual survey: its values are annual in the headline indicators too, and its series is INEI's rule reproduced (it matches the official rate to within a tenth over 2007–2023 and continues in 2024 and 2025); its incomes include payment in kind and own consumption."
   }
 }

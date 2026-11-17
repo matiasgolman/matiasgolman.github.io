@@ -1,0 +1,28 @@
+{
+  "pais": "Peru",
+  "iso": "pe",
+  "frecuencia": "anual",
+  "generado": "2026-11-17 10:54:48",
+  "fuente_calculo": "Python (cubo_py/pais_peru.py)",
+  "ultimo_trimestre": {
+    "y": 2025,
+    "q": 0
+  },
+  "inicio_oficial": {
+    "y": 2007,
+    "q": 0
+  },
+  "cubo_anual": "ENAHO anual (continua, factor anual del INEI); sin serie trimestral",
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2007,
+    "2": 2007
+  },
+  "ultimo_anio_oficial": 2023,
+  "base_deflactor": {
+    "y": 2025,
+    "q": 0
+  },
+  "base_deflactor_texto": "2025 (promedio anual; deflactores_base2025_new.dta)",
+  "validacion": "105 de 105 contrastes clave (total, sexo, edad; 2007-2021) dentro de 0.15 pp + redondeo de lo publicado, diferencia maxima 0.16 pp; departamentos: 375 de 375 dentro del redondeo de lo publicado (max 1.55 pp)"
+}
