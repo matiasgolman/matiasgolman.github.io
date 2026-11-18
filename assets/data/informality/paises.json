@@ -8,7 +8,8 @@
     "ec",
     "py",
     "cl",
-    "pe"
+    "pe",
+    "bo"
   ],
   "paises": {
     "ar": {
@@ -1353,10 +1354,139 @@
           "en": "INEI's National Household Survey (ENAHO)"
         }
       }
+    },
+    "bo": {
+      "nombre": {
+        "es": "Bolivia",
+        "en": "Bolivia"
+      },
+      "geo": "departamentos.geo.json",
+      "geo_alto": true,
+      "cobertura": {
+        "es": "Nacional",
+        "en": "National"
+      },
+      "v_iguales": true,
+      "area": true,
+      "meas_main": 1,
+      "moneda": {
+        "es": "bolivianos",
+        "en": "bolivianos"
+      },
+      "labels": {
+        "r": {
+          "es": {
+            "1": "Altiplano (La Paz, Oruro, Potosí)",
+            "2": "Valles (Chuquisaca, Cochabamba, Tarija)",
+            "3": "Llanos (Santa Cruz, Beni, Pando)",
+            "99": "Todas"
+          },
+          "en": {
+            "1": "Altiplano (La Paz, Oruro, Potosí)",
+            "2": "Valleys (Chuquisaca, Cochabamba, Tarija)",
+            "3": "Lowlands (Santa Cruz, Beni, Pando)",
+            "99": "All"
+          }
+        },
+        "p": {
+          "es": {
+            "1": "Chuquisaca",
+            "2": "La Paz",
+            "3": "Cochabamba",
+            "4": "Oruro",
+            "5": "Potosí",
+            "6": "Tarija",
+            "7": "Santa Cruz",
+            "8": "Beni",
+            "9": "Pando",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Chuquisaca",
+            "2": "La Paz",
+            "3": "Cochabamba",
+            "4": "Oruro",
+            "5": "Potosí",
+            "6": "Tarija",
+            "7": "Santa Cruz",
+            "8": "Beni",
+            "9": "Pando",
+            "99": "All"
+          }
+        },
+        "s": {
+          "es": {
+            "1": "Hasta 5 personas",
+            "2": "De 6 a 40",
+            "3": "41 o más",
+            "99": "Todos"
+          },
+          "en": {
+            "1": "Up to 5 people",
+            "2": "6 to 40",
+            "3": "41 or more",
+            "99": "All"
+          }
+        }
+      },
+      "textos": {
+        "subtitle": {
+          "es": "INE · Encuesta Continua de Empleo (ECE)",
+          "en": "INE · Continuous Employment Survey (ECE)"
+        },
+        "meas_1": {
+          "es": "Ocupación informal (INE)",
+          "en": "Informal employment (INE)"
+        },
+        "meas_2": {
+          "es": "Ocupación informal (INE)",
+          "en": "Informal employment (INE)"
+        },
+        "kpi_meth": {
+          "es": "Tasa de ocupación informal del INE (criterio del puesto de trabajo), reproducida con las preguntas de la ECE; coincide con la publicada por el INE. No hay datos comparables entre el 2.º trimestre de 2020 y el 4.º de 2021.",
+          "en": "INE's informal employment rate (job-based criterion), reproduced from the ECE questions; it matches the rate INE publishes. There are no comparable data from Q2 2020 to Q4 2021."
+        },
+        "geo_meth": {
+          "es": "Ocupación informal, promedio de los cuatro trimestres · ",
+          "en": "Informal employment, average of the four quarters · "
+        },
+        "chart_meth": {
+          "es": "Ocupación informal (INE; 2016–2019 y 2022–; sin datos comparables en 2020–2021)",
+          "en": "Informal employment (INE; 2016–2019 and 2022–; no comparable data in 2020–2021)"
+        },
+        "map_title": {
+          "es": "Por departamento",
+          "en": "By department"
+        },
+        "region": {
+          "es": "Región",
+          "en": "Region"
+        },
+        "provincia": {
+          "es": "Departamento",
+          "en": "Department"
+        },
+        "income_axis": {
+          "es": "Ingreso mensual (bolivianos constantes)",
+          "en": "Monthly income (constant bolivianos)"
+        },
+        "informality_definition": {
+          "es": "Bolivia usa el criterio del <strong>puesto de trabajo</strong> que el INE y UDAPE fijaron en 2026 (CIET 17, con elementos de la CIET 21), como los demás países. Un <strong>asalariado</strong> o <strong>trabajador del hogar</strong> es formal si aporta a la Gestora Pública (antes, las AFP) o, si no hay dato de aporte, si tiene seguro de salud por su trabajo; un <strong>cuenta propia, empleador o cooperativista</strong>, si su negocio tiene NIT en el régimen general, lleva contabilidad o, cuando no sabe, tiene más de cinco personas; los <strong>familiares y aprendices sin remuneración</strong> son informales siempre. Se mide en la ocupación principal.<br><br>La ECE no trae la variable: el panel aplica la regla del INE a las preguntas de la encuesta y reproduce su tasa trimestral (nacional, urbana y rural) a menos de una décima desde 2022 y a menos de 0,4 puntos en 2015–2020, además de la urbana por sexo y de los jóvenes. Entre el 2.º trimestre de 2020 y el 4.º de 2021 la encuesta se hizo con un cuestionario reducido (y en 2020, sólo en ciudades): el INE midió la informalidad de otro modo y el panel no muestra esos trimestres. Nunca se empalman medidas distintas.",
+          "en": "Bolivia uses the <strong>job-based</strong> criterion that INE and UDAPE set in 2026 (ICLS 17, with elements of ICLS 21), like the other countries. An <strong>employee</strong> or <strong>domestic worker</strong> is formal if they contribute to the public pension manager (formerly the AFPs) or, where there is no data on contributions, if they have health insurance through their job; an <strong>own-account worker, employer or cooperative member</strong>, if the business has a tax ID in the general regime, keeps accounts or, when unknown, has more than five people; <strong>unpaid family workers and apprentices</strong> are always informal. It refers to the main job.<br><br>The ECE does not include the variable: the dashboard applies INE's rule to the survey questions and reproduces its quarterly rate (national, urban and rural) to within a tenth of a point since 2022 and within 0.4 points in 2015–2020, as well as the urban rate by sex and for young people. From Q2 2020 to Q4 2021 the survey used a short questionnaire (and in 2020 covered cities only): INE measured informality differently and the dashboard does not show those quarters. Different measures are never spliced."
+        },
+        "availability_body": {
+          "es": "La ECE es trimestral y nacional desde el 4.º trimestre de 2015. El universo son los ocupados de 14 años y más. <strong>Sin datos comparables del 2.º trimestre de 2020 al 4.º de 2021</strong> (cuestionario reducido por la pandemia; en 2020, sólo área urbana): el panel anual muestra 2016–2019 y 2022–2025. La región agrupa departamentos (Altiplano, Valles y Llanos); el tamaño del establecimiento corta en 40 personas, como en Argentina, y el <strong>quintil</strong> es de ingreso <strong>laboral</strong> per cápita del hogar (la ECE no releva otros ingresos). Las <strong>horas</strong> son las habituales de todos los trabajos. Los <strong>ingresos</strong> son los de la ocupación principal que calcula el INE, por mes, en <strong>bolivianos constantes</strong> del último trimestre con microdatos (IPC del INE). Celdas con menos de 30 observaciones: imprecisas; con menos de 10: no se muestran.",
+          "en": "The ECE is quarterly and national since Q4 2015. The universe is employed people aged 14 and over. <strong>No comparable data from Q2 2020 to Q4 2021</strong> (short pandemic questionnaire; in 2020, urban areas only): the annual dashboard shows 2016–2019 and 2022–2025. Region groups departments (Altiplano, Valleys and Lowlands); establishment size breaks at 40 people, as in Argentina, and the <strong>quintile</strong> is of household per-capita <strong>labour</strong> income (the ECE does not collect other income). <strong>Hours</strong> are usual hours in all jobs. <strong>Incomes</strong> are INE's main-job income, monthly, in <strong>constant bolivianos</strong> of the latest quarter with microdata (INE CPI). Cells with fewer than 30 observations are flagged as imprecise and those with fewer than 10 are not shown."
+        },
+        "fuente": {
+          "es": "la Encuesta Continua de Empleo (ECE) del INE de Bolivia",
+          "en": "the Continuous Employment Survey (ECE) of Bolivia's INE"
+        }
+      }
     }
   },
   "comparabilidad": {
-    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso. Perú usa la ENAHO, una encuesta anual: sus valores son anuales también en los indicadores principales, y su serie es la regla del INEI reproducida (coincide con la oficial a una décima entre 2007 y 2023 y sigue en 2024 y 2025); sus ingresos incluyen el pago en especie y el autoconsumo.",
-    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons. Peru uses the ENAHO, an annual survey: its values are annual in the headline indicators too, and its series is INEI's rule reproduced (it matches the official rate to within a tenth over 2007–2023 and continues in 2024 and 2025); its incomes include payment in kind and own consumption."
+    "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso. Perú usa la ENAHO, una encuesta anual: sus valores son anuales también en los indicadores principales, y su serie es la regla del INEI reproducida (coincide con la oficial a una décima entre 2007 y 2023 y sigue en 2024 y 2025); sus ingresos incluyen el pago en especie y el autoconsumo. Bolivia usa la ECE del INE con la tasa de ocupación informal que el INE fijó en 2026, reproducida de la encuesta; no tiene datos comparables entre el 2.º trimestre de 2020 y el 4.º de 2021, y su quintil es de ingreso laboral.",
+    "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons. Peru uses the ENAHO, an annual survey: its values are annual in the headline indicators too, and its series is INEI's rule reproduced (it matches the official rate to within a tenth over 2007–2023 and continues in 2024 and 2025); its incomes include payment in kind and own consumption. Bolivia uses INE's ECE with the informal employment rate INE set in 2026, reproduced from the survey; it has no comparable data from Q2 2020 to Q4 2021, and its quintile is of labour income."
   }
 }

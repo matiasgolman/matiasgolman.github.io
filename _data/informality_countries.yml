@@ -41,3 +41,15 @@
   since: 2017
   source_en: "the National Employment Survey (ENE) of Chile's INE"
   source_es: "la Encuesta Nacional de Empleo (ENE) del INE de Chile"
+- iso: pe
+  name_en: "Peru"
+  name_es: "Perú"
+  since: 2007
+  source_en: "INEI's National Household Survey (ENAHO)"
+  source_es: "la Encuesta Nacional de Hogares (ENAHO) del INEI"
+- iso: bo
+  name_en: "Bolivia"
+  name_es: "Bolivia"
+  since: 2016
+  source_en: "the Continuous Employment Survey (ECE) of Bolivia's INE"
+  source_es: "la Encuesta Continua de Empleo (ECE) del INE de Bolivia"
