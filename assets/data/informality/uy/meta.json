@@ -2,7 +2,7 @@
   "pais": "Uruguay",
   "iso": "uy",
   "frecuencia": "anual",
-  "generado": "2026-11-19 18:11:27",
+  "generado": "2026-11-19 20:12:33",
   "fuente_calculo": "Python (cubo_py/pais_uruguay.py)",
   "ultimo_trimestre": {
     "y": 2025,
@@ -24,5 +24,5 @@
     "q": 0
   },
   "base_deflactor_texto": "2025-anual",
-  "validacion": "51 de 51 contrastes clave (total pais 2006, 2016-2020, 2022-2023; sexo; urbano por sexo; edad 2006 en el sector privado) dentro de 0.15 pp + redondeo de lo publicado, diferencia maxima 0.05 pp; Montevideo: 18 de 18 (max 0.05 pp)"
+  "validacion": "54 de 54 contrastes clave (total pais 2006, 2016-2020, 2022-2023; sexo; urbano por sexo; edad 2006 en el sector privado; v = 2: incremento sobre el no registro 2022-2024) dentro de 0.15 pp + redondeo de lo publicado, diferencia maxima 0.10 pp; Montevideo: 18 de 18 (max 0.05 pp)"
 }
