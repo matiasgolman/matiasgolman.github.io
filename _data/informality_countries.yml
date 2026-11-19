@@ -53,3 +53,9 @@
   since: 2016
   source_en: "the Continuous Employment Survey (ECE) of Bolivia's INE"
   source_es: "la Encuesta Continua de Empleo (ECE) del INE de Bolivia"
+- iso: uy
+  name_en: "Uruguay"
+  name_es: "Uruguay"
+  since: 2006
+  source_en: "the Continuous Household Survey (ECH) of Uruguay's INE"
+  source_es: "la Encuesta Continua de Hogares (ECH) del INE de Uruguay"

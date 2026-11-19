@@ -1,0 +1,28 @@
+{
+  "pais": "Uruguay",
+  "iso": "uy",
+  "frecuencia": "anual",
+  "generado": "2026-11-19 18:11:27",
+  "fuente_calculo": "Python (cubo_py/pais_uruguay.py)",
+  "ultimo_trimestre": {
+    "y": 2025,
+    "q": 0
+  },
+  "inicio_oficial": {
+    "y": 2006,
+    "q": 0
+  },
+  "cubo_anual": "ECH anual (archivo anual del INE, pesoano / w_ano); sin serie trimestral; 2021 sin dato",
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2006,
+    "2": 2006
+  },
+  "ultimo_anio_oficial": 2025,
+  "base_deflactor": {
+    "y": 2025,
+    "q": 0
+  },
+  "base_deflactor_texto": "2025-anual",
+  "validacion": "51 de 51 contrastes clave (total pais 2006, 2016-2020, 2022-2023; sexo; urbano por sexo; edad 2006 en el sector privado) dentro de 0.15 pp + redondeo de lo publicado, diferencia maxima 0.05 pp; Montevideo: 18 de 18 (max 0.05 pp)"
+}
