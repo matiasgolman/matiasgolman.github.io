@@ -1,5 +1,20 @@
 # Changelog / bitácora del sitio personal
 
+## 2026-11-15 — barrido semanal
+- Sin comentarios ni respuestas nuevas de Matías (ni en el ESTADO ni en el Excel). Cabecera y aviso de `En una pantalla` al día: primero el reporte de Bariloche (pedido 13/11), después las capturas de AraucariaSpotter (30/10) y unir los dos changelogs.
+
+## 2026-11-14 — «No llegar a fin de mes» publicada en El Economista (sesión con Matías; commit `53f1d94`, push desde GitHub Desktop)
+- Subida la v7 del proyecto Trabajador adicional (bundle `insumos/fin-de-mes_v7.bundle`: 2T2026, bases limpias, comentarios de Roxana Maurizio), combinada sobre `4acfd8d`.
+- Las dos páginas ahora llevan la **nota completa** (castellano, versión del autor = v7 entregada al diario) y su **traducción al inglés del mismo largo**, con los cinco gráficos, notas al pie y el interactivo embebido, y debajo el reporte técnico ES/EN y los PDF. `outlet.url` = https://eleconomista.com.ar/economia/no-llegar-fin-mes-lo-hacen-hogares-cuando-ingreso-alcanza-n99662, `outlet.date` 13/11/2026. Layout `nota.html`: bandera `full_text` y línea de fuente; estilos `.nota-ix` y `.nota__source`.
+- Bundle de lo subido: `insumos/fin-de-mes_v8_publicada.bundle`. La copia local quedó en `53f1d94` (fast-forward; `_pipeline` sin tocar).
+- Pendiente fuera de este repo: el PDF de los ToR de nombre largo en `sector_construccion` no se pudo borrar (la VM no lo puede abrir, >255 bytes; en el Explorador quedó un diálogo que no veo). Los `_tmp_*` de D: siguen: la sesión no tiene acceso a D:.
+
+## 2026-11-13 — tracker (despacho de tus respuestas)
+- COMENTARIO DE MATIAS despachado (pedido): Subir el reporte técnico «Escuelas y demografía» de Bariloche (castellano e inglés) desde Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ siguiendo su LEEME.md (qué copiar y qué archivos de la v2 NO); sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte (la nota va a un diario, D-12 de Bariloche). No publicar sin el visto final de Matías si el LEEME lo pide. (Pedido desde Bariloche, 11/11; OK de Matías a la v3.1 el 10/11.)
+
+## 2026-11-10 — tracker (despacho de tus respuestas)
+- To-Do «Subir la actualización de «No llegar a fin de mes»» cerrado con tu respuesta del Excel (pedido): Matías respondió «OK» (10/11) al ítem de subir la actualización de «No llegar a fin de mes». Verificar en la próxima sesión si GitHub ya tiene el 2T2026 (bundle _pipeline/insumos/fin-de-mes_2T2026.bundle); si no, hacer el push o dejarle el paso exacto.
+
 ## 2026-11-09 — Araucaria Spotter en Google Play (commit `afb36f5`, con Matías, desde la sesión de la app)
 - `/araucariaspotter/` y `/es/araucaria/`: botón «Get it on Google Play / Descargala en Google Play», botón secundario a la app web y un código QR desplegable (`assets/img/qr-araucaria-google-play.png`, apunta a la ficha de Play; verificado al decodificarlo). Notas de `projects.yml` y `projects_es.yml`: «disponible en Google Play y como app web». Estilos `.btn--ghost`, `.app-links` y `details.qr` en `main.scss`.
 - Se hizo desde un clon en la nube porque `git status` en la copia local da «index file open failed» (OneDrive): **hacer Pull en GitHub Desktop** antes de tocar el repo.

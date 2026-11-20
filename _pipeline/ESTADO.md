@@ -2,13 +2,16 @@
 
 > **Fuente de verdad del proyecto web.** Toda corrida arranca leyendo, en este orden: el bloque
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
+- [x] (Mapa de informalidad, 2026-11-10) Panel: KPI comparable (commit `aab1735`) e ingresos de Brasil y México a precios de 2026T2 (commit `82bbc1a`). Sólo `assets/data/informality/**` y el HTML del panel.
+- [x] (Mapa de informalidad, 2026-11-12) Panel: ingresos de Argentina y Costa Rica a precios de 2026T2 (commit `4acfd8d`). Sólo `assets/data/informality/ar|cr/**`.
+- [x] (Mapa de informalidad, 2026-11-17) Panel: suma Perú (ENAHO anual, commit `1f562df`); el HTML muestra años en los países anuales (`q` = 0). Sólo `assets/data/informality/pe/**`, `paises.json` y el HTML del panel.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-11-08 (barrido semanal; esta semana: sección «Notas de interés» con Matías el 4/11 y el panel lo tocó la tarea de Encuestas LATAM hasta el 6/11)
+**Última actualización:** 2026-11-15 (barrido semanal; esta semana: «No llegar a fin de mes» publicada con la nota completa ES/EN el 14/11, commit `53f1d94`; el panel lo tocó Mapa de informalidad el 10 y 12/11)
 **Actualizado por:** Claude
 **Avance:** 90%
 **Fase:** Mantenimiento — sitio en línea con sección «Notas de interés / News articles» (4/11); el panel (siete países con Chile) lo actualiza la tarea de Encuestas LATAM
-**Próximo hito:** Capturas nuevas de AraucariaSpotter (pedido 30/10) y subir la actualización de «No llegar a fin de mes»
+**Próximo hito:** Reporte técnico «Escuelas y demografía» de Bariloche (pedido 13/11) y capturas nuevas de AraucariaSpotter (pedido 30/10)
 **Tarea agendada:** manual (el panel lo toca la tarea de Encuestas LATAM)
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
@@ -40,14 +43,13 @@ scroll.
 > llamado «Muestra chica» (n < 30) en la esquina del gráfico, solapa «Observaciones», métrica «Cantidad de ocupados (miles)»; los datos de
 > los seis países tienen columnas nuevas de n y ocupados; Costa Rica ya tiene urbano/rural. Detalle en el ESTADO de Encuestas LATAM.
 
-> **Lo primero en la próxima sesión (barrido 08/11):** (1) el Pedido de Matías del 30/10 arriba de la COLA: reemplazar las capturas
-> de Google Play de AraucariaSpotter por las de WhatsApp del 22/10 que están en este `_pipeline/`, recortando la barra de la hora
-> (la parte de salarios base 100 = 2016 la tiene Encuestas LATAM); (2) **dos changelogs por un conflicto de OneDrive**: `Changelog.md`
-> (hasta el 4/11) no se puede leer desde la VM del puente y `Changelog-MatiPC.md` tiene las entradas del 4–8/11. Unirlos en
-> `Changelog.md` y borrar la copia. (3) Ojo: `git` desde la VM da «index file open failed» (mismo problema de sincronización).
-> Semana del 1–8/11 (sin sesión manual salvo la del 4/11): sección «Notas de interés / News articles» con dos piezas (commits `4b48976`, `645c2f4`);
-> el panel sumó Paraguay (desde 2008), Chile (`d1da4ce`), regiones geopolíticas, urbano/rural, n y ocupados, y el 2T2026 de Argentina (`41c81ea`).
-> Textos y miniatura ya no listan países a mano (`b1bd473`), así que lo de «cuatro países» y Paraguay quedó resuelto.
+> **Lo primero en la próxima sesión (barrido 15/11):** (1) el Pedido de Matías del 13/11 arriba de la COLA: subir el reporte técnico
+> «Escuelas y demografía» de Bariloche (ES/EN) siguiendo el LEEME de `Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/` y sumar
+> «Bariloche en datos» a `_data/projects_es.yml` y `projects_en.yml`; (2) el Pedido del 30/10: capturas de Google Play de AraucariaSpotter
+> con las de WhatsApp del 22/10 de este `_pipeline/`, sin la barra de la hora; (3) unir `Changelog-MatiPC.md` (4–8/11) en `Changelog.md`
+> (ya se lee desde la VM) y borrar la copia; (4) `git` local da «index file open failed» (OneDrive): Pull en GitHub Desktop antes de tocar el repo.
+> Semana del 9–15/11: botón de Google Play y QR de AraucariaSpotter (`afb36f5`, 9/11); «No llegar a fin de mes» con la nota completa ES/EN y
+> enlace a El Economista (`53f1d94`, 14/11); panel: KPI comparable e ingresos a precios de 2026T2 (`aab1735`, `82bbc1a`, `4acfd8d`, Mapa de informalidad).
 
 > **CORRIDA 8 — CERRADA (19/10).** Costa Rica arreglada y al día, el panel separado del sitio.
 
@@ -78,7 +80,16 @@ scroll.
 
 ## COLA DE TRABAJO
 
+### Nota de la reorganización del 2026-11-09 (sesión de Matías con Claude)
+- Desde hoy el panel de informalidad lo mantiene el proyecto **Mapa de informalidad** (`Investigacion/mercado_trabajo_latam/proyectos/mapa_informalidad/_pipeline/`, id `mapa_inf`), no «Encuestas LATAM» (que pasó a ser Bases LATAM y ya no toca el sitio). Sigue valiendo D-01: ese proyecto sólo toca `assets/data/informality/**` y el HTML del panel.
+- Sigue pendiente unir `Changelog.md` y `Changelog-MatiPC.md` (conflicto de OneDrive del 4–8/11).
+
 ### Pedidos de Matías (vía tracker) — van primero
+- [ ] Pedido de Matías (2026-11-13, comentario del ESTADO): Subir el reporte técnico «Escuelas y demografía» de Bariloche (castellano e inglés) desde Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ siguiendo su LEEME.md (qué copiar y qué archivos de la v2 NO); sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte (la nota va a un diario, D-12 de Bariloche). No publicar sin el visto final de Matías si el LEEME lo pide. (Pedido desde Bariloche, 11/11; OK de Matías a la v3.1 el 10/11.)
+- [x] 2026-11-19 (Mapa de informalidad): Uruguay con el criterio del puesto como medida principal y el no registro superpuesto (commit `4aa7370`; sólo `assets/data/informality/uy/` y `paises.json`).
+- [x] 2026-11-19 (Mapa de informalidad): el panel suma **Uruguay** (ECH anual del INE, 2006–2020 y 2022–2025; no registro a la seguridad social, 51/51 contrastes clave). Commit `ca022db` (`assets/data/informality/uy/`, `paises.json`, `_data/informality_countries.yml`); probado con Playwright en el sitio publicado, sin errores.
+- [x] 2026-11-18 (Mapa de informalidad): el panel suma **Bolivia** (ECE trimestral del INE, 2015T4–2026T1; 102/102 contrastes clave). Commit `5ade429` (`assets/data/informality/bo/`, `paises.json`, `_data/informality_countries.yml`). Nada que hacer en el sitio; la miniatura del panel (M2 del Mapa) sigue pendiente.
+- [x] 2026-11-14 (sesión con Matías): «No llegar a fin de mes» subida (v7 + nota completa ES/EN + enlace a El Economista), commit `53f1d94`. Detalle en el Changelog.
 - [x] 2026-11-06 (tarea Encuestas LATAM): el panel de informalidad suma el 2T2026 de Argentina (EPH; 45,0 % = INDEC). Commit `41c81ea`. Nada que hacer en el sitio.
 - [x] 2026-11-04 (tarea Encuestas LATAM): versión en castellano del panel revisada con Playwright: mismas funciones que la inglesa (tabla y Observaciones incluidas). Commit `191fd2a`: el panel embebido ya no pide `null/…` al cargar.
 - [ ] Pedido de Matías (2026-10-30, comentario del ESTADO): (1) Fotos de Google Play (AraucariaSpotter): las actuales son de versiones viejas sin las funciones nuevas. Reemplazarlas por capturas nuevas (hay capturas de WhatsApp del 22/10 en este _pipeline), recortando la barra superior con la hora del teléfono. (2) Dashboard de informalidad: agregar salarios en base 100 = 2016 para comparar el crecimiento entre países (las monedas son distintas) y sacar la categoría «Trabajador sin remuneración», que siempre es informal y sólo ocupa espacio. La parte (2) también quedó como pedido en el ESTADO de Encuestas LATAM, que actualiza el dashboard.
@@ -181,7 +192,7 @@ scroll.
 
 **2026-11-04, con Matías (reemplaza D-15):**
 
-- **D-26 · Notas.** La sección se llama «Notas de interés» en castellano y «News articles» en inglés (elección de Matías, 4/11; URLs `/es/notas/` y `/articles/`, con `/commentary/` y `/notes/` redirigidas). Una sola columna centrada de 48rem: texto, figuras, cuadros y mapa del mismo ancho y va en el menú desde ya, con dos piezas. Cada pieza: resumen de la nota + enlace al diario + reporte técnico completo + PDF, en los dos idiomas. El texto completo de la nota en el sitio (y su traducción al inglés) sólo después de que salga en el diario y si el medio lo acepta. Cuando salga en El Economista: completar `outlet.url` en las dos páginas de fin de mes.
+- **D-26 · Notas.** La sección se llama «Notas de interés» en castellano y «News articles» en inglés (elección de Matías, 4/11; URLs `/es/notas/` y `/articles/`, con `/commentary/` y `/notes/` redirigidas). Una sola columna centrada de 48rem: texto, figuras, cuadros y mapa del mismo ancho y va en el menú desde ya, con dos piezas. Cada pieza: resumen de la nota + enlace al diario + reporte técnico completo + PDF, en los dos idiomas. El texto completo de la nota en el sitio (y su traducción al inglés) sólo después de que salga en el diario y si el medio lo acepta. Salió en El Economista el 13/11 (`outlet.url` completado el 14/11; el sitio lleva la nota completa y su traducción por pedido de Matías).
 
 **2026-10-13, respondidas por Matías en el chat (preguntas 1, 16, 3 y 19 del cuestionario):**
 

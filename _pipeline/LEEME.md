@@ -26,3 +26,9 @@ vaciar el bloque. Podés escribir en castellano o en inglés, sin formato, como 
 
 **Esta carpeta no se publica.** Está excluida del build de Jekyll (`exclude:` en `_config.yml`), así
 que nada de acá aparece en el sitio. Sí se versiona en git, para tener historia.
+
+---
+
+## Skills (biblioteca compartida, 2026-11-10)
+
+Las formas de trabajar comunes a todos los proyectos están en `personal/seguimiento_proyectos/skills/` (en el shell, `$HOME/mnt/Documents/personal/seguimiento_proyectos/skills/`). Antes de (a) escribir o corregir un texto que va a leer otra persona, (b) escribir o correr código de análisis, (c) buscar literatura o elegir un método, o (d) cerrar un hito, leé la fila de este proyecto en `skills/RUTAS.md` y cargá **sólo** las skills que indica para esa tarea, en ese momento. No las leas al arrancar la corrida ni si la corrida no hace ninguna de esas cuatro cosas. Texto terminado: pasarlo por `skills/_herramientas/lint_estilo.py`. Si Matías corrige una forma de trabajar que sirve para otros textos o proyectos, agregá una línea a `APRENDIZAJES_SKILLS.md` en la carpeta de seguimiento de este proyecto (formato en `skills/LEEME.md` §4). No edites la carpeta `skills/`.

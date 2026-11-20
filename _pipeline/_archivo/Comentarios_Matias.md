@@ -1,5 +1,13 @@
 # Comentarios de Matías — archivo (sitio personal)
 
+## 2026-11-13 — COMENTARIO DE MATIAS del ESTADO (despachado por el tracker)
+
+- Subir el reporte técnico «Escuelas y demografía» de Bariloche, en castellano y en inglés. Todo está armado en Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ (leer su LEEME.md: qué copiar a qué ruta y qué archivos de la v2 NO copiar). Después, sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte: la nota se guarda para un diario 
+
+## 2026-11-10 — vía tracker (Excel), despachado por el tracker
+
+- **To-Do «Subir la actualización de «No llegar a fin de mes»»** (escrita 2026-11-10T02:49): OK
+
 ## 2026-11-05 — COMENTARIO DE MATIAS del ESTADO (despachado por el tracker)
 
 (HECHO 04/11 como nota en /es/notas/bariloche-escuelas/ y /articles/bariloche-schools/, con OK de Matías; ya no como sección propia — ver Changelog.) (Pedido desde el proyecto «Bariloche en datos», 2026-11-02; Matías lo pidió en esa sesión, pero publicar requiere su OK final, que está en el To-Do 1 de Bariloche.) Agregar al sitio una sección «Bariloche en datos» con el primer reporte (escuelas y d
