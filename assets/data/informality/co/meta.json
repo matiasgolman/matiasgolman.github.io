@@ -1,0 +1,24 @@
+{
+  "pais": "Colombia",
+  "iso": "co",
+  "generado": "2026-11-20 17:20:46",
+  "fuente_calculo": "Python (cubo_py/pais_colombia.py)",
+  "ultimo_trimestre": {
+    "y": 2026,
+    "q": 3
+  },
+  "inicio_oficial": {
+    "y": 2022,
+    "q": 1
+  },
+  "ultimo_anio": 2025,
+  "primer_anio": {
+    "1": 2022,
+    "2": 2022
+  },
+  "base_deflactor": {
+    "y": 2026,
+    "q": 3
+  },
+  "validacion": "247 de 247 contrastes clave (proporcion de informalidad del DANE por trimestre calendario 2022T1-2026T3: total nacional, cabeceras, rural, 13 y 23 ciudades, por sexo) dentro de 0.1 pp, diferencia maxima 0.092 pp; el DANE no publica informalidad por edad"
+}

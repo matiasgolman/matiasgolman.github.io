@@ -59,3 +59,9 @@
   since: 2006
   source_en: "the Continuous Household Survey (ECH) of Uruguay's INE"
   source_es: "la Encuesta Continua de Hogares (ECH) del INE de Uruguay"
+- iso: co
+  name_en: "Colombia"
+  name_es: "Colombia"
+  since: 2022
+  source_en: "the Integrated Household Survey (GEIH) of Colombia's DANE"
+  source_es: "la Gran Encuesta Integrada de Hogares (GEIH) del DANE de Colombia"
