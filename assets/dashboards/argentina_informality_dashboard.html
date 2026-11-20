@@ -304,6 +304,9 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
 .cmpk__name small{font-family:var(--sans);font-weight:400;font-size:var(--fs-s);color:var(--ink-soft)}
 .cmpk__sw{display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-right:.45rem;vertical-align:.05em}
 .cmpk .kpi{border-left:1px solid var(--rule)}
+.cmpk__sortctl{max-width:20rem;margin:0 0 .8rem}
+.cmpk .kpi--sorted .kpi__label{color:var(--ink);font-weight:600}
+svg.sw--line,table.data svg.sw--line{display:inline-block;width:1.35rem;height:.5rem;margin-right:.45rem;vertical-align:.1em;border-radius:0;background:none}
 @media (max-width:46rem){
   .cmpk__row{grid-template-columns:1fr 1fr 1fr}
   .cmpk__name{grid-column:1 / -1;padding-bottom:0}
@@ -468,6 +471,7 @@ table.data .sw{display:inline-block;width:.55rem;height:.55rem;border-radius:50%
       <h2 class="sect__title" id="cmpH" data-t="cmp_kpi_title">El último trimestre, país por país</h2>
       <p class="sect__note" data-t="cmp_kpi_note"></p>
     </div>
+    <div class="ctl cmpk__sortctl"><label for="cmpSort" data-t="cmp_sort">Ordenar países</label><select id="cmpSort"></select></div>
     <div class="cmpk" id="cmpKpis"></div>
   </section>
 
@@ -647,6 +651,11 @@ const T = {
   and:{es:" y ",en:" and "},
   /* comparison view */
   cmp_kpi_title:{es:"El último trimestre, país por país",en:"The latest quarter, country by country"},
+  cmp_sort:{es:"Ordenar países",en:"Sort countries"},
+  sort_alpha:{es:"Alfabéticamente",en:"Alphabetically"},
+  sort_total:{es:"Por tasa total (mayor primero)",en:"By total rate (highest first)"},
+  sort_women:{es:"Por tasa de las mujeres (mayor primero)",en:"By women's rate (highest first)"},
+  sort_men:{es:"Por tasa de los varones (mayor primero)",en:"By men's rate (highest first)"},
   cmp_kpi_note:{es:"Empleo informal por puesto de trabajo, en la cobertura de cada encuesta (indicada bajo cada país)",en:"Job-based informal employment, on each survey's own coverage (shown under each country)"},
   coverage:{es:"Cobertura",en:"Coverage"},
   cmp_area_lab:{es:"Cobertura",en:"Coverage"},
@@ -790,7 +799,20 @@ const PARAMS = () => { const p = Object.assign({}, PARAMS_BASE);
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const seriesColors = () => ["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--s8"].map(css);
 const mapRamp      = () => ["--m0","--m1","--m2","--m3","--m4","--m5","--m6"].map(css);
-const countryColor = x => seriesColors()[REG.orden.indexOf(x) % 8];
+/* Country identity (2026-11-20, pedido de Matías): the 8 validated hues, fixed per country (never by order, so a
+   filter or a new country never repaints the others). From the 9th country on the hue repeats with another line
+   pattern and marker shape, also fixed per country: no two countries share hue + pattern. */
+const COUNTRY_STYLE = {ar:[0,0],cr:[1,0],mx:[2,0],br:[3,0],ec:[4,0],py:[5,0],cl:[6,0],pe:[7,0],
+  bo:[0,1],uy:[1,1],co:[2,1],do:[3,1],pa:[4,1],gt:[5,1],sv:[6,1],hn:[7,1],ve:[0,2],ni:[1,2],cu:[2,2],ht:[3,2]};
+const DASHES = ["solid","dash","dot"], SYMBOLS = ["circle-open","square-open","diamond-open"];
+const countryStyle  = x => COUNTRY_STYLE[x] || (i=>[i%8, Math.floor(i/8)%3])(Math.max(0, REG.orden.indexOf(x)));
+const countryColor  = x => seriesColors()[countryStyle(x)[0]];
+const countryDash   = x => DASHES[countryStyle(x)[1]];
+const countryMarker = (nArr, x) => Object.assign(lowMarker(nArr, countryColor(x)), {symbol:SYMBOLS[countryStyle(x)[1]]});
+/* legend swatch: a short line in the country's hue and pattern */
+const countrySw = (x, cls) => `<svg class="${cls} sw--line" viewBox="0 0 22 8" aria-hidden="true"><line x1="1" y1="4" x2="21" y2="4" stroke="${countryColor(x)}" stroke-width="2.6" stroke-linecap="round"${({dash:' stroke-dasharray="6 4"',dot:' stroke-dasharray="0.1 4.5"'})[countryDash(x)]||""}/></svg>`;
+/* countries in alphabetical order of their name in the page language */
+const ordenAlfa = () => REG.orden.slice().sort((a,b)=>cname(a).localeCompare(cname(b), lang));
 
 /* ---------- data ---------- */
 function parseCsv(txt){
@@ -1543,16 +1565,33 @@ async function renderMap(){
    country-specific geographies and are left out. Incomes are left out too:
    different currencies.
    =========================================================================== */
+/* Country rows (2026-11-20, pedido de Matías): alphabetical by default; can be ranked by the total, women's or
+   men's rate of the latest period (highest first; countries without the value go last). */
+let cmpKpiRows = null;
 async function renderCmpKpis(){
   const cards = KPI_CARDS.slice(0,3);
-  const rows = await Promise.all(REG.orden.map(async x=>{
+  cmpKpiRows = await Promise.all(REG.orden.map(async x=>{
     try{ const r = await kpiValues(x, cards); return {x, ...r}; }catch(e){ console.error(e); return {x, vals:null}; }
   }));
+  drawCmpKpis();
+}
+const CMP_SORTS = [["alfa","sort_alpha"],["0","sort_total"],["1","sort_women"],["2","sort_men"]];
+function drawCmpKpis(){
+  if(!cmpKpiRows) return;
+  const sel = $("#cmpSort"), key = sel && sel.value ? sel.value : "alfa";
+  if(sel) fillSelect(sel, CMP_SORTS.map(([k,lab])=>[k, t(lab)]), key);
+  const valOf = (r) => r.vals && r.vals[+key] && r.vals[+key].v != null ? r.vals[+key].v : null;
+  const rows = cmpKpiRows.slice().sort((a,b)=>{
+    if(key!=="alfa"){ const va = valOf(a), vb = valOf(b);
+      if(va==null && vb!=null) return 1; if(vb==null && va!=null) return -1;
+      if(va!=null && vb!=null && va!==vb) return vb - va; }
+    return cname(a.x).localeCompare(cname(b.x), lang);
+  });
   $("#cmpKpis").innerHTML = rows.map(({x,vals,latest})=>{
-    const head = `<div class="cmpk__name"><span><span class="cmpk__sw" style="background:${countryColor(x)}"></span>${cname(x)}</span>
+    const head = `<div class="cmpk__name"><span>${countrySw(x, "cmpk__sw")}${cname(x)}</span>
        <small>${latest!=null ? qName(Math.floor(latest/10), latest%10) : ""} · ${t(measOf(x)===2 ? "meas_2" : "meas_1", x)}</small>${coverOf(x) ? `<small class="cmpk__cov">${t("coverage")}: ${coverOf(x)}</small>` : ""}</div>`;
     if(!vals) return `<div class="cmpk__row">${head}</div>`;
-    return `<div class="cmpk__row">${head}${vals.map(({cd,v,py})=>`<div class="kpi${cd.lead?" kpi--lead":""}">
+    return `<div class="cmpk__row">${head}${vals.map(({cd,v,py},j)=>`<div class="kpi${cd.lead?" kpi--lead":""}${key===String(j)?" kpi--sorted":""}">
       <p class="kpi__label">${cd.lab[lang]}</p><p class="kpi__val">${v==null?"–":v.toFixed(1)+"%"}</p>
       ${delta(v,py,t("vs_year_ago"))}</div>`).join("")}</div>`;
   }).join("");
@@ -1574,7 +1613,7 @@ async function renderCmp(){
   const urb = s.area==="urb";
   $("#cmpLoad").hidden = false;
   try{
-    const per = await Promise.all(REG.orden.map(async x=>{
+    const per = await Promise.all(ordenAlfa().map(async x=>{
       const soloUrb = s.param==="area" && C(x).sin_area;
       const sx = urb && C(x).area && !C(x).sin_area ? Object.assign({}, s, {urb:true}) : s;
       if(C(x).sin_ingresos && (isIdx(s.metric) || s.param==="quintil"))
@@ -1619,8 +1658,8 @@ async function renderCmp(){
     setNflag("cmp", [].concat(...keys.map(k=>per.map(p=>nEntries(cname(p.x)+(k==="_"?"":" · "+(lb[k]||k)), years, p.nobs.get(k), 1)[0]))));
     if(!brkCol){
       const traces = per.map(p=>({type:"scatter", mode:"lines+markers", x:years, y:valsAt(p,"_"), name:cname(p.x),
-        line:{color:countryColor(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
-        marker:lowMarker(nAtC(p,"_"), countryColor(p.x)),
+        line:{color:countryColor(p.x), dash:countryDash(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
+        marker:countryMarker(nAtC(p,"_"), p.x),
         hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
       reactOrRedraw("cmpChart", traces, baseLayout({
         height: 420,
@@ -1643,8 +1682,8 @@ async function renderCmp(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         per.forEach(p=>traces.push({type:"scatter",mode:"lines+markers",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
-          line:{color:countryColor(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
-          marker:lowMarker(nAtC(p,k), countryColor(p.x)),
+          line:{color:countryColor(p.x), dash:countryDash(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
+          marker:countryMarker(nAtC(p,k), p.x),
           hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
         anns.push({text:(lb[k]||k)+ZOOM_MARK, xref:"x"+ax+" domain", yref:"y"+ax+" domain", x:0, y:1.05, showarrow:false,
@@ -1682,7 +1721,7 @@ function cmpRows(withN){
 function drawCmpTable(){
   $$("#cTblTabs .tab").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===cTblTab)));
   const d = cmpRows(); if(!d){ $("#cTableWrap").innerHTML=""; return; }
-  const sw = c => `<span class="sw" style="background:${countryColor(c.p.x)}"></span>`;
+  const sw = c => countrySw(c.p.x, "sw");
   const th = `<tr>${d.head.map((h,i)=>`<th>${i===0?h:sw(d.cols[i-1])+h}</th>`).join("")}</tr>`;
   if(cTblTab==="n"){
     const rows = lastCmp.years.map(y=>`<tr><td>${y}</td>${d.cols.map(c=>{ const n=(c.p.nobs.get(c.k)||{})[y]; const v=n?n[0]:null;
@@ -1741,7 +1780,7 @@ function buildControls(keepValues){
   fillSelect($("#cArea"), [["tot",t("cmp_area_tot")],["urb",t("cmp_area_urb")]], ck?ck.area:"tot");
 }
 function buildCountryBar(){
-  $("#ctrySeg").innerHTML = REG.orden.map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("");
+  $("#ctrySeg").innerHTML = ordenAlfa().map(x=>`<button type="button" data-iso="${x}" aria-pressed="${mode==="pais"&&x===iso}">${cname(x)}</button>`).join("");
   $("#ctryCmp").innerHTML = `<button type="button" data-mode="comp" aria-pressed="${mode==="comp"}">${t("compare")}</button>`;
   $$("#ctrySeg [data-iso]").forEach(el=>el.addEventListener("click", ()=>setCountry(el.dataset.iso)));
   $("#ctryCmp [data-mode]").addEventListener("click", ()=>setMode("comp"));
@@ -1878,6 +1917,7 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
     .forEach(id=>$("#"+id).addEventListener("change", render));
   ["cMetric","cParam","cFrom","cTo","cGender","cAge","cEmp","cArea"]
     .forEach(id=>$("#"+id).addEventListener("change", renderCmp));
+  $("#cmpSort").addEventListener("change", drawCmpKpis);
   $("#btnReset").addEventListener("click", ()=>{ picked = {}; buildControls(false); fillYears(true); render(); });
   $("#cReset").addEventListener("click", ()=>{ $("#cMetric").value=""; buildControls(false); fillCmpYears(); renderCmp(); });
   $("#btnAll").addEventListener("click", ()=>{
