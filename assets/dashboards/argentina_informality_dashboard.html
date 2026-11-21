@@ -613,6 +613,9 @@ const T = {
     en:"These estimates rest on fewer than 30 (unweighted) observations and are imprecise; those with fewer than 10 are not shown."},
   count_axis:{es:"Ocupados (miles)",en:"Employed (thousands)"},
   cmp_sin_ingresos:{es:"Sin ingresos en la encuesta (no entra en ingresos ni quintil): ",en:"No income in the survey (left out of income and quintile): "},
+  inc_def_pre:{es:"Ingreso de la ocupación principal: ",en:"Main-job income: "},
+  cmp_inc_especie:{es:"El ingreso incluye pagos en especie (y autoconsumo, donde la encuesta lo mide) en ",en:"Income includes in-kind payments (and own consumption, where the survey measures it) in "},
+  cmp_inc_monet:{es:"es sólo monetario en ",en:"it is monetary only in "},
   count_jump:{es:"Salto de nivel en {y}: puede reflejar un cambio en las proyecciones de población del instituto y no sólo del empleo.",
     en:"Level jump in {y}: it may reflect a change in the institute's population projections, not only in employment."},
   count_note_urban:{es:"Sólo los 31 aglomerados urbanos de la EPH.",
@@ -791,6 +794,7 @@ const t  = (k, x) => { const c = C(x); const v = c && c.textos && c.textos[k];
 const labs = (col, x) => { const c = C(x); const v = c && c.labels && c.labels[col];
   return v ? v[lang] : L[col][lang]; };
 const cname = x => C(x).nombre[lang];
+const incDef = x => REG && REG.ingreso_def && REG.ingreso_def[x||iso];   // paises.json: what main-job income includes (in-kind, own consumption)
 const PARAMS = () => { const p = Object.assign({}, PARAMS_BASE);
   p.region = {es:t("region"),en:t("region")}; p.provincia = {es:t("provincia"),en:t("provincia")};
   if(lang==="es"){ p.region.es = t("region"); p.provincia.es = t("provincia"); }
@@ -1149,6 +1153,7 @@ async function render(){
 
     const msgs = [];
     if(over && t("overlay_note")) msgs.push(t("overlay_note"));
+    if(isIncome(s.metric) && incDef() && incDef()[lang]) msgs.push(t("inc_def_pre") + incDef()[lang]);
     if(!keys.length){
       if(brkCol) buildChips(s.param, allKeys, true);
       Plotly.purge("mainChart"); lastForm = ""; setPanels("main", null); lastRows=null; setNflag("main", []);
@@ -1640,6 +1645,11 @@ async function renderCmp(){
     const msgs = [];
     if(CMP_WARN_PARAMS.includes(s.param)) msgs.push(t("cmp_warn_def"));
     if(per.some(p=>p.sinIng)) msgs.push(t("cmp_sin_ingresos") + per.filter(p=>p.sinIng).map(p=>cname(p.x)).join(", ") + ".");
+    if(isIdx(s.metric) && REG.ingreso_def){
+      const grp = tp => per.filter(p=>!p.sinIng && !p.sinBase && !p.falta && incDef(p.x) && incDef(p.x).tipo===tp).map(p=>cname(p.x));
+      const a = grp("especie"), b = grp("monetario");
+      if(a.length && b.length) msgs.push(t("cmp_inc_especie") + a.join(", ") + "; " + t("cmp_inc_monet") + b.join(", ") + ".");
+    }
     if(per.some(p=>p.falta)) msgs.push(t("cmp_falta") + per.filter(p=>p.falta).map(p=>cname(p.x)).join(", ") + ".");
     if(urb) msgs.push(t("cmp_urb_note"));
     if(urbNa) msgs.push(t("cmp_urb_na"));
