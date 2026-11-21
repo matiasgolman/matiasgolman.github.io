@@ -1836,5 +1836,63 @@
   "comparabilidad": {
     "es": "Todos los países se muestran con empleo informal según el criterio del puesto de trabajo. En Argentina, Costa Rica, México, Brasil y Chile los indicadores principales usan la medida oficial de su instituto. En Paraguay usan la regla del INE con el agro incluido: el INE publica sólo la tasa no agropecuaria, que deja afuera a los ocupados más informales y queda como superposición. En Ecuador, el INEC sólo publica el empleo en el sector informal (la unidad productiva, no el puesto), así que el panel muestra el empleo informal que estima con las preguntas de la ENEMDU y deja la medida oficial como superposición. Cada encuesta cubre una población distinta, indicada junto a los indicadores de cada país: la EPH de Argentina cubre 31 aglomerados urbanos y las demás son nacionales (la de Paraguay no llega a Boquerón ni a Alto Paraguay; Brasil cuenta a los ocupados desde los 14 años). Como la informalidad rural es más alta que la urbana, comparar el nivel de Argentina con el nacional de los otros países exagera la distancia: en la comparación, la opción «Sólo urbano» deja a los demás países en su área urbana, lo más parecido a la encuesta argentina que permiten los datos (cada instituto define «urbano» a su manera). Para comparar tendencias se usa la serie más larga de cada país con el criterio del puesto (en Argentina, la serie larga, que queda unos 3 puntos por encima de la oficial; en Brasil, la que usa los aportes a la previsión, entre 1 y 3 puntos por debajo; en Ecuador, el empleo informal que arma el panel; en Paraguay, la regla del INE con el agro incluido). El tamaño del establecimiento y el quintil no se definen igual en las encuestas. Los ingresos están en monedas distintas: se comparan como índice del ingreso real (2016 = 100), que muestra cuánto creció cada uno. Chile usa la tasa de ocupación informal oficial del INE, con el agro, desde el 3.er trimestre de 2017; su encuesta no releva ingresos, así que Chile no entra en las comparaciones de ingreso. Perú usa la ENAHO, una encuesta anual: sus valores son anuales también en los indicadores principales, y su serie es la regla del INEI reproducida (coincide con la oficial a una décima entre 2007 y 2023 y sigue en 2024 y 2025); sus ingresos incluyen el pago en especie y el autoconsumo. Bolivia usa la ECE del INE con la tasa de ocupación informal que el INE fijó en 2026, reproducida de la encuesta; no tiene datos comparables entre el 2.º trimestre de 2020 y el 4.º de 2021, y su quintil es de ingreso laboral. Uruguay usa la ECH anual del INE con el criterio del puesto (la regla que el INE aplica desde 2022, extendida a 2006–2025); su medida habitual, el no registro a la seguridad social, va como línea superpuesta; no tiene 2021. Colombia usa la GEIH del DANE con la ocupación informal oficial (CIET 17, desde 2022 en el panel), calculada con el código del DANE; su tamaño de empresa corta en 50 personas, su quintil es de ingreso laboral y sus ingresos no incluyen especie.",
     "en": "All countries are shown with informal employment under the job-based criterion. In Argentina, Costa Rica, Mexico, Brazil and Chile the headline indicators use the statistics office's official measure. In Paraguay they use INE's rule with agriculture included: INE only publishes the non-agricultural rate, which leaves out the most informal workers and is kept as an overlay. In Ecuador, INEC only publishes employment in the informal sector (the production unit, not the job), so the dashboard shows the informal employment it estimates from ENEMDU's questions and keeps the official measure as an overlay. Each survey covers a different population, shown next to each country's indicators: Argentina's EPH covers 31 urban agglomerations and the others are national (Paraguay's does not reach Boquerón or Alto Paraguay; Brazil counts the employed from age 14). Since rural informality is higher than urban informality, comparing Argentina's level with the other countries' national levels overstates the gap: in the comparison, the «Urban only» option keeps the other countries to their urban areas, the closest the data allow to Argentina's survey (each statistics office defines «urban» in its own way). To compare trends, the longest job-based series for each country is used (for Argentina, the long series, about 3 points above the official one; for Brazil, the one based on social-security contributions, 1 to 3 points below; for Ecuador, the informal employment built by the dashboard; for Paraguay, INE's rule with agriculture included). Establishment size and income quintile are not defined the same way across surveys. Incomes are in different currencies: they are compared as an index of real income (2016 = 100), which shows how much each grew. Chile uses INE's official informal employment rate, including agriculture, from Q3 2017; its survey collects no income, so Chile is left out of the income comparisons. Peru uses the ENAHO, an annual survey: its values are annual in the headline indicators too, and its series is INEI's rule reproduced (it matches the official rate to within a tenth over 2007–2023 and continues in 2024 and 2025); its incomes include payment in kind and own consumption. Bolivia uses INE's ECE with the informal employment rate INE set in 2026, reproduced from the survey; it has no comparable data from Q2 2020 to Q4 2021, and its quintile is of labour income. Uruguay uses INE's annual ECH under the job-based criterion (the rule INE applies since 2022, extended to 2006–2025); its usual measure, non-registration with social security, is the overlay line; 2021 is missing. Colombia uses DANE's GEIH with the official informal employment measure (ICLS 17, since 2022 in the dashboard), computed with DANE's code; its firm size breaks at 50 people, its quintile is of labour income and its incomes exclude in-kind payments."
+  },
+  "ingreso_def": {
+    "_nota": "Que entra en el ingreso de la ocupacion principal de cada pais (pedido de Matias del 2026-11-18). Lo arma cubo_py/ingreso_def_registro.py; lo lee el HTML del panel.",
+    "ar": {
+      "tipo": "monetario",
+      "es": "Sólo ingreso monetario: no incluye pagos en especie ni autoconsumo.",
+      "en": "Monetary income only: excludes in-kind payments and own consumption."
+    },
+    "cr": {
+      "tipo": "especie",
+      "es": "Incluye pagos en especie y autoconsumo, valorizados por el instituto. En la ECE pesan cerca del 2 % del ingreso de la ocupación principal.",
+      "en": "Includes in-kind payments and own consumption, valued by the statistics office. In the ECE they are about 2% of main-job income."
+    },
+    "mx": {
+      "tipo": "monetario",
+      "es": "Sólo ingreso monetario: no incluye pagos en especie ni autoconsumo.",
+      "en": "Monetary income only: excludes in-kind payments and own consumption."
+    },
+    "br": {
+      "tipo": "especie",
+      "es": "Incluye pagos en especie: productos y mercaderías recibidos por el trabajo, valorizados (la PNAD Continua no cuenta como ocupada a la producción sólo para consumo propio).",
+      "en": "Includes in-kind payments: goods received for the work, valued (the PNAD Contínua does not count production solely for own use as employment)."
+    },
+    "ec": {
+      "tipo": "especie",
+      "es": "Incluye pagos en especie y autoconsumo, valorizados por el instituto.",
+      "en": "Includes in-kind payments and own consumption, valued by the statistics office."
+    },
+    "py": {
+      "tipo": "monetario",
+      "es": "Sólo ingreso monetario: no incluye pagos en especie ni autoconsumo. La EPHC trimestral no pregunta pagos en especie.",
+      "en": "Monetary income only: excludes in-kind payments and own consumption. The quarterly EPHC does not ask about in-kind payments."
+    },
+    "cl": {
+      "tipo": "sin",
+      "es": "La ENE no releva ingresos.",
+      "en": "The ENE does not collect income."
+    },
+    "pe": {
+      "tipo": "especie",
+      "es": "Incluye pagos en especie y autoconsumo, valorizados por el instituto. Pesan entre 6 % y 8 % del ingreso de la ocupación principal.",
+      "en": "Includes in-kind payments and own consumption, valued by the statistics office. They are 6–8% of main-job income."
+    },
+    "bo": {
+      "tipo": "monetario",
+      "es": "Sólo ingreso monetario: no incluye pagos en especie ni autoconsumo. La ECE no pregunta pagos en especie ni autoconsumo.",
+      "en": "Monetary income only: excludes in-kind payments and own consumption. The ECE does not ask about in-kind payments or own consumption."
+    },
+    "uy": {
+      "tipo": "especie",
+      "es": "Incluye pagos en especie y autoconsumo, valorizados por el instituto. Alimentos, tiques, vivienda y otros pagos en especie; retiro de productos para consumo propio en los independientes.",
+      "en": "Includes in-kind payments and own consumption, valued by the statistics office. Food, meal vouchers, housing and other in-kind pay; goods withdrawn for own consumption by the self-employed."
+    },
+    "co": {
+      "tipo": "monetario",
+      "es": "Sólo ingreso monetario: no incluye pagos en especie ni autoconsumo. Salario antes de descuentos o ganancia neta del negocio.",
+      "en": "Monetary income only: excludes in-kind payments and own consumption. Gross wage or the business's net profit."
+    }
   }
 }
