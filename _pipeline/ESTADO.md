@@ -2,17 +2,14 @@
 
 > **Fuente de verdad del proyecto web.** Toda corrida arranca leyendo, en este orden: el bloque
 > `COMENTARIO DE MATIAS`, `En una pantalla`, la `COLA DE TRABAJO`, y `To-Do-Matias.md`.
-- [x] (Mapa de informalidad, 2026-11-10) Panel: KPI comparable (commit `aab1735`) e ingresos de Brasil y México a precios de 2026T2 (commit `82bbc1a`). Sólo `assets/data/informality/**` y el HTML del panel.
-- [x] (Mapa de informalidad, 2026-11-12) Panel: ingresos de Argentina y Costa Rica a precios de 2026T2 (commit `4acfd8d`). Sólo `assets/data/informality/ar|cr/**`.
-- [x] (Mapa de informalidad, 2026-11-17) Panel: suma Perú (ENAHO anual, commit `1f562df`); el HTML muestra años en los países anuales (`q` = 0). Sólo `assets/data/informality/pe/**`, `paises.json` y el HTML del panel.
 > Las reglas de higiene de estos archivos están en `LEEME.md` y son parte del trabajo.
 
-**Última actualización:** 2026-11-15 (barrido semanal; esta semana: «No llegar a fin de mes» publicada con la nota completa ES/EN el 14/11, commit `53f1d94`; el panel lo tocó Mapa de informalidad el 10 y 12/11)
+**Última actualización:** 2026-11-22 (barrido semanal; esta semana: Bariloche subió la nota de escuelas v4.6 y las páginas de reporte separadas, 18–20/11, sin push; el panel sumó Perú, Bolivia, Uruguay y Colombia, 17–21/11, Mapa de informalidad)
 **Actualizado por:** Claude
 **Avance:** 90%
-**Fase:** Mantenimiento — sitio en línea con sección «Notas de interés / News articles» (4/11); el panel (siete países con Chile) lo actualiza la tarea de Encuestas LATAM
-**Próximo hito:** Reporte técnico «Escuelas y demografía» de Bariloche (pedido 13/11) y capturas nuevas de AraucariaSpotter (pedido 30/10)
-**Tarea agendada:** manual (el panel lo toca la tarea de Encuestas LATAM)
+**Fase:** Mantenimiento — sitio en línea con «Notas de interés / News articles»; el panel (11 países) lo actualiza el proyecto Mapa de informalidad
+**Próximo hito:** Formato nuevo de las notas (pedido 22/11) y cierre del reporte «Escuelas y demografía» (revisar, sumar a proyectos, push); capturas de AraucariaSpotter (pedido 30/10)
+**Tarea agendada:** manual (el panel lo toca la tarea de Mapa de informalidad)
 **Fase actual:** Fase 3 — el sitio está vivo y bilingüe, y empezó el trabajo sobre las
 herramientas. Esta corrida **rehizo el panel de informalidad de punta a punta**: datos separados
 del HTML, interfaz con la tipografía y la paleta del sitio, y el embebido que ya no atrapa el
@@ -33,7 +30,7 @@ scroll.
 
 ## COMENTARIO DE MATIAS
 
-*(vacío — dejá acá lo que quieras pedir)*
+*(vacío — dejá acá lo que quieras que haga la próxima sesión. Numerado si son varios.)*
 
 ---
 
@@ -43,13 +40,8 @@ scroll.
 > llamado «Muestra chica» (n < 30) en la esquina del gráfico, solapa «Observaciones», métrica «Cantidad de ocupados (miles)»; los datos de
 > los seis países tienen columnas nuevas de n y ocupados; Costa Rica ya tiene urbano/rural. Detalle en el ESTADO de Encuestas LATAM.
 
-> **Lo primero en la próxima sesión (barrido 15/11):** (1) el Pedido de Matías del 13/11 arriba de la COLA: subir el reporte técnico
-> «Escuelas y demografía» de Bariloche (ES/EN) siguiendo el LEEME de `Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/` y sumar
-> «Bariloche en datos» a `_data/projects_es.yml` y `projects_en.yml`; (2) el Pedido del 30/10: capturas de Google Play de AraucariaSpotter
-> con las de WhatsApp del 22/10 de este `_pipeline/`, sin la barra de la hora; (3) unir `Changelog-MatiPC.md` (4–8/11) en `Changelog.md`
-> (ya se lee desde la VM) y borrar la copia; (4) `git` local da «index file open failed» (OneDrive): Pull en GitHub Desktop antes de tocar el repo.
-> Semana del 9–15/11: botón de Google Play y QR de AraucariaSpotter (`afb36f5`, 9/11); «No llegar a fin de mes» con la nota completa ES/EN y
-> enlace a El Economista (`53f1d94`, 14/11); panel: KPI comparable e ingresos a precios de 2026T2 (`aab1735`, `82bbc1a`, `4acfd8d`, Mapa de informalidad).
+> **Lo primero en la próxima sesión (barrido 22/11):** (1) el **Pedido de Matías del 22/11** arriba de la COLA: formato de todas las notas (lista con resumen + enlace al medio; en la nota, dos botones arriba de todo: columna en el medio y reporte técnico; descarga del PDF sólo en la página del reporte; traducciones al inglés no literales; campos nuevos del front matter documentados en el LEEME); (2) cerrar el pedido del 13/11: la nota de escuelas v4.6 y las páginas de reporte ya están en el repo (Bariloche, 18–20/11) **sin commit ni push** — revisar en la vista previa, sumar «Bariloche en datos» a `_data/projects_*.yml`, push de Matías; (3) capturas de Google Play de AraucariaSpotter (pedido 30/10); (4) unir `Changelog-MatiPC.md` en `Changelog.md` y borrar la copia; (5) `git` local con OneDrive: Pull en GitHub Desktop antes de tocar el repo.
+> Semana del 16–22/11: panel con Perú (`1f562df`), Bolivia (`5ade429`), Uruguay (`ca022db`, `4aa7370`), Colombia (`8a01bc5`, `46217bd`), colores fijos por país (`82af1ef`) y nota de ingresos por país (`b61800d`), todo de Mapa de informalidad; Bariloche dejó sin push los layouts `nota`/`reporte` y las páginas de reporte (20/11).
 
 > **CORRIDA 8 — CERRADA (19/10).** Costa Rica arreglada y al día, el panel separado del sitio.
 
@@ -85,7 +77,13 @@ scroll.
 - Sigue pendiente unir `Changelog.md` y `Changelog-MatiPC.md` (conflicto de OneDrive del 4–8/11).
 
 ### Pedidos de Matías (vía tracker) — van primero
-- [ ] Pedido de Matías (2026-11-13, comentario del ESTADO): Subir el reporte técnico «Escuelas y demografía» de Bariloche (castellano e inglés) desde Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ siguiendo su LEEME.md (qué copiar y qué archivos de la v2 NO); sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte (la nota va a un diario, D-12 de Bariloche). No publicar sin el visto final de Matías si el LEEME lo pide. (Pedido desde Bariloche, 11/11; OK de Matías a la v3.1 el 10/11.)
+- [ ] **Pedido de Matías (2026-11-22, vía tracker de Bariloche en datos) — formato de TODAS las notas («News articles» / «Notas»)**: (1) la lista muestra cada nota con un resumen breve y el enlace al medio; (2) al tocar el título se abre la nota en el sitio y **arriba de todo** van dos botones: «Read the column in [medio]» / «Leer la columna en [medio]» y «Read the technical report behind the article» / «Leer el reporte técnico detrás de la nota»; (3) el botón para descargar el reporte aparece recién en la página del reporte, arriba de todo; (4) antes de publicar en inglés, revisar que la traducción no sea literal (que traslade los modismos argentinos y se lea como escrita en inglés). Aplica a «No llegar a fin de mes» y «Escuelas y demografía». Para Bariloche, el proyecto de notas deja todo listo con `notas/<nota>/codigo/al_sitio.py`; el formato de la sección es de este proyecto. Si los layouts `nota`/`reporte` necesitan campos nuevos en el front matter (p. ej. nombre y URL del medio), anotarlos en el LEEME del sitio para que Matías pueda actualizar las notas a mano y los scripts los completen. Texto literal en `_archivo/Comentarios_Matias.md` (22/11).
+- [x] (Mapa de informalidad, 2026-11-10) Panel: KPI comparable (commit `aab1735`) e ingresos de Brasil y México a precios de 2026T2 (commit `82bbc1a`). Sólo `assets/data/informality/**` y el HTML del panel.
+- [x] (Mapa de informalidad, 2026-11-12) Panel: ingresos de Argentina y Costa Rica a precios de 2026T2 (commit `4acfd8d`). Sólo `assets/data/informality/ar|cr/**`.
+- [x] (Mapa de informalidad, 2026-11-17) Panel: suma Perú (ENAHO anual, commit `1f562df`); el HTML muestra años en los países anuales (`q` = 0). Sólo `assets/data/informality/pe/**`, `paises.json` y el HTML del panel.
+- [x] (Mapa de informalidad, 2026-11-20) Panel: suma Colombia (GEIH del DANE, 2022T1–2026T3; commits `8a01bc5` y `46217bd`). Sólo `assets/data/informality/co/**`, `paises.json` y `_data/informality_countries.yml`.
+- [x] (Mapa de informalidad, 2026-11-21) Panel: nota de qué incluye el ingreso de cada país (especie y autoconsumo o sólo monetario; commit `b61800d`). Sólo `paises.json` y el HTML del panel.
+- [ ] *(Avance 18–20/11, desde «Bariloche en datos»: nota v4.6 y páginas de reporte `es/notas/bariloche-escuelas-reporte.md` y `articles/bariloche-schools-report.md` ya están en el repo, sin commit ni push; falta revisar en la vista previa, sumar «Bariloche en datos» a `_data/projects_*.yml` y que Matías haga el push.)* Pedido de Matías (2026-11-13, comentario del ESTADO): Subir el reporte técnico «Escuelas y demografía» de Bariloche (castellano e inglés) desde Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ siguiendo su LEEME.md (qué copiar y qué archivos de la v2 NO); sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte (la nota va a un diario, D-12 de Bariloche). No publicar sin el visto final de Matías si el LEEME lo pide. (Pedido desde Bariloche, 11/11; OK de Matías a la v3.1 el 10/11.)
 - [x] 2026-11-19 (Mapa de informalidad): Uruguay con el criterio del puesto como medida principal y el no registro superpuesto (commit `4aa7370`; sólo `assets/data/informality/uy/` y `paises.json`).
 - [x] 2026-11-19 (Mapa de informalidad): el panel suma **Uruguay** (ECH anual del INE, 2006–2020 y 2022–2025; no registro a la seguridad social, 51/51 contrastes clave). Commit `ca022db` (`assets/data/informality/uy/`, `paises.json`, `_data/informality_countries.yml`); probado con Playwright en el sitio publicado, sin errores.
 - [x] 2026-11-18 (Mapa de informalidad): el panel suma **Bolivia** (ECE trimestral del INE, 2015T4–2026T1; 102/102 contrastes clave). Commit `5ade429` (`assets/data/informality/bo/`, `paises.json`, `_data/informality_countries.yml`). Nada que hacer en el sitio; la miniatura del panel (M2 del Mapa) sigue pendiente.

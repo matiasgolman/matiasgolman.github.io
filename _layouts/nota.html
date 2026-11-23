@@ -30,7 +30,7 @@ layout: default
     {%- else %}
       <p>{% if es %}La nota todavía no está publicada en un medio. Acá está el reporte técnico completo.{% else %}The column has not been published in a newspaper yet. The full technical report is below.{% endif %}</p>
     {%- endif %}
-    {%- if page.pdf %}<p class="nota__pdf"><a href="{{ page.pdf | relative_url }}">{% if es %}Descargar el reporte técnico (PDF){% else %}Download the technical report (PDF){% endif %}</a></p>{% endif %}
+    {%- if page.pdf and page.report_url == nil %}<p class="nota__pdf"><a href="{{ page.pdf | relative_url }}">{% if es %}Descargar el reporte técnico (PDF){% else %}Download the technical report (PDF){% endif %}</a></p>{% endif %}
   </aside>
 
   {%- if page.full_text %}
@@ -48,9 +48,17 @@ layout: default
   </section>
   {%- endif %}
 
+  {%- if page.report_url %}
+  <section class="nota__report nota__report--link">
+    <h2>{% if es %}Reporte técnico{% else %}Technical report{% endif %}</h2>
+    {%- if page.report_title %}<p class="nota__report-title">{{ page.report_title }}</p>{% endif %}
+    <p><a class="btn" href="{{ page.report_url | relative_url }}">{% if es %}Leer el reporte técnico{% else %}Read the technical report{% endif %}</a></p>
+  </section>
+  {%- else %}
   <section class="nota__report">
     <h2>{% if es %}Reporte técnico{% else %}Technical report{% endif %}</h2>
     {%- if page.report_title %}<p class="nota__report-title">{{ page.report_title }}</p>{% endif %}
     <div class="nota__report-body">{% include {{ page.report }} %}</div>
   </section>
+  {%- endif %}
 </article>

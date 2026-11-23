@@ -1,5 +1,28 @@
 # Changelog / bitácora del sitio personal
 
+## 2026-11-22 — barrido semanal
+- Archivado y vaciado el COMENTARIO del 22/11 (formato de todas las notas; lo dejó la tarea de notas de Bariloche): es trabajo de fondo, quedó como Pedido de Matías arriba de la COLA y primero en `En una pantalla`. Sin respuestas en el Excel.
+- El pedido del 13/11 (reporte de escuelas) quedó anotado con el avance de Bariloche (18–20/11, sin push). Cinco líneas `[x]` del Mapa de informalidad que estaban sobre la cabecera, movidas a la COLA. Cabecera al día (panel con 11 países).
+- NEXT: sesión para el formato de notas + cerrar el reporte de escuelas (vista previa, `projects_*.yml`, push).
+
+## 2026-11-20 — desde «Bariloche en datos» (pedido de Matías)
+- Nota y reporte separados: `_layouts/nota.html` muestra un botón al reporte cuando la página tiene `report_url` (respaldo en
+  `_pipeline/_archivo/respaldos/nota_layout_2026-11-20.html`); layout nuevo `_layouts/reporte.html` (volver a la nota, otro idioma, PDF).
+  Páginas de reporte nuevas: `es/notas/{no-llegar-a-fin-de-mes,bariloche-escuelas}-reporte.md` y `articles/{making-ends-meet,bariloche-schools}-report.md`
+  (`/…/reporte/` y `/…/report/`). Nota de escuelas v4.6 (es + en) y mapa m2 nuevo. **Sin compilar ni push: revisar en la vista previa.**
+
+## 2026-11-19 — desde el proyecto «Bariloche en datos»
+- (más tarde) Nota de escuelas v4.5: las dos páginas reemplazadas otra vez y 12 imágenes nuevas en `assets/img/notas/bariloche-escuelas/` (f1, f3, f4; subtítulos). Sin push.
+- Nota de escuelas v4.2 (comentarios del editor literario y de Matías): `es/notas/bariloche-escuelas.md` y `articles/bariloche-schools.md`
+  reemplazados. Reporte sin cambios desde el 18/11. **Sin commit ni push: lo hace Matías.**
+
+## 2026-11-18 — desde el proyecto «Bariloche en datos» (sesión con Matías)
+- Pedido de Matías: la nota «Menos chicos, más lejos de la escuela» (v4.1, primera del segmento «Bariloche vista desde afuera») va completa
+  al sitio en castellano y en inglés (`full_text: true`, `outlet` Bariloche2000 sin URL todavía). Archivos tocados: `es/notas/bariloche-escuelas.md`,
+  `articles/bariloche-schools.md`, `_includes/notas/bariloche-escuelas_reporte_es.html` y `_en.html` (una oración nueva: fecundidad del INDEC),
+  `assets/pdf/notas/golman-bariloche-escuelas-reporte.pdf` y `golman-bariloche-schools-report.pdf`. Figuras y mapas: los que ya estaban.
+  Origen: `Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/` (`codigo/sitio_nota.py`). **Sin commit ni push: lo hace Matías desde GitHub Desktop.**
+
 ## 2026-11-15 — barrido semanal
 - Sin comentarios ni respuestas nuevas de Matías (ni en el ESTADO ni en el Excel). Cabecera y aviso de `En una pantalla` al día: primero el reporte de Bariloche (pedido 13/11), después las capturas de AraucariaSpotter (30/10) y unir los dos changelogs.
 

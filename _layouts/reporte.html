@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{%- comment -%}
+  Technical report of a column, on its own page. Front matter: title, lang, nota_url (back to the column), alt_url (report in
+  the other language), report (include under _includes/notas/), pdf, series (optional).
+{%- endcomment -%}
+{%- assign es = false -%}{%- if page.lang == "es" -%}{%- assign es = true -%}{%- endif -%}
+<article class="frame page nota nota--reporte">
+  <p class="nota__kicker">
+    <a href="{{ page.nota_url | relative_url }}">{% if es %}← Volver a la nota{% else %}← Back to the column{% endif %}</a>
+    {%- if page.series %} · {{ page.series }}{% endif %}
+  </p>
+  <h1 class="page__title nota__title">{{ page.title }}</h1>
+  <p class="nota__meta">{% if es %}Reporte técnico{% else %}Technical report{% endif %}
+    {%- if page.alt_url %} · <a href="{{ page.alt_url | relative_url }}" hreflang="{% if es %}en{% else %}es{% endif %}">{% if es %}English version{% else %}Versión en castellano{% endif %}</a>{% endif %}</p>
+  {%- if page.pdf %}<p class="nota__pdf"><a class="btn" href="{{ page.pdf | relative_url }}">{% if es %}Descargar el reporte técnico (PDF){% else %}Download the technical report (PDF){% endif %}</a></p>{% endif %}
+  <section class="nota__report">
+    <div class="nota__report-body">{% include {{ page.report }} %}</div>
+  </section>
+</article>

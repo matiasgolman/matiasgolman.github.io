@@ -14,6 +14,7 @@ outlet:
   name: "El Economista"
   url: "https://eleconomista.com.ar/economia/no-llegar-fin-mes-lo-hacen-hogares-cuando-ingreso-alcanza-n99662"
   date: 2026-11-13
+report_url: "/es/notas/no-llegar-a-fin-de-mes/reporte/"
 report: "notas/fin-de-mes_reporte_es.html"
 report_title: "No llegar a fin de mes: cómo cierran los hogares argentinos la brecha entre ingreso y gasto. Encuesta Permanente de Hogares 2011–2026, ENGHo 2017/18 e IPC por división."
 pdf: "/assets/pdf/notas/golman-no-llegar-a-fin-de-mes-reporte.pdf"

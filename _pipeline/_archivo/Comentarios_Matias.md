@@ -1,5 +1,14 @@
 # Comentarios de Matías — archivo (sitio personal)
 
+## 2026-11-22 — COMENTARIO DE MATIAS del ESTADO (barrido semanal; lo dejó la tarea de notas de Bariloche)
+
+**Pedido de Matías del 22/11/2026 (vía tracker de Bariloche en datos), dejado por la tarea de notas de Bariloche — formato de TODAS las notas («News articles» / «Notas»), de ahora en adelante:**
+1. La lista («News articles» / «Notas») muestra cada nota con un resumen breve y el enlace al medio donde salió.
+2. Al tocar el título se abre la nota alojada en el sitio. **Arriba de todo** (no abajo de la nota) van dos botones: «Read the column in [medio]» / «Leer la columna en [medio]» y «Read the technical report behind the article» / «Leer el reporte técnico detrás de la nota».
+3. El botón para **descargar el reporte** aparece recién en la página del reporte, arriba de todo (como en la versión original), no antes.
+4. Antes de publicar una versión en inglés, revisar que la traducción no sea literal: que traslade el sentido de los modismos argentinos y se lea como escrita en inglés (Matías notó que las traducciones podían pulirse).
+Aplica a «No llegar a fin de mes» y a «Escuelas y demografía» (Bariloche). Para Bariloche, el proyecto de notas ya deja todo listo para copiar con `notas/<nota>/codigo/al_sitio.py` (sólo copia lo que cambió; el formato de la sección es de este proyecto). Matías también quiere poder actualizar las notas del sitio a mano sin Claude: si el layout `nota`/`reporte` necesita algún campo nuevo en el front matter (p. ej. el nombre y la URL del medio), anotalo en el LEEME del sitio para que los scripts de las notas lo completen.
+
 ## 2026-11-13 — COMENTARIO DE MATIAS del ESTADO (despachado por el tracker)
 
 - Subir el reporte técnico «Escuelas y demografía» de Bariloche, en castellano y en inglés. Todo está armado en Documents/Investigacion/Bariloche Data/notas/2026-10_escuelas-y-demografia/sitio/ (leer su LEEME.md: qué copiar a qué ruta y qué archivos de la v2 NO copiar). Después, sumar «Bariloche en datos» a _data/projects_es.yml y projects_en.yml. Sólo el reporte: la nota se guarda para un diario 
