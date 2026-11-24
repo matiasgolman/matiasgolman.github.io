@@ -26,6 +26,8 @@
   --grid:#222b26;
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
   --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --s9:#3cc4d4; --s10:#c08a66; --s11:#f0e442; --s12:#c9c94a;
+  --s13:#e05cc8; --s14:#a3adb9; --s15:#d0607f; --s16:#5fd38d;
   --m0:#294333; --m1:#2f553f; --m2:#35694b; --m3:#3b7d58;
   --m4:#409165; --m5:#44a772; --m6:#49bc80;
   --serif:Literata,Charter,Georgia,serif;
@@ -39,6 +41,8 @@
   --grid:#dde4da;
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
   --s5:#e87ba4; --s6:#008300; --s7:#6250d6; --s8:#e34948;
+  --s9:#0f8fa0; --s10:#8c5a3c; --s11:#26282b; --s12:#8a8a12;
+  --s13:#b5179e; --s14:#5f6b7a; --s15:#7a1f3d; --s16:#2f9e5a;
   --m0:#d1efdc; --m1:#b2dbc1; --m2:#92c8a6; --m3:#6fb18a;
   --m4:#48996c; --m5:#0d804e; --m6:#006831;
 }
@@ -495,7 +499,9 @@ svg.sw--line,table.data svg.sw--line{display:inline-block;width:1.35rem;height:.
         <div class="ctl"><label for="cAge" data-t="age">Edad</label><select id="cAge"></select></div>
         <div class="ctl"><label for="cEmp" data-t="emp_category">Categoría ocupacional</label><select id="cEmp"></select></div>
         <div class="ctl"><label for="cArea" data-t="cmp_area_lab">Cobertura</label><select id="cArea"></select></div>
-        <div class="ctl ctl--act"><button class="btn" id="cReset" data-t="reset_filters" type="button">Reiniciar</button></div>
+        <div class="ctl ctl--act"><button class="btn" id="cReset" data-t="reset_filters" type="button">Reiniciar</button>
+          <button class="btn" id="cNone" data-t="cmp_none" type="button">Ocultar todos los países</button>
+          <button class="btn" id="cAll" data-t="cmp_all" type="button">Mostrar todos</button></div>
       </div>
       <div class="plot-head"><div><h3 class="plot-title" id="cmpTitle"></h3><p class="plot-sub" id="cmpSub"></p></div>
         <div class="plot-acts"><button type="button" class="nflag" id="cmpNflag" aria-expanded="false" aria-controls="cmpNbox" hidden></button></div></div>
@@ -655,6 +661,8 @@ const T = {
   /* comparison view */
   cmp_kpi_title:{es:"El último trimestre, país por país",en:"The latest quarter, country by country"},
   cmp_sort:{es:"Ordenar países",en:"Sort countries"},
+  cmp_none:{es:"Ocultar todos los países",en:"Hide all countries"}, cmp_all:{es:"Mostrar todos",en:"Show all"},
+  cmp_pick_hint:{es:"Tocá un país en la leyenda para sumarlo o sacarlo del gráfico.",en:"Click a country in the legend to add it to or remove it from the chart."},
   sort_alpha:{es:"Alfabéticamente",en:"Alphabetically"},
   sort_total:{es:"Por tasa total (mayor primero)",en:"By total rate (highest first)"},
   sort_women:{es:"Por tasa de las mujeres (mayor primero)",en:"By women's rate (highest first)"},
@@ -669,8 +677,8 @@ const T = {
   cmp_urb_na:{es:"«Sólo urbano» se puede usar sin desagregar o al desagregar por género, edad o categoría ocupacional: con este desglose se muestra el total de cada encuesta.",
               en:"«Urban only» works with no breakdown or with gender, age or employment category: with this breakdown each survey's full coverage is shown."},
   cmp_title:{es:"Comparar países",en:"Compare countries"},
-  cmp_how:{es:"Promedios anuales, una línea por país. Al desagregar, un panel por grupo con la misma escala.",
-           en:"Annual averages, one line per country. With a breakdown, one panel per group on a shared scale."},
+  cmp_how:{es:"Promedios anuales, una línea por país. Al desagregar, un panel por grupo con la misma escala. Tocá un país en la leyenda para sacarlo o sumarlo; «Ocultar todos los países» deja el gráfico vacío para armarlo sólo con los que te interesan.",
+           en:"Annual averages, one line per country. With a breakdown, one panel per group on a shared scale. Click a country in the legend to remove or add it; «Hide all countries» empties the chart so you can build it with only the ones you want."},
   cmp_caveat_title:{es:"Qué se puede comparar y qué no",en:"What can and cannot be compared"},
   cmp_meth:{es:"Serie más larga de cada país",en:"Longest series for each country"},
   cmp_warn_def:{es:"El tamaño del establecimiento y el quintil de ingreso no se definen igual en todas las encuestas: ver las notas.",
@@ -803,14 +811,15 @@ const PARAMS = () => { const p = Object.assign({}, PARAMS_BASE);
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const seriesColors = () => ["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--s8"].map(css);
 const mapRamp      = () => ["--m0","--m1","--m2","--m3","--m4","--m5","--m6"].map(css);
-/* Country identity (2026-11-20, pedido de Matías): the 8 validated hues, fixed per country (never by order, so a
-   filter or a new country never repaints the others). From the 9th country on the hue repeats with another line
-   pattern and marker shape, also fixed per country: no two countries share hue + pattern. */
+/* Country identity (2026-11-24, pedido de Matías): one DISTINCT hue per country, always a solid line, fixed per
+   country (never by order, so a filter or a new country never repaints the others). 16 hues; only from the 17th
+   country on would a hue repeat, and then with another line pattern. */
+const COUNTRY_HUES = ["--s1","--s2","--s3","--s4","--s5","--s6","--s7","--s8","--s9","--s10","--s11","--s12","--s13","--s14","--s15","--s16"];
 const COUNTRY_STYLE = {ar:[0,0],cr:[1,0],mx:[2,0],br:[3,0],ec:[4,0],py:[5,0],cl:[6,0],pe:[7,0],
-  bo:[0,1],uy:[1,1],co:[2,1],do:[3,1],pa:[4,1],gt:[5,1],sv:[6,1],hn:[7,1],ve:[0,2],ni:[1,2],cu:[2,2],ht:[3,2]};
+  bo:[8,0],uy:[9,0],co:[10,0],do:[11,0],pa:[12,0],gt:[13,0],sv:[14,0],hn:[15,0],ve:[0,1],ni:[1,1],cu:[2,1],ht:[3,1]};
 const DASHES = ["solid","dash","dot"], SYMBOLS = ["circle-open","square-open","diamond-open"];
-const countryStyle  = x => COUNTRY_STYLE[x] || (i=>[i%8, Math.floor(i/8)%3])(Math.max(0, REG.orden.indexOf(x)));
-const countryColor  = x => seriesColors()[countryStyle(x)[0]];
+const countryStyle  = x => COUNTRY_STYLE[x] || (i=>[i%16, Math.floor(i/16)%3])(Math.max(0, REG.orden.indexOf(x)));
+const countryColor  = x => css(COUNTRY_HUES[countryStyle(x)[0]]);
 const countryDash   = x => DASHES[countryStyle(x)[1]];
 const countryMarker = (nArr, x) => Object.assign(lowMarker(nArr, countryColor(x)), {symbol:SYMBOLS[countryStyle(x)[1]]});
 /* legend swatch: a short line in the country's hue and pattern */
@@ -1211,7 +1220,7 @@ async function render(){
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           } : {
             type:"scatter", mode:"lines+markers", x:years, y:vals, name:nm,
-            line:{color, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, color), connectgaps:false,
+            line:{color, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, color), connectgaps:true,
             hovertemplate:`<b>${nm||METRICS[s.metric][lang]}</b><br>%{x}: %{y:.1f}<extra></extra>`
           });
         });
@@ -1220,7 +1229,7 @@ async function render(){
           const color = brkCol ? (slotColor(s.param,k) || colors[ki%8]) : colors[0];
           const nm = (brkCol ? (lb[k]||k)+" · " : "") + ovName;
           traces.push({type:"scatter", mode:"lines+markers", x:years, y:ov, name:nm,
-            line:{color, width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color, size:6}, connectgaps:false,
+            line:{color, width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color, size:6}, connectgaps:true,
             showlegend: !brkCol, hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         }
       });
@@ -1254,14 +1263,14 @@ async function render(){
         seriesAt(k).forEach((vals,ci)=>{
           const nn = nAt(k, ci), cl = dual ? colors[ci] : colors[0];
           traces.push({type:"scatter",mode:"lines+markers",x:years,y:vals, xaxis:"x"+ax, yaxis:"y"+ax,
-            line:{color: cl, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, cl), connectgaps:false,
+            line:{color: cl, width:2, shape:"spline", smoothing:0.7}, marker:lowMarker(nn, cl), connectgaps:true,
             name: dual ? (ci===0?t("informal"):t("formal")) : (lb?lb[k]:""),
             showlegend: dual && ki===0,
             hovertemplate:`<b>${lb?(lb[k]||k):""}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         });
         const ov = overAt(k);
         if(ov) traces.push({type:"scatter",mode:"lines+markers",x:years,y:ov, xaxis:"x"+ax, yaxis:"y"+ax,
-            line:{color:colors[0], width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color:colors[0], size:5}, connectgaps:false,
+            line:{color:colors[0], width:2, dash:"dot", shape:"spline", smoothing:0.7}, marker:{color:colors[0], size:5}, connectgaps:true,
             name:ovName, showlegend:false,
             hovertemplate:`<b>${lb?(lb[k]||k):""} · ${ovName}</b><br>%{x}: %{y:.1f}<extra></extra>`});
         const row = Math.floor(ki/ncol), col = ki%ncol;
@@ -1326,7 +1335,7 @@ function openZoom(w, i, quiet){
   const src = (div.data||[]).filter(tr=>(tr.xaxis||"x")===ax);
   if(!src.length) return;
   const traces = src.map(tr=>{ const o = {type:"scatter", mode:tr.mode, x:tr.x.slice(), y:tr.y.slice(), name:tr.name,
-    line:Object.assign({}, tr.line, {width:2.6}), connectgaps:false, showlegend:true,
+    line:Object.assign({}, tr.line, {width:2.6}), connectgaps:true, showlegend:true,
     hovertemplate:`<b>${tr.name||P.labels[i]}</b><br>%{x}: %{y:.1f}<extra></extra>`};
     if(tr.marker && /markers/.test(tr.mode||"")) o.marker = {color:tr.marker.color, size:7};
     return o; });
@@ -1580,10 +1589,10 @@ async function renderCmpKpis(){
   }));
   drawCmpKpis();
 }
-const CMP_SORTS = [["alfa","sort_alpha"],["0","sort_total"],["1","sort_women"],["2","sort_men"]];
+const CMP_SORTS = [["alfa","sort_alpha"],["0","sort_total"]];   // Matías, 2026-11-24: sin sexo (no cambia el orden)
 function drawCmpKpis(){
   if(!cmpKpiRows) return;
-  const sel = $("#cmpSort"), key = sel && sel.value ? sel.value : "alfa";
+  const sel = $("#cmpSort"), key = sel && CMP_SORTS.some(([k])=>k===sel.value) ? sel.value : "alfa";
   if(sel) fillSelect(sel, CMP_SORTS.map(([k,lab])=>[k, t(lab)]), key);
   const valOf = (r) => r.vals && r.vals[+key] && r.vals[+key].v != null ? r.vals[+key].v : null;
   const rows = cmpKpiRows.slice().sort((a,b)=>{
@@ -1601,6 +1610,17 @@ function drawCmpKpis(){
       ${delta(v,py,t("vs_year_ago"))}</div>`).join("")}</div>`;
   }).join("");
   postHeight();
+}
+/* countries hidden from the comparison chart (legend clicks, «Ocultar todos»); kept across filter changes */
+const cmpHidden = new Set();
+function bindCmpLegend(per){
+  const div = $("#cmpChart"); if(!div || !div.on) return;
+  if(div.removeAllListeners){ div.removeAllListeners("plotly_legendclick"); div.removeAllListeners("plotly_legenddoubleclick"); }
+  const isoAt = ev => { const p = per[ev.curveNumber % per.length]; return p ? p.x : null; };
+  div.on("plotly_legendclick", ev=>{ const x = isoAt(ev); if(!x) return false;
+    cmpHidden.has(x) ? cmpHidden.delete(x) : cmpHidden.add(x); renderCmp(); return false; });
+  div.on("plotly_legenddoubleclick", ev=>{ const x = isoAt(ev); if(!x) return false;
+    cmpHidden.clear(); per.forEach(p=>{ if(p.x!==x) cmpHidden.add(p.x); }); renderCmp(); return false; });
 }
 function cmpSel(){
   return {metric:$("#cMetric").value, param:$("#cParam").value,
@@ -1668,7 +1688,7 @@ async function renderCmp(){
     setNflag("cmp", [].concat(...keys.map(k=>per.map(p=>nEntries(cname(p.x)+(k==="_"?"":" · "+(lb[k]||k)), years, p.nobs.get(k), 1)[0]))));
     if(!brkCol){
       const traces = per.map(p=>({type:"scatter", mode:"lines+markers", x:years, y:valsAt(p,"_"), name:cname(p.x),
-        line:{color:countryColor(p.x), dash:countryDash(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:false,
+        line:{color:countryColor(p.x), dash:countryDash(p.x), width:2.2, shape:"spline", smoothing:0.7}, connectgaps:true, visible: cmpHidden.has(p.x) ? "legendonly" : true,
         marker:countryMarker(nAtC(p,"_"), p.x),
         hovertemplate:`<b>${cname(p.x)}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
       reactOrRedraw("cmpChart", traces, baseLayout({
@@ -1692,7 +1712,7 @@ async function renderCmp(){
       keys.forEach((k,ki)=>{
         const ax = ki===0?"":String(ki+1);
         per.forEach(p=>traces.push({type:"scatter",mode:"lines+markers",x:years,y:valsAt(p,k), xaxis:"x"+ax, yaxis:"y"+ax,
-          line:{color:countryColor(p.x), dash:countryDash(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:false, name:cname(p.x), showlegend: ki===0,
+          line:{color:countryColor(p.x), dash:countryDash(p.x), width:2, shape:"spline", smoothing:0.7}, connectgaps:true, name:cname(p.x), showlegend: ki===0, legendgroup:p.x, visible: cmpHidden.has(p.x) ? "legendonly" : true,
           marker:countryMarker(nAtC(p,k), p.x),
           hovertemplate:`<b>${cname(p.x)} · ${lb[k]||k}</b><br>%{x}: %{y:.1f}<extra></extra>`}));
         const row = Math.floor(ki/ncol), col = ki%ncol;
@@ -1709,6 +1729,7 @@ async function renderCmp(){
       setPanels("cmp", keys.map(k=>lb[k]||k), $("#cmpTitle").textContent, $("#cmpSub").textContent, axisTitle(s.metric));
     }
     if(!brkCol) setPanels("cmp", null);
+    bindCmpLegend(per);
     if($("#cTableWrap").hidden===false) drawCmpTable();
   }catch(err){
     console.error(err); Plotly.purge("cmpChart"); lastFormC=""; showMsg(t("load_failed"),"#cmpMsg","#cmpChart");
@@ -1929,7 +1950,9 @@ function relang(){ buildControls(true); applyI18n(); picked = {}; if(mode==="com
     .forEach(id=>$("#"+id).addEventListener("change", renderCmp));
   $("#cmpSort").addEventListener("change", drawCmpKpis);
   $("#btnReset").addEventListener("click", ()=>{ picked = {}; buildControls(false); fillYears(true); render(); });
-  $("#cReset").addEventListener("click", ()=>{ $("#cMetric").value=""; buildControls(false); fillCmpYears(); renderCmp(); });
+  $("#cReset").addEventListener("click", ()=>{ cmpHidden.clear(); $("#cMetric").value=""; buildControls(false); fillCmpYears(); renderCmp(); });
+  $("#cNone").addEventListener("click", ()=>{ REG.orden.forEach(x=>cmpHidden.add(x)); renderCmp(); });
+  $("#cAll").addEventListener("click", ()=>{ cmpHidden.clear(); renderCmp(); });
   $("#btnAll").addEventListener("click", ()=>{
     const p = $("#fParam").value; if(p==="all") return;
     const col = PARAM_COL[p];

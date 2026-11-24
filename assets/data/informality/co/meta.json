@@ -1,7 +1,7 @@
 {
   "pais": "Colombia",
   "iso": "co",
-  "generado": "2026-11-20 17:33:50",
+  "generado": "2026-11-24 00:33:50",
   "fuente_calculo": "Python (cubo_py/pais_colombia.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -11,14 +11,18 @@
     "y": 2022,
     "q": 1
   },
+  "quiebre": {
+    "y": 2022,
+    "q": 1
+  },
   "ultimo_anio": 2025,
   "primer_anio": {
     "1": 2022,
-    "2": 2022
+    "2": 2010
   },
   "base_deflactor": {
     "y": 2026,
     "q": 3
   },
-  "validacion": "247 de 247 contrastes clave (proporcion de informalidad del DANE por trimestre calendario 2022T1-2026T3: total nacional, cabeceras, rural, 13 y 23 ciudades, por sexo) dentro de 0.1 pp, diferencia maxima 0.092 pp; el DANE no publica informalidad por edad"
+  "validacion": "247 de 247 contrastes clave (proporcion de informalidad del DANE por trimestre calendario 2022T1-2026T3: total nacional, cabeceras, rural, 13 y 23 ciudades, por sexo) dentro de 0.1 pp, diferencia maxima 0.092 pp; el DANE no publica informalidad por edad. Serie larga 2010-2021 (v = 2, regla del puesto con el cuestionario del marco 2005): ocupados de 15+ iguales al anexo empalmado del DANE en 44/44 trimestres 2010-2020; quiebre declarado en 2022T1"
 }
