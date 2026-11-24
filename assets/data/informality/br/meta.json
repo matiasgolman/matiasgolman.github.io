@@ -1,11 +1,11 @@
 {
   "pais": "Brasil",
   "iso": "br",
-  "generado": "2026-11-10 10:02:05",
+  "generado": "2026-11-24 15:27:30",
   "fuente_calculo": "Python (cubo_py/pais_brasil.py)",
   "ultimo_trimestre": {
     "y": 2026,
-    "q": 2
+    "q": 3
   },
   "inicio_oficial": {
     "y": 2015,
@@ -18,7 +18,7 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 2
+    "q": 3
   },
-  "validacion": "129 de 129 contrastes dentro de tolerancia, diferencia maxima 0.05 pp"
+  "validacion": "132 de 132 contrastes dentro de tolerancia, diferencia maxima 0.05 pp"
 }
