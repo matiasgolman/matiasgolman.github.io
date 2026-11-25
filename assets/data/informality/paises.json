@@ -1484,6 +1484,24 @@
           "es": "la Encuesta Continua de Empleo (ECE) del INE de Bolivia",
           "en": "the Continuous Employment Survey (ECE) of Bolivia's INE"
         }
+      },
+      "puntos_ref": {
+        "valores": {
+          "2020": 83.2,
+          "2021": 83.1
+        },
+        "nombre": {
+          "es": "Encuesta de Hogares (EH), anual: referencia",
+          "en": "Household Survey (EH), annual: reference"
+        },
+        "serie": {
+          "es": "ECE (promedio del año)",
+          "en": "ECE (annual average)"
+        },
+        "nota": {
+          "es": "Rombos: 2020 y 2021 de la Encuesta de Hogares anual del INE (otra encuesta; en esos años la ECE no es comparable). Reproducen la tasa de la EH que publica el INE (±0,2 pp), que suele quedar 2–3 pp por debajo de la ECE: sirven de referencia, no se unen a la serie. Sólo para el total nacional.",
+          "en": "Diamonds: 2020 and 2021 from INE's annual Household Survey (a different survey; the ECE is not comparable in those years). They reproduce INE's published EH rate (±0.2 pp), which usually sits 2–3 pp below the ECE: a reference, not joined to the series. National total only."
+        }
       }
     },
     "uy": {

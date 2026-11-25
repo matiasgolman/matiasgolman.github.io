@@ -1236,6 +1236,21 @@ async function render(){
       if(over && brkCol) traces.push({type:"scatter", mode:"lines+markers", x:[null], y:[null],
         name:ovName, line:{color:css("--ink-soft"), width:2, dash:"dot"},
         marker:{color:css("--ink-soft"), size:6}, hoverinfo:"skip"});
+      /* Reference points from another survey (Bolivia: annual EH 2020-2021 in the ECE gap; Matias, 2026-11-24):
+         markers only, never joined to the series; whole population and informality rate only */
+      { const pr = C().puntos_ref;
+        if(pr && pr.valores && s.metric==="tasa_informalidad" && !brkCol && s.type!=="bar" && whoText(s)===t("all_employed")){
+          const ys = years.filter(y=> pr.valores[y]!=null);
+          if(ys.length){
+            const nm = pr.nombre[lang], col = css("--ink-soft");
+            if(pr.serie) traces.forEach(tr=>{ if(!tr.name) tr.name = pr.serie[lang]; });
+            traces.push({type:"scatter", mode:"markers", x:ys, y:ys.map(y=>pr.valores[y]), name:nm,
+              marker:{symbol:"diamond-open", size:11, color:col, line:{width:2, color:col}},
+              hovertemplate:`<b>${nm}</b><br>%{x}: %{y:.1f}<extra></extra>`});
+            const mn = $("#mainNote"); mn.textContent = (mn.hidden ? "" : mn.textContent + " ") + pr.nota[lang]; mn.hidden = false;
+          }
+        }
+      }
       const lay = baseLayout({
         height: 420,
         xaxis: Object.assign(baseLayout().xaxis, yearAxis(years), {title:{text:t("year"),font:{size:11,color:css("--ink-soft")}}}),
