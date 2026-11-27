@@ -1,7 +1,7 @@
 {
   "pais": "Chile",
   "iso": "cl",
-  "generado": "2026-11-03 17:27:09",
+  "generado": "2026-11-27 23:14:02",
   "fuente_calculo": "Python (cubo_py/pais_chile.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -14,12 +14,32 @@
   "ultimo_anio": 2025,
   "primer_anio": {
     "1": 2018,
-    "2": 2017
+    "2": 2000
+  },
+  "ultimo_anio_v": {
+    "1": 2025,
+    "2": 2024
   },
   "base_deflactor": {
     "y": 2026,
     "q": 1
   },
   "sin_ingresos": true,
-  "validacion": "703 de 703 contrastes dentro de tolerancia, diferencia maxima 0.00 pp"
+  "validacion": "732 de 732 contrastes dentro de tolerancia, diferencia maxima 1.00 pp",
+  "serie_larga": {
+    "fuente": "CASEN (Ministerio de Desarrollo Social)",
+    "anios": [
+      2000,
+      2003,
+      2006,
+      2009,
+      2011,
+      2013,
+      2015,
+      2017,
+      2020,
+      2022,
+      2024
+    ]
+  }
 }
