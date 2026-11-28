@@ -1035,7 +1035,7 @@
       "geo_alto": true,
       "v_iguales": false,
       "area": true,
-      "sin_ingresos": true,
+      "sin_ingresos": false,
       "meas_main": 2,
       "moneda": {
         "es": "pesos chilenos",
@@ -1904,9 +1904,9 @@
       "en": "Monetary income only: excludes in-kind payments and own consumption. The quarterly EPHC does not ask about in-kind payments."
     },
     "cl": {
-      "tipo": "sin",
-      "es": "La ENE no releva ingresos.",
-      "en": "The ENE does not collect income."
+      "tipo": "monetario",
+      "es": "Sólo la serie anual con la CASEN (la ENE no releva ingresos). Ingreso monetario de la ocupación principal del mes pasado (sueldo o salario líquido para los asalariados; ingreso del negocio para empleadores y cuentapropistas), con la corrección por no respuesta del Ministerio de Desarrollo Social; 2000–2011 sin el ajuste a Cuentas Nacionales. Quintil: ingreso autónomo per cápita del hogar, del Ministerio.",
+      "en": "Annual CASEN series only (the ENE does not collect income). Monetary main-job income in the previous month (net wage for employees; business income for employers and own-account workers), with the Ministry of Social Development's non-response correction; 2000–2011 without the national-accounts adjustment. Quintile: household per capita autonomous income, from the Ministry."
     },
     "pe": {
       "tipo": "especie",

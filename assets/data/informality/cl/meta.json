@@ -1,7 +1,7 @@
 {
   "pais": "Chile",
   "iso": "cl",
-  "generado": "2026-11-27 23:14:02",
+  "generado": "2026-11-28 04:34:31",
   "fuente_calculo": "Python (cubo_py/pais_chile.py)",
   "ultimo_trimestre": {
     "y": 2026,
@@ -22,9 +22,10 @@
   },
   "base_deflactor": {
     "y": 2026,
-    "q": 1
+    "q": 3
   },
-  "sin_ingresos": true,
+  "sin_ingresos": false,
+  "ingresos": "solo cubo anual, CASEN (v = 2): p21_deflact y quintil del Ministerio",
   "validacion": "732 de 732 contrastes dentro de tolerancia, diferencia maxima 1.00 pp",
   "serie_larga": {
     "fuente": "CASEN (Ministerio de Desarrollo Social)",
